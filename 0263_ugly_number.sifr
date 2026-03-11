@@ -1,0 +1,17 @@
+# LeetCode 263: Ugly Number
+
+def isUgly(n: int) -> bool:
+    if n <= 0:
+        return False
+    
+    for p in [2, 3, 5]:
+        while n % p == 0:
+            n = n // p
+    return n == 1
+
+def main():
+    assert str(isUgly(6)) == 'true'
+    assert str(isUgly(1)) == 'true'
+    assert str(isUgly(14)) == 'false'
+
+

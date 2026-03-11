@@ -1,0 +1,19 @@
+# LeetCode 14: Longest Common Prefix
+
+def longestCommonPrefix(strs: list[str]) -> str:
+    if len(strs) == 0:
+        return ""
+    prefix: str = strs[0]
+    for i in range(1, len(strs)):
+        while not strs[i].startswith(prefix):
+            prefix = prefix[:len(prefix) - 1]
+            if len(prefix) == 0:
+                return ""
+    return prefix
+
+def main():
+    assert str(longestCommonPrefix(["flower", "flow", "flight"])) == 'fl'
+    assert str(longestCommonPrefix(["dog", "racecar", "car"])) == ''
+    assert str(longestCommonPrefix(["interspecies", "interstellar", "interstate"])) == 'inters'
+    assert str(longestCommonPrefix(["a"])) == 'a'
+
