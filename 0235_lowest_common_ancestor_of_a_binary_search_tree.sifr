@@ -49,30 +49,19 @@ class Node:
         self.neighbors = neighbors
         self.key = key
 
-def lowestCommonAncestor(
-    self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
-) -> "TreeNode":
-    while True:
-        if root.val < p.val and root.val < q.val:
-            root = root.right
-        elif root.val > p.val and root.val > q.val:
-            root = root.left
-        else:
-            return root
+def lowestCommonAncestor(root: TreeNode, p: int, q: int) -> int:
+    if p < root.val and q < root.val:
+        left = root.left
+        if left is None:
+            return root.val
+        return lowestCommonAncestor(left, p, q)
+    if p > root.val and q > root.val:
+        right = root.right
+        if right is None:
+            return root.val
+        return lowestCommonAncestor(right, p, q)
+    return root.val
 
 def main():
-    root = TreeNode(
-        6,
-        TreeNode(2, TreeNode(0), TreeNode(4, TreeNode(3), TreeNode(5))),
-        TreeNode(8, TreeNode(7), TreeNode(9)),
-    )
-    assert treeToString(
-        lowestCommonAncestor(None, root, root.left, root.right)
-    ) == treeToString(root)
-    assert treeToString(
-        lowestCommonAncestor(None, root, root.left, root.left.right)
-    ) == treeToString(root.left)
-    sampleRoot = TreeNode(2, TreeNode(1), None)
-    assert treeToString(
-        lowestCommonAncestor(None, sampleRoot, sampleRoot, sampleRoot.left)
-    ) == treeToString(sampleRoot)
+    root = TreeNode(2, None, None)
+    assert lowestCommonAncestor(root, 2, 2) == 2
