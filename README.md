@@ -30,8 +30,7 @@ existing ones.
 ## Repository Layout
 
 - `src/` contains the LeetCode `.sifr` fixtures and paired Python references.
-- `run_audit.py`, `convert_all.py`, and `batch_convert.py` are root-level helper
-  scripts for the corpus.
+- `run_audit.py` is the remaining root-level audit helper for the corpus.
 
 ## Common Commands
 
