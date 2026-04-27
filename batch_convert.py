@@ -8,7 +8,7 @@ This script handles the CONVERSION only. Testing is done separately.
 import os, re
 
 SRC = "/Users/yaseralnajjar/work/sifr/leetcode/python"
-DST = "/Users/yaseralnajjar/work/sifr/codebase/audit/leetcode"
+DST = "/Users/yaseralnajjar/work/sifr/codebase/audits/leetcode/src"
 
 DONE = {
     "0009","0014","0045","0053","0055","0058","0070","0121",

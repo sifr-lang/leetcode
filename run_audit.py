@@ -25,7 +25,7 @@ import subprocess
 import json
 
 SRC = "/Users/yaseralnajjar/work/sifr/leetcode/python"
-DST = "/Users/yaseralnajjar/work/sifr/codebase/audit/leetcode"
+DST = "/Users/yaseralnajjar/work/sifr/codebase/audits/leetcode/src"
 SIFR_BIN = "/Users/yaseralnajjar/work/sifr/codebase/target/release/sifr"
 WORKSPACE = "/Users/yaseralnajjar/work/sifr/codebase"
 

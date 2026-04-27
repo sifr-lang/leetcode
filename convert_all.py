@@ -14,7 +14,7 @@ import os
 import re
 
 PYTHON_DIR = "/Users/yaseralnajjar/work/sifr/leetcode/python"
-OUTPUT_DIR = "/Users/yaseralnajjar/work/sifr/codebase/audit/leetcode"
+OUTPUT_DIR = "/Users/yaseralnajjar/work/sifr/codebase/audits/leetcode/src"
 
 # Already done problems (skip these)
 ALREADY_DONE = {
