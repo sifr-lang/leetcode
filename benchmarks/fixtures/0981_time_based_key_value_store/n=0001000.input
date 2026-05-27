@@ -1,0 +1,2001 @@
+__init__
+set foo bar 1
+get foo 1
+set foo bar2 2
+get foo 2
+set foo bar 3
+get foo 3
+set foo bar2 4
+get foo 4
+set foo bar 5
+get foo 5
+set foo bar2 6
+get foo 6
+set foo bar 7
+get foo 7
+set foo bar2 8
+get foo 8
+set foo bar 9
+get foo 9
+set foo bar2 10
+get foo 10
+set foo bar 11
+get foo 11
+set foo bar2 12
+get foo 12
+set foo bar 13
+get foo 13
+set foo bar2 14
+get foo 14
+set foo bar 15
+get foo 15
+set foo bar2 16
+get foo 16
+set foo bar 17
+get foo 17
+set foo bar2 18
+get foo 18
+set foo bar 19
+get foo 19
+set foo bar2 20
+get foo 20
+set foo bar 21
+get foo 21
+set foo bar2 22
+get foo 22
+set foo bar 23
+get foo 23
+set foo bar2 24
+get foo 24
+set foo bar 25
+get foo 25
+set foo bar2 26
+get foo 26
+set foo bar 27
+get foo 27
+set foo bar2 28
+get foo 28
+set foo bar 29
+get foo 29
+set foo bar2 30
+get foo 30
+set foo bar 31
+get foo 31
+set foo bar2 32
+get foo 32
+set foo bar 33
+get foo 33
+set foo bar2 34
+get foo 34
+set foo bar 35
+get foo 35
+set foo bar2 36
+get foo 36
+set foo bar 37
+get foo 37
+set foo bar2 38
+get foo 38
+set foo bar 39
+get foo 39
+set foo bar2 40
+get foo 40
+set foo bar 41
+get foo 41
+set foo bar2 42
+get foo 42
+set foo bar 43
+get foo 43
+set foo bar2 44
+get foo 44
+set foo bar 45
+get foo 45
+set foo bar2 46
+get foo 46
+set foo bar 47
+get foo 47
+set foo bar2 48
+get foo 48
+set foo bar 49
+get foo 49
+set foo bar2 50
+get foo 50
+set foo bar 51
+get foo 51
+set foo bar2 52
+get foo 52
+set foo bar 53
+get foo 53
+set foo bar2 54
+get foo 54
+set foo bar 55
+get foo 55
+set foo bar2 56
+get foo 56
+set foo bar 57
+get foo 57
+set foo bar2 58
+get foo 58
+set foo bar 59
+get foo 59
+set foo bar2 60
+get foo 60
+set foo bar 61
+get foo 61
+set foo bar2 62
+get foo 62
+set foo bar 63
+get foo 63
+set foo bar2 64
+get foo 64
+set foo bar 65
+get foo 65
+set foo bar2 66
+get foo 66
+set foo bar 67
+get foo 67
+set foo bar2 68
+get foo 68
+set foo bar 69
+get foo 69
+set foo bar2 70
+get foo 70
+set foo bar 71
+get foo 71
+set foo bar2 72
+get foo 72
+set foo bar 73
+get foo 73
+set foo bar2 74
+get foo 74
+set foo bar 75
+get foo 75
+set foo bar2 76
+get foo 76
+set foo bar 77
+get foo 77
+set foo bar2 78
+get foo 78
+set foo bar 79
+get foo 79
+set foo bar2 80
+get foo 80
+set foo bar 81
+get foo 81
+set foo bar2 82
+get foo 82
+set foo bar 83
+get foo 83
+set foo bar2 84
+get foo 84
+set foo bar 85
+get foo 85
+set foo bar2 86
+get foo 86
+set foo bar 87
+get foo 87
+set foo bar2 88
+get foo 88
+set foo bar 89
+get foo 89
+set foo bar2 90
+get foo 90
+set foo bar 91
+get foo 91
+set foo bar2 92
+get foo 92
+set foo bar 93
+get foo 93
+set foo bar2 94
+get foo 94
+set foo bar 95
+get foo 95
+set foo bar2 96
+get foo 96
+set foo bar 97
+get foo 97
+set foo bar2 98
+get foo 98
+set foo bar 99
+get foo 99
+set foo bar2 100
+get foo 100
+set foo bar 101
+get foo 101
+set foo bar2 102
+get foo 102
+set foo bar 103
+get foo 103
+set foo bar2 104
+get foo 104
+set foo bar 105
+get foo 105
+set foo bar2 106
+get foo 106
+set foo bar 107
+get foo 107
+set foo bar2 108
+get foo 108
+set foo bar 109
+get foo 109
+set foo bar2 110
+get foo 110
+set foo bar 111
+get foo 111
+set foo bar2 112
+get foo 112
+set foo bar 113
+get foo 113
+set foo bar2 114
+get foo 114
+set foo bar 115
+get foo 115
+set foo bar2 116
+get foo 116
+set foo bar 117
+get foo 117
+set foo bar2 118
+get foo 118
+set foo bar 119
+get foo 119
+set foo bar2 120
+get foo 120
+set foo bar 121
+get foo 121
+set foo bar2 122
+get foo 122
+set foo bar 123
+get foo 123
+set foo bar2 124
+get foo 124
+set foo bar 125
+get foo 125
+set foo bar2 126
+get foo 126
+set foo bar 127
+get foo 127
+set foo bar2 128
+get foo 128
+set foo bar 129
+get foo 129
+set foo bar2 130
+get foo 130
+set foo bar 131
+get foo 131
+set foo bar2 132
+get foo 132
+set foo bar 133
+get foo 133
+set foo bar2 134
+get foo 134
+set foo bar 135
+get foo 135
+set foo bar2 136
+get foo 136
+set foo bar 137
+get foo 137
+set foo bar2 138
+get foo 138
+set foo bar 139
+get foo 139
+set foo bar2 140
+get foo 140
+set foo bar 141
+get foo 141
+set foo bar2 142
+get foo 142
+set foo bar 143
+get foo 143
+set foo bar2 144
+get foo 144
+set foo bar 145
+get foo 145
+set foo bar2 146
+get foo 146
+set foo bar 147
+get foo 147
+set foo bar2 148
+get foo 148
+set foo bar 149
+get foo 149
+set foo bar2 150
+get foo 150
+set foo bar 151
+get foo 151
+set foo bar2 152
+get foo 152
+set foo bar 153
+get foo 153
+set foo bar2 154
+get foo 154
+set foo bar 155
+get foo 155
+set foo bar2 156
+get foo 156
+set foo bar 157
+get foo 157
+set foo bar2 158
+get foo 158
+set foo bar 159
+get foo 159
+set foo bar2 160
+get foo 160
+set foo bar 161
+get foo 161
+set foo bar2 162
+get foo 162
+set foo bar 163
+get foo 163
+set foo bar2 164
+get foo 164
+set foo bar 165
+get foo 165
+set foo bar2 166
+get foo 166
+set foo bar 167
+get foo 167
+set foo bar2 168
+get foo 168
+set foo bar 169
+get foo 169
+set foo bar2 170
+get foo 170
+set foo bar 171
+get foo 171
+set foo bar2 172
+get foo 172
+set foo bar 173
+get foo 173
+set foo bar2 174
+get foo 174
+set foo bar 175
+get foo 175
+set foo bar2 176
+get foo 176
+set foo bar 177
+get foo 177
+set foo bar2 178
+get foo 178
+set foo bar 179
+get foo 179
+set foo bar2 180
+get foo 180
+set foo bar 181
+get foo 181
+set foo bar2 182
+get foo 182
+set foo bar 183
+get foo 183
+set foo bar2 184
+get foo 184
+set foo bar 185
+get foo 185
+set foo bar2 186
+get foo 186
+set foo bar 187
+get foo 187
+set foo bar2 188
+get foo 188
+set foo bar 189
+get foo 189
+set foo bar2 190
+get foo 190
+set foo bar 191
+get foo 191
+set foo bar2 192
+get foo 192
+set foo bar 193
+get foo 193
+set foo bar2 194
+get foo 194
+set foo bar 195
+get foo 195
+set foo bar2 196
+get foo 196
+set foo bar 197
+get foo 197
+set foo bar2 198
+get foo 198
+set foo bar 199
+get foo 199
+set foo bar2 200
+get foo 200
+set foo bar 201
+get foo 201
+set foo bar2 202
+get foo 202
+set foo bar 203
+get foo 203
+set foo bar2 204
+get foo 204
+set foo bar 205
+get foo 205
+set foo bar2 206
+get foo 206
+set foo bar 207
+get foo 207
+set foo bar2 208
+get foo 208
+set foo bar 209
+get foo 209
+set foo bar2 210
+get foo 210
+set foo bar 211
+get foo 211
+set foo bar2 212
+get foo 212
+set foo bar 213
+get foo 213
+set foo bar2 214
+get foo 214
+set foo bar 215
+get foo 215
+set foo bar2 216
+get foo 216
+set foo bar 217
+get foo 217
+set foo bar2 218
+get foo 218
+set foo bar 219
+get foo 219
+set foo bar2 220
+get foo 220
+set foo bar 221
+get foo 221
+set foo bar2 222
+get foo 222
+set foo bar 223
+get foo 223
+set foo bar2 224
+get foo 224
+set foo bar 225
+get foo 225
+set foo bar2 226
+get foo 226
+set foo bar 227
+get foo 227
+set foo bar2 228
+get foo 228
+set foo bar 229
+get foo 229
+set foo bar2 230
+get foo 230
+set foo bar 231
+get foo 231
+set foo bar2 232
+get foo 232
+set foo bar 233
+get foo 233
+set foo bar2 234
+get foo 234
+set foo bar 235
+get foo 235
+set foo bar2 236
+get foo 236
+set foo bar 237
+get foo 237
+set foo bar2 238
+get foo 238
+set foo bar 239
+get foo 239
+set foo bar2 240
+get foo 240
+set foo bar 241
+get foo 241
+set foo bar2 242
+get foo 242
+set foo bar 243
+get foo 243
+set foo bar2 244
+get foo 244
+set foo bar 245
+get foo 245
+set foo bar2 246
+get foo 246
+set foo bar 247
+get foo 247
+set foo bar2 248
+get foo 248
+set foo bar 249
+get foo 249
+set foo bar2 250
+get foo 250
+set foo bar 251
+get foo 251
+set foo bar2 252
+get foo 252
+set foo bar 253
+get foo 253
+set foo bar2 254
+get foo 254
+set foo bar 255
+get foo 255
+set foo bar2 256
+get foo 256
+set foo bar 257
+get foo 257
+set foo bar2 258
+get foo 258
+set foo bar 259
+get foo 259
+set foo bar2 260
+get foo 260
+set foo bar 261
+get foo 261
+set foo bar2 262
+get foo 262
+set foo bar 263
+get foo 263
+set foo bar2 264
+get foo 264
+set foo bar 265
+get foo 265
+set foo bar2 266
+get foo 266
+set foo bar 267
+get foo 267
+set foo bar2 268
+get foo 268
+set foo bar 269
+get foo 269
+set foo bar2 270
+get foo 270
+set foo bar 271
+get foo 271
+set foo bar2 272
+get foo 272
+set foo bar 273
+get foo 273
+set foo bar2 274
+get foo 274
+set foo bar 275
+get foo 275
+set foo bar2 276
+get foo 276
+set foo bar 277
+get foo 277
+set foo bar2 278
+get foo 278
+set foo bar 279
+get foo 279
+set foo bar2 280
+get foo 280
+set foo bar 281
+get foo 281
+set foo bar2 282
+get foo 282
+set foo bar 283
+get foo 283
+set foo bar2 284
+get foo 284
+set foo bar 285
+get foo 285
+set foo bar2 286
+get foo 286
+set foo bar 287
+get foo 287
+set foo bar2 288
+get foo 288
+set foo bar 289
+get foo 289
+set foo bar2 290
+get foo 290
+set foo bar 291
+get foo 291
+set foo bar2 292
+get foo 292
+set foo bar 293
+get foo 293
+set foo bar2 294
+get foo 294
+set foo bar 295
+get foo 295
+set foo bar2 296
+get foo 296
+set foo bar 297
+get foo 297
+set foo bar2 298
+get foo 298
+set foo bar 299
+get foo 299
+set foo bar2 300
+get foo 300
+set foo bar 301
+get foo 301
+set foo bar2 302
+get foo 302
+set foo bar 303
+get foo 303
+set foo bar2 304
+get foo 304
+set foo bar 305
+get foo 305
+set foo bar2 306
+get foo 306
+set foo bar 307
+get foo 307
+set foo bar2 308
+get foo 308
+set foo bar 309
+get foo 309
+set foo bar2 310
+get foo 310
+set foo bar 311
+get foo 311
+set foo bar2 312
+get foo 312
+set foo bar 313
+get foo 313
+set foo bar2 314
+get foo 314
+set foo bar 315
+get foo 315
+set foo bar2 316
+get foo 316
+set foo bar 317
+get foo 317
+set foo bar2 318
+get foo 318
+set foo bar 319
+get foo 319
+set foo bar2 320
+get foo 320
+set foo bar 321
+get foo 321
+set foo bar2 322
+get foo 322
+set foo bar 323
+get foo 323
+set foo bar2 324
+get foo 324
+set foo bar 325
+get foo 325
+set foo bar2 326
+get foo 326
+set foo bar 327
+get foo 327
+set foo bar2 328
+get foo 328
+set foo bar 329
+get foo 329
+set foo bar2 330
+get foo 330
+set foo bar 331
+get foo 331
+set foo bar2 332
+get foo 332
+set foo bar 333
+get foo 333
+set foo bar2 334
+get foo 334
+set foo bar 335
+get foo 335
+set foo bar2 336
+get foo 336
+set foo bar 337
+get foo 337
+set foo bar2 338
+get foo 338
+set foo bar 339
+get foo 339
+set foo bar2 340
+get foo 340
+set foo bar 341
+get foo 341
+set foo bar2 342
+get foo 342
+set foo bar 343
+get foo 343
+set foo bar2 344
+get foo 344
+set foo bar 345
+get foo 345
+set foo bar2 346
+get foo 346
+set foo bar 347
+get foo 347
+set foo bar2 348
+get foo 348
+set foo bar 349
+get foo 349
+set foo bar2 350
+get foo 350
+set foo bar 351
+get foo 351
+set foo bar2 352
+get foo 352
+set foo bar 353
+get foo 353
+set foo bar2 354
+get foo 354
+set foo bar 355
+get foo 355
+set foo bar2 356
+get foo 356
+set foo bar 357
+get foo 357
+set foo bar2 358
+get foo 358
+set foo bar 359
+get foo 359
+set foo bar2 360
+get foo 360
+set foo bar 361
+get foo 361
+set foo bar2 362
+get foo 362
+set foo bar 363
+get foo 363
+set foo bar2 364
+get foo 364
+set foo bar 365
+get foo 365
+set foo bar2 366
+get foo 366
+set foo bar 367
+get foo 367
+set foo bar2 368
+get foo 368
+set foo bar 369
+get foo 369
+set foo bar2 370
+get foo 370
+set foo bar 371
+get foo 371
+set foo bar2 372
+get foo 372
+set foo bar 373
+get foo 373
+set foo bar2 374
+get foo 374
+set foo bar 375
+get foo 375
+set foo bar2 376
+get foo 376
+set foo bar 377
+get foo 377
+set foo bar2 378
+get foo 378
+set foo bar 379
+get foo 379
+set foo bar2 380
+get foo 380
+set foo bar 381
+get foo 381
+set foo bar2 382
+get foo 382
+set foo bar 383
+get foo 383
+set foo bar2 384
+get foo 384
+set foo bar 385
+get foo 385
+set foo bar2 386
+get foo 386
+set foo bar 387
+get foo 387
+set foo bar2 388
+get foo 388
+set foo bar 389
+get foo 389
+set foo bar2 390
+get foo 390
+set foo bar 391
+get foo 391
+set foo bar2 392
+get foo 392
+set foo bar 393
+get foo 393
+set foo bar2 394
+get foo 394
+set foo bar 395
+get foo 395
+set foo bar2 396
+get foo 396
+set foo bar 397
+get foo 397
+set foo bar2 398
+get foo 398
+set foo bar 399
+get foo 399
+set foo bar2 400
+get foo 400
+set foo bar 401
+get foo 401
+set foo bar2 402
+get foo 402
+set foo bar 403
+get foo 403
+set foo bar2 404
+get foo 404
+set foo bar 405
+get foo 405
+set foo bar2 406
+get foo 406
+set foo bar 407
+get foo 407
+set foo bar2 408
+get foo 408
+set foo bar 409
+get foo 409
+set foo bar2 410
+get foo 410
+set foo bar 411
+get foo 411
+set foo bar2 412
+get foo 412
+set foo bar 413
+get foo 413
+set foo bar2 414
+get foo 414
+set foo bar 415
+get foo 415
+set foo bar2 416
+get foo 416
+set foo bar 417
+get foo 417
+set foo bar2 418
+get foo 418
+set foo bar 419
+get foo 419
+set foo bar2 420
+get foo 420
+set foo bar 421
+get foo 421
+set foo bar2 422
+get foo 422
+set foo bar 423
+get foo 423
+set foo bar2 424
+get foo 424
+set foo bar 425
+get foo 425
+set foo bar2 426
+get foo 426
+set foo bar 427
+get foo 427
+set foo bar2 428
+get foo 428
+set foo bar 429
+get foo 429
+set foo bar2 430
+get foo 430
+set foo bar 431
+get foo 431
+set foo bar2 432
+get foo 432
+set foo bar 433
+get foo 433
+set foo bar2 434
+get foo 434
+set foo bar 435
+get foo 435
+set foo bar2 436
+get foo 436
+set foo bar 437
+get foo 437
+set foo bar2 438
+get foo 438
+set foo bar 439
+get foo 439
+set foo bar2 440
+get foo 440
+set foo bar 441
+get foo 441
+set foo bar2 442
+get foo 442
+set foo bar 443
+get foo 443
+set foo bar2 444
+get foo 444
+set foo bar 445
+get foo 445
+set foo bar2 446
+get foo 446
+set foo bar 447
+get foo 447
+set foo bar2 448
+get foo 448
+set foo bar 449
+get foo 449
+set foo bar2 450
+get foo 450
+set foo bar 451
+get foo 451
+set foo bar2 452
+get foo 452
+set foo bar 453
+get foo 453
+set foo bar2 454
+get foo 454
+set foo bar 455
+get foo 455
+set foo bar2 456
+get foo 456
+set foo bar 457
+get foo 457
+set foo bar2 458
+get foo 458
+set foo bar 459
+get foo 459
+set foo bar2 460
+get foo 460
+set foo bar 461
+get foo 461
+set foo bar2 462
+get foo 462
+set foo bar 463
+get foo 463
+set foo bar2 464
+get foo 464
+set foo bar 465
+get foo 465
+set foo bar2 466
+get foo 466
+set foo bar 467
+get foo 467
+set foo bar2 468
+get foo 468
+set foo bar 469
+get foo 469
+set foo bar2 470
+get foo 470
+set foo bar 471
+get foo 471
+set foo bar2 472
+get foo 472
+set foo bar 473
+get foo 473
+set foo bar2 474
+get foo 474
+set foo bar 475
+get foo 475
+set foo bar2 476
+get foo 476
+set foo bar 477
+get foo 477
+set foo bar2 478
+get foo 478
+set foo bar 479
+get foo 479
+set foo bar2 480
+get foo 480
+set foo bar 481
+get foo 481
+set foo bar2 482
+get foo 482
+set foo bar 483
+get foo 483
+set foo bar2 484
+get foo 484
+set foo bar 485
+get foo 485
+set foo bar2 486
+get foo 486
+set foo bar 487
+get foo 487
+set foo bar2 488
+get foo 488
+set foo bar 489
+get foo 489
+set foo bar2 490
+get foo 490
+set foo bar 491
+get foo 491
+set foo bar2 492
+get foo 492
+set foo bar 493
+get foo 493
+set foo bar2 494
+get foo 494
+set foo bar 495
+get foo 495
+set foo bar2 496
+get foo 496
+set foo bar 497
+get foo 497
+set foo bar2 498
+get foo 498
+set foo bar 499
+get foo 499
+set foo bar2 500
+get foo 500
+set foo bar 501
+get foo 501
+set foo bar2 502
+get foo 502
+set foo bar 503
+get foo 503
+set foo bar2 504
+get foo 504
+set foo bar 505
+get foo 505
+set foo bar2 506
+get foo 506
+set foo bar 507
+get foo 507
+set foo bar2 508
+get foo 508
+set foo bar 509
+get foo 509
+set foo bar2 510
+get foo 510
+set foo bar 511
+get foo 511
+set foo bar2 512
+get foo 512
+set foo bar 513
+get foo 513
+set foo bar2 514
+get foo 514
+set foo bar 515
+get foo 515
+set foo bar2 516
+get foo 516
+set foo bar 517
+get foo 517
+set foo bar2 518
+get foo 518
+set foo bar 519
+get foo 519
+set foo bar2 520
+get foo 520
+set foo bar 521
+get foo 521
+set foo bar2 522
+get foo 522
+set foo bar 523
+get foo 523
+set foo bar2 524
+get foo 524
+set foo bar 525
+get foo 525
+set foo bar2 526
+get foo 526
+set foo bar 527
+get foo 527
+set foo bar2 528
+get foo 528
+set foo bar 529
+get foo 529
+set foo bar2 530
+get foo 530
+set foo bar 531
+get foo 531
+set foo bar2 532
+get foo 532
+set foo bar 533
+get foo 533
+set foo bar2 534
+get foo 534
+set foo bar 535
+get foo 535
+set foo bar2 536
+get foo 536
+set foo bar 537
+get foo 537
+set foo bar2 538
+get foo 538
+set foo bar 539
+get foo 539
+set foo bar2 540
+get foo 540
+set foo bar 541
+get foo 541
+set foo bar2 542
+get foo 542
+set foo bar 543
+get foo 543
+set foo bar2 544
+get foo 544
+set foo bar 545
+get foo 545
+set foo bar2 546
+get foo 546
+set foo bar 547
+get foo 547
+set foo bar2 548
+get foo 548
+set foo bar 549
+get foo 549
+set foo bar2 550
+get foo 550
+set foo bar 551
+get foo 551
+set foo bar2 552
+get foo 552
+set foo bar 553
+get foo 553
+set foo bar2 554
+get foo 554
+set foo bar 555
+get foo 555
+set foo bar2 556
+get foo 556
+set foo bar 557
+get foo 557
+set foo bar2 558
+get foo 558
+set foo bar 559
+get foo 559
+set foo bar2 560
+get foo 560
+set foo bar 561
+get foo 561
+set foo bar2 562
+get foo 562
+set foo bar 563
+get foo 563
+set foo bar2 564
+get foo 564
+set foo bar 565
+get foo 565
+set foo bar2 566
+get foo 566
+set foo bar 567
+get foo 567
+set foo bar2 568
+get foo 568
+set foo bar 569
+get foo 569
+set foo bar2 570
+get foo 570
+set foo bar 571
+get foo 571
+set foo bar2 572
+get foo 572
+set foo bar 573
+get foo 573
+set foo bar2 574
+get foo 574
+set foo bar 575
+get foo 575
+set foo bar2 576
+get foo 576
+set foo bar 577
+get foo 577
+set foo bar2 578
+get foo 578
+set foo bar 579
+get foo 579
+set foo bar2 580
+get foo 580
+set foo bar 581
+get foo 581
+set foo bar2 582
+get foo 582
+set foo bar 583
+get foo 583
+set foo bar2 584
+get foo 584
+set foo bar 585
+get foo 585
+set foo bar2 586
+get foo 586
+set foo bar 587
+get foo 587
+set foo bar2 588
+get foo 588
+set foo bar 589
+get foo 589
+set foo bar2 590
+get foo 590
+set foo bar 591
+get foo 591
+set foo bar2 592
+get foo 592
+set foo bar 593
+get foo 593
+set foo bar2 594
+get foo 594
+set foo bar 595
+get foo 595
+set foo bar2 596
+get foo 596
+set foo bar 597
+get foo 597
+set foo bar2 598
+get foo 598
+set foo bar 599
+get foo 599
+set foo bar2 600
+get foo 600
+set foo bar 601
+get foo 601
+set foo bar2 602
+get foo 602
+set foo bar 603
+get foo 603
+set foo bar2 604
+get foo 604
+set foo bar 605
+get foo 605
+set foo bar2 606
+get foo 606
+set foo bar 607
+get foo 607
+set foo bar2 608
+get foo 608
+set foo bar 609
+get foo 609
+set foo bar2 610
+get foo 610
+set foo bar 611
+get foo 611
+set foo bar2 612
+get foo 612
+set foo bar 613
+get foo 613
+set foo bar2 614
+get foo 614
+set foo bar 615
+get foo 615
+set foo bar2 616
+get foo 616
+set foo bar 617
+get foo 617
+set foo bar2 618
+get foo 618
+set foo bar 619
+get foo 619
+set foo bar2 620
+get foo 620
+set foo bar 621
+get foo 621
+set foo bar2 622
+get foo 622
+set foo bar 623
+get foo 623
+set foo bar2 624
+get foo 624
+set foo bar 625
+get foo 625
+set foo bar2 626
+get foo 626
+set foo bar 627
+get foo 627
+set foo bar2 628
+get foo 628
+set foo bar 629
+get foo 629
+set foo bar2 630
+get foo 630
+set foo bar 631
+get foo 631
+set foo bar2 632
+get foo 632
+set foo bar 633
+get foo 633
+set foo bar2 634
+get foo 634
+set foo bar 635
+get foo 635
+set foo bar2 636
+get foo 636
+set foo bar 637
+get foo 637
+set foo bar2 638
+get foo 638
+set foo bar 639
+get foo 639
+set foo bar2 640
+get foo 640
+set foo bar 641
+get foo 641
+set foo bar2 642
+get foo 642
+set foo bar 643
+get foo 643
+set foo bar2 644
+get foo 644
+set foo bar 645
+get foo 645
+set foo bar2 646
+get foo 646
+set foo bar 647
+get foo 647
+set foo bar2 648
+get foo 648
+set foo bar 649
+get foo 649
+set foo bar2 650
+get foo 650
+set foo bar 651
+get foo 651
+set foo bar2 652
+get foo 652
+set foo bar 653
+get foo 653
+set foo bar2 654
+get foo 654
+set foo bar 655
+get foo 655
+set foo bar2 656
+get foo 656
+set foo bar 657
+get foo 657
+set foo bar2 658
+get foo 658
+set foo bar 659
+get foo 659
+set foo bar2 660
+get foo 660
+set foo bar 661
+get foo 661
+set foo bar2 662
+get foo 662
+set foo bar 663
+get foo 663
+set foo bar2 664
+get foo 664
+set foo bar 665
+get foo 665
+set foo bar2 666
+get foo 666
+set foo bar 667
+get foo 667
+set foo bar2 668
+get foo 668
+set foo bar 669
+get foo 669
+set foo bar2 670
+get foo 670
+set foo bar 671
+get foo 671
+set foo bar2 672
+get foo 672
+set foo bar 673
+get foo 673
+set foo bar2 674
+get foo 674
+set foo bar 675
+get foo 675
+set foo bar2 676
+get foo 676
+set foo bar 677
+get foo 677
+set foo bar2 678
+get foo 678
+set foo bar 679
+get foo 679
+set foo bar2 680
+get foo 680
+set foo bar 681
+get foo 681
+set foo bar2 682
+get foo 682
+set foo bar 683
+get foo 683
+set foo bar2 684
+get foo 684
+set foo bar 685
+get foo 685
+set foo bar2 686
+get foo 686
+set foo bar 687
+get foo 687
+set foo bar2 688
+get foo 688
+set foo bar 689
+get foo 689
+set foo bar2 690
+get foo 690
+set foo bar 691
+get foo 691
+set foo bar2 692
+get foo 692
+set foo bar 693
+get foo 693
+set foo bar2 694
+get foo 694
+set foo bar 695
+get foo 695
+set foo bar2 696
+get foo 696
+set foo bar 697
+get foo 697
+set foo bar2 698
+get foo 698
+set foo bar 699
+get foo 699
+set foo bar2 700
+get foo 700
+set foo bar 701
+get foo 701
+set foo bar2 702
+get foo 702
+set foo bar 703
+get foo 703
+set foo bar2 704
+get foo 704
+set foo bar 705
+get foo 705
+set foo bar2 706
+get foo 706
+set foo bar 707
+get foo 707
+set foo bar2 708
+get foo 708
+set foo bar 709
+get foo 709
+set foo bar2 710
+get foo 710
+set foo bar 711
+get foo 711
+set foo bar2 712
+get foo 712
+set foo bar 713
+get foo 713
+set foo bar2 714
+get foo 714
+set foo bar 715
+get foo 715
+set foo bar2 716
+get foo 716
+set foo bar 717
+get foo 717
+set foo bar2 718
+get foo 718
+set foo bar 719
+get foo 719
+set foo bar2 720
+get foo 720
+set foo bar 721
+get foo 721
+set foo bar2 722
+get foo 722
+set foo bar 723
+get foo 723
+set foo bar2 724
+get foo 724
+set foo bar 725
+get foo 725
+set foo bar2 726
+get foo 726
+set foo bar 727
+get foo 727
+set foo bar2 728
+get foo 728
+set foo bar 729
+get foo 729
+set foo bar2 730
+get foo 730
+set foo bar 731
+get foo 731
+set foo bar2 732
+get foo 732
+set foo bar 733
+get foo 733
+set foo bar2 734
+get foo 734
+set foo bar 735
+get foo 735
+set foo bar2 736
+get foo 736
+set foo bar 737
+get foo 737
+set foo bar2 738
+get foo 738
+set foo bar 739
+get foo 739
+set foo bar2 740
+get foo 740
+set foo bar 741
+get foo 741
+set foo bar2 742
+get foo 742
+set foo bar 743
+get foo 743
+set foo bar2 744
+get foo 744
+set foo bar 745
+get foo 745
+set foo bar2 746
+get foo 746
+set foo bar 747
+get foo 747
+set foo bar2 748
+get foo 748
+set foo bar 749
+get foo 749
+set foo bar2 750
+get foo 750
+set foo bar 751
+get foo 751
+set foo bar2 752
+get foo 752
+set foo bar 753
+get foo 753
+set foo bar2 754
+get foo 754
+set foo bar 755
+get foo 755
+set foo bar2 756
+get foo 756
+set foo bar 757
+get foo 757
+set foo bar2 758
+get foo 758
+set foo bar 759
+get foo 759
+set foo bar2 760
+get foo 760
+set foo bar 761
+get foo 761
+set foo bar2 762
+get foo 762
+set foo bar 763
+get foo 763
+set foo bar2 764
+get foo 764
+set foo bar 765
+get foo 765
+set foo bar2 766
+get foo 766
+set foo bar 767
+get foo 767
+set foo bar2 768
+get foo 768
+set foo bar 769
+get foo 769
+set foo bar2 770
+get foo 770
+set foo bar 771
+get foo 771
+set foo bar2 772
+get foo 772
+set foo bar 773
+get foo 773
+set foo bar2 774
+get foo 774
+set foo bar 775
+get foo 775
+set foo bar2 776
+get foo 776
+set foo bar 777
+get foo 777
+set foo bar2 778
+get foo 778
+set foo bar 779
+get foo 779
+set foo bar2 780
+get foo 780
+set foo bar 781
+get foo 781
+set foo bar2 782
+get foo 782
+set foo bar 783
+get foo 783
+set foo bar2 784
+get foo 784
+set foo bar 785
+get foo 785
+set foo bar2 786
+get foo 786
+set foo bar 787
+get foo 787
+set foo bar2 788
+get foo 788
+set foo bar 789
+get foo 789
+set foo bar2 790
+get foo 790
+set foo bar 791
+get foo 791
+set foo bar2 792
+get foo 792
+set foo bar 793
+get foo 793
+set foo bar2 794
+get foo 794
+set foo bar 795
+get foo 795
+set foo bar2 796
+get foo 796
+set foo bar 797
+get foo 797
+set foo bar2 798
+get foo 798
+set foo bar 799
+get foo 799
+set foo bar2 800
+get foo 800
+set foo bar 801
+get foo 801
+set foo bar2 802
+get foo 802
+set foo bar 803
+get foo 803
+set foo bar2 804
+get foo 804
+set foo bar 805
+get foo 805
+set foo bar2 806
+get foo 806
+set foo bar 807
+get foo 807
+set foo bar2 808
+get foo 808
+set foo bar 809
+get foo 809
+set foo bar2 810
+get foo 810
+set foo bar 811
+get foo 811
+set foo bar2 812
+get foo 812
+set foo bar 813
+get foo 813
+set foo bar2 814
+get foo 814
+set foo bar 815
+get foo 815
+set foo bar2 816
+get foo 816
+set foo bar 817
+get foo 817
+set foo bar2 818
+get foo 818
+set foo bar 819
+get foo 819
+set foo bar2 820
+get foo 820
+set foo bar 821
+get foo 821
+set foo bar2 822
+get foo 822
+set foo bar 823
+get foo 823
+set foo bar2 824
+get foo 824
+set foo bar 825
+get foo 825
+set foo bar2 826
+get foo 826
+set foo bar 827
+get foo 827
+set foo bar2 828
+get foo 828
+set foo bar 829
+get foo 829
+set foo bar2 830
+get foo 830
+set foo bar 831
+get foo 831
+set foo bar2 832
+get foo 832
+set foo bar 833
+get foo 833
+set foo bar2 834
+get foo 834
+set foo bar 835
+get foo 835
+set foo bar2 836
+get foo 836
+set foo bar 837
+get foo 837
+set foo bar2 838
+get foo 838
+set foo bar 839
+get foo 839
+set foo bar2 840
+get foo 840
+set foo bar 841
+get foo 841
+set foo bar2 842
+get foo 842
+set foo bar 843
+get foo 843
+set foo bar2 844
+get foo 844
+set foo bar 845
+get foo 845
+set foo bar2 846
+get foo 846
+set foo bar 847
+get foo 847
+set foo bar2 848
+get foo 848
+set foo bar 849
+get foo 849
+set foo bar2 850
+get foo 850
+set foo bar 851
+get foo 851
+set foo bar2 852
+get foo 852
+set foo bar 853
+get foo 853
+set foo bar2 854
+get foo 854
+set foo bar 855
+get foo 855
+set foo bar2 856
+get foo 856
+set foo bar 857
+get foo 857
+set foo bar2 858
+get foo 858
+set foo bar 859
+get foo 859
+set foo bar2 860
+get foo 860
+set foo bar 861
+get foo 861
+set foo bar2 862
+get foo 862
+set foo bar 863
+get foo 863
+set foo bar2 864
+get foo 864
+set foo bar 865
+get foo 865
+set foo bar2 866
+get foo 866
+set foo bar 867
+get foo 867
+set foo bar2 868
+get foo 868
+set foo bar 869
+get foo 869
+set foo bar2 870
+get foo 870
+set foo bar 871
+get foo 871
+set foo bar2 872
+get foo 872
+set foo bar 873
+get foo 873
+set foo bar2 874
+get foo 874
+set foo bar 875
+get foo 875
+set foo bar2 876
+get foo 876
+set foo bar 877
+get foo 877
+set foo bar2 878
+get foo 878
+set foo bar 879
+get foo 879
+set foo bar2 880
+get foo 880
+set foo bar 881
+get foo 881
+set foo bar2 882
+get foo 882
+set foo bar 883
+get foo 883
+set foo bar2 884
+get foo 884
+set foo bar 885
+get foo 885
+set foo bar2 886
+get foo 886
+set foo bar 887
+get foo 887
+set foo bar2 888
+get foo 888
+set foo bar 889
+get foo 889
+set foo bar2 890
+get foo 890
+set foo bar 891
+get foo 891
+set foo bar2 892
+get foo 892
+set foo bar 893
+get foo 893
+set foo bar2 894
+get foo 894
+set foo bar 895
+get foo 895
+set foo bar2 896
+get foo 896
+set foo bar 897
+get foo 897
+set foo bar2 898
+get foo 898
+set foo bar 899
+get foo 899
+set foo bar2 900
+get foo 900
+set foo bar 901
+get foo 901
+set foo bar2 902
+get foo 902
+set foo bar 903
+get foo 903
+set foo bar2 904
+get foo 904
+set foo bar 905
+get foo 905
+set foo bar2 906
+get foo 906
+set foo bar 907
+get foo 907
+set foo bar2 908
+get foo 908
+set foo bar 909
+get foo 909
+set foo bar2 910
+get foo 910
+set foo bar 911
+get foo 911
+set foo bar2 912
+get foo 912
+set foo bar 913
+get foo 913
+set foo bar2 914
+get foo 914
+set foo bar 915
+get foo 915
+set foo bar2 916
+get foo 916
+set foo bar 917
+get foo 917
+set foo bar2 918
+get foo 918
+set foo bar 919
+get foo 919
+set foo bar2 920
+get foo 920
+set foo bar 921
+get foo 921
+set foo bar2 922
+get foo 922
+set foo bar 923
+get foo 923
+set foo bar2 924
+get foo 924
+set foo bar 925
+get foo 925
+set foo bar2 926
+get foo 926
+set foo bar 927
+get foo 927
+set foo bar2 928
+get foo 928
+set foo bar 929
+get foo 929
+set foo bar2 930
+get foo 930
+set foo bar 931
+get foo 931
+set foo bar2 932
+get foo 932
+set foo bar 933
+get foo 933
+set foo bar2 934
+get foo 934
+set foo bar 935
+get foo 935
+set foo bar2 936
+get foo 936
+set foo bar 937
+get foo 937
+set foo bar2 938
+get foo 938
+set foo bar 939
+get foo 939
+set foo bar2 940
+get foo 940
+set foo bar 941
+get foo 941
+set foo bar2 942
+get foo 942
+set foo bar 943
+get foo 943
+set foo bar2 944
+get foo 944
+set foo bar 945
+get foo 945
+set foo bar2 946
+get foo 946
+set foo bar 947
+get foo 947
+set foo bar2 948
+get foo 948
+set foo bar 949
+get foo 949
+set foo bar2 950
+get foo 950
+set foo bar 951
+get foo 951
+set foo bar2 952
+get foo 952
+set foo bar 953
+get foo 953
+set foo bar2 954
+get foo 954
+set foo bar 955
+get foo 955
+set foo bar2 956
+get foo 956
+set foo bar 957
+get foo 957
+set foo bar2 958
+get foo 958
+set foo bar 959
+get foo 959
+set foo bar2 960
+get foo 960
+set foo bar 961
+get foo 961
+set foo bar2 962
+get foo 962
+set foo bar 963
+get foo 963
+set foo bar2 964
+get foo 964
+set foo bar 965
+get foo 965
+set foo bar2 966
+get foo 966
+set foo bar 967
+get foo 967
+set foo bar2 968
+get foo 968
+set foo bar 969
+get foo 969
+set foo bar2 970
+get foo 970
+set foo bar 971
+get foo 971
+set foo bar2 972
+get foo 972
+set foo bar 973
+get foo 973
+set foo bar2 974
+get foo 974
+set foo bar 975
+get foo 975
+set foo bar2 976
+get foo 976
+set foo bar 977
+get foo 977
+set foo bar2 978
+get foo 978
+set foo bar 979
+get foo 979
+set foo bar2 980
+get foo 980
+set foo bar 981
+get foo 981
+set foo bar2 982
+get foo 982
+set foo bar 983
+get foo 983
+set foo bar2 984
+get foo 984
+set foo bar 985
+get foo 985
+set foo bar2 986
+get foo 986
+set foo bar 987
+get foo 987
+set foo bar2 988
+get foo 988
+set foo bar 989
+get foo 989
+set foo bar2 990
+get foo 990
+set foo bar 991
+get foo 991
+set foo bar2 992
+get foo 992
+set foo bar 993
+get foo 993
+set foo bar2 994
+get foo 994
+set foo bar 995
+get foo 995
+set foo bar2 996
+get foo 996
+set foo bar 997
+get foo 997
+set foo bar2 998
+get foo 998
+set foo bar 999
+get foo 999
+set foo bar2 1000
+get foo 1000

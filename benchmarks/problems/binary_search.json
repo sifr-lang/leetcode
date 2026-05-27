@@ -98,6 +98,878 @@
         "10000": 1000,
         "100000": 200
       }
+    },
+    {
+      "id": "0374_guess_number_higher_or_lower",
+      "function": "guessNumber",
+      "source_py": "src/0374_guess_number_higher_or_lower.py",
+      "source_sifr": "src/0374_guess_number_higher_or_lower.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        1000,
+        100000
+      ],
+      "loops_by_size": {
+        "10": 5000,
+        "1000": 1000,
+        "100000": 200
+      }
+    },
+    {
+      "id": "0441_arranging_coins",
+      "function": "arrangeCoins",
+      "source_py": "src/0441_arranging_coins.py",
+      "source_sifr": "src/0441_arranging_coins.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0977_squares_of_a_sorted_array",
+      "function": "sortedSquares",
+      "source_py": "src/0977_squares_of_a_sorted_array.py",
+      "source_sifr": "src/0977_squares_of_a_sorted_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0367_valid_perfect_square",
+      "function": "isPerfectSquare",
+      "source_py": "src/0367_valid_perfect_square.py",
+      "source_sifr": "src/0367_valid_perfect_square.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "num",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "num"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0069_sqrtx",
+      "function": "mySqrt",
+      "source_py": "src/0069_sqrtx.py",
+      "source_sifr": "src/0069_sqrtx.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "x",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "x"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0540_single_element_in_a_sorted_array",
+      "function": "singleNonDuplicate",
+      "source_py": "src/0540_single_element_in_a_sorted_array.py",
+      "source_sifr": "src/0540_single_element_in_a_sorted_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1011_capacity_to_ship_packages_within_d_days",
+      "function": "shipWithinDays",
+      "source_py": "src/1011_capacity_to_ship_packages_within_d_days.py",
+      "source_sifr": "src/1011_capacity_to_ship_packages_within_d_days.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "days",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "weights",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "weights",
+            "days"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0162_find_peak_element",
+      "function": "findPeakElement",
+      "source_py": "src/0162_find_peak_element.py",
+      "source_sifr": "src/0162_find_peak_element.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "2300_successful_pairs_of_spells_and_potions",
+      "function": "successfulPairs",
+      "source_py": "src/2300_successful_pairs_of_spells_and_potions.py",
+      "source_sifr": "src/2300_successful_pairs_of_spells_and_potions.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "success",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "spells",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 1,
+              "start": 3
+            },
+            {
+              "name": "potions",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 2,
+              "start": 3,
+              "start_after_count_indices": [
+                1
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "spells",
+            "potions",
+            "success"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0074_search_a_2d_matrix",
+      "function": "searchMatrix",
+      "source_py": "src/0074_search_a_2d_matrix.py",
+      "source_sifr": "src/0074_search_a_2d_matrix.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "matrix",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 1,
+              "cols_index": 2,
+              "start": 3
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "matrix",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0875_koko_eating_bananas",
+      "function": "minEatingSpeed",
+      "source_py": "src/0875_koko_eating_bananas.py",
+      "source_sifr": "src/0875_koko_eating_bananas.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "h",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "piles",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "piles",
+            "h"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "2616_minimize_the_maximum_difference_of_pairs",
+      "function": "minimizeMax",
+      "source_py": "src/2616_minimize_the_maximum_difference_of_pairs.py",
+      "source_sifr": "src/2616_minimize_the_maximum_difference_of_pairs.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "p",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "p"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0153_find_minimum_in_rotated_sorted_array",
+      "function": "findMin",
+      "source_py": "src/0153_find_minimum_in_rotated_sorted_array.py",
+      "source_sifr": "src/0153_find_minimum_in_rotated_sorted_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0033_search_in_rotated_sorted_array",
+      "function": "search",
+      "source_py": "src/0033_search_in_rotated_sorted_array.py",
+      "source_sifr": "src/0033_search_in_rotated_sorted_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0081_search_in_rotated_sorted_array_ii",
+      "function": "search",
+      "source_py": "src/0081_search_in_rotated_sorted_array_ii.py",
+      "source_sifr": "src/0081_search_in_rotated_sorted_array_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0981_time_based_key_value_store",
+      "function": "TimeMap",
+      "source_py": "src/0981_time_based_key_value_store.py",
+      "source_sifr": "src/0981_time_based_key_value_store.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "set": {
+              "args": [
+                "str",
+                "str",
+                "int"
+              ],
+              "result": "none"
+            },
+            "get": {
+              "args": [
+                "str",
+                "int"
+              ],
+              "result": "str"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "5000": 200,
+        "10000": 50
+      }
+    },
+    {
+      "id": "0034_find_first_and_last_position_of_element_in_sorted_array",
+      "function": "searchRange",
+      "source_py": "src/0034_find_first_and_last_position_of_element_in_sorted_array.py",
+      "source_sifr": "src/0034_find_first_and_last_position_of_element_in_sorted_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0410_split_array_largest_sum",
+      "function": "splitArray",
+      "source_py": "src/0410_split_array_largest_sum.py",
+      "source_sifr": "src/0410_split_array_largest_sum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "m",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "m"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0004_median_of_two_sorted_arrays",
+      "function": "findMedianSortedArrays",
+      "source_py": "src/0004_median_of_two_sorted_arrays.py",
+      "source_sifr": "src/0004_median_of_two_sorted_arrays.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums1",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 0,
+              "start": 2
+            },
+            {
+              "name": "nums2",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 1,
+              "start": 2,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums1",
+            "nums2"
+          ]
+        },
+        "expected": {
+          "type": "float"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
     }
   ]
 }

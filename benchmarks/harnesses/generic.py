@@ -23,6 +23,14 @@ def _bench_parse_int(value: str) -> int:
         return 0
 
 
+def _bench_parse_float(value: str) -> float:
+    try:
+        parsed: float = float(value)
+        return parsed
+    except ParseError:
+        return 0.0
+
+
 def _bench_read_required(path: str) -> str:
     try:
         loaded: str = read_text(path)
@@ -242,6 +250,8 @@ def result_checksum(result: Any, expected: dict[str, Any]) -> int:
     expected_type = expected["type"]
     if expected_type == "int":
         return int(result)
+    if expected_type == "float":
+        return int(float(result) * 1000.0)
     if expected_type == "bool":
         return 1 if result else 0
     if expected_type in ("list_int", "list_str", "list_list_int", "list_list_str"):
@@ -282,6 +292,8 @@ def format_expected(result: Any, expected: dict[str, Any]) -> str:
     expected_type = expected["type"]
     if expected_type == "int":
         return f"{int(result)}\n"
+    if expected_type == "float":
+        return f"{float(result)}\n"
     if expected_type == "bool":
         return f"{1 if result else 0}\n"
     if expected_type == "list_int":
@@ -779,6 +791,8 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
 def sifr_result_type(expected_type: str) -> str:
     if expected_type == "int":
         return "int"
+    if expected_type == "float":
+        return "float"
     if expected_type == "bool":
         return "bool"
     if expected_type == "list_int":
@@ -797,6 +811,8 @@ def sifr_result_type(expected_type: str) -> str:
 def sifr_expected_check(expected_type: str, result_name: str) -> str:
     if expected_type == "int":
         return f"if {result_name} != _bench_parse_int(_bench_nz_str(expected_tokens[0])):"
+    if expected_type == "float":
+        return f"if {result_name} != _bench_parse_float(_bench_nz_str(expected_tokens[0])):"
     if expected_type == "bool":
         return f"if ({result_name} and _bench_parse_int(_bench_nz_str(expected_tokens[0])) != 1) or ((not {result_name}) and _bench_parse_int(_bench_nz_str(expected_tokens[0])) != 0):"
     if expected_type == "list_int":
@@ -813,6 +829,8 @@ def sifr_expected_check(expected_type: str, result_name: str) -> str:
 def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
     if expected_type == "int":
         return result_name
+    if expected_type == "float":
+        return f"int({result_name} * 1000.0)"
     if expected_type == "bool":
         return f"1 if {result_name} else 0"
     if expected_type in ("list_int", "list_str", "list_list_int", "list_list_str"):
