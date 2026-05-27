@@ -207,7 +207,10 @@ def fresh_input_each_call(runner: dict[str, Any]) -> bool:
 
 def call_single(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> Any:
     copied = set(call.get("copy_args", []))
-    return oracle(*(copy_arg(values[name]) if name in copied else values[name] for name in call["args"]))
+    args = [copy_arg(values[name]) if name in copied else values[name] for name in call["args"]]
+    if call.get("python_self"):
+        args.insert(0, None)
+    return oracle(*args)
 
 def copy_arg(value: Any) -> Any:
     if isinstance(value, list):

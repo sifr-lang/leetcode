@@ -4,47 +4,84 @@
   "order": 15,
   "problems": [
     {
+      "id": "0057_insert_interval",
+      "function": "insert",
+      "source_py": "src/0057_insert_interval.py",
+      "source_sifr": "src/0057_insert_interval.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "newInterval", "type": "list[int]", "source": "tokens", "start": 0, "end": 2 },
+            { "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 2, "cols_index": 3, "start": 4 }
+          ]
+        },
+        "call": { "mode": "single", "args": ["intervals", "newInterval"], "python_self": true },
+        "expected": { "type": "list_list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 50000],
+      "loops_by_size": { "1000": 500, "10000": 100, "50000": 20 }
+    },
+    {
+      "id": "0056_merge_intervals",
+      "function": "merge",
+      "source_py": "src/0056_merge_intervals.py",
+      "source_sifr": "src/0056_merge_intervals.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["intervals"], "copy_args": ["intervals"] },
+        "expected": { "type": "list_list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 50000],
+      "loops_by_size": { "1000": 500, "10000": 100, "50000": 20 }
+    },
+    {
+      "id": "0435_non_overlapping_intervals",
+      "function": "eraseOverlapIntervals",
+      "source_py": "src/0435_non_overlapping_intervals.py",
+      "source_sifr": "src/0435_non_overlapping_intervals.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["intervals"], "copy_args": ["intervals"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 50000],
+      "loops_by_size": { "1000": 500, "10000": 100, "50000": 20 }
+    },
+    {
+      "id": "0252_meeting_rooms",
+      "function": "canAttendMeetings",
+      "source_py": "src/0252_meeting_rooms.py",
+      "source_sifr": "src/0252_meeting_rooms.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["intervals"], "copy_args": ["intervals"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 50000],
+      "loops_by_size": { "1000": 500, "10000": 100, "50000": 20 }
+    },
+    {
       "id": "0253_meeting_rooms",
       "function": "minMeetingRooms",
       "source_py": "src/0253_meeting_rooms.py",
       "source_sifr": "src/0253_meeting_rooms.sifr",
       "runner": {
-        "input": {
-          "bindings": [
-            {
-              "name": "intervals",
-              "type": "matrix[int]",
-              "source": "matrix_tokens",
-              "rows_index": 0,
-              "cols_index": 1,
-              "start": 2
-            }
-          ]
-        },
-        "call": {
-          "mode": "single",
-          "args": [
-            "intervals"
-          ]
-        },
-        "expected": {
-          "type": "int"
-        },
-        "checksum": {
-          "type": "value"
-        }
+        "input": { "bindings": [{ "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["intervals"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
       },
       "fixture_stem": "n={size:07d}",
-      "sizes": [
-        1000,
-        10000,
-        50000
-      ],
-      "loops_by_size": {
-        "1000": 1000,
-        "10000": 100,
-        "50000": 20
-      }
+      "sizes": [1000, 10000, 50000],
+      "loops_by_size": { "1000": 1000, "10000": 100, "50000": 20 }
     },
     {
       "id": "1288_remove_covered_intervals",
@@ -52,42 +89,34 @@
       "source_py": "src/1288_remove_covered_intervals.py",
       "source_sifr": "src/1288_remove_covered_intervals.sifr",
       "runner": {
-        "input": {
-          "bindings": [
-            {
-              "name": "intervals",
-              "type": "matrix[int]",
-              "source": "matrix_tokens",
-              "rows_index": 0,
-              "cols_index": 1,
-              "start": 2
-            }
-          ]
-        },
-        "call": {
-          "mode": "single",
-          "args": [
-            "intervals"
-          ]
-        },
-        "expected": {
-          "type": "int"
-        },
-        "checksum": {
-          "type": "value"
-        }
+        "input": { "bindings": [{ "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["intervals"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
       },
       "fixture_stem": "n={size:07d}",
-      "sizes": [
-        100,
-        300,
-        600
-      ],
-      "loops_by_size": {
-        "100": 200,
-        "300": 50,
-        "600": 10
-      }
+      "sizes": [1000, 10000, 50000],
+      "loops_by_size": { "1000": 500, "10000": 100, "50000": 20 }
+    },
+    {
+      "id": "1851_minimum_interval_to_include_each_query",
+      "function": "minInterval",
+      "source_py": "src/1851_minimum_interval_to_include_each_query.py",
+      "source_sifr": "src/1851_minimum_interval_to_include_each_query.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 },
+            { "name": "queries", "type": "list[int]", "source": "tokens", "start": 2, "start_after_count_indices": [0, 0] }
+          ]
+        },
+        "call": { "mode": "single", "args": ["intervals", "queries"], "copy_args": ["intervals"] },
+        "expected": { "type": "list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 300, 600],
+      "loops_by_size": { "100": 100, "300": 20, "600": 5 }
     }
   ]
 }
