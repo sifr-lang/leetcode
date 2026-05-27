@@ -256,6 +256,8 @@ def result_checksum(result: Any, expected: dict[str, Any]) -> int:
         return 1 if result else 0
     if expected_type in ("list_int", "list_str", "list_list_int", "list_list_str"):
         return len(result)
+    if expected_type == "list_node_int":
+        return len(list_node_to_text(result))
     if expected_type == "str":
         return len(str(result))
     raise RuntimeError(f"unsupported checksum result shape: {expected_type}")
@@ -288,6 +290,17 @@ def format_int_list(result: Any) -> str:
     return " ".join(str(int(value)) for value in result) + "\n"
 
 
+def list_node_to_text(result: Any) -> str:
+    if result is None:
+        return "None"
+    values = []
+    current = result
+    while current is not None:
+        values.append(str(current.val))
+        current = current.next
+    return "->".join(values)
+
+
 def format_expected(result: Any, expected: dict[str, Any]) -> str:
     expected_type = expected["type"]
     if expected_type == "int":
@@ -298,6 +311,8 @@ def format_expected(result: Any, expected: dict[str, Any]) -> str:
         return f"{1 if result else 0}\n"
     if expected_type == "list_int":
         return f"{result}\n"
+    if expected_type == "list_node_int":
+        return f"{list_node_to_text(result)}\n"
     if expected_type == "str":
         return f"{result}\n"
     if expected_type in ("list_str", "list_list_str"):
@@ -797,6 +812,8 @@ def sifr_result_type(expected_type: str) -> str:
         return "bool"
     if expected_type == "list_int":
         return "list[int]"
+    if expected_type == "list_node_int":
+        return "ListNode | None"
     if expected_type == "str":
         return "str"
     if expected_type == "list_str":
@@ -817,6 +834,8 @@ def sifr_expected_check(expected_type: str, result_name: str) -> str:
         return f"if ({result_name} and _bench_parse_int(_bench_nz_str(expected_tokens[0])) != 1) or ((not {result_name}) and _bench_parse_int(_bench_nz_str(expected_tokens[0])) != 0):"
     if expected_type == "list_int":
         return f"if str({result_name}) != expected_text.strip():"
+    if expected_type == "list_node_int":
+        return f"if listNodeToString({result_name}) != expected_text.strip():"
     if expected_type == "str":
         return f"if {result_name} != expected_text.strip():"
     if expected_type in ("list_str", "list_list_str"):
@@ -835,6 +854,8 @@ def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
         return f"1 if {result_name} else 0"
     if expected_type in ("list_int", "list_str", "list_list_int", "list_list_str"):
         return f"len({result_name})"
+    if expected_type == "list_node_int":
+        return f"len(listNodeToString({result_name}))"
     if expected_type == "str":
         return f"len({result_name})"
     raise RuntimeError(f"unsupported Sifr expected shape: {expected_type}")
@@ -853,9 +874,15 @@ def sifr_call(
         binding = bindings_by_name.get(arg)
         if binding and binding["type"] == "list_node[int]":
             start = int(binding.get("start", 0))
+            start_expr = str(start)
+            for index in binding.get("start_after_count_indices", []):
+                start_expr += f" + _bench_parse_int(_bench_nz_str(tokens[{int(index)}]))"
             end = binding.get("end")
-            upper = f"{int(end)}" if end is not None else "len(tokens)"
-            expression = f"_build_list_node(tokens, {start}, {upper})"
+            if "count_index" in binding:
+                upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(tokens[{int(binding['count_index'])}]))"
+            else:
+                upper = f"{int(end)}" if end is not None else "len(tokens)"
+            expression = f"_build_list_node(tokens, {start_expr}, {upper})"
             if not binding.get("nullable", True):
                 expression = f"_expect_list_node({expression})"
             rendered_args.append(expression)

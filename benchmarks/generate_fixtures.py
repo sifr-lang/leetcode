@@ -36,6 +36,10 @@ def load_python_function(spec: ProblemSpec) -> Any:
 
 def load_problem_cases(spec: ProblemSpec) -> Any:
     cases_path = BENCH_ROOT / "cases" / spec.group / f"{spec.problem_id}.py"
+    uses_group_dispatch = False
+    if not cases_path.exists():
+        cases_path = BENCH_ROOT / "cases" / spec.group / f"_{spec.group}_common.py"
+        uses_group_dispatch = True
     if not cases_path.exists():
         raise RuntimeError(f"missing fixture generator: {cases_path}")
     module_name = f"leetcode_bench_cases_{spec.problem_id}"
@@ -47,6 +51,9 @@ def load_problem_cases(spec: ProblemSpec) -> Any:
     for function_name in ("fixture_stem", "generate_input"):
         if not hasattr(module, function_name):
             raise RuntimeError(f"{cases_path} must define {function_name}")
+    if uses_group_dispatch:
+        generate_input = module.generate_input
+        module.generate_input = lambda size: generate_input(spec.problem_id, size)
     return module
 
 
