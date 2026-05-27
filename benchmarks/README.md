@@ -4,13 +4,14 @@ This directory contains cross-language benchmarks for the LeetCode audit corpus.
 The maintained surface is intentionally small:
 
 - `problems.json` declares benchmarkable problems and size sweeps.
-- `harnesses/<harness>.py` owns reusable benchmark execution shapes: expected
-  output solving, Python execution, and Sifr runner body generation.
+- `harnesses/generic.py` owns data-driven benchmark execution: expected output
+  solving, Python execution, and Sifr runner body generation from each
+  problem's `runner` declaration in `problems.json`.
 - `problems/<problem_id>/cases.py` owns problem-specific deterministic input
   generation only.
 - `generate_fixtures.py` runs each problem case generator, invokes the Python
-  reference through the configured harness once per fixture to produce expected
-  output, and writes fixture pairs.
+  reference through the declared generic runner once per fixture to produce
+  expected output, and writes fixture pairs.
 - `bench.py` builds generated Sifr runners, verifies correctness, invokes
   `hyperfine` for runtime, captures `/usr/bin/time` RSS samples, and summarizes
   results.

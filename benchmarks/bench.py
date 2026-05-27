@@ -15,9 +15,9 @@ from pathlib import Path
 from typing import Any
 
 import report
+from harnesses import generic as harness
 from specs import (
     BIN_DIR,
-    HARNESSES_DIR,
     RAW_RESULTS_DIR,
     REPO_ROOT,
     RESULTS_DIR,
@@ -44,22 +44,6 @@ def load_python_function(spec: ProblemSpec) -> Any:
     module = importlib.util.module_from_spec(module_spec)
     module_spec.loader.exec_module(module)
     return getattr(module, spec.function)
-
-
-def load_harness(spec: ProblemSpec) -> Any:
-    harness_path = HARNESSES_DIR / f"{spec.harness}.py"
-    if not harness_path.exists():
-        raise RuntimeError(f"missing benchmark harness: {harness_path}")
-    module_name = f"leetcode_bench_harness_{spec.harness}"
-    module_spec = importlib.util.spec_from_file_location(module_name, harness_path)
-    if module_spec is None or module_spec.loader is None:
-        raise RuntimeError(f"could not load {harness_path}")
-    module = importlib.util.module_from_spec(module_spec)
-    module_spec.loader.exec_module(module)
-    for function_name in ("run_python", "sifr_runner_body"):
-        if not hasattr(module, function_name):
-            raise RuntimeError(f"{harness_path} must define {function_name}")
-    return module
 
 
 def strip_sifr_main(source: str) -> str:
@@ -89,7 +73,7 @@ def ensure_fixtures(problem_ids: list[str]) -> None:
 
 def render_sifr_runner(spec: ProblemSpec) -> Path:
     algorithm = strip_sifr_main(spec.source_sifr.read_text(encoding="utf-8"))
-    body = load_harness(spec).sifr_runner_body(spec.function)
+    body = harness.sifr_runner_body(spec.function, spec.runner)
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
     rendered = template.replace("{{ALGORITHM}}", algorithm.rstrip())
     rendered = rendered.replace("{{RUNNER_BODY}}", body)
@@ -149,10 +133,9 @@ def os_environ_get(key: str) -> str | None:
 
 def run_python(spec: ProblemSpec, fixture_path: Path, expected_path: Path, loops: int) -> None:
     oracle = load_python_function(spec)
-    harness = load_harness(spec)
     fixture_text = fixture_path.read_text(encoding="utf-8")
     expected_text = expected_path.read_text(encoding="utf-8")
-    print(harness.run_python(fixture_text, expected_text, oracle, loops))
+    print(harness.run_python(fixture_text, expected_text, oracle, loops, spec.runner))
 
 
 def run_correctness(spec: ProblemSpec, binary: Path) -> None:
@@ -346,7 +329,7 @@ def collect_environment() -> dict[str, Any]:
                 "function": spec.function,
                 "source_py": str(spec.source_py),
                 "source_sifr": str(spec.source_sifr),
-                "harness": spec.harness,
+                "runner": spec.runner,
                 "fixture_stem": spec.fixture_stem,
                 "sizes": list(spec.sizes),
                 "loops_by_size": spec.loops_by_size,

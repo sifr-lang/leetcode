@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 
 BENCH_ROOT = Path(__file__).resolve().parent
@@ -11,7 +12,6 @@ FIXTURES_DIR = BENCH_ROOT / "fixtures"
 GENERATED_DIR = BENCH_ROOT / "generated"
 RESULTS_DIR = BENCH_ROOT / "results"
 RAW_RESULTS_DIR = RESULTS_DIR / ".raw"
-HARNESSES_DIR = BENCH_ROOT / "harnesses"
 SIFR_GENERATED_DIR = GENERATED_DIR / "sifr"
 BIN_DIR = GENERATED_DIR / "bin"
 TEMPLATE_PATH = BENCH_ROOT / "templates" / "sifr_runner.sifr.tpl"
@@ -25,7 +25,7 @@ class ProblemSpec:
     function: str
     source_py: Path
     source_sifr: Path
-    harness: str
+    runner: dict[str, Any]
     fixture_stem: str
     sizes: tuple[int, ...]
     loops_by_size: dict[int, int]
@@ -45,7 +45,7 @@ def load_problem_specs() -> dict[str, ProblemSpec]:
             function=item["function"],
             source_py=root_path(item["source_py"]),
             source_sifr=root_path(item["source_sifr"]),
-            harness=item["harness"],
+            runner=item["runner"],
             fixture_stem=item["fixture_stem"],
             sizes=tuple(int(size) for size in item["sizes"]),
             loops_by_size={int(size): int(loops) for size, loops in item["loops_by_size"].items()},
