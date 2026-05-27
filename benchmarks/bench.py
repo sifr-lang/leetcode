@@ -41,6 +41,9 @@ def load_python_function(spec: ProblemSpec) -> Any:
     if module_spec is None or module_spec.loader is None:
         raise RuntimeError(f"could not load {spec.source_py}")
     module = importlib.util.module_from_spec(module_spec)
+    source_root = str(spec.source_py.parent)
+    if source_root not in sys.path:
+        sys.path.insert(0, source_root)
     module_spec.loader.exec_module(module)
     return getattr(module, spec.function)
 

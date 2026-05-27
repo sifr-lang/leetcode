@@ -4,6 +4,9 @@ This directory contains cross-language benchmarks for the LeetCode audit corpus.
 The maintained surface is intentionally small:
 
 - `problems.json` declares benchmarkable problems and size sweeps.
+  The current registry includes two Python/Sifr audit problems from each
+  algorithm category in `/Users/yaseralnajjar/work/sifr/leetcode/README.md`;
+  the README's JavaScript section is not an algorithm category and is excluded.
 - `harnesses/generic.py` owns data-driven benchmark execution: expected output
   solving, Python execution, and full Sifr runner generation from each
   problem's `runner` declaration in `problems.json`.
