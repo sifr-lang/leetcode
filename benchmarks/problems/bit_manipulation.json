@@ -83,6 +83,265 @@
         "24": 50000,
         "31": 30000
       }
+    },
+    {
+      "id": "0338_counting_bits",
+      "function": "countBits",
+      "source_py": "src/0338_counting_bits.py",
+      "source_sifr": "src/0338_counting_bits.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0190_reverse_bits",
+      "function": "reverseBits",
+      "source_py": "src/0190_reverse_bits.py",
+      "source_sifr": "src/0190_reverse_bits.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        16,
+        24,
+        31
+      ],
+      "loops_by_size": {
+        "16": 100000,
+        "24": 50000,
+        "31": 30000
+      }
+    },
+    {
+      "id": "0268_missing_number",
+      "function": "missingNumber",
+      "source_py": "src/0268_missing_number.py",
+      "source_sifr": "src/0268_missing_number.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0371_sum_of_two_integers",
+      "function": "getSum",
+      "source_py": "src/0371_sum_of_two_integers.py",
+      "source_sifr": "src/0371_sum_of_two_integers.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "a",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "b",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "a",
+            "b"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        100000,
+        10000000
+      ],
+      "loops_by_size": {
+        "1000": 100000,
+        "100000": 50000,
+        "10000000": 30000
+      }
+    },
+    {
+      "id": "0007_reverse_integer",
+      "function": "reverse",
+      "source_py": "src/0007_reverse_integer.py",
+      "source_sifr": "src/0007_reverse_integer.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "x",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "x"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        3,
+        6,
+        9
+      ],
+      "loops_by_size": {
+        "3": 200000,
+        "6": 100000,
+        "9": 50000
+      }
+    },
+    {
+      "id": "0067_add_binary",
+      "function": "addBinary",
+      "source_py": "src/0067_add_binary.py",
+      "source_sifr": "src/0067_add_binary.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "a",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "b",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "a",
+            "b"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 200,
+        "10000": 20,
+        "100000": 2
+      }
     }
   ]
 }
