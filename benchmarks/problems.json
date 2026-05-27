@@ -1,0 +1,35 @@
+{
+  "problems": [
+    {
+      "id": "0001_two_sum",
+      "category": "Arrays & Hashing",
+      "function": "twoSum",
+      "source_py": "src/0001_two_sum.py",
+      "source_sifr": "src/0001_two_sum.sifr",
+      "harness": "two_sum",
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000, 1000000],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30,
+        "1000000": 5
+      }
+    },
+    {
+      "id": "0009_palindrome_number",
+      "category": "Math & Geometry",
+      "function": "isPalindrome",
+      "source_py": "src/0009_palindrome_number.py",
+      "source_sifr": "src/0009_palindrome_number.sifr",
+      "harness": "unary_int_bool_batch",
+      "fixture_stem": "cases={size:07d}",
+      "sizes": [10000, 100000, 1000000],
+      "loops_by_size": {
+        "10000": 500,
+        "100000": 80,
+        "1000000": 10
+      }
+    }
+  ]
+}
