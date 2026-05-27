@@ -145,21 +145,18 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
         return int(tokens[int(binding["index"])])
     if binding["type"] == "str" and binding["source"] == "token":
         return tokens[int(binding["index"])]
-    if binding["type"] == "list[int]" and binding["source"] == "tokens":
+    if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":
         start = int(binding.get("start", 0))
         start += sum(int(tokens[int(index)]) for index in binding.get("start_after_count_indices", []))
         end = binding.get("end")
         if "count_index" in binding:
             end = start + int(tokens[int(binding["count_index"])])
         selected = tokens[start : int(end) if end is not None else None]
-        return [int(token) for token in selected]
-    if binding["type"] == "list[str]" and binding["source"] == "tokens":
-        start = int(binding.get("start", 0))
-        start += sum(int(tokens[int(index)]) for index in binding.get("start_after_count_indices", []))
-        end = binding.get("end")
-        if "count_index" in binding:
-            end = start + int(tokens[int(binding["count_index"])])
-        return tokens[start : int(end) if end is not None else None]
+        if binding["type"] == "list[int]":
+            return [int(token) for token in selected]
+        if binding["type"] == "list[float]":
+            return [float(token) for token in selected]
+        return selected
     if binding["type"] == "matrix[int]" and binding["source"] == "matrix_tokens":
         rows = int(tokens[int(binding["rows_index"])])
         cols = int(tokens[int(binding["cols_index"])])
@@ -729,7 +726,7 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
         return f"{name}: int = _bench_parse_int(_bench_nz_str(tokens[{int(binding['index'])}]))"
     if binding["type"] == "str" and binding["source"] == "token":
         return f"{name}: str = _bench_nz_str(tokens[{int(binding['index'])}])"
-    if binding["type"] == "list[int]" and binding["source"] == "tokens":
+    if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":
         start = int(binding.get("start", 0))
         start_expr = str(start)
         for index in binding.get("start_after_count_indices", []):
@@ -739,28 +736,18 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
             upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(tokens[{int(binding['count_index'])}]))"
         else:
             upper = f"{int(end)}" if end is not None else "len(tokens)"
-        return "\n".join(
-            [
-                f"{name}: list[int] = []",
-                f"for index in range({start_expr}, {upper}):",
-                f"    {name}.append(_bench_parse_int(_bench_nz_str(tokens[index])))",
-            ]
-        )
-    if binding["type"] == "list[str]" and binding["source"] == "tokens":
-        start = int(binding.get("start", 0))
-        start_expr = str(start)
-        for index in binding.get("start_after_count_indices", []):
-            start_expr += f" + _bench_parse_int(_bench_nz_str(tokens[{int(index)}]))"
-        end = binding.get("end")
-        if "count_index" in binding:
-            upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(tokens[{int(binding['count_index'])}]))"
+        scalar_type = binding["type"][5:-1]
+        if scalar_type == "int":
+            parse = "_bench_parse_int(_bench_nz_str(tokens[index]))"
+        elif scalar_type == "float":
+            parse = "_bench_parse_float(_bench_nz_str(tokens[index]))"
         else:
-            upper = f"{int(end)}" if end is not None else "len(tokens)"
+            parse = "_bench_nz_str(tokens[index])"
         return "\n".join(
             [
-                f"{name}: list[str] = []",
+                f"{name}: list[{scalar_type}] = []",
                 f"for index in range({start_expr}, {upper}):",
-                f"    {name}.append(_bench_nz_str(tokens[index]))",
+                f"    {name}.append({parse})",
             ]
         )
     if binding["type"] in ("matrix[int]", "matrix[str]") and binding["source"] == "matrix_tokens":
@@ -882,7 +869,7 @@ def sifr_call(
             if not binding.get("nullable", True):
                 expression = f"_expect_list_node({expression})"
             rendered_args.append(expression)
-        elif binding and arg in owned_args and binding["type"] in ("list[int]", "list[str]", "matrix[int]", "matrix[str]"):
+        elif binding and arg in owned_args and binding["type"] in ("list[int]", "list[str]", "list[float]", "matrix[int]", "matrix[str]"):
             rendered_args.append(f"{arg}.copy()")
         else:
             rendered_args.append(arg)
