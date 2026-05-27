@@ -38,7 +38,6 @@ def root_path(relative: str) -> Path:
 
 def category_slug(category: str) -> str:
     text = category.lower()
-    text = text.replace("1-d", "one_d").replace("2-d", "two_d")
     text = text.replace("&", " and ")
     return re.sub(r"[^a-z0-9]+", "_", text).strip("_")
 
