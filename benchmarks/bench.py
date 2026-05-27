@@ -22,7 +22,6 @@ from specs import (
     REPO_ROOT,
     RESULTS_DIR,
     SIFR_GENERATED_DIR,
-    TEMPLATE_PATH,
     ProblemSpec,
     fixture_paths,
     fixture_stem,
@@ -73,13 +72,10 @@ def ensure_fixtures(problem_ids: list[str]) -> None:
 
 def render_sifr_runner(spec: ProblemSpec) -> Path:
     algorithm = strip_sifr_main(spec.source_sifr.read_text(encoding="utf-8"))
-    body = harness.sifr_runner_body(spec.function, spec.runner)
-    template = TEMPLATE_PATH.read_text(encoding="utf-8")
-    rendered = template.replace("{{ALGORITHM}}", algorithm.rstrip())
-    rendered = rendered.replace("{{RUNNER_BODY}}", body)
+    rendered = harness.render_sifr_runner(algorithm, spec.function, spec.runner)
     SIFR_GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     output = SIFR_GENERATED_DIR / f"{spec.problem_id}_runner.sifr"
-    output.write_text(rendered.rstrip() + "\n", encoding="utf-8")
+    output.write_text(rendered, encoding="utf-8")
     return output
 
 

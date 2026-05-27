@@ -3,6 +3,45 @@ from __future__ import annotations
 from typing import Any
 
 
+SIFR_PRELUDE = """
+from sifr.io import read_text
+from sifr.sys import argv, exit
+
+
+def _nz_str(own value: str | None) -> str:
+    if value is None:
+        return ""
+    return value
+
+
+def _parse_int(value: str) -> int:
+    try:
+        parsed: int = int(value)
+        return parsed
+    except ParseError:
+        return 0
+
+
+def _read_required(path: str) -> str:
+    try:
+        loaded: str = read_text(path)
+        return loaded
+    except IOError as e:
+        print("fixture read failed: " + e.message)
+        exit(1)
+    return ""
+
+
+def _format_int_list(values: list[int]) -> str:
+    text: str = "["
+    for index in range(0, len(values)):
+        if index > 0:
+            text = text + ", "
+        text = text + str(_parse_int(str(values[index])))
+    return text + "]"
+""".strip()
+
+
 def solve_expected(input_text: str, oracle: Any, runner: dict[str, Any]) -> str:
     values = parse_input(input_text, runner)
     call = runner["call"]
@@ -122,6 +161,11 @@ def sifr_runner_body(function: str, runner: dict[str, Any]) -> str:
     if call["mode"] == "batch":
         return batch_sifr_runner_body(function, runner)
     raise RuntimeError(f"unsupported runner call mode: {call['mode']}")
+
+
+def render_sifr_runner(algorithm: str, function: str, runner: dict[str, Any]) -> str:
+    body = sifr_runner_body(function, runner)
+    return f"{algorithm.rstrip()}\n\n{SIFR_PRELUDE}\n\n\n{body}".rstrip() + "\n"
 
 
 def single_sifr_runner_body(function: str, runner: dict[str, Any]) -> str:

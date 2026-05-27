@@ -5,7 +5,7 @@ The maintained surface is intentionally small:
 
 - `problems.json` declares benchmarkable problems and size sweeps.
 - `harnesses/generic.py` owns data-driven benchmark execution: expected output
-  solving, Python execution, and Sifr runner body generation from each
+  solving, Python execution, and full Sifr runner generation from each
   problem's `runner` declaration in `problems.json`.
 - `problems/<problem_id>/cases.py` owns problem-specific deterministic input
   generation only.
@@ -17,7 +17,6 @@ The maintained surface is intentionally small:
   results.
 - `report.py` renders the static HTML report from existing JSON results.
 - `specs.py` contains shared registry/path helpers used by the tools.
-- `templates/sifr_runner.sifr.tpl` is the reusable Sifr entrypoint template.
 - `fixtures/` stores checked-in deterministic input/output pairs.
 
 Generated Sifr entrypoints and native binaries are written under `generated/`.

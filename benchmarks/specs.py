@@ -14,7 +14,6 @@ RESULTS_DIR = BENCH_ROOT / "results"
 RAW_RESULTS_DIR = RESULTS_DIR / ".raw"
 SIFR_GENERATED_DIR = GENERATED_DIR / "sifr"
 BIN_DIR = GENERATED_DIR / "bin"
-TEMPLATE_PATH = BENCH_ROOT / "templates" / "sifr_runner.sifr.tpl"
 PROBLEMS_PATH = BENCH_ROOT / "problems.json"
 
 
