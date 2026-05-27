@@ -143,6 +143,8 @@ def parse_input(input_text: str, runner: dict[str, Any]) -> dict[str, Any]:
 def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
     if binding["type"] == "int" and binding["source"] == "token":
         return int(tokens[int(binding["index"])])
+    if binding["type"] == "float" and binding["source"] == "token":
+        return float(tokens[int(binding["index"])])
     if binding["type"] == "str" and binding["source"] == "token":
         return tokens[int(binding["index"])]
     if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":
@@ -361,6 +363,8 @@ def parse_object_arg(tokens: list[str], cursor: int, spec: dict[str, Any]) -> tu
     arg_type = spec["type"]
     if arg_type == "int":
         return int(tokens[cursor]), cursor + 1
+    if arg_type == "point[int]":
+        return [int(tokens[cursor]), int(tokens[cursor + 1])], cursor + 2
     if arg_type == "str":
         return tokens[cursor], cursor + 1
     if arg_type == "list[int]":
@@ -625,6 +629,8 @@ def sifr_object_arg_binding(name: str, parts_name: str, cursor: str, spec: dict[
     arg_type = spec["type"]
     if arg_type == "int":
         return f"{name}: int = _bench_parse_int(_bench_nz_str({parts_name}[{cursor}]))", f"{cursor} + 1"
+    if arg_type == "point[int]":
+        return f"{name}: tuple[int, int] = (_bench_parse_int(_bench_nz_str({parts_name}[{cursor}])), _bench_parse_int(_bench_nz_str({parts_name}[{cursor} + 1])))", f"{cursor} + 2"
     if arg_type == "str":
         return f"{name}: str = _bench_nz_str({parts_name}[{cursor}])", f"{cursor} + 1"
     if arg_type == "list[int]":
@@ -733,6 +739,8 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
     name = binding["name"]
     if binding["type"] == "int" and binding["source"] == "token":
         return f"{name}: int = _bench_parse_int(_bench_nz_str(tokens[{int(binding['index'])}]))"
+    if binding["type"] == "float" and binding["source"] == "token":
+        return f"{name}: float = _bench_parse_float(_bench_nz_str(tokens[{int(binding['index'])}]))"
     if binding["type"] == "str" and binding["source"] == "token":
         return f"{name}: str = _bench_nz_str(tokens[{int(binding['index'])}])"
     if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":

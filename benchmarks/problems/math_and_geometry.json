@@ -4,46 +4,19 @@
   "order": 16,
   "problems": [
     {
-      "id": "0009_palindrome_number",
-      "function": "isPalindrome",
-      "source_py": "src/0009_palindrome_number.py",
-      "source_sifr": "src/0009_palindrome_number.sifr",
+      "id": "0168_excel_sheet_column_title",
+      "function": "convertToTitle",
+      "source_py": "src/0168_excel_sheet_column_title.py",
+      "source_sifr": "src/0168_excel_sheet_column_title.sifr",
       "runner": {
-        "input": {
-          "bindings": [
-            {
-              "name": "values",
-              "type": "list[int]",
-              "source": "tokens"
-            }
-          ]
-        },
-        "call": {
-          "mode": "batch",
-          "items": "values",
-          "item_name": "value",
-          "args": [
-            "value"
-          ]
-        },
-        "expected": {
-          "type": "bool_batch_index_checksum"
-        },
-        "checksum": {
-          "type": "true_count"
-        }
+        "input": { "bindings": [{ "name": "columnNumber", "type": "int", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["columnNumber"] },
+        "expected": { "type": "str" },
+        "checksum": { "type": "value" }
       },
-      "fixture_stem": "cases={size:07d}",
-      "sizes": [
-        10000,
-        100000,
-        1000000
-      ],
-      "loops_by_size": {
-        "10000": 500,
-        "100000": 80,
-        "1000000": 10
-      }
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 100000, 10000000],
+      "loops_by_size": { "1000": 100000, "100000": 50000, "10000000": 20000 }
     },
     {
       "id": "1523_count_odd_numbers_in_an_interval_range",
@@ -51,47 +24,266 @@
       "source_py": "src/1523_count_odd_numbers_in_an_interval_range.py",
       "source_sifr": "src/1523_count_odd_numbers_in_an_interval_range.sifr",
       "runner": {
-        "input": {
-          "bindings": [
-            {
-              "name": "low",
-              "type": "int",
-              "source": "token",
-              "index": 0
-            },
-            {
-              "name": "high",
-              "type": "int",
-              "source": "token",
-              "index": 1
-            }
-          ]
-        },
-        "call": {
-          "mode": "single",
-          "args": [
-            "low",
-            "high"
-          ]
-        },
-        "expected": {
-          "type": "int"
-        },
-        "checksum": {
-          "type": "value"
-        }
+        "input": { "bindings": [{ "name": "low", "type": "int", "source": "token", "index": 0 }, { "name": "high", "type": "int", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["low", "high"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
       },
       "fixture_stem": "n={size:07d}",
-      "sizes": [
-        1000,
-        100000,
-        10000000
-      ],
-      "loops_by_size": {
-        "1000": 100000,
-        "100000": 50000,
-        "10000000": 20000
-      }
+      "sizes": [1000, 100000, 10000000],
+      "loops_by_size": { "1000": 100000, "100000": 50000, "10000000": 20000 }
+    },
+    {
+      "id": "1572_matrix_diagonal_sum",
+      "function": "diagonalSum",
+      "source_py": "src/1572_matrix_diagonal_sum.py",
+      "source_sifr": "src/1572_matrix_diagonal_sum.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "mat", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["mat"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 300, 700],
+      "loops_by_size": { "100": 500, "300": 100, "700": 20 }
+    },
+    {
+      "id": "0149_max_points_on_a_line",
+      "function": "maxPoints",
+      "source_py": "src/0149_max_points_on_a_line.py",
+      "source_sifr": "src/0149_max_points_on_a_line.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "points", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["points"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 300, 600],
+      "loops_by_size": { "100": 100, "300": 20, "600": 5 }
+    },
+    {
+      "id": "0048_rotate_image",
+      "function": "rotate",
+      "source_py": "src/0048_rotate_image.py",
+      "source_sifr": "src/0048_rotate_image.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "matrix", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "mutates_single", "args": ["matrix"], "mutated_arg": "matrix" },
+        "expected": { "type": "list_list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 150, 300],
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+    },
+    {
+      "id": "0054_spiral_matrix",
+      "function": "spiralOrder",
+      "source_py": "src/0054_spiral_matrix.py",
+      "source_sifr": "src/0054_spiral_matrix.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "matrix", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["matrix"] },
+        "expected": { "type": "list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 300, 700],
+      "loops_by_size": { "100": 200, "300": 50, "700": 10 }
+    },
+    {
+      "id": "0073_set_matrix_zeroes",
+      "function": "setZeroes",
+      "source_py": "src/0073_set_matrix_zeroes.py",
+      "source_sifr": "src/0073_set_matrix_zeroes.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "matrix", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "mutates_single", "args": ["matrix"], "mutated_arg": "matrix" },
+        "expected": { "type": "list_list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 150, 300],
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+    },
+    {
+      "id": "0202_happy_number",
+      "function": "isHappy",
+      "source_py": "src/0202_happy_number.py",
+      "source_sifr": "src/0202_happy_number.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "values", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "batch", "items": "values", "item_name": "value", "args": ["value"] },
+        "expected": { "type": "bool_batch_index_checksum" },
+        "checksum": { "type": "true_count" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0066_plus_one",
+      "function": "plusOne",
+      "source_py": "src/0066_plus_one.py",
+      "source_sifr": "src/0066_plus_one.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "digits", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["digits"] },
+        "expected": { "type": "list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0009_palindrome_number",
+      "function": "isPalindrome",
+      "source_py": "src/0009_palindrome_number.py",
+      "source_sifr": "src/0009_palindrome_number.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "values", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "batch", "items": "values", "item_name": "value", "args": ["value"] },
+        "expected": { "type": "bool_batch_index_checksum" },
+        "checksum": { "type": "true_count" }
+      },
+      "fixture_stem": "cases={size:07d}",
+      "sizes": [10000, 100000, 1000000],
+      "loops_by_size": { "10000": 500, "100000": 80, "1000000": 10 }
+    },
+    {
+      "id": "0263_ugly_number",
+      "function": "isUgly",
+      "source_py": "src/0263_ugly_number.py",
+      "source_sifr": "src/0263_ugly_number.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "values", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "batch", "items": "values", "item_name": "value", "args": ["value"] },
+        "expected": { "type": "bool_batch_index_checksum" },
+        "checksum": { "type": "true_count" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "1260_shift_2d_grid",
+      "function": "shiftGrid",
+      "source_py": "src/1260_shift_2d_grid.py",
+      "source_sifr": "src/1260_shift_2d_grid.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "k", "type": "int", "source": "token", "index": 0 },
+            { "name": "grid", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 1, "cols_index": 2, "start": 3 }
+          ]
+        },
+        "call": { "mode": "single", "args": ["grid", "k"] },
+        "expected": { "type": "list_list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 150, 300],
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+    },
+    {
+      "id": "0013_roman_to_integer",
+      "function": "romanToInt",
+      "source_py": "src/0013_roman_to_integer.py",
+      "source_sifr": "src/0013_roman_to_integer.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "s", "type": "str", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["s"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 1000, 5000],
+      "loops_by_size": { "100": 1000, "1000": 200, "5000": 30 }
+    },
+    {
+      "id": "0012_integer_to_roman",
+      "function": "intToRoman",
+      "source_py": "src/0012_integer_to_roman.py",
+      "source_sifr": "src/0012_integer_to_roman.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "num", "type": "int", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["num"] },
+        "expected": { "type": "str" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 2000, 3000],
+      "loops_by_size": { "1000": 1000, "2000": 500, "3000": 200 }
+    },
+    {
+      "id": "0050_powx_n",
+      "function": "myPow",
+      "source_py": "src/0050_powx_n.py",
+      "source_sifr": "src/0050_powx_n.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "x", "type": "float", "source": "token", "index": 0 }, { "name": "n", "type": "int", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["x", "n"] },
+        "expected": { "type": "float" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [10, 100, 1000],
+      "loops_by_size": { "10": 100000, "100": 50000, "1000": 20000 }
+    },
+    {
+      "id": "0043_multiply_strings",
+      "function": "multiply",
+      "source_py": "src/0043_multiply_strings.py",
+      "source_sifr": "src/0043_multiply_strings.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "num1", "type": "str", "source": "token", "index": 0 }, { "name": "num2", "type": "str", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["num1", "num2"] },
+        "expected": { "type": "str" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [3, 6, 9],
+      "loops_by_size": { "3": 100000, "6": 50000, "9": 20000 }
+    },
+    {
+      "id": "2013_detect_squares",
+      "function": "DetectSquares",
+      "source_py": "src/2013_detect_squares.py",
+      "source_sifr": "src/2013_detect_squares.sifr",
+      "runner": {
+        "input": { "bindings": [] },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "add": { "args": ["point[int]"], "result": "none" },
+            "count": { "args": ["point[int]"], "result": "int" }
+          }
+        },
+        "expected": { "type": "object_ops_checksum" },
+        "checksum": { "type": "object_ops" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 500, 1000],
+      "loops_by_size": { "100": 200, "500": 50, "1000": 10 }
+    },
+    {
+      "id": "0006_zigzag_conversion",
+      "function": "convert",
+      "source_py": "src/0006_zigzag_conversion.py",
+      "source_sifr": "src/0006_zigzag_conversion.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "numRows", "type": "int", "source": "token", "index": 0 }, { "name": "s", "type": "str", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["s", "numRows"] },
+        "expected": { "type": "str" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
     }
   ]
 }
