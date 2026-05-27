@@ -9,39 +9,44 @@
       "source_py": "src/0053_maximum_subarray.py",
       "source_sifr": "src/0053_maximum_subarray.sifr",
       "runner": {
-        "input": {
-          "bindings": [
-            {
-              "name": "nums",
-              "type": "list[int]",
-              "source": "tokens"
-            }
-          ]
-        },
-        "call": {
-          "mode": "single",
-          "args": [
-            "nums"
-          ]
-        },
-        "expected": {
-          "type": "int"
-        },
-        "checksum": {
-          "type": "value"
-        }
+        "input": { "bindings": [{ "name": "nums", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["nums"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
       },
       "fixture_stem": "n={size:07d}",
-      "sizes": [
-        1000,
-        10000,
-        100000
-      ],
-      "loops_by_size": {
-        "1000": 1000,
-        "10000": 200,
-        "100000": 30
-      }
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0918_maximum_sum_circular_subarray",
+      "function": "maxSubarraySumCircular",
+      "source_py": "src/0918_maximum_sum_circular_subarray.py",
+      "source_sifr": "src/0918_maximum_sum_circular_subarray.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "nums", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["nums"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0978_longest_turbulent_subarray",
+      "function": "maxTurbulenceSize",
+      "source_py": "src/0978_longest_turbulent_subarray.py",
+      "source_sifr": "src/0978_longest_turbulent_subarray.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "arr", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["arr"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
     },
     {
       "id": "0055_jump_game",
@@ -49,39 +54,154 @@
       "source_py": "src/0055_jump_game.py",
       "source_sifr": "src/0055_jump_game.sifr",
       "runner": {
-        "input": {
-          "bindings": [
-            {
-              "name": "nums",
-              "type": "list[int]",
-              "source": "tokens"
-            }
-          ]
-        },
-        "call": {
-          "mode": "single",
-          "args": [
-            "nums"
-          ]
-        },
-        "expected": {
-          "type": "bool"
-        },
-        "checksum": {
-          "type": "value"
-        }
+        "input": { "bindings": [{ "name": "nums", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["nums"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
       },
       "fixture_stem": "n={size:07d}",
-      "sizes": [
-        1000,
-        10000,
-        100000
-      ],
-      "loops_by_size": {
-        "1000": 1000,
-        "10000": 200,
-        "100000": 30
-      }
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0045_jump_game_ii",
+      "function": "jump",
+      "source_py": "src/0045_jump_game_ii.py",
+      "source_sifr": "src/0045_jump_game_ii.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "nums", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["nums"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0134_gas_station",
+      "function": "canCompleteCircuit",
+      "source_py": "src/0134_gas_station.py",
+      "source_sifr": "src/0134_gas_station.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "gas", "type": "list[int]", "source": "tokens", "start": 1, "count_index": 0 },
+            { "name": "cost", "type": "list[int]", "source": "tokens", "start": 1, "start_after_count_indices": [0], "count_index": 0 }
+          ]
+        },
+        "call": { "mode": "single", "args": ["gas", "cost"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0846_hand_of_straights",
+      "function": "isNStraightHand",
+      "source_py": "src/0846_hand_of_straights.py",
+      "source_sifr": "src/0846_hand_of_straights.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "groupSize", "type": "int", "source": "token", "index": 0 },
+            { "name": "hand", "type": "list[int]", "source": "tokens", "start": 1 }
+          ]
+        },
+        "call": { "mode": "single", "args": ["hand", "groupSize"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 500, "10000": 100, "100000": 10 }
+    },
+    {
+      "id": "1423_maximum_points_you_can_obtain_from_cards",
+      "function": "maxScore",
+      "source_py": "src/1423_maximum_points_you_can_obtain_from_cards.py",
+      "source_sifr": "src/1423_maximum_points_you_can_obtain_from_cards.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "k", "type": "int", "source": "token", "index": 0 },
+            { "name": "cardPoints", "type": "list[int]", "source": "tokens", "start": 1 }
+          ]
+        },
+        "call": { "mode": "single", "args": ["cardPoints", "k"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "1899_merge_triplets_to_form_target_triplet",
+      "function": "mergeTriplets",
+      "source_py": "src/1899_merge_triplets_to_form_target_triplet.py",
+      "source_sifr": "src/1899_merge_triplets_to_form_target_triplet.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            { "name": "target", "type": "list[int]", "source": "tokens", "start": 0, "end": 3 },
+            { "name": "triplets", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 3, "cols_index": 4, "start": 5 }
+          ]
+        },
+        "call": { "mode": "single", "args": ["triplets", "target"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0763_partition_labels",
+      "function": "partitionLabels",
+      "source_py": "src/0763_partition_labels.py",
+      "source_sifr": "src/0763_partition_labels.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "S", "type": "str", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["S"] },
+        "expected": { "type": "list_int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "0678_valid_parenthesis_string",
+      "function": "checkValidString",
+      "source_py": "src/0678_valid_parenthesis_string.py",
+      "source_sifr": "src/0678_valid_parenthesis_string.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "s", "type": "str", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["s"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+    },
+    {
+      "id": "1029_two_city_scheduling",
+      "function": "twoCitySchedCost",
+      "source_py": "src/1029_two_city_scheduling.py",
+      "source_sifr": "src/1029_two_city_scheduling.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "costs", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["costs"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [1000, 10000, 100000],
+      "loops_by_size": { "1000": 500, "10000": 100, "100000": 10 }
     }
   ]
 }
