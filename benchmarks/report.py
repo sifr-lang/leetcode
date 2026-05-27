@@ -37,7 +37,8 @@ def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
         user = float(result.get("user") or 0.0)
         system = float(result.get("system") or 0.0)
         cv = stddev / mean if mean else math.inf
-        throughput = operations / mean
+        throughput = operations / mean if mean > 0 else None
+        time_per_op_ns = (mean / operations) * 1_000_000_000 if operations > 0 else None
         memory_row = memory_rows.get(impl, {})
         memory_values = memory_row.get("rss_bytes") or []
         memory_mb = (
@@ -66,7 +67,7 @@ def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
                 "system_ms": system * 1000,
                 "cv": cv,
                 "throughput_per_s": throughput,
-                "time_per_op_ns": (mean / operations) * 1_000_000_000,
+                "time_per_op_ns": time_per_op_ns,
                 "memory_mb": memory_mb,
                 "peak_memory_mb": peak_memory_mb,
                 "memory_source": "/usr/bin/time" if memory_values else None,
@@ -99,12 +100,14 @@ def print_summary(problem_ids: list[str], specs: dict[str, Any], results_dir: Pa
     for row in rows:
         memory = "" if row["memory_mb"] is None else f"{row['memory_mb']:.1f}"
         peak_memory = "" if row["peak_memory_mb"] is None else f"{row['peak_memory_mb']:.1f}"
+        throughput = "" if row["throughput_per_s"] is None else f"{row['throughput_per_s']:.1f}"
+        time_per_op = "" if row["time_per_op_ns"] is None else f"{row['time_per_op_ns']:.2f}"
         print(
             f"{row['category']},{row['problem']},{row['size']},{row['impl']},"
             f"{row['mean_ms']:.3f},{row['median_ms']:.3f},{row['min_ms']:.3f},"
             f"{row['max_ms']:.3f},{row['stddev_ms']:.3f},{row['user_ms']:.3f},"
-            f"{row['system_ms']:.3f},{row['cv']:.4f},{row['throughput_per_s']:.1f},"
-            f"{row['time_per_op_ns']:.2f},{memory},{peak_memory},{row['verdict']}"
+            f"{row['system_ms']:.3f},{row['cv']:.4f},{throughput},"
+            f"{time_per_op},{memory},{peak_memory},{row['verdict']}"
         )
 
 
