@@ -218,17 +218,14 @@ def fresh_input_each_call(runner: dict[str, Any]) -> bool:
 def call_single(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> Any:
     return oracle(*(values[name] for name in call["args"]))
 
-
 def call_batch(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> list[Any]:
     return [oracle(value) for value in values[call["items"]]]
-
 
 def assert_expected_single(result: Any, expected_text: str, expected: dict[str, Any]) -> None:
     actual = format_expected(result, expected).strip()
     expected_value = expected_text.strip()
     if actual != expected_value:
         raise SystemExit(f"wrong result: {actual}, expected {expected_value}")
-
 
 def assert_expected_batch(results: list[Any], expected_text: str, expected: dict[str, Any]) -> None:
     if expected["type"] != "bool_batch_index_checksum":
@@ -238,13 +235,11 @@ def assert_expected_batch(results: list[Any], expected_text: str, expected: dict
     if (true_count, checksum) != (expected_count, expected_checksum):
         raise SystemExit(f"wrong result: {true_count} {checksum}")
 
-
 def single_checksum(oracle: Any, values: dict[str, Any], call: dict[str, Any], expected: dict[str, Any], loops: int) -> int:
     total = 0
     for _ in range(loops):
         total += result_checksum(call_single(oracle, values, call), expected)
     return total
-
 
 def result_checksum(result: Any, expected: dict[str, Any]) -> int:
     expected_type = expected["type"]
@@ -258,10 +253,11 @@ def result_checksum(result: Any, expected: dict[str, Any]) -> int:
         return len(result)
     if expected_type == "list_node_int":
         return len(list_node_to_text(result))
+    if expected_type == "tree_node_int":
+        return len(tree_node_to_text(result))
     if expected_type == "str":
         return len(str(result))
     raise RuntimeError(f"unsupported checksum result shape: {expected_type}")
-
 
 def batch_checksum(oracle: Any, values: dict[str, Any], call: dict[str, Any], checksum: dict[str, Any], loops: int) -> int:
     if checksum["type"] != "true_count":
@@ -273,7 +269,6 @@ def batch_checksum(oracle: Any, values: dict[str, Any], call: dict[str, Any], ch
                 total += 1
     return total
 
-
 def bool_batch_checksum(results: list[Any]) -> tuple[int, int]:
     true_count = 0
     checksum = 0
@@ -283,12 +278,10 @@ def bool_batch_checksum(results: list[Any]) -> tuple[int, int]:
             checksum += index + 1
     return true_count, checksum
 
-
 def format_int_list(result: Any) -> str:
     if not isinstance(result, list):
         raise RuntimeError(f"expected list[int] result, got {result!r}")
     return " ".join(str(int(value)) for value in result) + "\n"
-
 
 def list_node_to_text(result: Any) -> str:
     if result is None:
@@ -299,6 +292,12 @@ def list_node_to_text(result: Any) -> str:
         values.append(str(current.val))
         current = current.next
     return "->".join(values)
+
+
+def tree_node_to_text(result: Any) -> str:
+    if result is None:
+        return "None"
+    return f"{result.val}({tree_node_to_text(result.left)},{tree_node_to_text(result.right)})"
 
 
 def format_expected(result: Any, expected: dict[str, Any]) -> str:
@@ -313,6 +312,8 @@ def format_expected(result: Any, expected: dict[str, Any]) -> str:
         return f"{result}\n"
     if expected_type == "list_node_int":
         return f"{list_node_to_text(result)}\n"
+    if expected_type == "tree_node_int":
+        return f"{tree_node_to_text(result)}\n"
     if expected_type == "str":
         return f"{result}\n"
     if expected_type in ("list_str", "list_list_str"):
@@ -320,7 +321,6 @@ def format_expected(result: Any, expected: dict[str, Any]) -> str:
     if expected_type == "list_list_int":
         return f"{len(result)}\n"
     raise RuntimeError(f"unsupported expected shape: {expected_type}")
-
 
 def run_object_ops(input_text: str, constructor: Any, runner: dict[str, Any]) -> tuple[int, int]:
     lines = [line for line in input_text.splitlines() if line.strip()]
@@ -385,7 +385,6 @@ def parse_object_arg(tokens: list[str], cursor: int, spec: dict[str, Any]) -> tu
         return matrix, index
     raise RuntimeError(f"unsupported object argument type: {arg_type}")
 
-
 def object_result_checksum(result: Any, result_type: str) -> int:
     if result_type == "bool":
         return 1 if result else 0
@@ -396,7 +395,6 @@ def object_result_checksum(result: Any, result_type: str) -> int:
     if result_type == "str":
         return len(result)
     raise RuntimeError(f"unsupported object result type: {result_type}")
-
 
 def sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str] | None = None) -> str:
     call = runner["call"]
@@ -410,11 +408,9 @@ def sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str]
         return object_ops_sifr_runner_body(function, call)
     raise RuntimeError(f"unsupported runner call mode: {call['mode']}")
 
-
 def render_sifr_runner(algorithm: str, function: str, runner: dict[str, Any]) -> str:
     body = sifr_runner_body(function, runner, owned_args_for_function(algorithm, function))
     return f"{algorithm.rstrip()}\n\n{missing_helper_imports(algorithm)}{SIFR_PRELUDE}\n\n\n{body}".rstrip() + "\n"
-
 
 def owned_args_for_function(algorithm: str, function: str) -> set[str]:
     match = re.search(rf"def\s+{re.escape(function)}\s*\(([^)]*)\)", algorithm)
@@ -430,7 +426,6 @@ def owned_args_for_function(algorithm: str, function: str) -> set[str]:
         owned.add(name)
     return owned
 
-
 def missing_helper_imports(algorithm: str) -> str:
     imports = []
     if "ListNode" not in algorithm:
@@ -440,7 +435,6 @@ def missing_helper_imports(algorithm: str) -> str:
     if not imports:
         return ""
     return "\n".join(imports) + "\n"
-
 
 def single_sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str]) -> str:
     bindings = render_sifr_bindings(runner["input"]["bindings"])
@@ -814,6 +808,8 @@ def sifr_result_type(expected_type: str) -> str:
         return "list[int]"
     if expected_type == "list_node_int":
         return "ListNode | None"
+    if expected_type == "tree_node_int":
+        return "TreeNode | None"
     if expected_type == "str":
         return "str"
     if expected_type == "list_str":
@@ -836,6 +832,8 @@ def sifr_expected_check(expected_type: str, result_name: str) -> str:
         return f"if str({result_name}) != expected_text.strip():"
     if expected_type == "list_node_int":
         return f"if listNodeToString({result_name}) != expected_text.strip():"
+    if expected_type == "tree_node_int":
+        return f"if treeToString({result_name}) != expected_text.strip():"
     if expected_type == "str":
         return f"if {result_name} != expected_text.strip():"
     if expected_type in ("list_str", "list_list_str"):
@@ -856,6 +854,8 @@ def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
         return f"len({result_name})"
     if expected_type == "list_node_int":
         return f"len(listNodeToString({result_name}))"
+    if expected_type == "tree_node_int":
+        return f"len(treeToString({result_name}))"
     if expected_type == "str":
         return f"len({result_name})"
     raise RuntimeError(f"unsupported Sifr expected shape: {expected_type}")

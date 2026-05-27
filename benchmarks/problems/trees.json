@@ -4,6 +4,166 @@
   "order": 6,
   "problems": [
     {
+      "id": "0094_binary_tree_inorder_traversal",
+      "function": "inorderTraversal",
+      "source_py": "src/0094_binary_tree_inorder_traversal.py",
+      "source_sifr": "src/0094_binary_tree_inorder_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0144_binary_tree_preorder_traversal",
+      "function": "preorderTraversal",
+      "source_py": "src/0144_binary_tree_preorder_traversal.py",
+      "source_sifr": "src/0144_binary_tree_preorder_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0145_binary_tree_postorder_traversal",
+      "function": "postorderTraversal",
+      "source_py": "src/0145_binary_tree_postorder_traversal.py",
+      "source_sifr": "src/0145_binary_tree_postorder_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0226_invert_binary_tree",
+      "function": "invertTree",
+      "source_py": "src/0226_invert_binary_tree.py",
+      "source_sifr": "src/0226_invert_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
       "id": "0104_maximum_depth_of_binary_tree",
       "function": "maxDepth",
       "source_py": "src/0104_maximum_depth_of_binary_tree.py",
@@ -33,14 +193,54 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [
+        100,
         1000,
-        10000,
-        100000
+        5000
       ],
       "loops_by_size": {
-        "1000": 1000,
-        "10000": 200,
-        "100000": 20
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0543_diameter_of_binary_tree",
+      "function": "diameterOfBinaryTree",
+      "source_py": "src/0543_diameter_of_binary_tree.py",
+      "source_sifr": "src/0543_diameter_of_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
       }
     },
     {
@@ -73,14 +273,1006 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [
+        100,
         1000,
-        10000,
-        100000
+        5000
       ],
       "loops_by_size": {
-        "1000": 1000,
-        "10000": 200,
-        "100000": 20
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0100_same_tree",
+      "function": "isSameTree",
+      "source_py": "src/0100_same_tree.py",
+      "source_sifr": "src/0100_same_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "p",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0
+            },
+            {
+              "name": "q",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 1,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "p",
+            "q"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0572_subtree_of_another_tree",
+      "function": "isSubtree",
+      "source_py": "src/0572_subtree_of_another_tree.py",
+      "source_sifr": "src/0572_subtree_of_another_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "p",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0
+            },
+            {
+              "name": "q",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 1,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "p",
+            "q"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0108_convert_sorted_array_to_binary_search_tree",
+      "function": "sortedArrayToBST",
+      "source_py": "src/0108_convert_sorted_array_to_binary_search_tree.py",
+      "source_sifr": "src/0108_convert_sorted_array_to_binary_search_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0617_merge_two_binary_trees",
+      "function": "mergeTrees",
+      "source_py": "src/0617_merge_two_binary_trees.py",
+      "source_sifr": "src/0617_merge_two_binary_trees.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "p",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0
+            },
+            {
+              "name": "q",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 1,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "p",
+            "q"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0112_path_sum",
+      "function": "hasPathSum",
+      "source_py": "src/0112_path_sum.py",
+      "source_sifr": "src/0112_path_sum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "targetSum",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root",
+            "targetSum"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0606_construct_string_from_binary_tree",
+      "function": "tree2str",
+      "source_py": "src/0606_construct_string_from_binary_tree.py",
+      "source_sifr": "src/0606_construct_string_from_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0701_insert_into_a_binary_search_tree",
+      "function": "insertIntoBST",
+      "source_py": "src/0701_insert_into_a_binary_search_tree.py",
+      "source_sifr": "src/0701_insert_into_a_binary_search_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "val",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root",
+            "val"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0450_delete_node_in_a_bst",
+      "function": "deleteNode",
+      "source_py": "src/0450_delete_node_in_a_bst.py",
+      "source_sifr": "src/0450_delete_node_in_a_bst.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "key",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root",
+            "key"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0102_binary_tree_level_order_traversal",
+      "function": "levelOrder",
+      "source_py": "src/0102_binary_tree_level_order_traversal.py",
+      "source_sifr": "src/0102_binary_tree_level_order_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0199_binary_tree_right_side_view",
+      "function": "rightSideView",
+      "source_py": "src/0199_binary_tree_right_side_view.py",
+      "source_sifr": "src/0199_binary_tree_right_side_view.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0783_minimum_distance_between_bst_nodes",
+      "function": "minDiffInBST",
+      "source_py": "src/0783_minimum_distance_between_bst_nodes.py",
+      "source_sifr": "src/0783_minimum_distance_between_bst_nodes.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0101_symmetric_tree",
+      "function": "isSymmetric",
+      "source_py": "src/0101_symmetric_tree.py",
+      "source_sifr": "src/0101_symmetric_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0103_binary_tree_zigzag_level_order_traversal",
+      "function": "zigzagLevelOrder",
+      "source_py": "src/0103_binary_tree_zigzag_level_order_traversal.py",
+      "source_sifr": "src/0103_binary_tree_zigzag_level_order_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0106_construct_binary_tree_from_inorder_and_postorder_traversal",
+      "function": "buildTree",
+      "source_py": "src/0106_construct_binary_tree_from_inorder_and_postorder_traversal.py",
+      "source_sifr": "src/0106_construct_binary_tree_from_inorder_and_postorder_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "inorder",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0
+            },
+            {
+              "name": "postorder",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 1,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "inorder",
+            "postorder"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0662_maximum_width_of_binary_tree",
+      "function": "widthOfBinaryTree",
+      "source_py": "src/0662_maximum_width_of_binary_tree.py",
+      "source_sifr": "src/0662_maximum_width_of_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "1448_count_good_nodes_in_binary_tree",
+      "function": "goodNodes",
+      "source_py": "src/1448_count_good_nodes_in_binary_tree.py",
+      "source_sifr": "src/1448_count_good_nodes_in_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0098_validate_binary_search_tree",
+      "function": "isValidBST",
+      "source_py": "src/0098_validate_binary_search_tree.py",
+      "source_sifr": "src/0098_validate_binary_search_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0230_kth_smallest_element_in_a_bst",
+      "function": "kthSmallest",
+      "source_py": "src/0230_kth_smallest_element_in_a_bst.py",
+      "source_sifr": "src/0230_kth_smallest_element_in_a_bst.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0105_construct_binary_tree_from_preorder_and_inorder_traversal",
+      "function": "buildTree",
+      "source_py": "src/0105_construct_binary_tree_from_preorder_and_inorder_traversal.py",
+      "source_sifr": "src/0105_construct_binary_tree_from_preorder_and_inorder_traversal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "preorder",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0
+            },
+            {
+              "name": "inorder",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 1,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "preorder",
+            "inorder"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0513_find_bottom_left_tree_value",
+      "function": "findBottomLeftValue",
+      "source_py": "src/0513_find_bottom_left_tree_value.py",
+      "source_sifr": "src/0513_find_bottom_left_tree_value.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0669_trim_a_binary_search_tree",
+      "function": "trimBST",
+      "source_py": "src/0669_trim_a_binary_search_tree.py",
+      "source_sifr": "src/0669_trim_a_binary_search_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "low",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "high",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens",
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root",
+            "low",
+            "high"
+          ]
+        },
+        "expected": {
+          "type": "tree_node_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
+      }
+    },
+    {
+      "id": "0124_binary_tree_maximum_path_sum",
+      "function": "maxPathSum",
+      "source_py": "src/0124_binary_tree_maximum_path_sum.py",
+      "source_sifr": "src/0124_binary_tree_maximum_path_sum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 500,
+        "5000": 100
       }
     }
   ]
