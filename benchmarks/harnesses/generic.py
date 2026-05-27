@@ -206,7 +206,13 @@ def fresh_input_each_call(runner: dict[str, Any]) -> bool:
 
 
 def call_single(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> Any:
-    return oracle(*(values[name] for name in call["args"]))
+    copied = set(call.get("copy_args", []))
+    return oracle(*(copy_arg(values[name]) if name in copied else values[name] for name in call["args"]))
+
+def copy_arg(value: Any) -> Any:
+    if isinstance(value, list):
+        return [item.copy() if isinstance(item, list) else item for item in value]
+    return value
 
 def call_batch(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> list[Any]:
     return [oracle(value) for value in values[call["items"]]]
