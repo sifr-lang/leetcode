@@ -379,8 +379,10 @@ def object_result_checksum(result: Any, result_type: str) -> int:
     if result_type == "int":
         return int(result)
     if result_type == "float":
-        return 1 if float(result) > 0.0 else 0
+        return int(float(result) * 1000.0)
     if result_type == "str":
+        return len(result)
+    if result_type == "list_int":
         return len(result)
     raise RuntimeError(f"unsupported object result type: {result_type}")
 
@@ -693,6 +695,8 @@ def sifr_object_result_type(result_type: str) -> str:
         return "float"
     if result_type == "str":
         return "str"
+    if result_type == "list_int":
+        return "list[int]"
     raise RuntimeError(f"unsupported Sifr object result type: {result_type}")
 
 
@@ -702,8 +706,10 @@ def sifr_object_checksum_expr(result_type: str, result_name: str) -> str:
     if result_type == "int":
         return result_name
     if result_type == "float":
-        return f"1 if {result_name} > 0.0 else 0"
+        return f"int({result_name} * 1000.0)"
     if result_type == "str":
+        return f"len({result_name})"
+    if result_type == "list_int":
         return f"len({result_name})"
     raise RuntimeError(f"unsupported Sifr object result type: {result_type}")
 
