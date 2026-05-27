@@ -13,8 +13,17 @@ def fixture_stem(spec: Any, size: int) -> str:
     return spec.fixture_stem.format(size=size)
 
 
+def load_memory_rows(path: Path) -> dict[str, dict[str, Any]]:
+    memory_path = Path(str(path).replace(".hyperfine.json", ".memory.json"))
+    if not memory_path.exists():
+        return {}
+    data = json.loads(memory_path.read_text(encoding="utf-8"))
+    return {measurement["impl"]: measurement for measurement in data.get("measurements", [])}
+
+
 def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
     data = json.loads(path.read_text(encoding="utf-8"))
+    memory_rows = load_memory_rows(path)
     rows = []
     operations = size * spec.loops_by_size[size]
     for result in data.get("results", []):
@@ -29,7 +38,8 @@ def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
         system = float(result.get("system") or 0.0)
         cv = stddev / mean if mean else math.inf
         throughput = operations / mean
-        memory_values = result.get("memory_usage_byte") or []
+        memory_row = memory_rows.get(impl, {})
+        memory_values = memory_row.get("rss_bytes") or []
         memory_mb = (
             statistics.mean(float(value) for value in memory_values) / (1024 * 1024)
             if memory_values
@@ -59,6 +69,7 @@ def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
                 "time_per_op_ns": (mean / operations) * 1_000_000_000,
                 "memory_mb": memory_mb,
                 "peak_memory_mb": peak_memory_mb,
+                "memory_source": "/usr/bin/time" if memory_values else None,
                 "verdict": "noisy" if cv > 0.10 else "stable",
             }
         )
@@ -793,9 +804,9 @@ def render_html_report(
     <section class="meta-panel">
       <p class="eyebrow">Run Environment</p>
       <div class="meta-grid">{env_rows}</div>
-      <p class="footnote">Speedup is computed only when Python and Sifr operation counts match. Throughput is problem-specific because each problem has its own operation shape. Memory values come from hyperfine RSS samples and should be treated as process-level memory, not language heap allocation.</p>
+      <p class="footnote">Speedup is computed only when Python and Sifr operation counts match. Throughput is problem-specific because each problem has its own operation shape. Runtime values come from hyperfine; memory values come from separate /usr/bin/time RSS samples and should be treated as process-level memory, not language heap allocation.</p>
     </section>
-    <footer>Generated {escape(generated_at)} from hyperfine JSON exports in <code>benchmarks/results/.raw</code>.</footer>
+    <footer>Generated {escape(generated_at)} from benchmark JSON exports in <code>benchmarks/results/.raw</code>.</footer>
   </main>
   <script type="application/json" id="benchmark-data">{escape(payload)}</script>
   <script>

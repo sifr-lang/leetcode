@@ -7,6 +7,7 @@ import json
 import platform
 import re
 import shutil
+import statistics
 import subprocess
 import sys
 import time
@@ -203,10 +204,103 @@ def hyperfine_command(
     ]
 
 
+def benchmark_commands(spec: ProblemSpec, binary: Path, size: int) -> dict[str, list[str]]:
+    fixture_path, expected_path = fixture_paths(spec, size)
+    loops = spec.loops_by_size[size]
+    return {
+        "python": [
+            sys.executable,
+            str(BENCH_ROOT / "bench.py"),
+            "run-python",
+            spec.problem_id,
+            str(fixture_path),
+            str(expected_path),
+            str(loops),
+        ],
+        "sifr": [str(binary), str(fixture_path), str(expected_path), str(loops)],
+    }
+
+
 def shlex_join(parts: list[str]) -> str:
     import shlex
 
     return shlex.join(parts)
+
+
+def memory_result_path(spec: ProblemSpec, size: int) -> Path:
+    return RAW_RESULTS_DIR / f"{spec.problem_id}_{fixture_stem(spec, size)}.memory.json"
+
+
+def parse_time_memory(stderr: str) -> dict[str, int | None]:
+    rss_match = re.search(r"(?m)^\s*(\d+)\s+maximum resident set size$", stderr)
+    if rss_match:
+        return {"rss_bytes": int(rss_match.group(1)), "peak_footprint_bytes": parse_peak_footprint(stderr)}
+
+    gnu_match = re.search(r"Maximum resident set size \(kbytes\):\s*(\d+)", stderr)
+    if gnu_match:
+        return {"rss_bytes": int(gnu_match.group(1)) * 1024, "peak_footprint_bytes": None}
+
+    raise RuntimeError("could not parse maximum resident set size from /usr/bin/time output")
+
+
+def parse_peak_footprint(stderr: str) -> int | None:
+    match = re.search(r"(?m)^\s*(\d+)\s+peak memory footprint$", stderr)
+    return int(match.group(1)) if match else None
+
+
+def measure_command_memory(command: list[str]) -> dict[str, int | None]:
+    time_binary = "/usr/bin/time"
+    if not Path(time_binary).exists():
+        raise RuntimeError(f"{time_binary} is required for memory measurement")
+    result = subprocess.run([time_binary, "-l", *command], cwd=REPO_ROOT, text=True, capture_output=True)
+    if result.returncode == 0:
+        return parse_time_memory(result.stderr)
+
+    linux_result = subprocess.run([time_binary, "-v", *command], cwd=REPO_ROOT, text=True, capture_output=True)
+    if linux_result.returncode != 0:
+        sys.stderr.write(result.stdout)
+        sys.stderr.write(result.stderr)
+        sys.stderr.write(linux_result.stdout)
+        sys.stderr.write(linux_result.stderr)
+        raise SystemExit(linux_result.returncode)
+    return parse_time_memory(linux_result.stderr)
+
+
+def run_memory_measurements(spec: ProblemSpec, binary: Path, size: int, *, runs: int) -> None:
+    RAW_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    measurements = []
+    for impl, command in benchmark_commands(spec, binary, size).items():
+        rss_values = []
+        footprint_values = []
+        for _ in range(runs):
+            memory = measure_command_memory(command)
+            if memory["rss_bytes"] is not None:
+                rss_values.append(memory["rss_bytes"])
+            if memory["peak_footprint_bytes"] is not None:
+                footprint_values.append(memory["peak_footprint_bytes"])
+        measurements.append(
+            {
+                "impl": impl,
+                "command": shlex_join(command),
+                "rss_bytes": rss_values,
+                "peak_footprint_bytes": footprint_values,
+                "mean_rss_bytes": statistics.mean(rss_values) if rss_values else None,
+                "peak_rss_bytes": max(rss_values) if rss_values else None,
+            }
+        )
+    memory_result_path(spec, size).write_text(
+        json.dumps(
+            {
+                "problem": spec.problem_id,
+                "size": size,
+                "runs": runs,
+                "source": "/usr/bin/time",
+                "measurements": measurements,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
 
 def run_hyperfine(spec: ProblemSpec, binary: Path, size: int, *, runs: int, warmup: int) -> None:
@@ -291,6 +385,7 @@ def command_run(args: argparse.Namespace) -> None:
         run_correctness(spec, binary)
         for size in spec.sizes:
             run_hyperfine(spec, binary, size, runs=args.runs, warmup=args.warmup)
+            run_memory_measurements(spec, binary, size, runs=args.memory_runs)
     print_summary(args.problem)
 
 
@@ -321,6 +416,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("problem", nargs="*", help="problem ids to benchmark")
     run.add_argument("--runs", type=int, default=20, help="hyperfine measured runs")
     run.add_argument("--warmup", type=int, default=3, help="hyperfine warmup runs")
+    run.add_argument("--memory-runs", type=int, default=3, help="RSS measurement runs with /usr/bin/time")
     run.set_defaults(func=command_run)
 
     run_python_parser = subparsers.add_parser("run-python", help=argparse.SUPPRESS)

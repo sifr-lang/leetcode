@@ -12,14 +12,15 @@ The maintained surface is intentionally small:
   reference through the configured harness once per fixture to produce expected
   output, and writes fixture pairs.
 - `bench.py` builds generated Sifr runners, verifies correctness, invokes
-  `hyperfine`, and summarizes results.
+  `hyperfine` for runtime, captures `/usr/bin/time` RSS samples, and summarizes
+  results.
 - `report.py` renders the static HTML report from existing JSON results.
 - `specs.py` contains shared registry/path helpers used by the tools.
 - `templates/sifr_runner.sifr.tpl` is the reusable Sifr entrypoint template.
 - `fixtures/` stores checked-in deterministic input/output pairs.
 
 Generated Sifr entrypoints and native binaries are written under `generated/`.
-Raw hyperfine exports are written under `results/.raw`; the rendered HTML report
+Raw benchmark exports are written under `results/.raw`; the rendered HTML report
 is written to `results/report.html`. These generated paths are ignored by Git.
 
 ## Commands
@@ -59,6 +60,6 @@ SIFR_BIN=/path/to/sifr python3 benchmarks/bench.py run
 ```
 
 The HTML report is written to `benchmarks/results/report.html`. It is generated
-from raw hyperfine JSON exports in `benchmarks/results/.raw` and includes
+from raw JSON exports in `benchmarks/results/.raw` and includes
 speedup, CPU user/system time, throughput, per-operation cost, peak RSS,
 p50/min/max, and variance status.
