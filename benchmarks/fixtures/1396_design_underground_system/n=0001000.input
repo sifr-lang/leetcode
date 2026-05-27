@@ -1,0 +1,1000 @@
+__init__
+checkIn 0 Leyton 0
+checkOut 0 Waterloo 10
+getAverageTime Leyton Waterloo
+checkIn 1 Paradise 3
+checkOut 1 Cambridge 14
+getAverageTime Paradise Cambridge
+checkIn 2 Leyton 6
+checkOut 2 Waterloo 18
+getAverageTime Leyton Waterloo
+checkIn 3 Paradise 9
+checkOut 3 Cambridge 22
+getAverageTime Paradise Cambridge
+checkIn 4 Leyton 12
+checkOut 4 Waterloo 26
+getAverageTime Leyton Waterloo
+checkIn 5 Paradise 15
+checkOut 5 Cambridge 25
+getAverageTime Paradise Cambridge
+checkIn 6 Leyton 18
+checkOut 6 Waterloo 29
+getAverageTime Leyton Waterloo
+checkIn 7 Paradise 21
+checkOut 7 Cambridge 33
+getAverageTime Paradise Cambridge
+checkIn 8 Leyton 24
+checkOut 8 Waterloo 37
+getAverageTime Leyton Waterloo
+checkIn 9 Paradise 27
+checkOut 9 Cambridge 41
+getAverageTime Paradise Cambridge
+checkIn 10 Leyton 30
+checkOut 10 Waterloo 40
+getAverageTime Leyton Waterloo
+checkIn 11 Paradise 33
+checkOut 11 Cambridge 44
+getAverageTime Paradise Cambridge
+checkIn 12 Leyton 36
+checkOut 12 Waterloo 48
+getAverageTime Leyton Waterloo
+checkIn 13 Paradise 39
+checkOut 13 Cambridge 52
+getAverageTime Paradise Cambridge
+checkIn 14 Leyton 42
+checkOut 14 Waterloo 56
+getAverageTime Leyton Waterloo
+checkIn 15 Paradise 45
+checkOut 15 Cambridge 55
+getAverageTime Paradise Cambridge
+checkIn 16 Leyton 48
+checkOut 16 Waterloo 59
+getAverageTime Leyton Waterloo
+checkIn 17 Paradise 51
+checkOut 17 Cambridge 63
+getAverageTime Paradise Cambridge
+checkIn 18 Leyton 54
+checkOut 18 Waterloo 67
+getAverageTime Leyton Waterloo
+checkIn 19 Paradise 57
+checkOut 19 Cambridge 71
+getAverageTime Paradise Cambridge
+checkIn 20 Leyton 60
+checkOut 20 Waterloo 70
+getAverageTime Leyton Waterloo
+checkIn 21 Paradise 63
+checkOut 21 Cambridge 74
+getAverageTime Paradise Cambridge
+checkIn 22 Leyton 66
+checkOut 22 Waterloo 78
+getAverageTime Leyton Waterloo
+checkIn 23 Paradise 69
+checkOut 23 Cambridge 82
+getAverageTime Paradise Cambridge
+checkIn 24 Leyton 72
+checkOut 24 Waterloo 86
+getAverageTime Leyton Waterloo
+checkIn 25 Paradise 75
+checkOut 25 Cambridge 85
+getAverageTime Paradise Cambridge
+checkIn 26 Leyton 78
+checkOut 26 Waterloo 89
+getAverageTime Leyton Waterloo
+checkIn 27 Paradise 81
+checkOut 27 Cambridge 93
+getAverageTime Paradise Cambridge
+checkIn 28 Leyton 84
+checkOut 28 Waterloo 97
+getAverageTime Leyton Waterloo
+checkIn 29 Paradise 87
+checkOut 29 Cambridge 101
+getAverageTime Paradise Cambridge
+checkIn 30 Leyton 90
+checkOut 30 Waterloo 100
+getAverageTime Leyton Waterloo
+checkIn 31 Paradise 93
+checkOut 31 Cambridge 104
+getAverageTime Paradise Cambridge
+checkIn 32 Leyton 96
+checkOut 32 Waterloo 108
+getAverageTime Leyton Waterloo
+checkIn 33 Paradise 99
+checkOut 33 Cambridge 112
+getAverageTime Paradise Cambridge
+checkIn 34 Leyton 102
+checkOut 34 Waterloo 116
+getAverageTime Leyton Waterloo
+checkIn 35 Paradise 105
+checkOut 35 Cambridge 115
+getAverageTime Paradise Cambridge
+checkIn 36 Leyton 108
+checkOut 36 Waterloo 119
+getAverageTime Leyton Waterloo
+checkIn 37 Paradise 111
+checkOut 37 Cambridge 123
+getAverageTime Paradise Cambridge
+checkIn 38 Leyton 114
+checkOut 38 Waterloo 127
+getAverageTime Leyton Waterloo
+checkIn 39 Paradise 117
+checkOut 39 Cambridge 131
+getAverageTime Paradise Cambridge
+checkIn 40 Leyton 120
+checkOut 40 Waterloo 130
+getAverageTime Leyton Waterloo
+checkIn 41 Paradise 123
+checkOut 41 Cambridge 134
+getAverageTime Paradise Cambridge
+checkIn 42 Leyton 126
+checkOut 42 Waterloo 138
+getAverageTime Leyton Waterloo
+checkIn 43 Paradise 129
+checkOut 43 Cambridge 142
+getAverageTime Paradise Cambridge
+checkIn 44 Leyton 132
+checkOut 44 Waterloo 146
+getAverageTime Leyton Waterloo
+checkIn 45 Paradise 135
+checkOut 45 Cambridge 145
+getAverageTime Paradise Cambridge
+checkIn 46 Leyton 138
+checkOut 46 Waterloo 149
+getAverageTime Leyton Waterloo
+checkIn 47 Paradise 141
+checkOut 47 Cambridge 153
+getAverageTime Paradise Cambridge
+checkIn 48 Leyton 144
+checkOut 48 Waterloo 157
+getAverageTime Leyton Waterloo
+checkIn 49 Paradise 147
+checkOut 49 Cambridge 161
+getAverageTime Paradise Cambridge
+checkIn 50 Leyton 150
+checkOut 50 Waterloo 160
+getAverageTime Leyton Waterloo
+checkIn 51 Paradise 153
+checkOut 51 Cambridge 164
+getAverageTime Paradise Cambridge
+checkIn 52 Leyton 156
+checkOut 52 Waterloo 168
+getAverageTime Leyton Waterloo
+checkIn 53 Paradise 159
+checkOut 53 Cambridge 172
+getAverageTime Paradise Cambridge
+checkIn 54 Leyton 162
+checkOut 54 Waterloo 176
+getAverageTime Leyton Waterloo
+checkIn 55 Paradise 165
+checkOut 55 Cambridge 175
+getAverageTime Paradise Cambridge
+checkIn 56 Leyton 168
+checkOut 56 Waterloo 179
+getAverageTime Leyton Waterloo
+checkIn 57 Paradise 171
+checkOut 57 Cambridge 183
+getAverageTime Paradise Cambridge
+checkIn 58 Leyton 174
+checkOut 58 Waterloo 187
+getAverageTime Leyton Waterloo
+checkIn 59 Paradise 177
+checkOut 59 Cambridge 191
+getAverageTime Paradise Cambridge
+checkIn 60 Leyton 180
+checkOut 60 Waterloo 190
+getAverageTime Leyton Waterloo
+checkIn 61 Paradise 183
+checkOut 61 Cambridge 194
+getAverageTime Paradise Cambridge
+checkIn 62 Leyton 186
+checkOut 62 Waterloo 198
+getAverageTime Leyton Waterloo
+checkIn 63 Paradise 189
+checkOut 63 Cambridge 202
+getAverageTime Paradise Cambridge
+checkIn 64 Leyton 192
+checkOut 64 Waterloo 206
+getAverageTime Leyton Waterloo
+checkIn 65 Paradise 195
+checkOut 65 Cambridge 205
+getAverageTime Paradise Cambridge
+checkIn 66 Leyton 198
+checkOut 66 Waterloo 209
+getAverageTime Leyton Waterloo
+checkIn 67 Paradise 201
+checkOut 67 Cambridge 213
+getAverageTime Paradise Cambridge
+checkIn 68 Leyton 204
+checkOut 68 Waterloo 217
+getAverageTime Leyton Waterloo
+checkIn 69 Paradise 207
+checkOut 69 Cambridge 221
+getAverageTime Paradise Cambridge
+checkIn 70 Leyton 210
+checkOut 70 Waterloo 220
+getAverageTime Leyton Waterloo
+checkIn 71 Paradise 213
+checkOut 71 Cambridge 224
+getAverageTime Paradise Cambridge
+checkIn 72 Leyton 216
+checkOut 72 Waterloo 228
+getAverageTime Leyton Waterloo
+checkIn 73 Paradise 219
+checkOut 73 Cambridge 232
+getAverageTime Paradise Cambridge
+checkIn 74 Leyton 222
+checkOut 74 Waterloo 236
+getAverageTime Leyton Waterloo
+checkIn 75 Paradise 225
+checkOut 75 Cambridge 235
+getAverageTime Paradise Cambridge
+checkIn 76 Leyton 228
+checkOut 76 Waterloo 239
+getAverageTime Leyton Waterloo
+checkIn 77 Paradise 231
+checkOut 77 Cambridge 243
+getAverageTime Paradise Cambridge
+checkIn 78 Leyton 234
+checkOut 78 Waterloo 247
+getAverageTime Leyton Waterloo
+checkIn 79 Paradise 237
+checkOut 79 Cambridge 251
+getAverageTime Paradise Cambridge
+checkIn 80 Leyton 240
+checkOut 80 Waterloo 250
+getAverageTime Leyton Waterloo
+checkIn 81 Paradise 243
+checkOut 81 Cambridge 254
+getAverageTime Paradise Cambridge
+checkIn 82 Leyton 246
+checkOut 82 Waterloo 258
+getAverageTime Leyton Waterloo
+checkIn 83 Paradise 249
+checkOut 83 Cambridge 262
+getAverageTime Paradise Cambridge
+checkIn 84 Leyton 252
+checkOut 84 Waterloo 266
+getAverageTime Leyton Waterloo
+checkIn 85 Paradise 255
+checkOut 85 Cambridge 265
+getAverageTime Paradise Cambridge
+checkIn 86 Leyton 258
+checkOut 86 Waterloo 269
+getAverageTime Leyton Waterloo
+checkIn 87 Paradise 261
+checkOut 87 Cambridge 273
+getAverageTime Paradise Cambridge
+checkIn 88 Leyton 264
+checkOut 88 Waterloo 277
+getAverageTime Leyton Waterloo
+checkIn 89 Paradise 267
+checkOut 89 Cambridge 281
+getAverageTime Paradise Cambridge
+checkIn 90 Leyton 270
+checkOut 90 Waterloo 280
+getAverageTime Leyton Waterloo
+checkIn 91 Paradise 273
+checkOut 91 Cambridge 284
+getAverageTime Paradise Cambridge
+checkIn 92 Leyton 276
+checkOut 92 Waterloo 288
+getAverageTime Leyton Waterloo
+checkIn 93 Paradise 279
+checkOut 93 Cambridge 292
+getAverageTime Paradise Cambridge
+checkIn 94 Leyton 282
+checkOut 94 Waterloo 296
+getAverageTime Leyton Waterloo
+checkIn 95 Paradise 285
+checkOut 95 Cambridge 295
+getAverageTime Paradise Cambridge
+checkIn 96 Leyton 288
+checkOut 96 Waterloo 299
+getAverageTime Leyton Waterloo
+checkIn 97 Paradise 291
+checkOut 97 Cambridge 303
+getAverageTime Paradise Cambridge
+checkIn 98 Leyton 294
+checkOut 98 Waterloo 307
+getAverageTime Leyton Waterloo
+checkIn 99 Paradise 297
+checkOut 99 Cambridge 311
+getAverageTime Paradise Cambridge
+checkIn 100 Leyton 300
+checkOut 100 Waterloo 310
+getAverageTime Leyton Waterloo
+checkIn 101 Paradise 303
+checkOut 101 Cambridge 314
+getAverageTime Paradise Cambridge
+checkIn 102 Leyton 306
+checkOut 102 Waterloo 318
+getAverageTime Leyton Waterloo
+checkIn 103 Paradise 309
+checkOut 103 Cambridge 322
+getAverageTime Paradise Cambridge
+checkIn 104 Leyton 312
+checkOut 104 Waterloo 326
+getAverageTime Leyton Waterloo
+checkIn 105 Paradise 315
+checkOut 105 Cambridge 325
+getAverageTime Paradise Cambridge
+checkIn 106 Leyton 318
+checkOut 106 Waterloo 329
+getAverageTime Leyton Waterloo
+checkIn 107 Paradise 321
+checkOut 107 Cambridge 333
+getAverageTime Paradise Cambridge
+checkIn 108 Leyton 324
+checkOut 108 Waterloo 337
+getAverageTime Leyton Waterloo
+checkIn 109 Paradise 327
+checkOut 109 Cambridge 341
+getAverageTime Paradise Cambridge
+checkIn 110 Leyton 330
+checkOut 110 Waterloo 340
+getAverageTime Leyton Waterloo
+checkIn 111 Paradise 333
+checkOut 111 Cambridge 344
+getAverageTime Paradise Cambridge
+checkIn 112 Leyton 336
+checkOut 112 Waterloo 348
+getAverageTime Leyton Waterloo
+checkIn 113 Paradise 339
+checkOut 113 Cambridge 352
+getAverageTime Paradise Cambridge
+checkIn 114 Leyton 342
+checkOut 114 Waterloo 356
+getAverageTime Leyton Waterloo
+checkIn 115 Paradise 345
+checkOut 115 Cambridge 355
+getAverageTime Paradise Cambridge
+checkIn 116 Leyton 348
+checkOut 116 Waterloo 359
+getAverageTime Leyton Waterloo
+checkIn 117 Paradise 351
+checkOut 117 Cambridge 363
+getAverageTime Paradise Cambridge
+checkIn 118 Leyton 354
+checkOut 118 Waterloo 367
+getAverageTime Leyton Waterloo
+checkIn 119 Paradise 357
+checkOut 119 Cambridge 371
+getAverageTime Paradise Cambridge
+checkIn 120 Leyton 360
+checkOut 120 Waterloo 370
+getAverageTime Leyton Waterloo
+checkIn 121 Paradise 363
+checkOut 121 Cambridge 374
+getAverageTime Paradise Cambridge
+checkIn 122 Leyton 366
+checkOut 122 Waterloo 378
+getAverageTime Leyton Waterloo
+checkIn 123 Paradise 369
+checkOut 123 Cambridge 382
+getAverageTime Paradise Cambridge
+checkIn 124 Leyton 372
+checkOut 124 Waterloo 386
+getAverageTime Leyton Waterloo
+checkIn 125 Paradise 375
+checkOut 125 Cambridge 385
+getAverageTime Paradise Cambridge
+checkIn 126 Leyton 378
+checkOut 126 Waterloo 389
+getAverageTime Leyton Waterloo
+checkIn 127 Paradise 381
+checkOut 127 Cambridge 393
+getAverageTime Paradise Cambridge
+checkIn 128 Leyton 384
+checkOut 128 Waterloo 397
+getAverageTime Leyton Waterloo
+checkIn 129 Paradise 387
+checkOut 129 Cambridge 401
+getAverageTime Paradise Cambridge
+checkIn 130 Leyton 390
+checkOut 130 Waterloo 400
+getAverageTime Leyton Waterloo
+checkIn 131 Paradise 393
+checkOut 131 Cambridge 404
+getAverageTime Paradise Cambridge
+checkIn 132 Leyton 396
+checkOut 132 Waterloo 408
+getAverageTime Leyton Waterloo
+checkIn 133 Paradise 399
+checkOut 133 Cambridge 412
+getAverageTime Paradise Cambridge
+checkIn 134 Leyton 402
+checkOut 134 Waterloo 416
+getAverageTime Leyton Waterloo
+checkIn 135 Paradise 405
+checkOut 135 Cambridge 415
+getAverageTime Paradise Cambridge
+checkIn 136 Leyton 408
+checkOut 136 Waterloo 419
+getAverageTime Leyton Waterloo
+checkIn 137 Paradise 411
+checkOut 137 Cambridge 423
+getAverageTime Paradise Cambridge
+checkIn 138 Leyton 414
+checkOut 138 Waterloo 427
+getAverageTime Leyton Waterloo
+checkIn 139 Paradise 417
+checkOut 139 Cambridge 431
+getAverageTime Paradise Cambridge
+checkIn 140 Leyton 420
+checkOut 140 Waterloo 430
+getAverageTime Leyton Waterloo
+checkIn 141 Paradise 423
+checkOut 141 Cambridge 434
+getAverageTime Paradise Cambridge
+checkIn 142 Leyton 426
+checkOut 142 Waterloo 438
+getAverageTime Leyton Waterloo
+checkIn 143 Paradise 429
+checkOut 143 Cambridge 442
+getAverageTime Paradise Cambridge
+checkIn 144 Leyton 432
+checkOut 144 Waterloo 446
+getAverageTime Leyton Waterloo
+checkIn 145 Paradise 435
+checkOut 145 Cambridge 445
+getAverageTime Paradise Cambridge
+checkIn 146 Leyton 438
+checkOut 146 Waterloo 449
+getAverageTime Leyton Waterloo
+checkIn 147 Paradise 441
+checkOut 147 Cambridge 453
+getAverageTime Paradise Cambridge
+checkIn 148 Leyton 444
+checkOut 148 Waterloo 457
+getAverageTime Leyton Waterloo
+checkIn 149 Paradise 447
+checkOut 149 Cambridge 461
+getAverageTime Paradise Cambridge
+checkIn 150 Leyton 450
+checkOut 150 Waterloo 460
+getAverageTime Leyton Waterloo
+checkIn 151 Paradise 453
+checkOut 151 Cambridge 464
+getAverageTime Paradise Cambridge
+checkIn 152 Leyton 456
+checkOut 152 Waterloo 468
+getAverageTime Leyton Waterloo
+checkIn 153 Paradise 459
+checkOut 153 Cambridge 472
+getAverageTime Paradise Cambridge
+checkIn 154 Leyton 462
+checkOut 154 Waterloo 476
+getAverageTime Leyton Waterloo
+checkIn 155 Paradise 465
+checkOut 155 Cambridge 475
+getAverageTime Paradise Cambridge
+checkIn 156 Leyton 468
+checkOut 156 Waterloo 479
+getAverageTime Leyton Waterloo
+checkIn 157 Paradise 471
+checkOut 157 Cambridge 483
+getAverageTime Paradise Cambridge
+checkIn 158 Leyton 474
+checkOut 158 Waterloo 487
+getAverageTime Leyton Waterloo
+checkIn 159 Paradise 477
+checkOut 159 Cambridge 491
+getAverageTime Paradise Cambridge
+checkIn 160 Leyton 480
+checkOut 160 Waterloo 490
+getAverageTime Leyton Waterloo
+checkIn 161 Paradise 483
+checkOut 161 Cambridge 494
+getAverageTime Paradise Cambridge
+checkIn 162 Leyton 486
+checkOut 162 Waterloo 498
+getAverageTime Leyton Waterloo
+checkIn 163 Paradise 489
+checkOut 163 Cambridge 502
+getAverageTime Paradise Cambridge
+checkIn 164 Leyton 492
+checkOut 164 Waterloo 506
+getAverageTime Leyton Waterloo
+checkIn 165 Paradise 495
+checkOut 165 Cambridge 505
+getAverageTime Paradise Cambridge
+checkIn 166 Leyton 498
+checkOut 166 Waterloo 509
+getAverageTime Leyton Waterloo
+checkIn 167 Paradise 501
+checkOut 167 Cambridge 513
+getAverageTime Paradise Cambridge
+checkIn 168 Leyton 504
+checkOut 168 Waterloo 517
+getAverageTime Leyton Waterloo
+checkIn 169 Paradise 507
+checkOut 169 Cambridge 521
+getAverageTime Paradise Cambridge
+checkIn 170 Leyton 510
+checkOut 170 Waterloo 520
+getAverageTime Leyton Waterloo
+checkIn 171 Paradise 513
+checkOut 171 Cambridge 524
+getAverageTime Paradise Cambridge
+checkIn 172 Leyton 516
+checkOut 172 Waterloo 528
+getAverageTime Leyton Waterloo
+checkIn 173 Paradise 519
+checkOut 173 Cambridge 532
+getAverageTime Paradise Cambridge
+checkIn 174 Leyton 522
+checkOut 174 Waterloo 536
+getAverageTime Leyton Waterloo
+checkIn 175 Paradise 525
+checkOut 175 Cambridge 535
+getAverageTime Paradise Cambridge
+checkIn 176 Leyton 528
+checkOut 176 Waterloo 539
+getAverageTime Leyton Waterloo
+checkIn 177 Paradise 531
+checkOut 177 Cambridge 543
+getAverageTime Paradise Cambridge
+checkIn 178 Leyton 534
+checkOut 178 Waterloo 547
+getAverageTime Leyton Waterloo
+checkIn 179 Paradise 537
+checkOut 179 Cambridge 551
+getAverageTime Paradise Cambridge
+checkIn 180 Leyton 540
+checkOut 180 Waterloo 550
+getAverageTime Leyton Waterloo
+checkIn 181 Paradise 543
+checkOut 181 Cambridge 554
+getAverageTime Paradise Cambridge
+checkIn 182 Leyton 546
+checkOut 182 Waterloo 558
+getAverageTime Leyton Waterloo
+checkIn 183 Paradise 549
+checkOut 183 Cambridge 562
+getAverageTime Paradise Cambridge
+checkIn 184 Leyton 552
+checkOut 184 Waterloo 566
+getAverageTime Leyton Waterloo
+checkIn 185 Paradise 555
+checkOut 185 Cambridge 565
+getAverageTime Paradise Cambridge
+checkIn 186 Leyton 558
+checkOut 186 Waterloo 569
+getAverageTime Leyton Waterloo
+checkIn 187 Paradise 561
+checkOut 187 Cambridge 573
+getAverageTime Paradise Cambridge
+checkIn 188 Leyton 564
+checkOut 188 Waterloo 577
+getAverageTime Leyton Waterloo
+checkIn 189 Paradise 567
+checkOut 189 Cambridge 581
+getAverageTime Paradise Cambridge
+checkIn 190 Leyton 570
+checkOut 190 Waterloo 580
+getAverageTime Leyton Waterloo
+checkIn 191 Paradise 573
+checkOut 191 Cambridge 584
+getAverageTime Paradise Cambridge
+checkIn 192 Leyton 576
+checkOut 192 Waterloo 588
+getAverageTime Leyton Waterloo
+checkIn 193 Paradise 579
+checkOut 193 Cambridge 592
+getAverageTime Paradise Cambridge
+checkIn 194 Leyton 582
+checkOut 194 Waterloo 596
+getAverageTime Leyton Waterloo
+checkIn 195 Paradise 585
+checkOut 195 Cambridge 595
+getAverageTime Paradise Cambridge
+checkIn 196 Leyton 588
+checkOut 196 Waterloo 599
+getAverageTime Leyton Waterloo
+checkIn 197 Paradise 591
+checkOut 197 Cambridge 603
+getAverageTime Paradise Cambridge
+checkIn 198 Leyton 594
+checkOut 198 Waterloo 607
+getAverageTime Leyton Waterloo
+checkIn 199 Paradise 597
+checkOut 199 Cambridge 611
+getAverageTime Paradise Cambridge
+checkIn 200 Leyton 600
+checkOut 200 Waterloo 610
+getAverageTime Leyton Waterloo
+checkIn 201 Paradise 603
+checkOut 201 Cambridge 614
+getAverageTime Paradise Cambridge
+checkIn 202 Leyton 606
+checkOut 202 Waterloo 618
+getAverageTime Leyton Waterloo
+checkIn 203 Paradise 609
+checkOut 203 Cambridge 622
+getAverageTime Paradise Cambridge
+checkIn 204 Leyton 612
+checkOut 204 Waterloo 626
+getAverageTime Leyton Waterloo
+checkIn 205 Paradise 615
+checkOut 205 Cambridge 625
+getAverageTime Paradise Cambridge
+checkIn 206 Leyton 618
+checkOut 206 Waterloo 629
+getAverageTime Leyton Waterloo
+checkIn 207 Paradise 621
+checkOut 207 Cambridge 633
+getAverageTime Paradise Cambridge
+checkIn 208 Leyton 624
+checkOut 208 Waterloo 637
+getAverageTime Leyton Waterloo
+checkIn 209 Paradise 627
+checkOut 209 Cambridge 641
+getAverageTime Paradise Cambridge
+checkIn 210 Leyton 630
+checkOut 210 Waterloo 640
+getAverageTime Leyton Waterloo
+checkIn 211 Paradise 633
+checkOut 211 Cambridge 644
+getAverageTime Paradise Cambridge
+checkIn 212 Leyton 636
+checkOut 212 Waterloo 648
+getAverageTime Leyton Waterloo
+checkIn 213 Paradise 639
+checkOut 213 Cambridge 652
+getAverageTime Paradise Cambridge
+checkIn 214 Leyton 642
+checkOut 214 Waterloo 656
+getAverageTime Leyton Waterloo
+checkIn 215 Paradise 645
+checkOut 215 Cambridge 655
+getAverageTime Paradise Cambridge
+checkIn 216 Leyton 648
+checkOut 216 Waterloo 659
+getAverageTime Leyton Waterloo
+checkIn 217 Paradise 651
+checkOut 217 Cambridge 663
+getAverageTime Paradise Cambridge
+checkIn 218 Leyton 654
+checkOut 218 Waterloo 667
+getAverageTime Leyton Waterloo
+checkIn 219 Paradise 657
+checkOut 219 Cambridge 671
+getAverageTime Paradise Cambridge
+checkIn 220 Leyton 660
+checkOut 220 Waterloo 670
+getAverageTime Leyton Waterloo
+checkIn 221 Paradise 663
+checkOut 221 Cambridge 674
+getAverageTime Paradise Cambridge
+checkIn 222 Leyton 666
+checkOut 222 Waterloo 678
+getAverageTime Leyton Waterloo
+checkIn 223 Paradise 669
+checkOut 223 Cambridge 682
+getAverageTime Paradise Cambridge
+checkIn 224 Leyton 672
+checkOut 224 Waterloo 686
+getAverageTime Leyton Waterloo
+checkIn 225 Paradise 675
+checkOut 225 Cambridge 685
+getAverageTime Paradise Cambridge
+checkIn 226 Leyton 678
+checkOut 226 Waterloo 689
+getAverageTime Leyton Waterloo
+checkIn 227 Paradise 681
+checkOut 227 Cambridge 693
+getAverageTime Paradise Cambridge
+checkIn 228 Leyton 684
+checkOut 228 Waterloo 697
+getAverageTime Leyton Waterloo
+checkIn 229 Paradise 687
+checkOut 229 Cambridge 701
+getAverageTime Paradise Cambridge
+checkIn 230 Leyton 690
+checkOut 230 Waterloo 700
+getAverageTime Leyton Waterloo
+checkIn 231 Paradise 693
+checkOut 231 Cambridge 704
+getAverageTime Paradise Cambridge
+checkIn 232 Leyton 696
+checkOut 232 Waterloo 708
+getAverageTime Leyton Waterloo
+checkIn 233 Paradise 699
+checkOut 233 Cambridge 712
+getAverageTime Paradise Cambridge
+checkIn 234 Leyton 702
+checkOut 234 Waterloo 716
+getAverageTime Leyton Waterloo
+checkIn 235 Paradise 705
+checkOut 235 Cambridge 715
+getAverageTime Paradise Cambridge
+checkIn 236 Leyton 708
+checkOut 236 Waterloo 719
+getAverageTime Leyton Waterloo
+checkIn 237 Paradise 711
+checkOut 237 Cambridge 723
+getAverageTime Paradise Cambridge
+checkIn 238 Leyton 714
+checkOut 238 Waterloo 727
+getAverageTime Leyton Waterloo
+checkIn 239 Paradise 717
+checkOut 239 Cambridge 731
+getAverageTime Paradise Cambridge
+checkIn 240 Leyton 720
+checkOut 240 Waterloo 730
+getAverageTime Leyton Waterloo
+checkIn 241 Paradise 723
+checkOut 241 Cambridge 734
+getAverageTime Paradise Cambridge
+checkIn 242 Leyton 726
+checkOut 242 Waterloo 738
+getAverageTime Leyton Waterloo
+checkIn 243 Paradise 729
+checkOut 243 Cambridge 742
+getAverageTime Paradise Cambridge
+checkIn 244 Leyton 732
+checkOut 244 Waterloo 746
+getAverageTime Leyton Waterloo
+checkIn 245 Paradise 735
+checkOut 245 Cambridge 745
+getAverageTime Paradise Cambridge
+checkIn 246 Leyton 738
+checkOut 246 Waterloo 749
+getAverageTime Leyton Waterloo
+checkIn 247 Paradise 741
+checkOut 247 Cambridge 753
+getAverageTime Paradise Cambridge
+checkIn 248 Leyton 744
+checkOut 248 Waterloo 757
+getAverageTime Leyton Waterloo
+checkIn 249 Paradise 747
+checkOut 249 Cambridge 761
+getAverageTime Paradise Cambridge
+checkIn 250 Leyton 750
+checkOut 250 Waterloo 760
+getAverageTime Leyton Waterloo
+checkIn 251 Paradise 753
+checkOut 251 Cambridge 764
+getAverageTime Paradise Cambridge
+checkIn 252 Leyton 756
+checkOut 252 Waterloo 768
+getAverageTime Leyton Waterloo
+checkIn 253 Paradise 759
+checkOut 253 Cambridge 772
+getAverageTime Paradise Cambridge
+checkIn 254 Leyton 762
+checkOut 254 Waterloo 776
+getAverageTime Leyton Waterloo
+checkIn 255 Paradise 765
+checkOut 255 Cambridge 775
+getAverageTime Paradise Cambridge
+checkIn 256 Leyton 768
+checkOut 256 Waterloo 779
+getAverageTime Leyton Waterloo
+checkIn 257 Paradise 771
+checkOut 257 Cambridge 783
+getAverageTime Paradise Cambridge
+checkIn 258 Leyton 774
+checkOut 258 Waterloo 787
+getAverageTime Leyton Waterloo
+checkIn 259 Paradise 777
+checkOut 259 Cambridge 791
+getAverageTime Paradise Cambridge
+checkIn 260 Leyton 780
+checkOut 260 Waterloo 790
+getAverageTime Leyton Waterloo
+checkIn 261 Paradise 783
+checkOut 261 Cambridge 794
+getAverageTime Paradise Cambridge
+checkIn 262 Leyton 786
+checkOut 262 Waterloo 798
+getAverageTime Leyton Waterloo
+checkIn 263 Paradise 789
+checkOut 263 Cambridge 802
+getAverageTime Paradise Cambridge
+checkIn 264 Leyton 792
+checkOut 264 Waterloo 806
+getAverageTime Leyton Waterloo
+checkIn 265 Paradise 795
+checkOut 265 Cambridge 805
+getAverageTime Paradise Cambridge
+checkIn 266 Leyton 798
+checkOut 266 Waterloo 809
+getAverageTime Leyton Waterloo
+checkIn 267 Paradise 801
+checkOut 267 Cambridge 813
+getAverageTime Paradise Cambridge
+checkIn 268 Leyton 804
+checkOut 268 Waterloo 817
+getAverageTime Leyton Waterloo
+checkIn 269 Paradise 807
+checkOut 269 Cambridge 821
+getAverageTime Paradise Cambridge
+checkIn 270 Leyton 810
+checkOut 270 Waterloo 820
+getAverageTime Leyton Waterloo
+checkIn 271 Paradise 813
+checkOut 271 Cambridge 824
+getAverageTime Paradise Cambridge
+checkIn 272 Leyton 816
+checkOut 272 Waterloo 828
+getAverageTime Leyton Waterloo
+checkIn 273 Paradise 819
+checkOut 273 Cambridge 832
+getAverageTime Paradise Cambridge
+checkIn 274 Leyton 822
+checkOut 274 Waterloo 836
+getAverageTime Leyton Waterloo
+checkIn 275 Paradise 825
+checkOut 275 Cambridge 835
+getAverageTime Paradise Cambridge
+checkIn 276 Leyton 828
+checkOut 276 Waterloo 839
+getAverageTime Leyton Waterloo
+checkIn 277 Paradise 831
+checkOut 277 Cambridge 843
+getAverageTime Paradise Cambridge
+checkIn 278 Leyton 834
+checkOut 278 Waterloo 847
+getAverageTime Leyton Waterloo
+checkIn 279 Paradise 837
+checkOut 279 Cambridge 851
+getAverageTime Paradise Cambridge
+checkIn 280 Leyton 840
+checkOut 280 Waterloo 850
+getAverageTime Leyton Waterloo
+checkIn 281 Paradise 843
+checkOut 281 Cambridge 854
+getAverageTime Paradise Cambridge
+checkIn 282 Leyton 846
+checkOut 282 Waterloo 858
+getAverageTime Leyton Waterloo
+checkIn 283 Paradise 849
+checkOut 283 Cambridge 862
+getAverageTime Paradise Cambridge
+checkIn 284 Leyton 852
+checkOut 284 Waterloo 866
+getAverageTime Leyton Waterloo
+checkIn 285 Paradise 855
+checkOut 285 Cambridge 865
+getAverageTime Paradise Cambridge
+checkIn 286 Leyton 858
+checkOut 286 Waterloo 869
+getAverageTime Leyton Waterloo
+checkIn 287 Paradise 861
+checkOut 287 Cambridge 873
+getAverageTime Paradise Cambridge
+checkIn 288 Leyton 864
+checkOut 288 Waterloo 877
+getAverageTime Leyton Waterloo
+checkIn 289 Paradise 867
+checkOut 289 Cambridge 881
+getAverageTime Paradise Cambridge
+checkIn 290 Leyton 870
+checkOut 290 Waterloo 880
+getAverageTime Leyton Waterloo
+checkIn 291 Paradise 873
+checkOut 291 Cambridge 884
+getAverageTime Paradise Cambridge
+checkIn 292 Leyton 876
+checkOut 292 Waterloo 888
+getAverageTime Leyton Waterloo
+checkIn 293 Paradise 879
+checkOut 293 Cambridge 892
+getAverageTime Paradise Cambridge
+checkIn 294 Leyton 882
+checkOut 294 Waterloo 896
+getAverageTime Leyton Waterloo
+checkIn 295 Paradise 885
+checkOut 295 Cambridge 895
+getAverageTime Paradise Cambridge
+checkIn 296 Leyton 888
+checkOut 296 Waterloo 899
+getAverageTime Leyton Waterloo
+checkIn 297 Paradise 891
+checkOut 297 Cambridge 903
+getAverageTime Paradise Cambridge
+checkIn 298 Leyton 894
+checkOut 298 Waterloo 907
+getAverageTime Leyton Waterloo
+checkIn 299 Paradise 897
+checkOut 299 Cambridge 911
+getAverageTime Paradise Cambridge
+checkIn 300 Leyton 900
+checkOut 300 Waterloo 910
+getAverageTime Leyton Waterloo
+checkIn 301 Paradise 903
+checkOut 301 Cambridge 914
+getAverageTime Paradise Cambridge
+checkIn 302 Leyton 906
+checkOut 302 Waterloo 918
+getAverageTime Leyton Waterloo
+checkIn 303 Paradise 909
+checkOut 303 Cambridge 922
+getAverageTime Paradise Cambridge
+checkIn 304 Leyton 912
+checkOut 304 Waterloo 926
+getAverageTime Leyton Waterloo
+checkIn 305 Paradise 915
+checkOut 305 Cambridge 925
+getAverageTime Paradise Cambridge
+checkIn 306 Leyton 918
+checkOut 306 Waterloo 929
+getAverageTime Leyton Waterloo
+checkIn 307 Paradise 921
+checkOut 307 Cambridge 933
+getAverageTime Paradise Cambridge
+checkIn 308 Leyton 924
+checkOut 308 Waterloo 937
+getAverageTime Leyton Waterloo
+checkIn 309 Paradise 927
+checkOut 309 Cambridge 941
+getAverageTime Paradise Cambridge
+checkIn 310 Leyton 930
+checkOut 310 Waterloo 940
+getAverageTime Leyton Waterloo
+checkIn 311 Paradise 933
+checkOut 311 Cambridge 944
+getAverageTime Paradise Cambridge
+checkIn 312 Leyton 936
+checkOut 312 Waterloo 948
+getAverageTime Leyton Waterloo
+checkIn 313 Paradise 939
+checkOut 313 Cambridge 952
+getAverageTime Paradise Cambridge
+checkIn 314 Leyton 942
+checkOut 314 Waterloo 956
+getAverageTime Leyton Waterloo
+checkIn 315 Paradise 945
+checkOut 315 Cambridge 955
+getAverageTime Paradise Cambridge
+checkIn 316 Leyton 948
+checkOut 316 Waterloo 959
+getAverageTime Leyton Waterloo
+checkIn 317 Paradise 951
+checkOut 317 Cambridge 963
+getAverageTime Paradise Cambridge
+checkIn 318 Leyton 954
+checkOut 318 Waterloo 967
+getAverageTime Leyton Waterloo
+checkIn 319 Paradise 957
+checkOut 319 Cambridge 971
+getAverageTime Paradise Cambridge
+checkIn 320 Leyton 960
+checkOut 320 Waterloo 970
+getAverageTime Leyton Waterloo
+checkIn 321 Paradise 963
+checkOut 321 Cambridge 974
+getAverageTime Paradise Cambridge
+checkIn 322 Leyton 966
+checkOut 322 Waterloo 978
+getAverageTime Leyton Waterloo
+checkIn 323 Paradise 969
+checkOut 323 Cambridge 982
+getAverageTime Paradise Cambridge
+checkIn 324 Leyton 972
+checkOut 324 Waterloo 986
+getAverageTime Leyton Waterloo
+checkIn 325 Paradise 975
+checkOut 325 Cambridge 985
+getAverageTime Paradise Cambridge
+checkIn 326 Leyton 978
+checkOut 326 Waterloo 989
+getAverageTime Leyton Waterloo
+checkIn 327 Paradise 981
+checkOut 327 Cambridge 993
+getAverageTime Paradise Cambridge
+checkIn 328 Leyton 984
+checkOut 328 Waterloo 997
+getAverageTime Leyton Waterloo
+checkIn 329 Paradise 987
+checkOut 329 Cambridge 1001
+getAverageTime Paradise Cambridge
+checkIn 330 Leyton 990
+checkOut 330 Waterloo 1000
+getAverageTime Leyton Waterloo
+checkIn 331 Paradise 993
+checkOut 331 Cambridge 1004
+getAverageTime Paradise Cambridge
+checkIn 332 Leyton 996
+checkOut 332 Waterloo 1008
+getAverageTime Leyton Waterloo

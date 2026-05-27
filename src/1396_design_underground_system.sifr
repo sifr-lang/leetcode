@@ -47,7 +47,7 @@ class UndergroundSystem:
         count = self.routeCount.get(route, 0)
         if count == 0:
             return 0.0
-        return total / count
+        return float(total) / float(count)
 
 
 def main():

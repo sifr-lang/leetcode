@@ -1,18 +1,17 @@
 from __future__ import annotations
 
+import importlib.util
+from pathlib import Path
+
+_SPEC = importlib.util.spec_from_file_location('_arrays_common', Path(__file__).with_name('_arrays_common.py'))
+_common = importlib.util.module_from_spec(_SPEC)
+assert _SPEC.loader is not None
+_SPEC.loader.exec_module(_common)
+
 
 def fixture_stem(size: int) -> str:
-    return f"n={size:07d}"
-
-
-def make_case(size: int) -> tuple[list[int], int]:
-    if size < 2:
-        raise ValueError("two_sum benchmark size must be at least 2")
-    nums = [(index * 2) + 1 for index in range(size - 2)]
-    nums.extend([1_000_000_000, 1_000_000_001])
-    return nums, 2_000_000_001
+    return _common.fixture_stem(size)
 
 
 def generate_input(size: int) -> str:
-    nums, target = make_case(size)
-    return f"{target}\n{' '.join(str(value) for value in nums)}\n"
+    return _common.generate_input('0001_two_sum', size)

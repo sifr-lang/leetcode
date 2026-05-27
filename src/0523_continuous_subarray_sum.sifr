@@ -1,20 +1,25 @@
 # LeetCode 523: Continuous Subarray Sum
 
 def checkSubarraySum(nums: list[int], k: int) -> bool:
-    hashmap = {}
+    if k == 0:
+        return False
+    hashmap: dict[int, int] = {}
     hashmap[0]=-1
     summ=0
     for i,j in enumerate(nums):
         summ+=j
-        if summ%k in hashmap.keys():
-            if i-hashmap[summ%k]>=2:
+        rem: int = summ % k
+        if rem in hashmap.keys():
+            prev: int | None = hashmap[rem]
+            prev_value = 0
+            if prev is not None:
+                prev_value = prev
+            if i - prev_value >= 2:
                 return True
             else:
                 continue
-        hashmap[summ%k]=i
+        hashmap[rem]=i
     return False
 
 def main():
     assert str(checkSubarraySum([23,2,4,6,7], 6)) == 'true'
-
-

@@ -1,0 +1,1001 @@
+__init__
+remove 0
+put 1 1
+put 2 2
+get 3
+put 4 4
+put 5 5
+get 6
+remove 7
+put 8 8
+get 9
+put 10 10
+put 11 11
+get 12
+put 13 13
+remove 14
+get 15
+put 16 16
+put 17 17
+get 18
+put 19 19
+put 20 20
+remove 21
+put 22 22
+put 23 23
+get 24
+put 25 25
+put 26 26
+get 27
+remove 28
+put 29 29
+get 30
+put 31 31
+put 32 32
+get 33
+put 34 34
+remove 35
+get 36
+put 37 37
+put 38 38
+get 39
+put 40 40
+put 41 41
+remove 42
+put 43 43
+put 44 44
+get 45
+put 46 46
+put 47 47
+get 48
+remove 49
+put 50 50
+get 51
+put 52 52
+put 53 53
+get 54
+put 55 55
+remove 56
+get 57
+put 58 58
+put 59 59
+get 60
+put 61 61
+put 62 62
+remove 63
+put 64 64
+put 65 65
+get 66
+put 67 67
+put 68 68
+get 69
+remove 70
+put 71 71
+get 72
+put 73 73
+put 74 74
+get 75
+put 76 76
+remove 77
+get 78
+put 79 79
+put 80 80
+get 81
+put 82 82
+put 83 83
+remove 84
+put 85 85
+put 86 86
+get 87
+put 88 88
+put 89 89
+get 90
+remove 91
+put 92 92
+get 93
+put 94 94
+put 95 95
+get 96
+put 97 97
+remove 98
+get 99
+put 100 100
+put 101 101
+get 102
+put 103 103
+put 104 104
+remove 105
+put 106 106
+put 107 107
+get 108
+put 109 109
+put 110 110
+get 111
+remove 112
+put 113 113
+get 114
+put 115 115
+put 116 116
+get 117
+put 118 118
+remove 119
+get 120
+put 121 121
+put 122 122
+get 123
+put 124 124
+put 125 125
+remove 126
+put 127 127
+put 128 128
+get 129
+put 130 130
+put 131 131
+get 132
+remove 133
+put 134 134
+get 135
+put 136 136
+put 137 137
+get 138
+put 139 139
+remove 140
+get 141
+put 142 142
+put 143 143
+get 144
+put 145 145
+put 146 146
+remove 147
+put 148 148
+put 149 149
+get 150
+put 151 151
+put 152 152
+get 153
+remove 154
+put 155 155
+get 156
+put 157 157
+put 158 158
+get 159
+put 160 160
+remove 161
+get 162
+put 163 163
+put 164 164
+get 165
+put 166 166
+put 167 167
+remove 168
+put 169 169
+put 170 170
+get 171
+put 172 172
+put 173 173
+get 174
+remove 175
+put 176 176
+get 177
+put 178 178
+put 179 179
+get 180
+put 181 181
+remove 182
+get 183
+put 184 184
+put 185 185
+get 186
+put 187 187
+put 188 188
+remove 189
+put 190 190
+put 191 191
+get 192
+put 193 193
+put 194 194
+get 195
+remove 196
+put 197 197
+get 198
+put 199 199
+put 200 200
+get 201
+put 202 202
+remove 203
+get 204
+put 205 205
+put 206 206
+get 207
+put 208 208
+put 209 209
+remove 210
+put 211 211
+put 212 212
+get 213
+put 214 214
+put 215 215
+get 216
+remove 217
+put 218 218
+get 219
+put 220 220
+put 221 221
+get 222
+put 223 223
+remove 224
+get 225
+put 226 226
+put 227 227
+get 228
+put 229 229
+put 230 230
+remove 231
+put 232 232
+put 233 233
+get 234
+put 235 235
+put 236 236
+get 237
+remove 238
+put 239 239
+get 240
+put 241 241
+put 242 242
+get 243
+put 244 244
+remove 245
+get 246
+put 247 247
+put 248 248
+get 249
+put 250 250
+put 251 251
+remove 252
+put 253 253
+put 254 254
+get 255
+put 256 256
+put 257 257
+get 258
+remove 259
+put 260 260
+get 261
+put 262 262
+put 263 263
+get 264
+put 265 265
+remove 266
+get 267
+put 268 268
+put 269 269
+get 270
+put 271 271
+put 272 272
+remove 273
+put 274 274
+put 275 275
+get 276
+put 277 277
+put 278 278
+get 279
+remove 280
+put 281 281
+get 282
+put 283 283
+put 284 284
+get 285
+put 286 286
+remove 287
+get 288
+put 289 289
+put 290 290
+get 291
+put 292 292
+put 293 293
+remove 294
+put 295 295
+put 296 296
+get 297
+put 298 298
+put 299 299
+get 300
+remove 301
+put 302 302
+get 303
+put 304 304
+put 305 305
+get 306
+put 307 307
+remove 308
+get 309
+put 310 310
+put 311 311
+get 312
+put 313 313
+put 314 314
+remove 315
+put 316 316
+put 317 317
+get 318
+put 319 319
+put 320 320
+get 321
+remove 322
+put 323 323
+get 324
+put 325 325
+put 326 326
+get 327
+put 328 328
+remove 329
+get 330
+put 331 331
+put 332 332
+get 333
+put 334 334
+put 335 335
+remove 336
+put 337 337
+put 338 338
+get 339
+put 340 340
+put 341 341
+get 342
+remove 343
+put 344 344
+get 345
+put 346 346
+put 347 347
+get 348
+put 349 349
+remove 350
+get 351
+put 352 352
+put 353 353
+get 354
+put 355 355
+put 356 356
+remove 357
+put 358 358
+put 359 359
+get 360
+put 361 361
+put 362 362
+get 363
+remove 364
+put 365 365
+get 366
+put 367 367
+put 368 368
+get 369
+put 370 370
+remove 371
+get 372
+put 373 373
+put 374 374
+get 375
+put 376 376
+put 377 377
+remove 378
+put 379 379
+put 380 380
+get 381
+put 382 382
+put 383 383
+get 384
+remove 385
+put 386 386
+get 387
+put 388 388
+put 389 389
+get 390
+put 391 391
+remove 392
+get 393
+put 394 394
+put 395 395
+get 396
+put 397 397
+put 398 398
+remove 399
+put 400 400
+put 401 401
+get 402
+put 403 403
+put 404 404
+get 405
+remove 406
+put 407 407
+get 408
+put 409 409
+put 410 410
+get 411
+put 412 412
+remove 413
+get 414
+put 415 415
+put 416 416
+get 417
+put 418 418
+put 419 419
+remove 420
+put 421 421
+put 422 422
+get 423
+put 424 424
+put 425 425
+get 426
+remove 427
+put 428 428
+get 429
+put 430 430
+put 431 431
+get 432
+put 433 433
+remove 434
+get 435
+put 436 436
+put 437 437
+get 438
+put 439 439
+put 440 440
+remove 441
+put 442 442
+put 443 443
+get 444
+put 445 445
+put 446 446
+get 447
+remove 448
+put 449 449
+get 450
+put 451 451
+put 452 452
+get 453
+put 454 454
+remove 455
+get 456
+put 457 457
+put 458 458
+get 459
+put 460 460
+put 461 461
+remove 462
+put 463 463
+put 464 464
+get 465
+put 466 466
+put 467 467
+get 468
+remove 469
+put 470 470
+get 471
+put 472 472
+put 473 473
+get 474
+put 475 475
+remove 476
+get 477
+put 478 478
+put 479 479
+get 480
+put 481 481
+put 482 482
+remove 483
+put 484 484
+put 485 485
+get 486
+put 487 487
+put 488 488
+get 489
+remove 490
+put 491 491
+get 492
+put 493 493
+put 494 494
+get 495
+put 496 496
+remove 497
+get 498
+put 499 499
+put 0 500
+get 1
+put 2 502
+put 3 503
+remove 4
+put 5 505
+put 6 506
+get 7
+put 8 508
+put 9 509
+get 10
+remove 11
+put 12 512
+get 13
+put 14 514
+put 15 515
+get 16
+put 17 517
+remove 18
+get 19
+put 20 520
+put 21 521
+get 22
+put 23 523
+put 24 524
+remove 25
+put 26 526
+put 27 527
+get 28
+put 29 529
+put 30 530
+get 31
+remove 32
+put 33 533
+get 34
+put 35 535
+put 36 536
+get 37
+put 38 538
+remove 39
+get 40
+put 41 541
+put 42 542
+get 43
+put 44 544
+put 45 545
+remove 46
+put 47 547
+put 48 548
+get 49
+put 50 550
+put 51 551
+get 52
+remove 53
+put 54 554
+get 55
+put 56 556
+put 57 557
+get 58
+put 59 559
+remove 60
+get 61
+put 62 562
+put 63 563
+get 64
+put 65 565
+put 66 566
+remove 67
+put 68 568
+put 69 569
+get 70
+put 71 571
+put 72 572
+get 73
+remove 74
+put 75 575
+get 76
+put 77 577
+put 78 578
+get 79
+put 80 580
+remove 81
+get 82
+put 83 583
+put 84 584
+get 85
+put 86 586
+put 87 587
+remove 88
+put 89 589
+put 90 590
+get 91
+put 92 592
+put 93 593
+get 94
+remove 95
+put 96 596
+get 97
+put 98 598
+put 99 599
+get 100
+put 101 601
+remove 102
+get 103
+put 104 604
+put 105 605
+get 106
+put 107 607
+put 108 608
+remove 109
+put 110 610
+put 111 611
+get 112
+put 113 613
+put 114 614
+get 115
+remove 116
+put 117 617
+get 118
+put 119 619
+put 120 620
+get 121
+put 122 622
+remove 123
+get 124
+put 125 625
+put 126 626
+get 127
+put 128 628
+put 129 629
+remove 130
+put 131 631
+put 132 632
+get 133
+put 134 634
+put 135 635
+get 136
+remove 137
+put 138 638
+get 139
+put 140 640
+put 141 641
+get 142
+put 143 643
+remove 144
+get 145
+put 146 646
+put 147 647
+get 148
+put 149 649
+put 150 650
+remove 151
+put 152 652
+put 153 653
+get 154
+put 155 655
+put 156 656
+get 157
+remove 158
+put 159 659
+get 160
+put 161 661
+put 162 662
+get 163
+put 164 664
+remove 165
+get 166
+put 167 667
+put 168 668
+get 169
+put 170 670
+put 171 671
+remove 172
+put 173 673
+put 174 674
+get 175
+put 176 676
+put 177 677
+get 178
+remove 179
+put 180 680
+get 181
+put 182 682
+put 183 683
+get 184
+put 185 685
+remove 186
+get 187
+put 188 688
+put 189 689
+get 190
+put 191 691
+put 192 692
+remove 193
+put 194 694
+put 195 695
+get 196
+put 197 697
+put 198 698
+get 199
+remove 200
+put 201 701
+get 202
+put 203 703
+put 204 704
+get 205
+put 206 706
+remove 207
+get 208
+put 209 709
+put 210 710
+get 211
+put 212 712
+put 213 713
+remove 214
+put 215 715
+put 216 716
+get 217
+put 218 718
+put 219 719
+get 220
+remove 221
+put 222 722
+get 223
+put 224 724
+put 225 725
+get 226
+put 227 727
+remove 228
+get 229
+put 230 730
+put 231 731
+get 232
+put 233 733
+put 234 734
+remove 235
+put 236 736
+put 237 737
+get 238
+put 239 739
+put 240 740
+get 241
+remove 242
+put 243 743
+get 244
+put 245 745
+put 246 746
+get 247
+put 248 748
+remove 249
+get 250
+put 251 751
+put 252 752
+get 253
+put 254 754
+put 255 755
+remove 256
+put 257 757
+put 258 758
+get 259
+put 260 760
+put 261 761
+get 262
+remove 263
+put 264 764
+get 265
+put 266 766
+put 267 767
+get 268
+put 269 769
+remove 270
+get 271
+put 272 772
+put 273 773
+get 274
+put 275 775
+put 276 776
+remove 277
+put 278 778
+put 279 779
+get 280
+put 281 781
+put 282 782
+get 283
+remove 284
+put 285 785
+get 286
+put 287 787
+put 288 788
+get 289
+put 290 790
+remove 291
+get 292
+put 293 793
+put 294 794
+get 295
+put 296 796
+put 297 797
+remove 298
+put 299 799
+put 300 800
+get 301
+put 302 802
+put 303 803
+get 304
+remove 305
+put 306 806
+get 307
+put 308 808
+put 309 809
+get 310
+put 311 811
+remove 312
+get 313
+put 314 814
+put 315 815
+get 316
+put 317 817
+put 318 818
+remove 319
+put 320 820
+put 321 821
+get 322
+put 323 823
+put 324 824
+get 325
+remove 326
+put 327 827
+get 328
+put 329 829
+put 330 830
+get 331
+put 332 832
+remove 333
+get 334
+put 335 835
+put 336 836
+get 337
+put 338 838
+put 339 839
+remove 340
+put 341 841
+put 342 842
+get 343
+put 344 844
+put 345 845
+get 346
+remove 347
+put 348 848
+get 349
+put 350 850
+put 351 851
+get 352
+put 353 853
+remove 354
+get 355
+put 356 856
+put 357 857
+get 358
+put 359 859
+put 360 860
+remove 361
+put 362 862
+put 363 863
+get 364
+put 365 865
+put 366 866
+get 367
+remove 368
+put 369 869
+get 370
+put 371 871
+put 372 872
+get 373
+put 374 874
+remove 375
+get 376
+put 377 877
+put 378 878
+get 379
+put 380 880
+put 381 881
+remove 382
+put 383 883
+put 384 884
+get 385
+put 386 886
+put 387 887
+get 388
+remove 389
+put 390 890
+get 391
+put 392 892
+put 393 893
+get 394
+put 395 895
+remove 396
+get 397
+put 398 898
+put 399 899
+get 400
+put 401 901
+put 402 902
+remove 403
+put 404 904
+put 405 905
+get 406
+put 407 907
+put 408 908
+get 409
+remove 410
+put 411 911
+get 412
+put 413 913
+put 414 914
+get 415
+put 416 916
+remove 417
+get 418
+put 419 919
+put 420 920
+get 421
+put 422 922
+put 423 923
+remove 424
+put 425 925
+put 426 926
+get 427
+put 428 928
+put 429 929
+get 430
+remove 431
+put 432 932
+get 433
+put 434 934
+put 435 935
+get 436
+put 437 937
+remove 438
+get 439
+put 440 940
+put 441 941
+get 442
+put 443 943
+put 444 944
+remove 445
+put 446 946
+put 447 947
+get 448
+put 449 949
+put 450 950
+get 451
+remove 452
+put 453 953
+get 454
+put 455 955
+put 456 956
+get 457
+put 458 958
+remove 459
+get 460
+put 461 961
+put 462 962
+get 463
+put 464 964
+put 465 965
+remove 466
+put 467 967
+put 468 968
+get 469
+put 470 970
+put 471 971
+get 472
+remove 473
+put 474 974
+get 475
+put 476 976
+put 477 977
+get 478
+put 479 979
+remove 480
+get 481
+put 482 982
+put 483 983
+get 484
+put 485 985
+put 486 986
+remove 487
+put 488 988
+put 489 989
+get 490
+put 491 991
+put 492 992
+get 493
+remove 494
+put 495 995
+get 496
+put 497 997
+put 498 998
+get 499

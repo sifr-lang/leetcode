@@ -1,12 +1,19 @@
 # LeetCode 68: Text Justification
 
+def _nz_str(value: str | None) -> str:
+    if value is None:
+        return ""
+    return "" + value
+
 def fullJustify(words: list[str], maxWidth: int) -> list[str]:
-    res = []
-    line = []  # Words in current line
+    res: list[str] = []
+    line: list[str] = []  # Words in current line
     length = 0  # Current line length
     i = 0
     while i < len(words):
-        if length + len(line) + len(words[i]) > maxWidth:
+        current_word = _nz_str(words[i])
+        current_len = len(current_word)
+        if length + len(line) + current_len > maxWidth:
             # Line complete
             extra_space = maxWidth - length
             if len(line) == 1:
@@ -18,8 +25,10 @@ def fullJustify(words: list[str], maxWidth: int) -> list[str]:
                 continue
 
             word_cnt = len(line) - 1
-            spaces = extra_space // word_cnt
-            remainder = extra_space % word_cnt
+            if word_cnt == 0:
+                return []
+            spaces: int = extra_space // word_cnt
+            remainder: int = extra_space % word_cnt
             built = ""
             for j in range(len(line)):
                 word = line[j]
@@ -35,8 +44,8 @@ def fullJustify(words: list[str], maxWidth: int) -> list[str]:
             res.append(built)
             line, length = [], 0  # Reset line and length
         
-        line.append(words[i])
-        length += len(words[i])
+        line.append(current_word)
+        length += current_len
         i += 1
 
     # Handling the last line
