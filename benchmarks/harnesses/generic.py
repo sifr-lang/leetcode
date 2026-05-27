@@ -41,15 +41,6 @@ def _bench_read_required(path: str) -> str:
     return ""
 
 
-def _bench_format_int_list(values: list[int]) -> str:
-    text: str = "["
-    for index in range(0, len(values)):
-        if index > 0:
-            text = text + ", "
-        text = text + str(_bench_parse_int(str(values[index])))
-    return text + "]"
-
-
 def _build_list_node(tokens: list[str], start: int, end: int) -> ListNode | None:
     head: ListNode | None = None
     for index in range(end - 1, start - 1, -1):
@@ -173,6 +164,7 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
         rows = int(tokens[int(binding["rows_index"])])
         cols = int(tokens[int(binding["cols_index"])])
         index = int(binding["start"])
+        index += sum(int(tokens[int(i)]) for i in binding.get("start_after_count_indices", []))
         matrix = []
         for _ in range(rows):
             row = [int(token) for token in tokens[index : index + cols]]
@@ -183,6 +175,7 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
         rows = int(tokens[int(binding["rows_index"])])
         cols = int(tokens[int(binding["cols_index"])])
         index = int(binding["start"])
+        index += sum(int(tokens[int(i)]) for i in binding.get("start_after_count_indices", []))
         matrix = []
         for _ in range(rows):
             matrix.append(tokens[index : index + cols])
@@ -277,11 +270,6 @@ def bool_batch_checksum(results: list[Any]) -> tuple[int, int]:
             true_count += 1
             checksum += index + 1
     return true_count, checksum
-
-def format_int_list(result: Any) -> str:
-    if not isinstance(result, list):
-        raise RuntimeError(f"expected list[int] result, got {result!r}")
-    return " ".join(str(int(value)) for value in result) + "\n"
 
 def list_node_to_text(result: Any) -> str:
     if result is None:
@@ -772,7 +760,9 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
     if binding["type"] in ("matrix[int]", "matrix[str]") and binding["source"] == "matrix_tokens":
         rows = f"_bench_parse_int(_bench_nz_str(tokens[{int(binding['rows_index'])}]))"
         cols = f"_bench_parse_int(_bench_nz_str(tokens[{int(binding['cols_index'])}]))"
-        start = int(binding["start"])
+        start_expr = str(int(binding["start"]))
+        for index in binding.get("start_after_count_indices", []):
+            start_expr += f" + _bench_parse_int(_bench_nz_str(tokens[{int(index)}]))"
         scalar_type = "int" if binding["type"] == "matrix[int]" else "str"
         parse = "_bench_parse_int(_bench_nz_str(tokens[index]))" if scalar_type == "int" else "_bench_nz_str(tokens[index])"
         return "\n".join(
@@ -780,7 +770,7 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
                 f"{name}: list[list[{scalar_type}]] = []",
                 f"rows: int = {rows}",
                 f"cols: int = {cols}",
-                f"index: int = {start}",
+                f"index: int = {start_expr}",
                 "for _row_index in range(0, rows):",
                 f"    row: list[{scalar_type}] = []",
                 "    for _col_index in range(0, cols):",

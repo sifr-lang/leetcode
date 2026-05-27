@@ -14,17 +14,33 @@
         },
         "call": {
           "mode": "object_ops",
-          "methods": [
-            "insert",
-            "search",
-            "startsWith"
-          ]
+          "constructor_args": [],
+          "methods": {
+            "insert": {
+              "args": [
+                "str"
+              ],
+              "result": "none"
+            },
+            "search": {
+              "args": [
+                "str"
+              ],
+              "result": "bool"
+            },
+            "startsWith": {
+              "args": [
+                "str"
+              ],
+              "result": "bool"
+            }
+          }
         },
         "expected": {
-          "type": "bool_batch_index_checksum"
+          "type": "object_ops_checksum"
         },
         "checksum": {
-          "type": "true_count"
+          "type": "object_ops"
         }
       },
       "fixture_stem": "ops={size:07d}",
@@ -34,9 +50,9 @@
         10000
       ],
       "loops_by_size": {
-        "1000": 1,
-        "5000": 1,
-        "10000": 1
+        "1000": 200,
+        "5000": 50,
+        "10000": 20
       }
     },
     {
@@ -50,16 +66,27 @@
         },
         "call": {
           "mode": "object_ops",
-          "methods": [
-            "addWord",
-            "search"
-          ]
+          "constructor_args": [],
+          "methods": {
+            "addWord": {
+              "args": [
+                "str"
+              ],
+              "result": "none"
+            },
+            "search": {
+              "args": [
+                "str"
+              ],
+              "result": "bool"
+            }
+          }
         },
         "expected": {
-          "type": "bool_batch_index_checksum"
+          "type": "object_ops_checksum"
         },
         "checksum": {
-          "type": "true_count"
+          "type": "object_ops"
         }
       },
       "fixture_stem": "ops={size:07d}",
@@ -69,9 +96,63 @@
         10000
       ],
       "loops_by_size": {
-        "1000": 1,
-        "5000": 1,
-        "10000": 1
+        "1000": 200,
+        "5000": 50,
+        "10000": 20
+      }
+    },
+    {
+      "id": "0212_word_search_ii",
+      "function": "findWords",
+      "source_py": "src/0212_word_search_ii.py",
+      "source_sifr": "src/0212_word_search_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "words",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 3,
+              "count_index": 0
+            },
+            {
+              "name": "board",
+              "type": "matrix[str]",
+              "source": "matrix_tokens",
+              "rows_index": 1,
+              "cols_index": 2,
+              "start": 3,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "board",
+            "words"
+          ]
+        },
+        "expected": {
+          "type": "list_str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        400,
+        900
+      ],
+      "loops_by_size": {
+        "100": 1000,
+        "400": 300,
+        "900": 100
       }
     }
   ]
