@@ -1,0 +1,87 @@
+{
+  "category": "Greedy",
+  "slug": "greedy",
+  "order": 14,
+  "problems": [
+    {
+      "id": "0053_maximum_subarray",
+      "function": "maxSubArray",
+      "source_py": "src/0053_maximum_subarray.py",
+      "source_sifr": "src/0053_maximum_subarray.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0055_jump_game",
+      "function": "canJump",
+      "source_py": "src/0055_jump_game.py",
+      "source_sifr": "src/0055_jump_game.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    }
+  ]
+}

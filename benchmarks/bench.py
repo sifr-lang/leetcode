@@ -324,6 +324,7 @@ def collect_environment() -> dict[str, Any]:
         "problems": [
             {
                 "id": spec.problem_id,
+                "group": spec.group,
                 "category": spec.category,
                 "function": spec.function,
                 "source_py": str(spec.source_py),

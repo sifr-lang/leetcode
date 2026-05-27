@@ -1,0 +1,95 @@
+{
+  "category": "Backtracking",
+  "slug": "backtracking",
+  "order": 9,
+  "problems": [
+    {
+      "id": "0078_subsets",
+      "function": "subsets",
+      "source_py": "src/0078_subsets.py",
+      "source_sifr": "src/0078_subsets.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        8,
+        10,
+        12
+      ],
+      "loops_by_size": {
+        "8": 1000,
+        "10": 300,
+        "12": 50
+      }
+    },
+    {
+      "id": "0077_combinations",
+      "function": "combine",
+      "source_py": "src/0077_combinations.py",
+      "source_sifr": "src/0077_combinations.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        8,
+        10,
+        12
+      ],
+      "loops_by_size": {
+        "8": 1000,
+        "10": 300,
+        "12": 50
+      }
+    }
+  ]
+}

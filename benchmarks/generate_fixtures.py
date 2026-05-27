@@ -35,7 +35,7 @@ def load_python_function(spec: ProblemSpec) -> Any:
 
 
 def load_problem_cases(spec: ProblemSpec) -> Any:
-    cases_path = BENCH_ROOT / "problems" / spec.problem_id / "cases.py"
+    cases_path = BENCH_ROOT / "cases" / spec.group / f"{spec.problem_id}.py"
     if not cases_path.exists():
         raise RuntimeError(f"missing fixture generator: {cases_path}")
     module_name = f"leetcode_bench_cases_{spec.problem_id}"

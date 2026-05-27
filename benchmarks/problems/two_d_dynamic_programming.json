@@ -1,0 +1,98 @@
+{
+  "category": "2-D Dynamic Programming",
+  "slug": "two_d_dynamic_programming",
+  "order": 13,
+  "problems": [
+    {
+      "id": "1143_longest_common_subsequence",
+      "function": "longestCommonSubsequence",
+      "source_py": "src/1143_longest_common_subsequence.py",
+      "source_sifr": "src/1143_longest_common_subsequence.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "text1",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "text2",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "text1",
+            "text2"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        50,
+        100,
+        200
+      ],
+      "loops_by_size": {
+        "50": 200,
+        "100": 50,
+        "200": 10
+      }
+    },
+    {
+      "id": "0063_unique_paths_ii",
+      "function": "uniquePathsWithObstacles",
+      "source_py": "src/0063_unique_paths_ii.py",
+      "source_sifr": "src/0063_unique_paths_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        30,
+        80
+      ],
+      "loops_by_size": {
+        "10": 1000,
+        "30": 200,
+        "80": 30
+      }
+    }
+  ]
+}

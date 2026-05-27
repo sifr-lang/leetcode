@@ -1,0 +1,78 @@
+{
+  "category": "Tries",
+  "slug": "tries",
+  "order": 7,
+  "problems": [
+    {
+      "id": "0208_implement_trie_prefix_tree",
+      "function": "Trie",
+      "source_py": "src/0208_implement_trie_prefix_tree.py",
+      "source_sifr": "src/0208_implement_trie_prefix_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "methods": [
+            "insert",
+            "search",
+            "startsWith"
+          ]
+        },
+        "expected": {
+          "type": "bool_batch_index_checksum"
+        },
+        "checksum": {
+          "type": "true_count"
+        }
+      },
+      "fixture_stem": "ops={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1,
+        "5000": 1,
+        "10000": 1
+      }
+    },
+    {
+      "id": "0211_design_add_and_search_words_data_structure",
+      "function": "WordDictionary",
+      "source_py": "src/0211_design_add_and_search_words_data_structure.py",
+      "source_sifr": "src/0211_design_add_and_search_words_data_structure.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "methods": [
+            "addWord",
+            "search"
+          ]
+        },
+        "expected": {
+          "type": "bool_batch_index_checksum"
+        },
+        "checksum": {
+          "type": "true_count"
+        }
+      },
+      "fixture_stem": "ops={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1,
+        "5000": 1,
+        "10000": 1
+      }
+    }
+  ]
+}

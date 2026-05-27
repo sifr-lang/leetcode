@@ -1,0 +1,89 @@
+{
+  "category": "Two Pointers",
+  "slug": "two_pointers",
+  "order": 1,
+  "problems": [
+    {
+      "id": "0125_valid_palindrome",
+      "function": "isPalindrome",
+      "source_py": "src/0125_valid_palindrome.py",
+      "source_sifr": "src/0125_valid_palindrome.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 5000,
+        "10000": 1000,
+        "100000": 100
+      }
+    },
+    {
+      "id": "0680_valid_palindrome_ii",
+      "function": "validPalindrome",
+      "source_py": "src/0680_valid_palindrome_ii.py",
+      "source_sifr": "src/0680_valid_palindrome_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 5000,
+        "10000": 1000,
+        "100000": 100
+      }
+    }
+  ]
+}

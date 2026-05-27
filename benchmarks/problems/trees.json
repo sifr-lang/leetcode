@@ -1,0 +1,87 @@
+{
+  "category": "Trees",
+  "slug": "trees",
+  "order": 6,
+  "problems": [
+    {
+      "id": "0104_maximum_depth_of_binary_tree",
+      "function": "maxDepth",
+      "source_py": "src/0104_maximum_depth_of_binary_tree.py",
+      "source_sifr": "src/0104_maximum_depth_of_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 20
+      }
+    },
+    {
+      "id": "0110_balanced_binary_tree",
+      "function": "isBalanced",
+      "source_py": "src/0110_balanced_binary_tree.py",
+      "source_sifr": "src/0110_balanced_binary_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "root",
+              "type": "balanced_tree[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "root"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 20
+      }
+    }
+  ]
+}

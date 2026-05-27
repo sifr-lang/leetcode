@@ -1,0 +1,95 @@
+{
+  "category": "Sliding Window",
+  "slug": "sliding_window",
+  "order": 2,
+  "problems": [
+    {
+      "id": "0121_best_time_to_buy_and_sell_stock",
+      "function": "maxProfit",
+      "source_py": "src/0121_best_time_to_buy_and_sell_stock.py",
+      "source_sifr": "src/0121_best_time_to_buy_and_sell_stock.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "prices",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "prices"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0219_contains_duplicate_ii",
+      "function": "containsNearbyDuplicate",
+      "source_py": "src/0219_contains_duplicate_ii.py",
+      "source_sifr": "src/0219_contains_duplicate_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    }
+  ]
+}

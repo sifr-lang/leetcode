@@ -1,0 +1,97 @@
+{
+  "category": "Math & Geometry",
+  "slug": "math_and_geometry",
+  "order": 16,
+  "problems": [
+    {
+      "id": "0009_palindrome_number",
+      "function": "isPalindrome",
+      "source_py": "src/0009_palindrome_number.py",
+      "source_sifr": "src/0009_palindrome_number.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "values",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "batch",
+          "items": "values",
+          "item_name": "value",
+          "args": [
+            "value"
+          ]
+        },
+        "expected": {
+          "type": "bool_batch_index_checksum"
+        },
+        "checksum": {
+          "type": "true_count"
+        }
+      },
+      "fixture_stem": "cases={size:07d}",
+      "sizes": [
+        10000,
+        100000,
+        1000000
+      ],
+      "loops_by_size": {
+        "10000": 500,
+        "100000": 80,
+        "1000000": 10
+      }
+    },
+    {
+      "id": "1523_count_odd_numbers_in_an_interval_range",
+      "function": "countOdds",
+      "source_py": "src/1523_count_odd_numbers_in_an_interval_range.py",
+      "source_sifr": "src/1523_count_odd_numbers_in_an_interval_range.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "low",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "high",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "low",
+            "high"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        100000,
+        10000000
+      ],
+      "loops_by_size": {
+        "1000": 100000,
+        "100000": 50000,
+        "10000000": 20000
+      }
+    }
+  ]
+}

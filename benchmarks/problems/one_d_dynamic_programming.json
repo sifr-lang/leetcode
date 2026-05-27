@@ -1,0 +1,88 @@
+{
+  "category": "1-D Dynamic Programming",
+  "slug": "one_d_dynamic_programming",
+  "order": 12,
+  "problems": [
+    {
+      "id": "0070_climbing_stairs",
+      "function": "climbStairs",
+      "source_py": "src/0070_climbing_stairs.py",
+      "source_sifr": "src/0070_climbing_stairs.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        30,
+        40
+      ],
+      "loops_by_size": {
+        "20": 100000,
+        "30": 30000,
+        "40": 10000
+      }
+    },
+    {
+      "id": "0198_house_robber",
+      "function": "rob",
+      "source_py": "src/0198_house_robber.py",
+      "source_sifr": "src/0198_house_robber.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    }
+  ]
+}

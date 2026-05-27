@@ -1,0 +1,98 @@
+{
+  "category": "Graphs",
+  "slug": "graphs",
+  "order": 10,
+  "problems": [
+    {
+      "id": "0994_rotting_oranges",
+      "function": "orangesRotting",
+      "source_py": "src/0994_rotting_oranges.py",
+      "source_sifr": "src/0994_rotting_oranges.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        60,
+        120
+      ],
+      "loops_by_size": {
+        "20": 1,
+        "60": 1,
+        "120": 1
+      }
+    },
+    {
+      "id": "0953_verifying_an_alien_dictionary",
+      "function": "isAlienSorted",
+      "source_py": "src/0953_verifying_an_alien_dictionary.py",
+      "source_sifr": "src/0953_verifying_an_alien_dictionary.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "order",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "words",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "words",
+            "order"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        50000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "50000": 30
+      }
+    }
+  ]
+}

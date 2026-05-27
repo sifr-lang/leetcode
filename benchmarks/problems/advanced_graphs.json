@@ -1,0 +1,93 @@
+{
+  "category": "Advanced Graphs",
+  "slug": "advanced_graphs",
+  "order": 11,
+  "problems": [
+    {
+      "id": "1631_path_with_minimum_effort",
+      "function": "minimumEffortPath",
+      "source_py": "src/1631_path_with_minimum_effort.py",
+      "source_sifr": "src/1631_path_with_minimum_effort.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "heights",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "heights"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        30,
+        60
+      ],
+      "loops_by_size": {
+        "10": 200,
+        "30": 50,
+        "60": 10
+      }
+    },
+    {
+      "id": "1584_min_cost_to_connect_all_points",
+      "function": "minCostConnectPoints",
+      "source_py": "src/1584_min_cost_to_connect_all_points.py",
+      "source_sifr": "src/1584_min_cost_to_connect_all_points.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "points",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "points"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        50,
+        150,
+        300
+      ],
+      "loops_by_size": {
+        "50": 100,
+        "150": 20,
+        "300": 5
+      }
+    }
+  ]
+}

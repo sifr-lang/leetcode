@@ -1,0 +1,103 @@
+{
+  "category": "Binary Search",
+  "slug": "binary_search",
+  "order": 4,
+  "problems": [
+    {
+      "id": "0704_binary_search",
+      "function": "search",
+      "source_py": "src/0704_binary_search.py",
+      "source_sifr": "src/0704_binary_search.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 5000,
+        "10000": 1000,
+        "100000": 200
+      }
+    },
+    {
+      "id": "0035_search_insert_position",
+      "function": "searchInsert",
+      "source_py": "src/0035_search_insert_position.py",
+      "source_sifr": "src/0035_search_insert_position.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 5000,
+        "10000": 1000,
+        "100000": 200
+      }
+    }
+  ]
+}

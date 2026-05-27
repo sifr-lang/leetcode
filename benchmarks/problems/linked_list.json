@@ -1,0 +1,88 @@
+{
+  "category": "Linked List",
+  "slug": "linked_list",
+  "order": 5,
+  "problems": [
+    {
+      "id": "0234_palindrome_linked_list",
+      "function": "isPalindrome",
+      "source_py": "src/0234_palindrome_linked_list.py",
+      "source_sifr": "src/0234_palindrome_linked_list.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "head",
+              "type": "list_node[int]",
+              "source": "tokens",
+              "nullable": false
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "head"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1,
+        "5000": 1,
+        "10000": 1
+      }
+    },
+    {
+      "id": "2130_maximum_twin_sum_of_a_linked_list",
+      "function": "pairSum",
+      "source_py": "src/2130_maximum_twin_sum_of_a_linked_list.py",
+      "source_sifr": "src/2130_maximum_twin_sum_of_a_linked_list.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "head",
+              "type": "list_node[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "head"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1,
+        "5000": 1,
+        "10000": 1
+      }
+    }
+  ]
+}

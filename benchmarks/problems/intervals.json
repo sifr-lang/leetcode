@@ -1,0 +1,93 @@
+{
+  "category": "Intervals",
+  "slug": "intervals",
+  "order": 15,
+  "problems": [
+    {
+      "id": "0253_meeting_rooms",
+      "function": "minMeetingRooms",
+      "source_py": "src/0253_meeting_rooms.py",
+      "source_sifr": "src/0253_meeting_rooms.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "intervals",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "intervals"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        50000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 100,
+        "50000": 20
+      }
+    },
+    {
+      "id": "1288_remove_covered_intervals",
+      "function": "removeCoveredIntervals",
+      "source_py": "src/1288_remove_covered_intervals.py",
+      "source_sifr": "src/1288_remove_covered_intervals.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "intervals",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "intervals"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        600
+      ],
+      "loops_by_size": {
+        "100": 200,
+        "300": 50,
+        "600": 10
+      }
+    }
+  ]
+}

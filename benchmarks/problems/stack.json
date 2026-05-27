@@ -1,0 +1,88 @@
+{
+  "category": "Stack",
+  "slug": "stack",
+  "order": 3,
+  "problems": [
+    {
+      "id": "0020_valid_parentheses",
+      "function": "isValid",
+      "source_py": "src/0020_valid_parentheses.py",
+      "source_sifr": "src/0020_valid_parentheses.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 5000,
+        "10000": 1000,
+        "100000": 100
+      }
+    },
+    {
+      "id": "0682_baseball_game",
+      "function": "calPoints",
+      "source_py": "src/0682_baseball_game.py",
+      "source_sifr": "src/0682_baseball_game.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "operations",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "operations"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    }
+  ]
+}

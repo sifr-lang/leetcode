@@ -1,0 +1,103 @@
+{
+  "category": "Heap / Priority Queue",
+  "slug": "heap_priority_queue",
+  "order": 8,
+  "problems": [
+    {
+      "id": "0621_task_scheduler",
+      "function": "leastInterval",
+      "source_py": "src/0621_task_scheduler.py",
+      "source_sifr": "src/0621_task_scheduler.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "tasks",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "tasks",
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0215_kth_largest_element_in_an_array",
+      "function": "findKthLargest",
+      "source_py": "src/0215_kth_largest_element_in_an_array.py",
+      "source_sifr": "src/0215_kth_largest_element_in_an_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 100,
+        "100000": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "category": "Bit Manipulation",
+  "slug": "bit_manipulation",
+  "order": 17,
+  "problems": [
+    {
+      "id": "0136_single_number",
+      "function": "singleNumber",
+      "source_py": "src/0136_single_number.py",
+      "source_sifr": "src/0136_single_number.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0191_number_of_1_bits",
+      "function": "hammingWeight",
+      "source_py": "src/0191_number_of_1_bits.py",
+      "source_sifr": "src/0191_number_of_1_bits.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        16,
+        24,
+        31
+      ],
+      "loops_by_size": {
+        "16": 100000,
+        "24": 50000,
+        "31": 30000
+      }
+    }
+  ]
+}
