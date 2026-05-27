@@ -90,6 +90,622 @@
         "10000": 200,
         "100000": 30
       }
+    },
+    {
+      "id": "1343_number_of_sub_arrays_of_size_k_and_average_greater_than_or_equal_to_threshold",
+      "function": "numOfSubarrays",
+      "source_py": "src/1343_number_of_sub_arrays_of_size_k_and_average_greater_than_or_equal_to_threshold.py",
+      "source_sifr": "src/1343_number_of_sub_arrays_of_size_k_and_average_greater_than_or_equal_to_threshold.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "threshold",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "arr",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "arr",
+            "k",
+            "threshold"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0003_longest_substring_without_repeating_characters",
+      "function": "lengthOfLongestSubstring",
+      "source_py": "src/0003_longest_substring_without_repeating_characters.py",
+      "source_sifr": "src/0003_longest_substring_without_repeating_characters.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0424_longest_repeating_character_replacement",
+      "function": "characterReplacement",
+      "source_py": "src/0424_longest_repeating_character_replacement.py",
+      "source_sifr": "src/0424_longest_repeating_character_replacement.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0567_permutation_in_string",
+      "function": "checkInclusion",
+      "source_py": "src/0567_permutation_in_string.py",
+      "source_sifr": "src/0567_permutation_in_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s1",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "s2",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s1",
+            "s2"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1838_frequency_of_the_most_frequent_element",
+      "function": "maxFrequency",
+      "source_py": "src/1838_frequency_of_the_most_frequent_element.py",
+      "source_sifr": "src/1838_frequency_of_the_most_frequent_element.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0904_fruit_into_baskets",
+      "function": "totalFruit",
+      "source_py": "src/0904_fruit_into_baskets.py",
+      "source_sifr": "src/0904_fruit_into_baskets.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "fruits",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "fruits"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1456_maximum_number_of_vowels_in_a_substring_of_given_length",
+      "function": "maxVowels",
+      "source_py": "src/1456_maximum_number_of_vowels_in_a_substring_of_given_length.py",
+      "source_sifr": "src/1456_maximum_number_of_vowels_in_a_substring_of_given_length.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1888_minimum_number_of_flips_to_make_the_binary_string_alternating",
+      "function": "minFlips",
+      "source_py": "src/1888_minimum_number_of_flips_to_make_the_binary_string_alternating.py",
+      "source_sifr": "src/1888_minimum_number_of_flips_to_make_the_binary_string_alternating.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0209_minimum_size_subarray_sum",
+      "function": "minSubArrayLen",
+      "source_py": "src/0209_minimum_size_subarray_sum.py",
+      "source_sifr": "src/0209_minimum_size_subarray_sum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "target",
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0658_find_k_closest_elements",
+      "function": "findClosestElements",
+      "source_py": "src/0658_find_k_closest_elements.py",
+      "source_sifr": "src/0658_find_k_closest_elements.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "arr",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "arr",
+            "k",
+            "x"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1658_minimum_operations_to_reduce_x_to_zero",
+      "function": "minOperations",
+      "source_py": "src/1658_minimum_operations_to_reduce_x_to_zero.py",
+      "source_sifr": "src/1658_minimum_operations_to_reduce_x_to_zero.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "x",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "x"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0076_minimum_window_substring",
+      "function": "minWindow",
+      "source_py": "src/0076_minimum_window_substring.py",
+      "source_sifr": "src/0076_minimum_window_substring.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "t",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "t"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 200,
+        "5000": 50,
+        "10000": 10
+      }
+    },
+    {
+      "id": "0239_sliding_window_maximum",
+      "function": "maxSlidingWindow",
+      "source_py": "src/0239_sliding_window_maximum.py",
+      "source_sifr": "src/0239_sliding_window_maximum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        50000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "10000": 100,
+        "50000": 20
+      }
     }
   ]
 }
