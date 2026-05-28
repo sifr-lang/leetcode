@@ -1,0 +1,849 @@
+{
+  "category": "Stack",
+  "slug": "stack",
+  "order": 3,
+  "problems": [
+    {
+      "id": "0020_valid_parentheses",
+      "function": "isValid",
+      "source_py": "src/0020_valid_parentheses.py",
+      "source_sifr": "src/0020_valid_parentheses.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 5000,
+        "10000": 1000,
+        "100000": 100
+      }
+    },
+    {
+      "id": "0682_baseball_game",
+      "function": "calPoints",
+      "source_py": "src/0682_baseball_game.py",
+      "source_sifr": "src/0682_baseball_game.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "operations",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "operations"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0225_implement_stack_using_queues",
+      "function": "MyStack",
+      "source_py": "src/0225_implement_stack_using_queues.py",
+      "source_sifr": "src/0225_implement_stack_using_queues.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "push": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            },
+            "pop": {
+              "args": [],
+              "result": "int"
+            },
+            "top": {
+              "args": [],
+              "result": "int"
+            },
+            "empty": {
+              "args": [],
+              "result": "bool"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "5000": 200,
+        "10000": 50
+      }
+    },
+    {
+      "id": "0155_min_stack",
+      "function": "MinStack",
+      "source_py": "src/0155_min_stack.py",
+      "source_sifr": "src/0155_min_stack.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "push": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            },
+            "pop": {
+              "args": [],
+              "result": "none"
+            },
+            "top": {
+              "args": [],
+              "result": "int"
+            },
+            "getMin": {
+              "args": [],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "5000": 200,
+        "10000": 50
+      }
+    },
+    {
+      "id": "0150_evaluate_reverse_polish_notation",
+      "function": "evalRPN",
+      "source_py": "src/0150_evaluate_reverse_polish_notation.py",
+      "source_sifr": "src/0150_evaluate_reverse_polish_notation.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "tokens",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "tokens"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "2390_removing_stars_from_a_string",
+      "function": "removeStars",
+      "source_py": "src/2390_removing_stars_from_a_string.py",
+      "source_sifr": "src/2390_removing_stars_from_a_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0946_validate_stack_sequences",
+      "function": "validateStackSequences",
+      "source_py": "src/0946_validate_stack_sequences.py",
+      "source_sifr": "src/0946_validate_stack_sequences.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "pushed",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 0,
+              "start": 2
+            },
+            {
+              "name": "popped",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 1,
+              "start": 2,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "pushed",
+            "popped"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0022_generate_parentheses",
+      "function": "generateParenthesis",
+      "source_py": "src/0022_generate_parentheses.py",
+      "source_sifr": "src/0022_generate_parentheses.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "list_str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        4,
+        8,
+        10
+      ],
+      "loops_by_size": {
+        "4": 1000,
+        "8": 100,
+        "10": 10
+      }
+    },
+    {
+      "id": "0735_asteroid_collision",
+      "function": "asteroidCollision",
+      "source_py": "src/0735_asteroid_collision.py",
+      "source_sifr": "src/0735_asteroid_collision.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "asteroids",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "asteroids"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0739_daily_temperatures",
+      "function": "dailyTemperatures",
+      "source_py": "src/0739_daily_temperatures.py",
+      "source_sifr": "src/0739_daily_temperatures.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "temperatures",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "temperatures"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0901_online_stock_span",
+      "function": "StockSpanner",
+      "source_py": "src/0901_online_stock_span.py",
+      "source_sifr": "src/0901_online_stock_span.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "next": {
+              "args": [
+                "int"
+              ],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        50000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "50000": 50
+      }
+    },
+    {
+      "id": "0853_car_fleet",
+      "function": "carFleet",
+      "source_py": "src/0853_car_fleet.py",
+      "source_sifr": "src/0853_car_fleet.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "position",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 1,
+              "start": 3
+            },
+            {
+              "name": "speed",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 2,
+              "start": 3,
+              "start_after_count_indices": [
+                1
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "target",
+            "position",
+            "speed"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0071_simplify_path",
+      "function": "simplifyPath",
+      "source_py": "src/0071_simplify_path.py",
+      "source_sifr": "src/0071_simplify_path.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "path",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "path"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0394_decode_string",
+      "function": "decodeString",
+      "source_py": "src/0394_decode_string.py",
+      "source_sifr": "src/0394_decode_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 1000,
+        "1000": 200,
+        "5000": 30
+      }
+    },
+    {
+      "id": "0402_remove_k_digits",
+      "function": "removeKdigits",
+      "source_py": "src/0402_remove_k_digits.py",
+      "source_sifr": "src/0402_remove_k_digits.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "num",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "num",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1209_remove_all_adjacent_duplicates_in_string_ii",
+      "function": "removeDuplicates",
+      "source_py": "src/1209_remove_all_adjacent_duplicates_in_string_ii.py",
+      "source_sifr": "src/1209_remove_all_adjacent_duplicates_in_string_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0456_132_pattern",
+      "function": "find132pattern",
+      "source_py": "src/0456_132_pattern.py",
+      "source_sifr": "src/0456_132_pattern.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0895_maximum_frequency_stack",
+      "function": "FreqStack",
+      "source_py": "src/0895_maximum_frequency_stack.py",
+      "source_sifr": "src/0895_maximum_frequency_stack.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "push": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            },
+            "pop": {
+              "args": [],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "5000": 200,
+        "10000": 50
+      }
+    },
+    {
+      "id": "0084_largest_rectangle_in_histogram",
+      "function": "largestRectangleArea",
+      "source_py": "src/0084_largest_rectangle_in_histogram.py",
+      "source_sifr": "src/0084_largest_rectangle_in_histogram.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "heights",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "heights"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "category": "2-D Dynamic Programming",
+  "slug": "2_d_dynamic_programming",
+  "order": 13,
+  "problems": [
+    {
+      "id": "0062_unique_paths",
+      "function": "uniquePaths",
+      "source_py": "src/0062_unique_paths.py",
+      "source_sifr": "src/0062_unique_paths.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "m", "type": "int", "source": "token", "index": 0 }, { "name": "n", "type": "int", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["m", "n"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [8, 12, 16],
+      "loops_by_size": { "8": 5000, "12": 2000, "16": 1000 }
+    },
+    {
+      "id": "0063_unique_paths_ii",
+      "function": "uniquePathsWithObstacles",
+      "source_py": "src/0063_unique_paths_ii.py",
+      "source_sifr": "src/0063_unique_paths_ii.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "grid", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["grid"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 150, 300],
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+    },
+    {
+      "id": "1143_longest_common_subsequence",
+      "function": "longestCommonSubsequence",
+      "source_py": "src/1143_longest_common_subsequence.py",
+      "source_sifr": "src/1143_longest_common_subsequence.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "text1", "type": "str", "source": "token", "index": 0 }, { "name": "text2", "type": "str", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["text1", "text2"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "0516_longest_palindromic_subsequence",
+      "function": "longestPalindromeSubseq",
+      "source_py": "src/0516_longest_palindromic_subsequence.py",
+      "source_sifr": "src/0516_longest_palindromic_subsequence.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "s", "type": "str", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["s"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "1049_last_stone_weight_ii",
+      "function": "lastStoneWeightII",
+      "source_py": "src/1049_last_stone_weight_ii.py",
+      "source_sifr": "src/1049_last_stone_weight_ii.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "stones", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["stones"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "0309_best_time_to_buy_and_sell_stock_with_cooldown",
+      "function": "maxProfit",
+      "source_py": "src/0309_best_time_to_buy_and_sell_stock_with_cooldown.py",
+      "source_sifr": "src/0309_best_time_to_buy_and_sell_stock_with_cooldown.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "prices", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["prices"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 500, 900],
+      "loops_by_size": { "100": 1000, "500": 200, "900": 30 }
+    },
+    {
+      "id": "0518_coin_change_ii",
+      "function": "change",
+      "source_py": "src/0518_coin_change_ii.py",
+      "source_sifr": "src/0518_coin_change_ii.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "amount", "type": "int", "source": "token", "index": 0 }, { "name": "coins", "type": "list[int]", "source": "tokens", "start": 1 }] },
+        "call": { "mode": "single", "args": ["amount", "coins"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [100, 500, 900],
+      "loops_by_size": { "100": 500, "500": 100, "900": 30 }
+    },
+    {
+      "id": "0494_target_sum",
+      "function": "findTargetSumWays",
+      "source_py": "src/0494_target_sum.py",
+      "source_sifr": "src/0494_target_sum.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "target", "type": "int", "source": "token", "index": 0 }, { "name": "nums", "type": "list[int]", "source": "tokens", "start": 1 }] },
+        "call": { "mode": "single", "args": ["nums", "target"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "0097_interleaving_string",
+      "function": "isInterleave",
+      "source_py": "src/0097_interleaving_string.py",
+      "source_sifr": "src/0097_interleaving_string.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "s1", "type": "str", "source": "token", "index": 0 }, { "name": "s2", "type": "str", "source": "token", "index": 1 }, { "name": "s3", "type": "str", "source": "token", "index": 2 }] },
+        "call": { "mode": "single", "args": ["s1", "s2", "s3"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "0064_minimum_path_sum",
+      "function": "minPathSum",
+      "source_py": "src/0064_minimum_path_sum.py",
+      "source_sifr": "src/0064_minimum_path_sum.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "grid", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["grid"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 150, 300],
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+    },
+    {
+      "id": "0329_longest_increasing_path_in_a_matrix",
+      "function": "longestIncreasingPath",
+      "source_py": "src/0329_longest_increasing_path_in_a_matrix.py",
+      "source_sifr": "src/0329_longest_increasing_path_in_a_matrix.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "matrix", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["matrix"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [10, 30, 60],
+      "loops_by_size": { "10": 100, "30": 20, "60": 5 }
+    },
+    {
+      "id": "0221_maximal_square",
+      "function": "maximalSquare",
+      "source_py": "src/0221_maximal_square.py",
+      "source_sifr": "src/0221_maximal_square.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "matrix", "type": "matrix[str]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
+        "call": { "mode": "single", "args": ["matrix"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 150, 300],
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+    },
+    {
+      "id": "0474_ones_and_zeroes",
+      "function": "findMaxForm",
+      "source_py": "src/0474_ones_and_zeroes.py",
+      "source_sifr": "src/0474_ones_and_zeroes.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "m", "type": "int", "source": "token", "index": 0 }, { "name": "n", "type": "int", "source": "token", "index": 1 }, { "name": "strs", "type": "list[str]", "source": "tokens", "start": 2 }] },
+        "call": { "mode": "single", "args": ["strs", "m", "n"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "0115_distinct_subsequences",
+      "function": "numDistinct",
+      "source_py": "src/0115_distinct_subsequences.py",
+      "source_sifr": "src/0115_distinct_subsequences.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "s", "type": "str", "source": "token", "index": 0 }, { "name": "t", "type": "str", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["s", "t"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "0072_edit_distance",
+      "function": "minDistance",
+      "source_py": "src/0072_edit_distance.py",
+      "source_sifr": "src/0072_edit_distance.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "word1", "type": "str", "source": "token", "index": 0 }, { "name": "word2", "type": "str", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["word1", "word2"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    },
+    {
+      "id": "1220_count_vowels_permutation",
+      "function": "countVowelPermutation",
+      "source_py": "src/1220_count_vowels_permutation.py",
+      "source_sifr": "src/1220_count_vowels_permutation.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "n", "type": "int", "source": "token", "index": 0 }] },
+        "call": { "mode": "single", "args": ["n"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 1000, "100": 500, "200": 100 }
+    },
+    {
+      "id": "0312_burst_balloons",
+      "function": "maxCoins",
+      "source_py": "src/0312_burst_balloons.py",
+      "source_sifr": "src/0312_burst_balloons.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "nums", "type": "list[int]", "source": "tokens" }] },
+        "call": { "mode": "single", "args": ["nums"] },
+        "expected": { "type": "int" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [10, 20, 40],
+      "loops_by_size": { "10": 100, "20": 20, "40": 5 }
+    },
+    {
+      "id": "0010_regular_expression_matching",
+      "function": "isMatch",
+      "source_py": "src/0010_regular_expression_matching.py",
+      "source_sifr": "src/0010_regular_expression_matching.sifr",
+      "runner": {
+        "input": { "bindings": [{ "name": "s", "type": "str", "source": "token", "index": 0 }, { "name": "p", "type": "str", "source": "token", "index": 1 }] },
+        "call": { "mode": "single", "args": ["s", "p"] },
+        "expected": { "type": "bool" },
+        "checksum": { "type": "value" }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [50, 100, 200],
+      "loops_by_size": { "50": 200, "100": 50, "200": 10 }
+    }
+  ]
+}

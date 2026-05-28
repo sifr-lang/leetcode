@@ -5,7 +5,7 @@ def groupAnagrams(strs: list[str]) -> list[list[str]]:
     alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     for s in strs:
-        count = {}
+        count: dict[str, int] = {}
         for c in s:
             if c in count:
                 count[c] += 1
@@ -24,7 +24,7 @@ def groupAnagrams(strs: list[str]) -> list[list[str]]:
         else:
             groups[key] = [s]
 
-    res = []
+    res: list[list[str]] = []
     for bucket in groups.values():
         res.append(bucket)
     return res

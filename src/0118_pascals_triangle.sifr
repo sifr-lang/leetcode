@@ -6,14 +6,17 @@ def _nz_int(value: int | None) -> int:
     return value
 
 def generate(numRows: int) -> list[list[int]]:
-    rows = []
+    rows: list[list[int]] = []
     for r in range(numRows):
-        row = []
+        row: list[int] = []
         for c in range(r + 1):
             if c == 0 or c == r:
                 row.append(1)
             else:
-                prev_row = rows[r - 1]
+                prev_row_opt: list[int] | None = rows[r - 1]
+                prev_row: list[int] = []
+                if prev_row_opt is not None:
+                    prev_row = prev_row_opt
                 left = _nz_int(prev_row[c - 1])
                 right = _nz_int(prev_row[c])
                 row.append(left + right)

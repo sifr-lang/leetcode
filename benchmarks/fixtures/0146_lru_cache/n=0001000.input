@@ -1,0 +1,1501 @@
+__init__ 100
+put 0 0
+get 0
+put 1 1
+put 2 2
+get 2
+put 3 3
+put 4 4
+get 4
+put 5 5
+put 6 6
+get 6
+put 7 7
+put 8 8
+get 8
+put 9 9
+put 10 10
+get 10
+put 11 11
+put 12 12
+get 12
+put 13 13
+put 14 14
+get 14
+put 15 15
+put 16 16
+get 16
+put 17 17
+put 18 18
+get 18
+put 19 19
+put 20 20
+get 20
+put 21 21
+put 22 22
+get 22
+put 23 23
+put 24 24
+get 24
+put 25 25
+put 26 26
+get 26
+put 27 27
+put 28 28
+get 28
+put 29 29
+put 30 30
+get 30
+put 31 31
+put 32 32
+get 32
+put 33 33
+put 34 34
+get 34
+put 35 35
+put 36 36
+get 36
+put 37 37
+put 38 38
+get 38
+put 39 39
+put 40 40
+get 40
+put 41 41
+put 42 42
+get 42
+put 43 43
+put 44 44
+get 44
+put 45 45
+put 46 46
+get 46
+put 47 47
+put 48 48
+get 48
+put 49 49
+put 50 50
+get 50
+put 51 51
+put 52 52
+get 52
+put 53 53
+put 54 54
+get 54
+put 55 55
+put 56 56
+get 56
+put 57 57
+put 58 58
+get 58
+put 59 59
+put 60 60
+get 60
+put 61 61
+put 62 62
+get 62
+put 63 63
+put 64 64
+get 64
+put 65 65
+put 66 66
+get 66
+put 67 67
+put 68 68
+get 68
+put 69 69
+put 70 70
+get 70
+put 71 71
+put 72 72
+get 72
+put 73 73
+put 74 74
+get 74
+put 75 75
+put 76 76
+get 76
+put 77 77
+put 78 78
+get 78
+put 79 79
+put 80 80
+get 80
+put 81 81
+put 82 82
+get 82
+put 83 83
+put 84 84
+get 84
+put 85 85
+put 86 86
+get 86
+put 87 87
+put 88 88
+get 88
+put 89 89
+put 90 90
+get 90
+put 91 91
+put 92 92
+get 92
+put 93 93
+put 94 94
+get 94
+put 95 95
+put 96 96
+get 96
+put 97 97
+put 98 98
+get 98
+put 99 99
+put 100 100
+get 100
+put 101 101
+put 102 102
+get 102
+put 103 103
+put 104 104
+get 104
+put 105 105
+put 106 106
+get 106
+put 107 107
+put 108 108
+get 108
+put 109 109
+put 110 110
+get 110
+put 111 111
+put 112 112
+get 112
+put 113 113
+put 114 114
+get 114
+put 115 115
+put 116 116
+get 116
+put 117 117
+put 118 118
+get 118
+put 119 119
+put 120 120
+get 120
+put 121 121
+put 122 122
+get 122
+put 123 123
+put 124 124
+get 124
+put 125 125
+put 126 126
+get 126
+put 127 127
+put 128 128
+get 128
+put 129 129
+put 130 130
+get 130
+put 131 131
+put 132 132
+get 132
+put 133 133
+put 134 134
+get 134
+put 135 135
+put 136 136
+get 136
+put 137 137
+put 138 138
+get 138
+put 139 139
+put 140 140
+get 140
+put 141 141
+put 142 142
+get 142
+put 143 143
+put 144 144
+get 144
+put 145 145
+put 146 146
+get 146
+put 147 147
+put 148 148
+get 148
+put 149 149
+put 150 150
+get 150
+put 151 151
+put 152 152
+get 152
+put 153 153
+put 154 154
+get 154
+put 155 155
+put 156 156
+get 156
+put 157 157
+put 158 158
+get 158
+put 159 159
+put 160 160
+get 160
+put 161 161
+put 162 162
+get 162
+put 163 163
+put 164 164
+get 164
+put 165 165
+put 166 166
+get 166
+put 167 167
+put 168 168
+get 168
+put 169 169
+put 170 170
+get 170
+put 171 171
+put 172 172
+get 172
+put 173 173
+put 174 174
+get 174
+put 175 175
+put 176 176
+get 176
+put 177 177
+put 178 178
+get 178
+put 179 179
+put 180 180
+get 180
+put 181 181
+put 182 182
+get 182
+put 183 183
+put 184 184
+get 184
+put 185 185
+put 186 186
+get 186
+put 187 187
+put 188 188
+get 188
+put 189 189
+put 190 190
+get 190
+put 191 191
+put 192 192
+get 192
+put 193 193
+put 194 194
+get 194
+put 195 195
+put 196 196
+get 196
+put 197 197
+put 198 198
+get 198
+put 199 199
+put 0 200
+get 0
+put 1 201
+put 2 202
+get 2
+put 3 203
+put 4 204
+get 4
+put 5 205
+put 6 206
+get 6
+put 7 207
+put 8 208
+get 8
+put 9 209
+put 10 210
+get 10
+put 11 211
+put 12 212
+get 12
+put 13 213
+put 14 214
+get 14
+put 15 215
+put 16 216
+get 16
+put 17 217
+put 18 218
+get 18
+put 19 219
+put 20 220
+get 20
+put 21 221
+put 22 222
+get 22
+put 23 223
+put 24 224
+get 24
+put 25 225
+put 26 226
+get 26
+put 27 227
+put 28 228
+get 28
+put 29 229
+put 30 230
+get 30
+put 31 231
+put 32 232
+get 32
+put 33 233
+put 34 234
+get 34
+put 35 235
+put 36 236
+get 36
+put 37 237
+put 38 238
+get 38
+put 39 239
+put 40 240
+get 40
+put 41 241
+put 42 242
+get 42
+put 43 243
+put 44 244
+get 44
+put 45 245
+put 46 246
+get 46
+put 47 247
+put 48 248
+get 48
+put 49 249
+put 50 250
+get 50
+put 51 251
+put 52 252
+get 52
+put 53 253
+put 54 254
+get 54
+put 55 255
+put 56 256
+get 56
+put 57 257
+put 58 258
+get 58
+put 59 259
+put 60 260
+get 60
+put 61 261
+put 62 262
+get 62
+put 63 263
+put 64 264
+get 64
+put 65 265
+put 66 266
+get 66
+put 67 267
+put 68 268
+get 68
+put 69 269
+put 70 270
+get 70
+put 71 271
+put 72 272
+get 72
+put 73 273
+put 74 274
+get 74
+put 75 275
+put 76 276
+get 76
+put 77 277
+put 78 278
+get 78
+put 79 279
+put 80 280
+get 80
+put 81 281
+put 82 282
+get 82
+put 83 283
+put 84 284
+get 84
+put 85 285
+put 86 286
+get 86
+put 87 287
+put 88 288
+get 88
+put 89 289
+put 90 290
+get 90
+put 91 291
+put 92 292
+get 92
+put 93 293
+put 94 294
+get 94
+put 95 295
+put 96 296
+get 96
+put 97 297
+put 98 298
+get 98
+put 99 299
+put 100 300
+get 100
+put 101 301
+put 102 302
+get 102
+put 103 303
+put 104 304
+get 104
+put 105 305
+put 106 306
+get 106
+put 107 307
+put 108 308
+get 108
+put 109 309
+put 110 310
+get 110
+put 111 311
+put 112 312
+get 112
+put 113 313
+put 114 314
+get 114
+put 115 315
+put 116 316
+get 116
+put 117 317
+put 118 318
+get 118
+put 119 319
+put 120 320
+get 120
+put 121 321
+put 122 322
+get 122
+put 123 323
+put 124 324
+get 124
+put 125 325
+put 126 326
+get 126
+put 127 327
+put 128 328
+get 128
+put 129 329
+put 130 330
+get 130
+put 131 331
+put 132 332
+get 132
+put 133 333
+put 134 334
+get 134
+put 135 335
+put 136 336
+get 136
+put 137 337
+put 138 338
+get 138
+put 139 339
+put 140 340
+get 140
+put 141 341
+put 142 342
+get 142
+put 143 343
+put 144 344
+get 144
+put 145 345
+put 146 346
+get 146
+put 147 347
+put 148 348
+get 148
+put 149 349
+put 150 350
+get 150
+put 151 351
+put 152 352
+get 152
+put 153 353
+put 154 354
+get 154
+put 155 355
+put 156 356
+get 156
+put 157 357
+put 158 358
+get 158
+put 159 359
+put 160 360
+get 160
+put 161 361
+put 162 362
+get 162
+put 163 363
+put 164 364
+get 164
+put 165 365
+put 166 366
+get 166
+put 167 367
+put 168 368
+get 168
+put 169 369
+put 170 370
+get 170
+put 171 371
+put 172 372
+get 172
+put 173 373
+put 174 374
+get 174
+put 175 375
+put 176 376
+get 176
+put 177 377
+put 178 378
+get 178
+put 179 379
+put 180 380
+get 180
+put 181 381
+put 182 382
+get 182
+put 183 383
+put 184 384
+get 184
+put 185 385
+put 186 386
+get 186
+put 187 387
+put 188 388
+get 188
+put 189 389
+put 190 390
+get 190
+put 191 391
+put 192 392
+get 192
+put 193 393
+put 194 394
+get 194
+put 195 395
+put 196 396
+get 196
+put 197 397
+put 198 398
+get 198
+put 199 399
+put 0 400
+get 0
+put 1 401
+put 2 402
+get 2
+put 3 403
+put 4 404
+get 4
+put 5 405
+put 6 406
+get 6
+put 7 407
+put 8 408
+get 8
+put 9 409
+put 10 410
+get 10
+put 11 411
+put 12 412
+get 12
+put 13 413
+put 14 414
+get 14
+put 15 415
+put 16 416
+get 16
+put 17 417
+put 18 418
+get 18
+put 19 419
+put 20 420
+get 20
+put 21 421
+put 22 422
+get 22
+put 23 423
+put 24 424
+get 24
+put 25 425
+put 26 426
+get 26
+put 27 427
+put 28 428
+get 28
+put 29 429
+put 30 430
+get 30
+put 31 431
+put 32 432
+get 32
+put 33 433
+put 34 434
+get 34
+put 35 435
+put 36 436
+get 36
+put 37 437
+put 38 438
+get 38
+put 39 439
+put 40 440
+get 40
+put 41 441
+put 42 442
+get 42
+put 43 443
+put 44 444
+get 44
+put 45 445
+put 46 446
+get 46
+put 47 447
+put 48 448
+get 48
+put 49 449
+put 50 450
+get 50
+put 51 451
+put 52 452
+get 52
+put 53 453
+put 54 454
+get 54
+put 55 455
+put 56 456
+get 56
+put 57 457
+put 58 458
+get 58
+put 59 459
+put 60 460
+get 60
+put 61 461
+put 62 462
+get 62
+put 63 463
+put 64 464
+get 64
+put 65 465
+put 66 466
+get 66
+put 67 467
+put 68 468
+get 68
+put 69 469
+put 70 470
+get 70
+put 71 471
+put 72 472
+get 72
+put 73 473
+put 74 474
+get 74
+put 75 475
+put 76 476
+get 76
+put 77 477
+put 78 478
+get 78
+put 79 479
+put 80 480
+get 80
+put 81 481
+put 82 482
+get 82
+put 83 483
+put 84 484
+get 84
+put 85 485
+put 86 486
+get 86
+put 87 487
+put 88 488
+get 88
+put 89 489
+put 90 490
+get 90
+put 91 491
+put 92 492
+get 92
+put 93 493
+put 94 494
+get 94
+put 95 495
+put 96 496
+get 96
+put 97 497
+put 98 498
+get 98
+put 99 499
+put 100 500
+get 100
+put 101 501
+put 102 502
+get 102
+put 103 503
+put 104 504
+get 104
+put 105 505
+put 106 506
+get 106
+put 107 507
+put 108 508
+get 108
+put 109 509
+put 110 510
+get 110
+put 111 511
+put 112 512
+get 112
+put 113 513
+put 114 514
+get 114
+put 115 515
+put 116 516
+get 116
+put 117 517
+put 118 518
+get 118
+put 119 519
+put 120 520
+get 120
+put 121 521
+put 122 522
+get 122
+put 123 523
+put 124 524
+get 124
+put 125 525
+put 126 526
+get 126
+put 127 527
+put 128 528
+get 128
+put 129 529
+put 130 530
+get 130
+put 131 531
+put 132 532
+get 132
+put 133 533
+put 134 534
+get 134
+put 135 535
+put 136 536
+get 136
+put 137 537
+put 138 538
+get 138
+put 139 539
+put 140 540
+get 140
+put 141 541
+put 142 542
+get 142
+put 143 543
+put 144 544
+get 144
+put 145 545
+put 146 546
+get 146
+put 147 547
+put 148 548
+get 148
+put 149 549
+put 150 550
+get 150
+put 151 551
+put 152 552
+get 152
+put 153 553
+put 154 554
+get 154
+put 155 555
+put 156 556
+get 156
+put 157 557
+put 158 558
+get 158
+put 159 559
+put 160 560
+get 160
+put 161 561
+put 162 562
+get 162
+put 163 563
+put 164 564
+get 164
+put 165 565
+put 166 566
+get 166
+put 167 567
+put 168 568
+get 168
+put 169 569
+put 170 570
+get 170
+put 171 571
+put 172 572
+get 172
+put 173 573
+put 174 574
+get 174
+put 175 575
+put 176 576
+get 176
+put 177 577
+put 178 578
+get 178
+put 179 579
+put 180 580
+get 180
+put 181 581
+put 182 582
+get 182
+put 183 583
+put 184 584
+get 184
+put 185 585
+put 186 586
+get 186
+put 187 587
+put 188 588
+get 188
+put 189 589
+put 190 590
+get 190
+put 191 591
+put 192 592
+get 192
+put 193 593
+put 194 594
+get 194
+put 195 595
+put 196 596
+get 196
+put 197 597
+put 198 598
+get 198
+put 199 599
+put 0 600
+get 0
+put 1 601
+put 2 602
+get 2
+put 3 603
+put 4 604
+get 4
+put 5 605
+put 6 606
+get 6
+put 7 607
+put 8 608
+get 8
+put 9 609
+put 10 610
+get 10
+put 11 611
+put 12 612
+get 12
+put 13 613
+put 14 614
+get 14
+put 15 615
+put 16 616
+get 16
+put 17 617
+put 18 618
+get 18
+put 19 619
+put 20 620
+get 20
+put 21 621
+put 22 622
+get 22
+put 23 623
+put 24 624
+get 24
+put 25 625
+put 26 626
+get 26
+put 27 627
+put 28 628
+get 28
+put 29 629
+put 30 630
+get 30
+put 31 631
+put 32 632
+get 32
+put 33 633
+put 34 634
+get 34
+put 35 635
+put 36 636
+get 36
+put 37 637
+put 38 638
+get 38
+put 39 639
+put 40 640
+get 40
+put 41 641
+put 42 642
+get 42
+put 43 643
+put 44 644
+get 44
+put 45 645
+put 46 646
+get 46
+put 47 647
+put 48 648
+get 48
+put 49 649
+put 50 650
+get 50
+put 51 651
+put 52 652
+get 52
+put 53 653
+put 54 654
+get 54
+put 55 655
+put 56 656
+get 56
+put 57 657
+put 58 658
+get 58
+put 59 659
+put 60 660
+get 60
+put 61 661
+put 62 662
+get 62
+put 63 663
+put 64 664
+get 64
+put 65 665
+put 66 666
+get 66
+put 67 667
+put 68 668
+get 68
+put 69 669
+put 70 670
+get 70
+put 71 671
+put 72 672
+get 72
+put 73 673
+put 74 674
+get 74
+put 75 675
+put 76 676
+get 76
+put 77 677
+put 78 678
+get 78
+put 79 679
+put 80 680
+get 80
+put 81 681
+put 82 682
+get 82
+put 83 683
+put 84 684
+get 84
+put 85 685
+put 86 686
+get 86
+put 87 687
+put 88 688
+get 88
+put 89 689
+put 90 690
+get 90
+put 91 691
+put 92 692
+get 92
+put 93 693
+put 94 694
+get 94
+put 95 695
+put 96 696
+get 96
+put 97 697
+put 98 698
+get 98
+put 99 699
+put 100 700
+get 100
+put 101 701
+put 102 702
+get 102
+put 103 703
+put 104 704
+get 104
+put 105 705
+put 106 706
+get 106
+put 107 707
+put 108 708
+get 108
+put 109 709
+put 110 710
+get 110
+put 111 711
+put 112 712
+get 112
+put 113 713
+put 114 714
+get 114
+put 115 715
+put 116 716
+get 116
+put 117 717
+put 118 718
+get 118
+put 119 719
+put 120 720
+get 120
+put 121 721
+put 122 722
+get 122
+put 123 723
+put 124 724
+get 124
+put 125 725
+put 126 726
+get 126
+put 127 727
+put 128 728
+get 128
+put 129 729
+put 130 730
+get 130
+put 131 731
+put 132 732
+get 132
+put 133 733
+put 134 734
+get 134
+put 135 735
+put 136 736
+get 136
+put 137 737
+put 138 738
+get 138
+put 139 739
+put 140 740
+get 140
+put 141 741
+put 142 742
+get 142
+put 143 743
+put 144 744
+get 144
+put 145 745
+put 146 746
+get 146
+put 147 747
+put 148 748
+get 148
+put 149 749
+put 150 750
+get 150
+put 151 751
+put 152 752
+get 152
+put 153 753
+put 154 754
+get 154
+put 155 755
+put 156 756
+get 156
+put 157 757
+put 158 758
+get 158
+put 159 759
+put 160 760
+get 160
+put 161 761
+put 162 762
+get 162
+put 163 763
+put 164 764
+get 164
+put 165 765
+put 166 766
+get 166
+put 167 767
+put 168 768
+get 168
+put 169 769
+put 170 770
+get 170
+put 171 771
+put 172 772
+get 172
+put 173 773
+put 174 774
+get 174
+put 175 775
+put 176 776
+get 176
+put 177 777
+put 178 778
+get 178
+put 179 779
+put 180 780
+get 180
+put 181 781
+put 182 782
+get 182
+put 183 783
+put 184 784
+get 184
+put 185 785
+put 186 786
+get 186
+put 187 787
+put 188 788
+get 188
+put 189 789
+put 190 790
+get 190
+put 191 791
+put 192 792
+get 192
+put 193 793
+put 194 794
+get 194
+put 195 795
+put 196 796
+get 196
+put 197 797
+put 198 798
+get 198
+put 199 799
+put 0 800
+get 0
+put 1 801
+put 2 802
+get 2
+put 3 803
+put 4 804
+get 4
+put 5 805
+put 6 806
+get 6
+put 7 807
+put 8 808
+get 8
+put 9 809
+put 10 810
+get 10
+put 11 811
+put 12 812
+get 12
+put 13 813
+put 14 814
+get 14
+put 15 815
+put 16 816
+get 16
+put 17 817
+put 18 818
+get 18
+put 19 819
+put 20 820
+get 20
+put 21 821
+put 22 822
+get 22
+put 23 823
+put 24 824
+get 24
+put 25 825
+put 26 826
+get 26
+put 27 827
+put 28 828
+get 28
+put 29 829
+put 30 830
+get 30
+put 31 831
+put 32 832
+get 32
+put 33 833
+put 34 834
+get 34
+put 35 835
+put 36 836
+get 36
+put 37 837
+put 38 838
+get 38
+put 39 839
+put 40 840
+get 40
+put 41 841
+put 42 842
+get 42
+put 43 843
+put 44 844
+get 44
+put 45 845
+put 46 846
+get 46
+put 47 847
+put 48 848
+get 48
+put 49 849
+put 50 850
+get 50
+put 51 851
+put 52 852
+get 52
+put 53 853
+put 54 854
+get 54
+put 55 855
+put 56 856
+get 56
+put 57 857
+put 58 858
+get 58
+put 59 859
+put 60 860
+get 60
+put 61 861
+put 62 862
+get 62
+put 63 863
+put 64 864
+get 64
+put 65 865
+put 66 866
+get 66
+put 67 867
+put 68 868
+get 68
+put 69 869
+put 70 870
+get 70
+put 71 871
+put 72 872
+get 72
+put 73 873
+put 74 874
+get 74
+put 75 875
+put 76 876
+get 76
+put 77 877
+put 78 878
+get 78
+put 79 879
+put 80 880
+get 80
+put 81 881
+put 82 882
+get 82
+put 83 883
+put 84 884
+get 84
+put 85 885
+put 86 886
+get 86
+put 87 887
+put 88 888
+get 88
+put 89 889
+put 90 890
+get 90
+put 91 891
+put 92 892
+get 92
+put 93 893
+put 94 894
+get 94
+put 95 895
+put 96 896
+get 96
+put 97 897
+put 98 898
+get 98
+put 99 899
+put 100 900
+get 100
+put 101 901
+put 102 902
+get 102
+put 103 903
+put 104 904
+get 104
+put 105 905
+put 106 906
+get 106
+put 107 907
+put 108 908
+get 108
+put 109 909
+put 110 910
+get 110
+put 111 911
+put 112 912
+get 112
+put 113 913
+put 114 914
+get 114
+put 115 915
+put 116 916
+get 116
+put 117 917
+put 118 918
+get 118
+put 119 919
+put 120 920
+get 120
+put 121 921
+put 122 922
+get 122
+put 123 923
+put 124 924
+get 124
+put 125 925
+put 126 926
+get 126
+put 127 927
+put 128 928
+get 128
+put 129 929
+put 130 930
+get 130
+put 131 931
+put 132 932
+get 132
+put 133 933
+put 134 934
+get 134
+put 135 935
+put 136 936
+get 136
+put 137 937
+put 138 938
+get 138
+put 139 939
+put 140 940
+get 140
+put 141 941
+put 142 942
+get 142
+put 143 943
+put 144 944
+get 144
+put 145 945
+put 146 946
+get 146
+put 147 947
+put 148 948
+get 148
+put 149 949
+put 150 950
+get 150
+put 151 951
+put 152 952
+get 152
+put 153 953
+put 154 954
+get 154
+put 155 955
+put 156 956
+get 156
+put 157 957
+put 158 958
+get 158
+put 159 959
+put 160 960
+get 160
+put 161 961
+put 162 962
+get 162
+put 163 963
+put 164 964
+get 164
+put 165 965
+put 166 966
+get 166
+put 167 967
+put 168 968
+get 168
+put 169 969
+put 170 970
+get 170
+put 171 971
+put 172 972
+get 172
+put 173 973
+put 174 974
+get 174
+put 175 975
+put 176 976
+get 176
+put 177 977
+put 178 978
+get 178
+put 179 979
+put 180 980
+get 180
+put 181 981
+put 182 982
+get 182
+put 183 983
+put 184 984
+get 184
+put 185 985
+put 186 986
+get 186
+put 187 987
+put 188 988
+get 188
+put 189 989
+put 190 990
+get 190
+put 191 991
+put 192 992
+get 192
+put 193 993
+put 194 994
+get 194
+put 195 995
+put 196 996
+get 196
+put 197 997
+put 198 998
+get 198
+put 199 999

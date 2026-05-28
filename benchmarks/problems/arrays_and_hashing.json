@@ -1,0 +1,2639 @@
+{
+  "category": "Arrays & Hashing",
+  "slug": "arrays_and_hashing",
+  "order": 0,
+  "problems": [
+    {
+      "id": "0217_contains_duplicate",
+      "function": "containsDuplicate",
+      "source_py": "src/0217_contains_duplicate.py",
+      "source_sifr": "src/0217_contains_duplicate.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0242_valid_anagram",
+      "function": "isAnagram",
+      "source_py": "src/0242_valid_anagram.py",
+      "source_sifr": "src/0242_valid_anagram.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "t",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "t"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1929_concatenation_of_array",
+      "function": "getConcatenation",
+      "source_py": "src/1929_concatenation_of_array.py",
+      "source_sifr": "src/1929_concatenation_of_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1299_replace_elements_with_greatest_element_on_right_side",
+      "function": "replaceElements",
+      "source_py": "src/1299_replace_elements_with_greatest_element_on_right_side.py",
+      "source_sifr": "src/1299_replace_elements_with_greatest_element_on_right_side.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "arr",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "arr"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0392_is_subsequence",
+      "function": "isSubsequence",
+      "source_py": "src/0392_is_subsequence.py",
+      "source_sifr": "src/0392_is_subsequence.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "t",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "t"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0058_length_of_last_word",
+      "function": "lengthOfLastWord",
+      "source_py": "src/0058_length_of_last_word.py",
+      "source_sifr": "src/0058_length_of_last_word.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0001_two_sum",
+      "function": "twoSum",
+      "source_py": "src/0001_two_sum.py",
+      "source_sifr": "src/0001_two_sum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0014_longest_common_prefix",
+      "function": "longestCommonPrefix",
+      "source_py": "src/0014_longest_common_prefix.py",
+      "source_sifr": "src/0014_longest_common_prefix.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "strs",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "strs"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0049_group_anagrams",
+      "function": "groupAnagrams",
+      "source_py": "src/0049_group_anagrams.py",
+      "source_sifr": "src/0049_group_anagrams.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "strs",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "strs"
+          ]
+        },
+        "expected": {
+          "type": "list_list_str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        20000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "5000": 200,
+        "20000": 80
+      }
+    },
+    {
+      "id": "0118_pascals_triangle",
+      "function": "generate",
+      "source_py": "src/0118_pascals_triangle.py",
+      "source_sifr": "src/0118_pascals_triangle.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "rowIndex",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "rowIndex"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        100,
+        300
+      ],
+      "loops_by_size": {
+        "20": 2000,
+        "100": 500,
+        "300": 100
+      }
+    },
+    {
+      "id": "0027_remove_element",
+      "function": "removeElement",
+      "source_py": "src/0027_remove_element.py",
+      "source_sifr": "src/0027_remove_element.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "val",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "val"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0929_unique_email_addresses",
+      "function": "numUniqueEmails",
+      "source_py": "src/0929_unique_email_addresses.py",
+      "source_sifr": "src/0929_unique_email_addresses.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "emails",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "emails"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0205_isomorphic_strings",
+      "function": "isIsomorphic",
+      "source_py": "src/0205_isomorphic_strings.py",
+      "source_sifr": "src/0205_isomorphic_strings.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "t",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "t"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0605_can_place_flowers",
+      "function": "canPlaceFlowers",
+      "source_py": "src/0605_can_place_flowers.py",
+      "source_sifr": "src/0605_can_place_flowers.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "flowerbed",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "flowerbed",
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0169_majority_element",
+      "function": "majorityElement",
+      "source_py": "src/0169_majority_element.py",
+      "source_sifr": "src/0169_majority_element.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0496_next_greater_element_i",
+      "function": "nextGreaterElement",
+      "source_py": "src/0496_next_greater_element_i.py",
+      "source_sifr": "src/0496_next_greater_element_i.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums1",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 0,
+              "start": 2
+            },
+            {
+              "name": "nums2",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 1,
+              "start": 2,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums1",
+            "nums2"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0724_find_pivot_index",
+      "function": "pivotIndex",
+      "source_py": "src/0724_find_pivot_index.py",
+      "source_sifr": "src/0724_find_pivot_index.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0303_range_sum_query_immutable",
+      "function": "NumArray",
+      "source_py": "src/0303_range_sum_query_immutable.py",
+      "source_sifr": "src/0303_range_sum_query_immutable.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [
+            {
+              "type": "list[int]"
+            }
+          ],
+          "methods": {
+            "sumRange": {
+              "args": [
+                "int",
+                "int"
+              ],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 100,
+        "10000": 10,
+        "100000": 1
+      }
+    },
+    {
+      "id": "0448_find_all_numbers_disappeared_in_an_array",
+      "function": "findDisappearedNumbers",
+      "source_py": "src/0448_find_all_numbers_disappeared_in_an_array.py",
+      "source_sifr": "src/0448_find_all_numbers_disappeared_in_an_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1189_maximum_number_of_balloons",
+      "function": "maxNumberOfBalloons",
+      "source_py": "src/1189_maximum_number_of_balloons.py",
+      "source_sifr": "src/1189_maximum_number_of_balloons.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "text",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "text"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0290_word_pattern",
+      "function": "wordPattern",
+      "source_py": "src/0290_word_pattern.py",
+      "source_sifr": "src/0290_word_pattern.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "pattern",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "pattern",
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0705_design_hashset",
+      "function": "MyHashSet",
+      "source_py": "src/0705_design_hashset.py",
+      "source_sifr": "src/0705_design_hashset.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "add": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            },
+            "remove": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            },
+            "contains": {
+              "args": [
+                "int"
+              ],
+              "result": "bool"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 50,
+        "5000": 10,
+        "10000": 5
+      }
+    },
+    {
+      "id": "0706_design_hashmap",
+      "function": "MyHashMap",
+      "source_py": "src/0706_design_hashmap.py",
+      "source_sifr": "src/0706_design_hashmap.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "put": {
+              "args": [
+                "int",
+                "int"
+              ],
+              "result": "none"
+            },
+            "get": {
+              "args": [
+                "int"
+              ],
+              "result": "int"
+            },
+            "remove": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 20,
+        "5000": 5,
+        "10000": 2
+      }
+    },
+    {
+      "id": "0912_sort_an_array",
+      "function": "sortArray",
+      "source_py": "src/0912_sort_an_array.py",
+      "source_sifr": "src/0912_sort_an_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        20000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "5000": 200,
+        "20000": 80
+      }
+    },
+    {
+      "id": "0347_top_k_frequent_elements",
+      "function": "topKFrequent",
+      "source_py": "src/0347_top_k_frequent_elements.py",
+      "source_sifr": "src/0347_top_k_frequent_elements.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0238_product_of_array_except_self",
+      "function": "productExceptSelf",
+      "source_py": "src/0238_product_of_array_except_self.py",
+      "source_sifr": "src/0238_product_of_array_except_self.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0036_valid_sudoku",
+      "function": "isValidSudoku",
+      "source_py": "src/0036_valid_sudoku.py",
+      "source_sifr": "src/0036_valid_sudoku.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "board",
+              "type": "matrix[str]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "board"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        9
+      ],
+      "loops_by_size": {
+        "9": 5000
+      }
+    },
+    {
+      "id": "0271_encode_and_decode_strings",
+      "function": "encode",
+      "source_py": "src/0271_encode_and_decode_strings.py",
+      "source_sifr": "src/0271_encode_and_decode_strings.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "strs",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "strs"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0128_longest_consecutive_sequence",
+      "function": "longestConsecutive",
+      "source_py": "src/0128_longest_consecutive_sequence.py",
+      "source_sifr": "src/0128_longest_consecutive_sequence.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0075_sort_colors",
+      "function": "sortColors",
+      "source_py": "src/0075_sort_colors.py",
+      "source_sifr": "src/0075_sort_colors.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "mutates_single",
+          "args": [
+            "nums"
+          ],
+          "mutated_arg": "nums"
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0535_encode_and_decode_tinyurl",
+      "function": "Codec",
+      "source_py": "src/0535_encode_and_decode_tinyurl.py",
+      "source_sifr": "src/0535_encode_and_decode_tinyurl.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "encode": {
+              "args": [
+                "str"
+              ],
+              "result": "str"
+            },
+            "decode": {
+              "args": [
+                "str"
+              ],
+              "result": "str"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 20,
+        "5000": 5,
+        "10000": 2
+      }
+    },
+    {
+      "id": "0554_brick_wall",
+      "function": "leastBricks",
+      "source_py": "src/0554_brick_wall.py",
+      "source_sifr": "src/0554_brick_wall.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "wall",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "wall"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 1000,
+        "5000": 200
+      }
+    },
+    {
+      "id": "0122_best_time_to_buy_and_sell_stock_ii",
+      "function": "maxProfit",
+      "source_py": "src/0122_best_time_to_buy_and_sell_stock_ii.py",
+      "source_sifr": "src/0122_best_time_to_buy_and_sell_stock_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "prices",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "prices"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0560_subarray_sum_equals_k",
+      "function": "subarraySum",
+      "source_py": "src/0560_subarray_sum_equals_k.py",
+      "source_sifr": "src/0560_subarray_sum_equals_k.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1930_unique_length_3_palindromic_subsequences",
+      "function": "countPalindromicSubsequence",
+      "source_py": "src/1930_unique_length_3_palindromic_subsequences.py",
+      "source_sifr": "src/1930_unique_length_3_palindromic_subsequences.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1963_minimum_number_of_swaps_to_make_the_string_balanced",
+      "function": "minSwaps",
+      "source_py": "src/1963_minimum_number_of_swaps_to_make_the_string_balanced.py",
+      "source_sifr": "src/1963_minimum_number_of_swaps_to_make_the_string_balanced.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "2001_number_of_pairs_of_interchangeable_rectangles",
+      "function": "interchangeableRectangles",
+      "source_py": "src/2001_number_of_pairs_of_interchangeable_rectangles.py",
+      "source_sifr": "src/2001_number_of_pairs_of_interchangeable_rectangles.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "rectangles",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "rectangles"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 1000,
+        "5000": 200
+      }
+    },
+    {
+      "id": "2002_maximum_product_of_the_length_of_two_palindromic_subsequences",
+      "function": "maxProduct",
+      "source_py": "src/2002_maximum_product_of_the_length_of_two_palindromic_subsequences.py",
+      "source_sifr": "src/2002_maximum_product_of_the_length_of_two_palindromic_subsequences.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        8,
+        10,
+        12
+      ],
+      "loops_by_size": {
+        "8": 5000,
+        "10": 5000,
+        "12": 5000
+      }
+    },
+    {
+      "id": "2017_grid_game",
+      "function": "gridGame",
+      "source_py": "src/2017_grid_game.py",
+      "source_sifr": "src/2017_grid_game.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 1000,
+        "5000": 200
+      }
+    },
+    {
+      "id": "0438_find_all_anagrams_in_a_string",
+      "function": "findAnagrams",
+      "source_py": "src/0438_find_all_anagrams_in_a_string.py",
+      "source_sifr": "src/0438_find_all_anagrams_in_a_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "p",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "p"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0028_find_the_index_of_the_first_occurrence_in_a_string",
+      "function": "strStr",
+      "source_py": "src/0028_find_the_index_of_the_first_occurrence_in_a_string.py",
+      "source_sifr": "src/0028_find_the_index_of_the_first_occurrence_in_a_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "haystack",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "needle",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "haystack",
+            "needle"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0280_wiggle_sort",
+      "function": "wiggleSort",
+      "source_py": "src/0280_wiggle_sort.py",
+      "source_sifr": "src/0280_wiggle_sort.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "mutates_single",
+          "args": [
+            "nums"
+          ],
+          "mutated_arg": "nums"
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0179_largest_number",
+      "function": "largestNumber",
+      "source_py": "src/0179_largest_number.py",
+      "source_sifr": "src/0179_largest_number.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        500,
+        1000
+      ],
+      "loops_by_size": {
+        "100": 20,
+        "500": 10,
+        "1000": 5
+      }
+    },
+    {
+      "id": "0523_continuous_subarray_sum",
+      "function": "checkSubarraySum",
+      "source_py": "src/0523_continuous_subarray_sum.py",
+      "source_sifr": "src/0523_continuous_subarray_sum.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0838_push_dominoes",
+      "function": "pushDominoes",
+      "source_py": "src/0838_push_dominoes.py",
+      "source_sifr": "src/0838_push_dominoes.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "dominoes",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "dominoes"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 50,
+        "5000": 10,
+        "10000": 3
+      }
+    },
+    {
+      "id": "0187_repeated_dna_sequences",
+      "function": "findRepeatedDnaSequences",
+      "source_py": "src/0187_repeated_dna_sequences.py",
+      "source_sifr": "src/0187_repeated_dna_sequences.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "list_str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0380_insert_delete_getrandom_o1",
+      "function": "RandomizedSet",
+      "source_py": "src/0380_insert_delete_getrandom_o1.py",
+      "source_sifr": "src/0380_insert_delete_getrandom_o1.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "insert": {
+              "args": [
+                "int"
+              ],
+              "result": "bool"
+            },
+            "remove": {
+              "args": [
+                "int"
+              ],
+              "result": "bool"
+            },
+            "getRandom": {
+              "args": [],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 100,
+        "10000": 20,
+        "100000": 3
+      }
+    },
+    {
+      "id": "1461_check_if_a_string_contains_all_binary_codes_of_size_k",
+      "function": "hasAllCodes",
+      "source_py": "src/1461_check_if_a_string_contains_all_binary_codes_of_size_k.py",
+      "source_sifr": "src/1461_check_if_a_string_contains_all_binary_codes_of_size_k.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0304_range_sum_query_2d_immutable",
+      "function": "NumMatrix",
+      "source_py": "src/0304_range_sum_query_2d_immutable.py",
+      "source_sifr": "src/0304_range_sum_query_2d_immutable.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [
+            {
+              "type": "matrix[int]"
+            }
+          ],
+          "methods": {
+            "sumRegion": {
+              "args": [
+                "int",
+                "int",
+                "int",
+                "int"
+              ],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 100,
+        "10000": 10,
+        "100000": 1
+      }
+    },
+    {
+      "id": "0665_non_decreasing_array",
+      "function": "checkPossibility",
+      "source_py": "src/0665_non_decreasing_array.py",
+      "source_sifr": "src/0665_non_decreasing_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0041_first_missing_positive",
+      "function": "firstMissingPositive",
+      "source_py": "src/0041_first_missing_positive.py",
+      "source_sifr": "src/0041_first_missing_positive.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1822_sign_of_the_product_of_an_array",
+      "function": "arraySign",
+      "source_py": "src/1822_sign_of_the_product_of_an_array.py",
+      "source_sifr": "src/1822_sign_of_the_product_of_an_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "2215_find_the_difference_of_two_arrays",
+      "function": "findDifference",
+      "source_py": "src/2215_find_the_difference_of_two_arrays.py",
+      "source_sifr": "src/2215_find_the_difference_of_two_arrays.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums1",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 0,
+              "start": 2
+            },
+            {
+              "name": "nums2",
+              "type": "list[int]",
+              "source": "tokens",
+              "count_index": 1,
+              "start": 2,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums1",
+            "nums2"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1603_design_parking_system",
+      "function": "ParkingSystem",
+      "source_py": "src/1603_design_parking_system.py",
+      "source_sifr": "src/1603_design_parking_system.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [
+            "int",
+            "int",
+            "int"
+          ],
+          "methods": {
+            "addCar": {
+              "args": [
+                "int"
+              ],
+              "result": "bool"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 100,
+        "10000": 20,
+        "100000": 3
+      }
+    },
+    {
+      "id": "2348_number_of_zero_filled_subarrays",
+      "function": "zeroFilledSubarray",
+      "source_py": "src/2348_number_of_zero_filled_subarrays.py",
+      "source_sifr": "src/2348_number_of_zero_filled_subarrays.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "2405_optimal_partition_of_string",
+      "function": "partitionString",
+      "source_py": "src/2405_optimal_partition_of_string.py",
+      "source_sifr": "src/2405_optimal_partition_of_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "1396_design_underground_system",
+      "function": "UndergroundSystem",
+      "source_py": "src/1396_design_underground_system.py",
+      "source_sifr": "src/1396_design_underground_system.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "checkIn": {
+              "args": [
+                "int",
+                "str",
+                "int"
+              ],
+              "result": "none"
+            },
+            "checkOut": {
+              "args": [
+                "int",
+                "str",
+                "int"
+              ],
+              "result": "none"
+            },
+            "getAverageTime": {
+              "args": [
+                "str",
+                "str"
+              ],
+              "result": "float"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_query_checksum"
+        },
+        "checksum": {
+          "type": "object_query_checksum"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 100,
+        "10000": 20,
+        "100000": 3
+      }
+    },
+    {
+      "id": "2483_minimum_penalty_for_a_shop",
+      "function": "bestClosingTime",
+      "source_py": "src/2483_minimum_penalty_for_a_shop.py",
+      "source_sifr": "src/2483_minimum_penalty_for_a_shop.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "customers",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "customers"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        10000,
+        100000
+      ],
+      "loops_by_size": {
+        "1000": 1000,
+        "10000": 200,
+        "100000": 30
+      }
+    },
+    {
+      "id": "0068_text_justification",
+      "function": "fullJustify",
+      "source_py": "src/0068_text_justification.py",
+      "source_sifr": "src/0068_text_justification.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "maxWidth",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "words",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "words",
+            "maxWidth"
+          ]
+        },
+        "expected": {
+          "type": "list_str"
+        },
+        "checksum": {
+          "type": "list_len"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        1000,
+        5000
+      ],
+      "loops_by_size": {
+        "100": 2000,
+        "1000": 1000,
+        "5000": 200
+      }
+    },
+    {
+      "id": "2306_naming_a_company",
+      "function": "distinctNames",
+      "source_py": "src/2306_naming_a_company.py",
+      "source_sifr": "src/2306_naming_a_company.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "ideas",
+              "type": "list[str]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "ideas"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        250,
+        500
+      ],
+      "loops_by_size": {
+        "100": 5,
+        "250": 2,
+        "500": 1
+      }
+    }
+  ]
+}

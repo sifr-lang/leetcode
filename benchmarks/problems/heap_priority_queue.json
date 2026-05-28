@@ -1,0 +1,657 @@
+{
+  "category": "Heap / Priority Queue",
+  "slug": "heap_priority_queue",
+  "order": 8,
+  "problems": [
+    {
+      "id": "0703_kth_largest_element_in_a_stream",
+      "function": "KthLargest",
+      "source_py": "src/0703_kth_largest_element_in_a_stream.py",
+      "source_sifr": "src/0703_kth_largest_element_in_a_stream.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [
+            {
+              "type": "int"
+            },
+            {
+              "type": "list[int]"
+            }
+          ],
+          "methods": {
+            "add": {
+              "args": [
+                "int"
+              ],
+              "result": "int"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_ops_checksum"
+        },
+        "checksum": {
+          "type": "object_ops"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "1046_last_stone_weight",
+      "function": "lastStoneWeight",
+      "source_py": "src/1046_last_stone_weight.py",
+      "source_sifr": "src/1046_last_stone_weight.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "stones",
+              "type": "list[int]",
+              "source": "tokens"
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "stones"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0973_k_closest_points_to_origin",
+      "function": "kClosest",
+      "source_py": "src/0973_k_closest_points_to_origin.py",
+      "source_sifr": "src/0973_k_closest_points_to_origin.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "points",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 1,
+              "cols_index": 2,
+              "start": 3
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "points",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0215_kth_largest_element_in_an_array",
+      "function": "findKthLargest",
+      "source_py": "src/0215_kth_largest_element_in_an_array.py",
+      "source_sifr": "src/0215_kth_largest_element_in_an_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0621_task_scheduler",
+      "function": "leastInterval",
+      "source_py": "src/0621_task_scheduler.py",
+      "source_sifr": "src/0621_task_scheduler.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "tasks",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "tasks",
+            "n"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0355_design_twitter",
+      "function": "Twitter",
+      "source_py": "src/0355_design_twitter.py",
+      "source_sifr": "src/0355_design_twitter.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "postTweet": {
+              "args": [
+                "int",
+                "int"
+              ],
+              "result": "none"
+            },
+            "getNewsFeed": {
+              "args": [
+                "int"
+              ],
+              "result": "list_int"
+            },
+            "follow": {
+              "args": [
+                "int",
+                "int"
+              ],
+              "result": "none"
+            },
+            "unfollow": {
+              "args": [
+                "int",
+                "int"
+              ],
+              "result": "none"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_ops_checksum"
+        },
+        "checksum": {
+          "type": "object_ops"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "1834_single_threaded_cpu",
+      "function": "getOrder",
+      "source_py": "src/1834_single_threaded_cpu.py",
+      "source_sifr": "src/1834_single_threaded_cpu.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "tasks",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "tasks"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 300,
+        "300": 100,
+        "700": 30
+      }
+    },
+    {
+      "id": "1845_seat_reservation_manager",
+      "function": "SeatManager",
+      "source_py": "src/1845_seat_reservation_manager.py",
+      "source_sifr": "src/1845_seat_reservation_manager.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [
+            "int"
+          ],
+          "methods": {
+            "reserve": {
+              "args": [],
+              "result": "int"
+            },
+            "unreserve": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_ops_checksum"
+        },
+        "checksum": {
+          "type": "object_ops"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "1985_find_the_kth_largest_integer_in_the_array",
+      "function": "kthLargestNumber",
+      "source_py": "src/1985_find_the_kth_largest_integer_in_the_array.py",
+      "source_sifr": "src/1985_find_the_kth_largest_integer_in_the_array.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "nums",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "nums",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0767_reorganize_string",
+      "function": "reorganizeString",
+      "source_py": "src/0767_reorganize_string.py",
+      "source_sifr": "src/0767_reorganize_string.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "s",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "s"
+          ]
+        },
+        "expected": {
+          "type": "str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0295_find_median_from_data_stream",
+      "function": "MedianFinder",
+      "source_py": "src/0295_find_median_from_data_stream.py",
+      "source_sifr": "src/0295_find_median_from_data_stream.sifr",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "object_ops",
+          "constructor_args": [],
+          "methods": {
+            "addNum": {
+              "args": [
+                "int"
+              ],
+              "result": "none"
+            },
+            "findMedian": {
+              "args": [],
+              "result": "float"
+            }
+          }
+        },
+        "expected": {
+          "type": "object_ops_checksum"
+        },
+        "checksum": {
+          "type": "object_ops"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "1383_maximum_performance_of_a_team",
+      "function": "maxPerformance",
+      "source_py": "src/1383_maximum_performance_of_a_team.py",
+      "source_sifr": "src/1383_maximum_performance_of_a_team.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "speed",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0
+            },
+            {
+              "name": "efficiency",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 2,
+              "count_index": 0,
+              "start_after_count_indices": [
+                0
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n",
+            "speed",
+            "efficiency",
+            "k"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    },
+    {
+      "id": "0502_ipo",
+      "function": "findMaximizedCapital",
+      "source_py": "src/0502_ipo.py",
+      "source_sifr": "src/0502_ipo.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "k",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "w",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "profits",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 3,
+              "count_index": 2
+            },
+            {
+              "name": "capital",
+              "type": "list[int]",
+              "source": "tokens",
+              "start": 3,
+              "count_index": 2,
+              "start_after_count_indices": [
+                2
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "k",
+            "w",
+            "profits",
+            "capital"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        1000,
+        5000,
+        10000
+      ],
+      "loops_by_size": {
+        "1000": 500,
+        "5000": 100,
+        "10000": 30
+      }
+    }
+  ]
+}

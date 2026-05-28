@@ -1,16 +1,25 @@
 # LeetCode 1189: Maximum Number Of Balloons
 
+def _nz_int(value: int | None) -> int:
+    if value is None:
+        return 0
+    return value
+
 def maxNumberOfBalloons(text: str) -> int:
     countText = Counter(text)
-    balloon = Counter("balloon")
+    b = _nz_int(countText["b"])
+    a = _nz_int(countText["a"])
+    l = _nz_int(countText["l"]) // 2
+    o = _nz_int(countText["o"]) // 2
+    n = _nz_int(countText["n"])
 
-    res = len(text)  # or float("inf")
-    for c in balloon:
-        res = min(res, countText[c] // balloon[c])
+    res = min(b, a)
+    res = min(res, l)
+    res = min(res, o)
+    res = min(res, n)
     return res
 
 def main():
     assert maxNumberOfBalloons('nlaebolko') == 1
     assert maxNumberOfBalloons('loonbalxballpoon') == 2
     assert maxNumberOfBalloons('leetcode') == 0
-

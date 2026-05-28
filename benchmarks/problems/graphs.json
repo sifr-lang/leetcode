@@ -1,0 +1,1020 @@
+{
+  "category": "Graphs",
+  "slug": "graphs",
+  "order": 10,
+  "problems": [
+    {
+      "id": "0463_island_perimeter",
+      "function": "islandPerimeter",
+      "source_py": "src/0463_island_perimeter.py",
+      "source_sifr": "src/0463_island_perimeter.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        40,
+        80
+      ],
+      "loops_by_size": {
+        "20": 500,
+        "40": 100,
+        "80": 20
+      }
+    },
+    {
+      "id": "0953_verifying_an_alien_dictionary",
+      "function": "isAlienSorted",
+      "source_py": "src/0953_verifying_an_alien_dictionary.py",
+      "source_sifr": "src/0953_verifying_an_alien_dictionary.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "order",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "words",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "words",
+            "order"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 500,
+        "300": 100,
+        "700": 20
+      }
+    },
+    {
+      "id": "0200_number_of_islands",
+      "function": "numIslands",
+      "source_py": "src/0200_number_of_islands.py",
+      "source_sifr": "src/0200_number_of_islands.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[str]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        40,
+        80
+      ],
+      "loops_by_size": {
+        "20": 500,
+        "40": 100,
+        "80": 20
+      }
+    },
+    {
+      "id": "0695_max_area_of_island",
+      "function": "maxAreaOfIsland",
+      "source_py": "src/0695_max_area_of_island.py",
+      "source_sifr": "src/0695_max_area_of_island.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        40,
+        80
+      ],
+      "loops_by_size": {
+        "20": 500,
+        "40": 100,
+        "80": 20
+      }
+    },
+    {
+      "id": "1905_count_sub_islands",
+      "function": "countSubIslands",
+      "source_py": "src/1905_count_sub_islands.py",
+      "source_sifr": "src/1905_count_sub_islands.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid1",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            },
+            {
+              "name": "grid2",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2,
+              "start_after_count_indices": [
+                1
+              ]
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid1",
+            "grid2"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 500,
+        "300": 100,
+        "700": 20
+      }
+    },
+    {
+      "id": "0417_pacific_atlantic_water_flow",
+      "function": "pacificAtlantic",
+      "source_py": "src/0417_pacific_atlantic_water_flow.py",
+      "source_sifr": "src/0417_pacific_atlantic_water_flow.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "heights",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "heights"
+          ]
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "0130_surrounded_regions",
+      "function": "solve",
+      "source_py": "src/0130_surrounded_regions.py",
+      "source_sifr": "src/0130_surrounded_regions.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "board",
+              "type": "matrix[str]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "mutates_single",
+          "args": [
+            "board"
+          ],
+          "mutated_arg": "board"
+        },
+        "expected": {
+          "type": "list_list_str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        20,
+        40,
+        80
+      ],
+      "loops_by_size": {
+        "20": 500,
+        "40": 100,
+        "80": 20
+      }
+    },
+    {
+      "id": "0994_rotting_oranges",
+      "function": "orangesRotting",
+      "source_py": "src/0994_rotting_oranges.py",
+      "source_sifr": "src/0994_rotting_oranges.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "0286_walls_and_gates",
+      "function": "walls_and_gates",
+      "source_py": "src/0286_walls_and_gates.py",
+      "source_sifr": "src/0286_walls_and_gates.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "rooms",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "mutates_single",
+          "args": [
+            "rooms"
+          ],
+          "mutated_arg": "rooms"
+        },
+        "expected": {
+          "type": "list_list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "0909_snakes_and_ladders",
+      "function": "snakesAndLadders",
+      "source_py": "src/0909_snakes_and_ladders.py",
+      "source_sifr": "src/0909_snakes_and_ladders.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "board",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "board"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "0752_open_the_lock",
+      "function": "openLock",
+      "source_py": "src/0752_open_the_lock.py",
+      "source_sifr": "src/0752_open_the_lock.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "target",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "deadends",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 1
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "deadends",
+            "target"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 200,
+        "300": 50,
+        "700": 10
+      }
+    },
+    {
+      "id": "0802_find_eventual_safe_states",
+      "function": "eventualSafeNodes",
+      "source_py": "src/0802_find_eventual_safe_states.py",
+      "source_sifr": "src/0802_find_eventual_safe_states.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "graph",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "graph"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 500,
+        "300": 100,
+        "700": 20
+      }
+    },
+    {
+      "id": "0210_course_schedule_ii",
+      "function": "findOrder",
+      "source_py": "src/0210_course_schedule_ii.py",
+      "source_sifr": "src/0210_course_schedule_ii.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "numCourses",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "prerequisites",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 1,
+              "cols_index": 2,
+              "start": 3
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "numCourses",
+            "prerequisites"
+          ]
+        },
+        "expected": {
+          "type": "list_int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 500,
+        "300": 100,
+        "700": 20
+      }
+    },
+    {
+      "id": "1958_check_if_move_is_legal",
+      "function": "checkMove",
+      "source_py": "src/1958_check_if_move_is_legal.py",
+      "source_sifr": "src/1958_check_if_move_is_legal.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "rMove",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "cMove",
+              "type": "int",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "color",
+              "type": "str",
+              "source": "token",
+              "index": 2
+            },
+            {
+              "name": "board",
+              "type": "matrix[str]",
+              "source": "matrix_tokens",
+              "rows_index": 3,
+              "cols_index": 4,
+              "start": 5
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "board",
+            "rMove",
+            "cMove",
+            "color"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        8
+      ],
+      "loops_by_size": {
+        "8": 500
+      }
+    },
+    {
+      "id": "1091_shortest_path_in_binary_matrix",
+      "function": "shortestPathBinaryMatrix",
+      "source_py": "src/1091_shortest_path_in_binary_matrix.py",
+      "source_sifr": "src/1091_shortest_path_in_binary_matrix.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "0261_graph_valid_tree",
+      "function": "validTree",
+      "source_py": "src/0261_graph_valid_tree.py",
+      "source_sifr": "src/0261_graph_valid_tree.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "n",
+              "type": "int",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "edges",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 1,
+              "cols_index": 2,
+              "start": 3
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "n",
+            "edges"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 500,
+        "300": 100,
+        "700": 20
+      }
+    },
+    {
+      "id": "0721_accounts_merge",
+      "function": "accountsMerge",
+      "source_py": "src/0721_accounts_merge.py",
+      "source_sifr": "src/0721_accounts_merge.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "accounts",
+              "type": "matrix[str]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "accounts"
+          ]
+        },
+        "expected": {
+          "type": "list_list_str"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 200,
+        "300": 50,
+        "700": 10
+      }
+    },
+    {
+      "id": "1254_number_of_closed_islands",
+      "function": "closedIsland",
+      "source_py": "src/1254_number_of_closed_islands.py",
+      "source_sifr": "src/1254_number_of_closed_islands.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "1020_number_of_enclaves",
+      "function": "numEnclaves",
+      "source_py": "src/1020_number_of_enclaves.py",
+      "source_sifr": "src/1020_number_of_enclaves.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "grid",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "grid"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        20,
+        40
+      ],
+      "loops_by_size": {
+        "10": 500,
+        "20": 100,
+        "40": 20
+      }
+    },
+    {
+      "id": "0785_is_graph_bipartite",
+      "function": "isBipartiteBFS",
+      "source_py": "src/0785_is_graph_bipartite.py",
+      "source_sifr": "src/0785_is_graph_bipartite.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "graph",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "graph"
+          ]
+        },
+        "expected": {
+          "type": "bool"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        100,
+        300,
+        700
+      ],
+      "loops_by_size": {
+        "100": 500,
+        "300": 100,
+        "700": 20
+      }
+    },
+    {
+      "id": "2101_detonate_the_maximum_bombs",
+      "function": "maximumDetonation",
+      "source_py": "src/2101_detonate_the_maximum_bombs.py",
+      "source_sifr": "src/2101_detonate_the_maximum_bombs.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "bombs",
+              "type": "matrix[int]",
+              "source": "matrix_tokens",
+              "rows_index": 0,
+              "cols_index": 1,
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "bombs"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        50,
+        100,
+        200
+      ],
+      "loops_by_size": {
+        "50": 200,
+        "100": 50,
+        "200": 10
+      }
+    },
+    {
+      "id": "0127_word_ladder",
+      "function": "ladderLength",
+      "source_py": "src/0127_word_ladder.py",
+      "source_sifr": "src/0127_word_ladder.sifr",
+      "runner": {
+        "input": {
+          "bindings": [
+            {
+              "name": "beginWord",
+              "type": "str",
+              "source": "token",
+              "index": 0
+            },
+            {
+              "name": "endWord",
+              "type": "str",
+              "source": "token",
+              "index": 1
+            },
+            {
+              "name": "wordList",
+              "type": "list[str]",
+              "source": "tokens",
+              "start": 2
+            }
+          ]
+        },
+        "call": {
+          "mode": "single",
+          "args": [
+            "beginWord",
+            "endWord",
+            "wordList"
+          ]
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [
+        10,
+        50,
+        100
+      ],
+      "loops_by_size": {
+        "10": 200,
+        "50": 50,
+        "100": 10
+      }
+    }
+  ]
+}
