@@ -446,7 +446,7 @@ def single_sifr_runner_body(function: str, runner: dict[str, Any], owned_args: s
 def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
     fixture_text: str = _bench_read_required(fixture_path)
     expected_text: str = _bench_read_required(expected_path)
-    tokens: list[str] = fixture_text.split()
+    _bench_tokens: list[str] = fixture_text.split()
     expected_tokens: list[str] = expected_text.split()
 {indent(bindings, 4)}
     result: {result_type} = {call}
@@ -481,7 +481,7 @@ def mutates_single_sifr_runner_body(function: str, runner: dict[str, Any]) -> st
 def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
     fixture_text: str = _bench_read_required(fixture_path)
     expected_text: str = _bench_read_required(expected_path)
-    tokens: list[str] = fixture_text.split()
+    _bench_tokens: list[str] = fixture_text.split()
     expected_tokens: list[str] = expected_text.split()
 {indent(bindings, 4)}
     {call}
@@ -491,7 +491,7 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
 
     checksum: int = 0
     for _loop in range(0, loops):
-        tokens = fixture_text.split()
+        _bench_tokens = fixture_text.split()
 {indent(bindings, 8)}
         {call}
         loop_result = {mutated_arg}
@@ -521,7 +521,7 @@ def batch_sifr_runner_body(function: str, runner: dict[str, Any]) -> str:
 def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
     fixture_text: str = _bench_read_required(fixture_path)
     expected_text: str = _bench_read_required(expected_path)
-    tokens: list[str] = fixture_text.split()
+    _bench_tokens: list[str] = fixture_text.split()
     expected_tokens: list[str] = expected_text.split()
 {indent(bindings, 4)}
     expected_count: int = _bench_parse_int(_bench_nz_str(expected_tokens[0]))
@@ -738,28 +738,28 @@ def render_sifr_bindings(bindings: list[dict[str, Any]]) -> str:
 def sifr_binding_code(binding: dict[str, Any]) -> str:
     name = binding["name"]
     if binding["type"] == "int" and binding["source"] == "token":
-        return f"{name}: int = _bench_parse_int(_bench_nz_str(tokens[{int(binding['index'])}]))"
+        return f"{name}: int = _bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['index'])}]))"
     if binding["type"] == "float" and binding["source"] == "token":
-        return f"{name}: float = _bench_parse_float(_bench_nz_str(tokens[{int(binding['index'])}]))"
+        return f"{name}: float = _bench_parse_float(_bench_nz_str(_bench_tokens[{int(binding['index'])}]))"
     if binding["type"] == "str" and binding["source"] == "token":
-        return f"{name}: str = _bench_nz_str(tokens[{int(binding['index'])}])"
+        return f"{name}: str = _bench_nz_str(_bench_tokens[{int(binding['index'])}])"
     if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":
         start = int(binding.get("start", 0))
         start_expr = str(start)
         for index in binding.get("start_after_count_indices", []):
-            start_expr += f" + _bench_parse_int(_bench_nz_str(tokens[{int(index)}]))"
+            start_expr += f" + _bench_parse_int(_bench_nz_str(_bench_tokens[{int(index)}]))"
         end = binding.get("end")
         if "count_index" in binding:
-            upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(tokens[{int(binding['count_index'])}]))"
+            upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['count_index'])}]))"
         else:
-            upper = f"{int(end)}" if end is not None else "len(tokens)"
+            upper = f"{int(end)}" if end is not None else "len(_bench_tokens)"
         scalar_type = binding["type"][5:-1]
         if scalar_type == "int":
-            parse = "_bench_parse_int(_bench_nz_str(tokens[index]))"
+            parse = "_bench_parse_int(_bench_nz_str(_bench_tokens[index]))"
         elif scalar_type == "float":
-            parse = "_bench_parse_float(_bench_nz_str(tokens[index]))"
+            parse = "_bench_parse_float(_bench_nz_str(_bench_tokens[index]))"
         else:
-            parse = "_bench_nz_str(tokens[index])"
+            parse = "_bench_nz_str(_bench_tokens[index])"
         return "\n".join(
             [
                 f"{name}: list[{scalar_type}] = []",
@@ -768,13 +768,13 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
             ]
         )
     if binding["type"] in ("matrix[int]", "matrix[str]") and binding["source"] == "matrix_tokens":
-        rows = f"_bench_parse_int(_bench_nz_str(tokens[{int(binding['rows_index'])}]))"
-        cols = f"_bench_parse_int(_bench_nz_str(tokens[{int(binding['cols_index'])}]))"
+        rows = f"_bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['rows_index'])}]))"
+        cols = f"_bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['cols_index'])}]))"
         start_expr = str(int(binding["start"]))
         for index in binding.get("start_after_count_indices", []):
-            start_expr += f" + _bench_parse_int(_bench_nz_str(tokens[{int(index)}]))"
+            start_expr += f" + _bench_parse_int(_bench_nz_str(_bench_tokens[{int(index)}]))"
         scalar_type = "int" if binding["type"] == "matrix[int]" else "str"
-        parse = "_bench_parse_int(_bench_nz_str(tokens[index]))" if scalar_type == "int" else "_bench_nz_str(tokens[index])"
+        parse = "_bench_parse_int(_bench_nz_str(_bench_tokens[index]))" if scalar_type == "int" else "_bench_nz_str(_bench_tokens[index])"
         return "\n".join(
             [
                 f"{name}: list[list[{scalar_type}]] = []",
@@ -876,13 +876,13 @@ def sifr_call(
             start = int(binding.get("start", 0))
             start_expr = str(start)
             for index in binding.get("start_after_count_indices", []):
-                start_expr += f" + _bench_parse_int(_bench_nz_str(tokens[{int(index)}]))"
+                start_expr += f" + _bench_parse_int(_bench_nz_str(_bench_tokens[{int(index)}]))"
             end = binding.get("end")
             if "count_index" in binding:
-                upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(tokens[{int(binding['count_index'])}]))"
+                upper = f"{start_expr} + _bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['count_index'])}]))"
             else:
-                upper = f"{int(end)}" if end is not None else "len(tokens)"
-            expression = f"_build_list_node(tokens, {start_expr}, {upper})"
+                upper = f"{int(end)}" if end is not None else "len(_bench_tokens)"
+            expression = f"_build_list_node(_bench_tokens, {start_expr}, {upper})"
             if not binding.get("nullable", True):
                 expression = f"_expect_list_node({expression})"
             rendered_args.append(expression)
