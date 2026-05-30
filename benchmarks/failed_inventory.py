@@ -36,30 +36,10 @@ FAILED_DETAILS: dict[str, dict[str, str]] = {
         "failure_mode": "typed_stack_inference",
         "first_fix": "add_typed_tuple_stack_and_optional_safe_pop",
     },
-    "0853_car_fleet": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "float_conversion_unhandled",
-        "first_fix": "use_safe_ratio_helper_for_travel_time",
-    },
-    "1209_remove_all_adjacent_duplicates_in_string_ii": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "guard_k_positive_and_handle_modulo_result",
-    },
     "0084_largest_rectangle_in_histogram": {
         "primary_track": "leetcode_sifr_code",
         "failure_mode": "typed_stack_inference",
         "first_fix": "add_typed_tuple_stack_and_optional_safe_pop",
-    },
-    "0441_arranging_coins": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "float_conversion_unhandled",
-        "first_fix": "rewrite_to_checked_integer_arithmetic",
-    },
-    "0875_koko_eating_bananas": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "use_positive_ceil_division_helper",
     },
     "0206_reverse_linked_list": {
         "primary_track": "benchmark_harness",
@@ -146,11 +126,6 @@ FAILED_DETAILS: dict[str, dict[str, str]] = {
         "failure_mode": "timeout_stateful_object",
         "first_fix": "replace_recursive_rebuilds_with_predictable_state",
     },
-    "0622_design_circular_queue": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "handle_modulo_result_after_capacity_guard",
-    },
     "0144_binary_tree_preorder_traversal": {
         "primary_track": "benchmark_harness",
         "failure_mode": "moved_owned_tree_input",
@@ -226,70 +201,15 @@ FAILED_DETAILS: dict[str, dict[str, str]] = {
         "failure_mode": "moved_owned_tree_input",
         "first_fix": "rebuild_owned_tree_input_per_call",
     },
-    "1383_maximum_performance_of_a_team": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "handle_positive_constant_modulo_result",
-    },
-    "0502_ipo": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "decode_heap_values_with_checked_helpers",
-    },
-    "0698_partition_to_k_equal_sum_subsets": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "guard_k_positive_and_handle_division_modulo",
-    },
-    "0909_snakes_and_ladders": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "use_checked_board_coordinate_helper",
-    },
-    "0743_network_delay_time": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "decode_heap_entries_without_reusing_moved_values",
-    },
     "0269_alien_dictionary": {
         "primary_track": "benchmark_harness",
         "failure_mode": "correctness_expected_shape",
         "first_fix": "validate_topological_order_shape",
     },
-    "0062_unique_paths": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "use_checked_exact_combinatorics_division",
-    },
-    "1220_count_vowels_permutation": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "handle_positive_constant_modulo_result",
-    },
-    "0846_hand_of_straights": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "guard_group_size_and_handle_modulo",
-    },
-    "0263_ugly_number": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "handle_constant_divisor_modulo_and_division",
-    },
-    "1260_shift_2d_grid": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "division_result_unhandled",
-        "first_fix": "use_checked_matrix_index_conversion_helper",
-    },
     "0006_zigzag_conversion": {
         "primary_track": "leetcode_sifr_code",
         "failure_mode": "moved_string_parameter",
         "first_fix": "remove_unnecessary_owned_string_parameter",
-    },
-    "0007_reverse_integer": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "float_conversion_unhandled",
-        "first_fix": "use_integer_truncation_helper",
     },
 }
 

@@ -647,12 +647,8 @@
         "12": 100,
         "16": 20
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0051_n_queens",

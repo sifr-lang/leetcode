@@ -562,12 +562,8 @@
         "10000": 200,
         "100000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0071_simplify_path",
@@ -753,11 +749,12 @@
         "10000": 200,
         "100000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "division_result"
+        "string_allocation",
+        "stack_clone"
       ]
     },
     {

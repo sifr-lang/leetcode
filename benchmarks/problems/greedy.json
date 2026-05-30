@@ -117,12 +117,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
       "loops_by_size": { "1000": 500, "10000": 100, "100000": 10 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "1423_maximum_points_you_can_obtain_from_cards",

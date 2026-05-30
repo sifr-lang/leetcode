@@ -67,6 +67,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "1930_unique_length_3_palindromic_subsequences": compiler("string_indexing", "set_clone"),
     "0187_repeated_dna_sequences": compiler("substring_allocation", "set_clone"),
     "0402_remove_k_digits": compiler("string_indexing", "list_clone", parity="unknown"),
+    "1209_remove_all_adjacent_duplicates_in_string_ii": compiler("string_allocation", "stack_clone"),
     "1631_path_with_minimum_effort": leetcode_fixed("heap_parity", "matrix_clone"),
     "0763_partition_labels": compiler("string_indexing", "dict_clone"),
     "0680_valid_palindrome_ii": compiler("string_indexing"),
@@ -126,11 +127,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
 
 FAILED_SEED: dict[str, dict[str, Any]] = {
     "0739_daily_temperatures": {"benchmark_status": "failed_build", "slowness_tags": ["type_error"]},
-    "0853_car_fleet": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "1209_remove_all_adjacent_duplicates_in_string_ii": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
     "0084_largest_rectangle_in_histogram": {"benchmark_status": "failed_build", "slowness_tags": ["type_error"]},
-    "0441_arranging_coins": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "0875_koko_eating_bananas": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
     "0206_reverse_linked_list": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0021_merge_two_sorted_lists": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0234_palindrome_linked_list": {"benchmark_status": "partial", "slowness_tags": ["optional_type", "list_node_clone"]},
@@ -148,7 +145,6 @@ FAILED_SEED: dict[str, dict[str, Any]] = {
     "0147_insertion_sort_list": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0025_reverse_nodes_in_k_group": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0707_design_linked_list": {"benchmark_status": "failed_timeout", "slowness_tags": ["stateful_object", "timeout"]},
-    "0622_design_circular_queue": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
     "0144_binary_tree_preorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
     "0145_binary_tree_postorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
     "0226_invert_binary_tree": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
@@ -164,24 +160,13 @@ FAILED_SEED: dict[str, dict[str, Any]] = {
     "0105_construct_binary_tree_from_preorder_and_inorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
     "0513_find_bottom_left_tree_value": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
     "0669_trim_a_binary_search_tree": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "1383_maximum_performance_of_a_team": {"benchmark_status": "failed_build", "slowness_tags": ["division_result", "heap_missing"]},
-    "0502_ipo": {"benchmark_status": "failed_build", "slowness_tags": ["division_result", "heap_missing"]},
-    "0698_partition_to_k_equal_sum_subsets": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "0909_snakes_and_ladders": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "0743_network_delay_time": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value"]},
     "0269_alien_dictionary": {
         "benchmark_status": "failed_correctness",
         "parity_status": "failed_correctness",
         "primary_slowness_owner": "leetcode_sifr_code",
         "slowness_tags": ["correctness"],
     },
-    "0062_unique_paths": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "1220_count_vowels_permutation": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "0846_hand_of_straights": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "0263_ugly_number": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
-    "1260_shift_2d_grid": {"benchmark_status": "failed_build", "slowness_tags": ["division_result", "matrix_clone"]},
     "0006_zigzag_conversion": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "string_indexing"]},
-    "0007_reverse_integer": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},
 }
 
 

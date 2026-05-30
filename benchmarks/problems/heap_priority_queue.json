@@ -633,13 +633,8 @@
         "5000": 100,
         "10000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result",
-        "heap_missing"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0502_ipo",
@@ -707,13 +702,8 @@
         "5000": 100,
         "10000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result",
-        "heap_missing"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     }
   ]
 }
