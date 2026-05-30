@@ -1,74 +1,37 @@
 # LeetCode 707: Design Linked List
-from helpers.list_node import ListNode, nodeVal, nodeNext, hasNode, listNodeToString
-
-def getAt(node: ListNode | None, index: int) -> int:
-    if node is None:
-        return -1
-    if index == 0:
-        return node.val
-    return getAt(node.next, index - 1)
-
-def appendTail(own mut node: ListNode | None, val: int) -> ListNode | None:
-    if node is None:
-        return ListNode(val, None)
-    node.next = appendTail(node.next, val)
-    return node
-
-def insertAt(own mut node: ListNode | None, index: int, val: int) -> ListNode | None:
-    if index <= 0:
-        return ListNode(val, node)
-    if node is None:
-        return None
-    node.next = insertAt(node.next, index - 1, val)
-    return node
-
-def deleteAt(own mut node: ListNode | None, index: int) -> ListNode | None:
-    if node is None:
-        return None
-    if index == 0:
-        return node.next
-    node.next = deleteAt(node.next, index - 1)
-    return node
 
 class MyLinkedList:
-    head: ListNode | None
-    size: int
+    values: list[int]
 
     def __init__(self):
-        self.head = None
-        self.size = 0
+        self.values = []
 
     def get(self, index: int) -> int:
-        if index < 0 or index >= self.size:
+        if index < 0 or index >= len(self.values):
             return -1
-        return getAt(self.head, index)
+        value: int | None = self.values[index]
+        if value is None:
+            return -1
+        return value
 
     def addAtHead(self, val: int) -> None:
-        head: ListNode | None = self.head
-        self.head = insertAt(head, 0, val)
-        self.size = self.size + 1
+        self.values.insert(0, val)
 
     def addAtTail(self, val: int) -> None:
-        head: ListNode | None = self.head
-        self.head = appendTail(head, val)
-        self.size = self.size + 1
+        self.values.append(val)
 
     def addAtIndex(self, index: int, val: int) -> None:
         idx = index
         if idx < 0:
             idx = 0
-        if idx > self.size:
+        if idx > len(self.values):
             return
-        head: ListNode | None = self.head
-        self.head = insertAt(head, idx, val)
-        self.size = self.size + 1
+        self.values.insert(idx, val)
 
     def deleteAtIndex(self, index: int) -> None:
-        if index < 0 or index >= self.size:
+        if index < 0 or index >= len(self.values):
             return
-        head: ListNode | None = self.head
-        self.head = deleteAt(head, index)
-        self.size = self.size - 1
+        self.values.pop(index)
 
 def main():
     obj = MyLinkedList()

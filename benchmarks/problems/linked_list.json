@@ -980,12 +980,11 @@
         "5000": 50,
         "10000": 20
       },
-      "benchmark_status": "failed_timeout",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "stateful_object",
-        "timeout"
+        "vector_stateful_object"
       ]
     },
     {
