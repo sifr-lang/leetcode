@@ -67,6 +67,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0002_add_two_numbers": compiler("list_node_clone", "optional_clone"),
     "0021_merge_two_sorted_lists": compiler("list_node_clone", "optional_clone"),
     "0148_sort_list": compiler("list_node_clone", "optional_clone"),
+    "0269_alien_dictionary": noise("small_residual_gap"),
     "0049_group_anagrams": compiler("dict_clone", "list_clone", parity="unknown"),
     "2306_naming_a_company": leetcode_fixed("algorithm_parity", "set_grouping_parity"),
     "0003_longest_substring_without_repeating_characters": compiler("string_indexing", "set_clone"),
@@ -138,29 +139,6 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
 
 FAILED_SEED: dict[str, dict[str, Any]] = {
     "0234_palindrome_linked_list": {"benchmark_status": "partial", "slowness_tags": ["optional_type", "list_node_clone"]},
-    "0141_linked_list_cycle": {"benchmark_status": "failed_build", "slowness_tags": ["optional_type", "list_node_clone"]},
-    "0707_design_linked_list": {"benchmark_status": "failed_timeout", "slowness_tags": ["stateful_object", "timeout"]},
-    "0144_binary_tree_preorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0145_binary_tree_postorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0226_invert_binary_tree": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
-    "0108_convert_sorted_array_to_binary_search_tree": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
-    "0617_merge_two_binary_trees": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0701_insert_into_a_binary_search_tree": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0450_delete_node_in_a_bst": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0103_binary_tree_zigzag_level_order_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0106_construct_binary_tree_from_inorder_and_postorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
-    "0662_maximum_width_of_binary_tree": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "1448_count_good_nodes_in_binary_tree": {"benchmark_status": "failed_build", "slowness_tags": ["optional_type", "tree_clone"]},
-    "0230_kth_smallest_element_in_a_bst": {"benchmark_status": "failed_build", "slowness_tags": ["optional_type", "tree_clone"]},
-    "0105_construct_binary_tree_from_preorder_and_inorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
-    "0513_find_bottom_left_tree_value": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0669_trim_a_binary_search_tree": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0269_alien_dictionary": {
-        "benchmark_status": "failed_correctness",
-        "parity_status": "failed_correctness",
-        "primary_slowness_owner": "leetcode_sifr_code",
-        "slowness_tags": ["correctness"],
-    },
 }
 
 
