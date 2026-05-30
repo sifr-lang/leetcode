@@ -58,7 +58,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0567_permutation_in_string": mixed("string_indexing", "list_clone"),
     "2130_maximum_twin_sum_of_a_linked_list": compiler("list_node_clone", "optional_clone"),
     "0049_group_anagrams": compiler("dict_clone", "list_clone", parity="unknown"),
-    "2306_naming_a_company": leetcode("algorithm_divergence", "set_grouping_missing"),
+    "2306_naming_a_company": leetcode_fixed("algorithm_parity", "set_grouping_parity"),
     "0003_longest_substring_without_repeating_characters": compiler("string_indexing", "set_clone"),
     "0706_design_hashmap": mixed("stateful_object", "field_clone"),
     "1888_minimum_number_of_flips_to_make_the_binary_string_alternating": compiler("string_indexing", "string_allocation"),
@@ -90,7 +90,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "2013_detect_squares": mixed("stateful_object", "dict_clone"),
     "0205_isomorphic_strings": compiler("string_indexing", "dict_clone"),
     "0778_swim_in_rising_water": leetcode_fixed("heap_parity", "matrix_clone"),
-    "0015_3sum": leetcode("algorithm_divergence"),
+    "0015_3sum": leetcode_fixed("algorithm_parity", "sort_two_pointer"),
     "0067_add_binary": compiler("string_indexing", "string_allocation"),
     "1189_maximum_number_of_balloons": compiler("dict_clone", "string_iteration"),
     "0125_valid_palindrome": compiler("string_indexing"),
@@ -121,8 +121,8 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0104_maximum_depth_of_binary_tree": compiler("tree_clone", "optional_clone"),
     "0199_binary_tree_right_side_view": compiler("tree_clone", "list_clone"),
     "0013_roman_to_integer": compiler("string_indexing", "dict_clone"),
-    "0496_next_greater_element_i": leetcode("algorithm_divergence"),
-    "0239_sliding_window_maximum": leetcode("algorithm_divergence"),
+    "0496_next_greater_element_i": leetcode_fixed("algorithm_parity", "stack_index_map"),
+    "0239_sliding_window_maximum": leetcode_fixed("algorithm_parity", "monotonic_queue"),
     "1046_last_stone_weight": leetcode_fixed("heap_parity"),
 }
 

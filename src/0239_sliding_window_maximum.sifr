@@ -2,17 +2,68 @@
 
 def maxSlidingWindow(nums: list[int], k: int) -> list[int]:
     output: list[int] = []
+    q: list[int] = []
+    head = 0
     left = 0
-    while left + k <= len(nums):
-        window = nums[left:left + k]
-        max_val = -1000000000000
-        for value in window:
-            if value > max_val:
-                max_val = value
-        output.append(max_val)
-        left += 1
+    right = 0
+
+    while right < len(nums):
+        right_value_opt: int | None = nums[right]
+        right_value: int = 0
+        if right_value_opt is not None:
+            right_value = right_value_opt
+        else:
+            break
+        while head < len(q):
+            last_index_opt: int | None = q[len(q) - 1]
+            last_index: int = 0
+            if last_index_opt is not None:
+                last_index = last_index_opt
+            else:
+                break
+            last_value_opt: int | None = nums[last_index]
+            last_value: int = 0
+            if last_value_opt is not None:
+                last_value = last_value_opt
+            else:
+                break
+            if last_value >= right_value:
+                break
+            q.pop()
+
+        q.append(right)
+
+        if head < len(q):
+            first_index_opt: int | None = q[head]
+            first_index: int = 0
+            if first_index_opt is not None:
+                first_index = first_index_opt
+            else:
+                break
+            if left > first_index:
+                head += 1
+
+        if right + 1 >= k:
+            first_index_opt: int | None = q[head]
+            first_index: int = 0
+            if first_index_opt is not None:
+                first_index = first_index_opt
+            else:
+                break
+            first_value_opt: int | None = nums[first_index]
+            first_value: int = 0
+            if first_value_opt is not None:
+                first_value = first_value_opt
+            else:
+                break
+            output.append(first_value)
+            left += 1
+
+        right += 1
+
     return output
 
 def main():
     assert maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3) == [3, 3, 5, 5, 6, 7]
     assert maxSlidingWindow([1], 1) == [1]
+    assert maxSlidingWindow([9, 8, 7, 6], 2) == [9, 8, 7]

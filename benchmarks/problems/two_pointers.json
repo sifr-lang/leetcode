@@ -525,10 +525,11 @@
         "800": 2
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "algorithm_divergence"
+        "algorithm_parity",
+        "sort_two_pointer"
       ]
     },
     {

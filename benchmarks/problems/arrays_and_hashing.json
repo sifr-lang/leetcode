@@ -745,10 +745,11 @@
         "100000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "algorithm_divergence"
+        "algorithm_parity",
+        "stack_index_map"
       ]
     },
     {
@@ -2765,11 +2766,11 @@
         "500": 1
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "algorithm_divergence",
-        "set_grouping_missing"
+        "algorithm_parity",
+        "set_grouping_parity"
       ]
     }
   ]

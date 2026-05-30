@@ -5,28 +5,46 @@ def _nz_str(value: str | None) -> str:
         return ""
     return str(value)
 
-def _contains(values: list[str], target: str) -> bool:
-    for value in values:
-        if value == target:
-            return True
-    return False
-
 def distinctNames(ideas: list[str]) -> int:
+    suffixes: dict[str, set[str]] = {}
+    for idea in ideas:
+        first = _nz_str(idea[0])
+        suffix = idea[1:]
+        bucket: set[str] = set()
+        if first not in suffixes:
+            bucket.add(suffix)
+            suffixes[first] = bucket
+        else:
+            bucket_opt: set[str] | None = suffixes[first]
+            if bucket_opt is not None:
+                bucket = bucket_opt
+            bucket.add(suffix)
+            suffixes[first] = bucket
+
+    if len(suffixes) < 2:
+        return 0
+
     total = 0
-    for i in range(len(ideas)):
-        idea1 = ideas[i]
-        first1 = _nz_str(idea1[0])
-        suffix1 = idea1[1:]
-        for j in range(i + 1, len(ideas)):
-            idea2 = ideas[j]
-            first2 = _nz_str(idea2[0])
-            if first1 == first2:
+    for prefix1 in suffixes:
+        for prefix2 in suffixes:
+            if prefix2 <= prefix1:
                 continue
-            suffix2 = idea2[1:]
-            new1 = first2 + suffix1
-            new2 = first1 + suffix2
-            if not _contains(ideas, new1) and not _contains(ideas, new2):
-                total += 2
+
+            suffixes1: set[str] = set()
+            suffixes2: set[str] = set()
+            suffixes1_opt: set[str] | None = suffixes[prefix1]
+            suffixes2_opt: set[str] | None = suffixes[prefix2]
+            if suffixes1_opt is not None:
+                suffixes1 = suffixes1_opt
+            if suffixes2_opt is not None:
+                suffixes2 = suffixes2_opt
+            count1 = len(suffixes1)
+            count2 = len(suffixes2)
+            for suffix in suffixes1:
+                if suffix in suffixes2:
+                    count1 -= 1
+                    count2 -= 1
+            total += 2 * count1 * count2
     return total
 
 def main():

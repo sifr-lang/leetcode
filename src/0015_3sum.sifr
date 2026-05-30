@@ -2,26 +2,62 @@
 
 def threeSum(mut nums: list[int]) -> list[list[int]]:
     res: list[list[int]] = []
-    seen: dict[str, bool] = {}
+    nums.sort()
+
     for i, a in enumerate(nums):
-        for j, b in enumerate(nums):
-            if j <= i:
-                continue
-            for k, c in enumerate(nums):
-                if k <= j:
+        if a > 0:
+            break
+
+        if i > 0:
+            prev_opt: int | None = nums[i - 1]
+            if prev_opt is not None:
+                prev: int = prev_opt
+                if a == prev:
                     continue
-                if a + b + c != 0:
-                    continue
-                triplet = [a, b, c]
-                triplet.sort()
-                key = str(triplet)
-                if key in seen:
-                    continue
-                seen[key] = True
-                res.append(triplet)
+
+        left = i + 1
+        right = len(nums) - 1
+        while left < right:
+            left_opt: int | None = nums[left]
+            right_opt: int | None = nums[right]
+            left_value: int = 0
+            right_value: int = 0
+            if left_opt is not None:
+                left_value = left_opt
+            else:
+                break
+            if right_opt is not None:
+                right_value = right_opt
+            else:
+                break
+
+            total = a + left_value + right_value
+            if total > 0:
+                right -= 1
+            elif total < 0:
+                left += 1
+            else:
+                res.append([a, left_value, right_value])
+                left += 1
+                right -= 1
+                while left < right:
+                    current_opt: int | None = nums[left]
+                    previous_opt: int | None = nums[left - 1]
+                    current: int = 0
+                    previous: int = 0
+                    if current_opt is not None:
+                        current = current_opt
+                    else:
+                        break
+                    if previous_opt is not None:
+                        previous = previous_opt
+                    else:
+                        break
+                    if current != previous:
+                        break
+                    left += 1
 
     return res
 
 def main():
-    out = str(threeSum([-1,0,1,2,-1,-4]))
-    assert out == '[[-1, -1, 2], [-1, 0, 1]]' or out == '[[-1, 0, 1], [-1, -1, 2]]'
+    assert threeSum([-1,0,1,2,-1,-4]) == [[-1, -1, 2], [-1, 0, 1]]
