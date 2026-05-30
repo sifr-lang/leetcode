@@ -2,11 +2,13 @@
 
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
     res = [0] * len(temperatures)
-    stack = []  # pair: [temp, index]
+    stack: list[tuple[int, int]] = []
 
     for i, t in enumerate(temperatures):
         while stack and t > stack[-1][0]:
-            pair = stack.pop()
+            pair: tuple[int, int] | None = stack.pop()
+            if pair is None:
+                break
             stackInd = pair[1]
             res[stackInd] = i - stackInd
         stack.append((t, i))

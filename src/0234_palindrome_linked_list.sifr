@@ -5,8 +5,8 @@ def unwrapInt(value: int | None) -> int:
     if value is None:
         return 0
     return value
-def isPalindrome(own head: ListNode) -> bool:
-    values = []
+def isPalindrome(own head: ListNode | None) -> bool:
+    values: list[int] = []
     cur: ListNode | None = head
     while hasNode(cur):
         values.append(nodeVal(cur))
