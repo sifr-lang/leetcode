@@ -395,12 +395,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -510,12 +510,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {

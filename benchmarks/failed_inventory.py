@@ -56,17 +56,7 @@ FAILED_DETAILS: dict[str, dict[str, str]] = {
         "failure_mode": "moved_result_rendering",
         "first_fix": "render_structured_result_once_in_runner",
     },
-    "0019_remove_nth_node_from_end_of_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
     "1721_swapping_nodes_in_a_linked_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0002_add_two_numbers": {
         "primary_track": "benchmark_harness",
         "failure_mode": "moved_result_rendering",
         "first_fix": "render_structured_result_once_in_runner",
