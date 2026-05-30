@@ -28,16 +28,51 @@ def _index_char(i: int) -> str:
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     return _nz_str(alphabet[i])
 
+def _append_present(mut present_order: list[int], idx: int) -> None:
+    if idx not in present_order:
+        present_order.append(idx)
+
+def _has_prefix(w1: str, w2: str, length: int) -> bool:
+    j = 0
+    while j < length:
+        if _nz_str(w1[j]) != _nz_str(w2[j]):
+            return False
+        j += 1
+    return True
+
+def _dfs_visit(
+    node: int,
+    mut states: list[int],
+    edges: list[list[bool]],
+    order: list[int],
+    mut output: list[int],
+) -> bool:
+    state = _nz_int(states[node])
+    if state == 1:
+        return True
+    if state == 2:
+        return False
+
+    states[node] = 1
+    row: list[bool] | None = edges[node]
+    if row is not None:
+        for neighbor in order:
+            if _nz_bool(row[neighbor]):
+                if _dfs_visit(neighbor, states, edges, order, output):
+                    return True
+    states[node] = 2
+    output.append(node)
+    return False
+
 def alienOrder(words: list[str]) -> str:
-    present = [False for _ in range(26)]
+    present_order: list[int] = []
     edges = []
     for _ in range(26):
         edges.append([False for _ in range(26)])
-    indegree = [0 for _ in range(26)]
 
     for word in words:
         for ch in word:
-            present[_char_index(ch)] = True
+            _append_present(present_order, _char_index(ch))
 
     i = 0
     while i + 1 < len(words):
@@ -53,39 +88,25 @@ def alienOrder(words: list[str]) -> str:
             if c1 != c2:
                 u = _char_index(c1)
                 v = _char_index(c2)
-                if not _nz_bool(edges[u][v]):
-                    edges[u][v] = True
-                    indegree[v] = _nz_int(indegree[v]) + 1
+                edges[u][v] = True
                 found_diff = True
                 break
             j += 1
-        if not found_diff and len(w1) > len(w2):
+        if not found_diff and len(w1) > len(w2) and _has_prefix(w1, w2, min_len):
             return ""
         i += 1
 
-    queue = []
-    for idx in range(26):
-        if _nz_bool(present[idx]) and _nz_int(indegree[idx]) == 0:
-            queue.append(idx)
+    states = [0 for _ in range(26)]
+    output: list[int] = []
+    for node in present_order:
+        if _dfs_visit(node, states, edges, present_order, output):
+            return ""
 
     res = ""
-    head = 0
-    while head < len(queue):
-        u = _nz_int(queue[head])
-        head += 1
-        res += _index_char(u)
-        for v in range(26):
-            if _nz_bool(edges[u][v]):
-                indegree[v] = _nz_int(indegree[v]) - 1
-                if _nz_int(indegree[v]) == 0:
-                    queue.append(v)
-
-    present_count = 0
-    for idx in range(26):
-        if _nz_bool(present[idx]):
-            present_count += 1
-    if len(res) != present_count:
-        return ""
+    out_idx = len(output) - 1
+    while out_idx >= 0:
+        res += _index_char(_nz_int(output[out_idx]))
+        out_idx -= 1
     return res
 
 def main():
