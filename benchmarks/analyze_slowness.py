@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from failed_inventory import build_inventory, failure_excerpt, validate_details
 from slowness_seed import FAILED_SEED, SLOWNESS_SEED, seed_metadata
 from specs import RAW_RESULTS_DIR, ProblemSpec, fixture_stem, load_problem_groups, load_problem_specs
 
@@ -98,17 +99,6 @@ def analyze_problem(spec: ProblemSpec, raw_dir: Path) -> ProblemAnalysis:
 
 def analyze_all(specs: dict[str, ProblemSpec], raw_dir: Path) -> list[ProblemAnalysis]:
     return [analyze_problem(spec, raw_dir) for spec in specs.values()]
-
-
-def failure_excerpt(problem_id: str, raw_dir: Path) -> str:
-    log_path = raw_dir / f"{problem_id}.run.log"
-    if not log_path.exists():
-        return "no complete Python/Sifr result pair was recorded"
-    for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines():
-        line = line.strip()
-        if line:
-            return line[:220]
-    return "empty run log"
 
 
 def format_ratio(ratio: float | None) -> str:
@@ -395,6 +385,7 @@ def validate_metadata(analyses: list[ProblemAnalysis]) -> list[str]:
         diagnostics.append(f"missing slowness seed metadata: {', '.join(missing_slower)}")
     if missing_failed:
         diagnostics.append(f"missing failed/partial seed metadata: {', '.join(missing_failed)}")
+    diagnostics.extend(validate_details())
     for analysis in analyses:
         spec = analysis.spec
         if spec.benchmark_status not in VALID_BENCHMARK_STATUS | {"unknown"}:
@@ -412,6 +403,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Analyze Sifr/Python LeetCode benchmark slowness")
     parser.add_argument("--raw-dir", type=Path, default=RAW_RESULTS_DIR, help="directory containing raw benchmark exports")
     parser.add_argument("--output", type=Path, help="write or update a markdown analyzer snapshot")
+    parser.add_argument("--failed-json", type=Path, help="write failed/incomplete inventory JSON")
+    parser.add_argument(
+        "--generated-at",
+        help="override the failed inventory generated_at timestamp, useful for reproducible tests",
+    )
     parser.add_argument("--write-metadata", action="store_true", help="seed benchmark metadata into problem registry JSON")
     parser.add_argument("--check-metadata", action="store_true", help="validate analyzer coverage and registry metadata")
     return parser
@@ -428,8 +424,12 @@ def main() -> None:
         analyses = analyze_all(specs, args.raw_dir)
     if args.output:
         write_markdown(args.output, markdown)
-    else:
+    elif not args.failed_json:
         print(markdown)
+    if args.failed_json:
+        inventory = build_inventory(analyses, args.raw_dir, observed_status, generated_at=args.generated_at)
+        args.failed_json.parent.mkdir(parents=True, exist_ok=True)
+        args.failed_json.write_text(json.dumps(inventory, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if args.check_metadata:
         diagnostics = validate_metadata(analyses)
         if diagnostics:
