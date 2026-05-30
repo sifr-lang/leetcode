@@ -217,7 +217,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing"
+      ]
     },
     {
       "id": "0058_length_of_last_word",
@@ -258,7 +264,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing"
+      ]
     },
     {
       "id": "0001_two_sum",
@@ -346,7 +358,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing"
+      ]
     },
     {
       "id": "0049_group_anagrams",
@@ -386,7 +404,14 @@
         "1000": 1000,
         "5000": 200,
         "20000": 80
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "dict_clone",
+        "list_clone"
+      ]
     },
     {
       "id": "0118_pascals_triangle",
@@ -515,7 +540,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_allocation",
+        "set_clone"
+      ]
     },
     {
       "id": "0205_isomorphic_strings",
@@ -563,7 +595,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "dict_clone"
+      ]
     },
     {
       "id": "0605_can_place_flowers",
@@ -704,7 +743,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "algorithm_divergence"
+      ]
     },
     {
       "id": "0724_find_pivot_index",
@@ -870,7 +915,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "dict_clone",
+        "string_iteration"
+      ]
     },
     {
       "id": "0290_word_pattern",
@@ -1023,7 +1075,14 @@
         "1000": 20,
         "5000": 5,
         "10000": 2
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone"
+      ]
     },
     {
       "id": "0912_sort_an_array",
@@ -1190,7 +1249,14 @@
       ],
       "loops_by_size": {
         "9": 5000
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "set_clone",
+        "safe_indexing"
+      ]
     },
     {
       "id": "0271_encode_and_decode_strings",
@@ -1357,7 +1423,15 @@
         "1000": 20,
         "5000": 5,
         "10000": 2
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "field_clone",
+        "stateful_object",
+        "string_allocation"
+      ]
     },
     {
       "id": "0554_brick_wall",
@@ -1529,7 +1603,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "set_clone"
+      ]
     },
     {
       "id": "1963_minimum_number_of_swaps_to_make_the_string_balanced",
@@ -1613,7 +1694,13 @@
         "100": 2000,
         "1000": 1000,
         "5000": 200
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "dict_clone"
+      ]
     },
     {
       "id": "2002_maximum_product_of_the_length_of_two_palindromic_subsequences",
@@ -1874,7 +1961,14 @@
         "100": 20,
         "500": 10,
         "1000": 5
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "string_allocation",
+        "algorithm_parity_unknown"
+      ]
     },
     {
       "id": "0523_continuous_subarray_sum",
@@ -2004,7 +2098,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "substring_allocation",
+        "set_clone"
+      ]
     },
     {
       "id": "0380_insert_delete_getrandom_o1",
@@ -2054,7 +2155,14 @@
         "1000": 100,
         "10000": 20,
         "100000": 3
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone"
+      ]
     },
     {
       "id": "1461_check_if_a_string_contains_all_binary_codes_of_size_k",
@@ -2102,7 +2210,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "substring_allocation",
+        "set_clone"
+      ]
     },
     {
       "id": "0304_range_sum_query_2d_immutable",
@@ -2447,7 +2562,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "set_clone"
+      ]
     },
     {
       "id": "1396_design_underground_system",
@@ -2504,7 +2626,15 @@
         "1000": 100,
         "10000": 20,
         "100000": 3
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone",
+        "string_key"
+      ]
     },
     {
       "id": "2483_minimum_penalty_for_a_shop",
@@ -2633,7 +2763,14 @@
         "100": 5,
         "250": 2,
         "500": 1
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "algorithm_divergence",
+        "set_grouping_missing"
+      ]
     }
   ]
 }

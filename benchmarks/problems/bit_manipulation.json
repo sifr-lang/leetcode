@@ -293,7 +293,13 @@
         "3": 200000,
         "6": 100000,
         "9": 50000
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "0067_add_binary",
@@ -341,7 +347,14 @@
         "1000": 200,
         "10000": 20,
         "100000": 2
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "string_allocation"
+      ]
     }
   ]
 }

@@ -9,6 +9,13 @@ from pathlib import Path
 from typing import Any
 
 from report_format import format_fold
+from report_metadata import (
+    include_in_apples_to_apples_summary,
+    metadata_badges,
+    metadata_data_attrs,
+    metadata_summary_panel,
+    metadata_styles,
+)
 from report_table import comparison_header, comparison_rows, sorted_impls
 
 
@@ -58,6 +65,10 @@ def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
             {
                 "category": spec.category,
                 "problem": spec.problem_id,
+                "benchmark_status": spec.benchmark_status,
+                "parity_status": spec.parity_status,
+                "primary_slowness_owner": spec.primary_slowness_owner,
+                "slowness_tags": list(spec.slowness_tags),
                 "size": size,
                 "impl": impl,
                 "operations": operations,
@@ -163,13 +174,15 @@ def report_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
     stable_pairs = 0
     total_pairs = 0
     for category, problems in grouped_report_rows(rows).items():
-        categories.add(category)
         for problem_id, sizes in problems.items():
-            problem_ids.add(problem_id)
             for impls in sizes.values():
                 python = impls.get("python")
                 sifr = impls.get("sifr")
                 if python and sifr and sifr["mean_ms"] > 0:
+                    if not include_in_apples_to_apples_summary(impls):
+                        continue
+                    categories.add(category)
+                    problem_ids.add(problem_id)
                     pair_speedups.append(python["mean_ms"] / sifr["mean_ms"])
                     memory_delta = memory_delta_for_impls(impls)
                     if memory_delta is not None:
@@ -301,7 +314,11 @@ def problem_summary(sizes: dict[int, dict[str, dict[str, Any]]]) -> dict[str, An
 
 
 def category_summary(problems: dict[str, dict[int, dict[str, dict[str, Any]]]]) -> dict[str, Any]:
-    summaries = [problem_summary(sizes) for sizes in problems.values()]
+    summaries = [
+        problem_summary(sizes)
+        for sizes in problems.values()
+        if all(include_in_apples_to_apples_summary(impls) for impls in sizes.values())
+    ]
     speedups = [summary["median_speedup"] for summary in summaries if summary["median_speedup"] is not None]
     memory = [summary["median_memory_delta"] for summary in summaries if summary["median_memory_delta"] is not None]
     return {
@@ -578,7 +595,10 @@ def comparison_value_bars(
     """
 
 
-def category_problem_bars(problems: dict[str, dict[int, dict[str, dict[str, Any]]]]) -> str:
+def category_problem_bars(
+    problems: dict[str, dict[int, dict[str, dict[str, Any]]]],
+    specs: dict[str, Any],
+) -> str:
     summaries = []
     for problem_id, sizes in problems.items():
         summary = problem_summary(sizes)
@@ -593,6 +613,7 @@ def category_problem_bars(problems: dict[str, dict[int, dict[str, dict[str, Any]
             f"""
             <div class="category-bar" data-tier="{tier}">
               <span>{escape(problem_id)}</span>
+              <div class="metadata-row">{metadata_badges(specs[problem_id])}</div>
               {comparison_value_bars(sizes, key="mean_ms", title="Runtime", formatter=format_ms, badge=f'<strong class="summary-badge {tier}" title="{RUNTIME_TIER_TITLES[tier]}">{format_runtime_advantage(median)}</strong>')}
               {comparison_value_bars(sizes, key="peak_memory_mb", title="Memory", formatter=format_memory, badge=memory_delta_badge(memory_delta))}
               <em class="variance-dot {'noisy' if summary['noisy'] else 'stable'}" title="{'Noisy benchmark measurements' if summary['noisy'] else 'Stable benchmark measurements'}"></em>
@@ -631,13 +652,14 @@ def render_html_report(
             tier = speedup_tier(summary["median_speedup"])
             problem_cards.append(
                 f"""
-                <details class="problem-card" data-problem="{escape(problem_id)}" data-tier="{tier}" data-verdict="{'noisy' if summary['noisy'] else 'stable'}">
+                <details class="problem-card" data-problem="{escape(problem_id)}" data-tier="{tier}" data-verdict="{'noisy' if summary['noisy'] else 'stable'}" {metadata_data_attrs(spec)}>
                   <summary class="problem-heading">
                     <div>
                       <p class="eyebrow">{escape(spec.category)}</p>
                       <h2>{escape(problem_id)}</h2>
                     </div>
                     <div class="problem-actions">
+                      {metadata_badges(spec)}
                       <span class="speed-chip {tier}" title="{RUNTIME_TIER_TITLES[tier]}">{format_runtime_advantage(summary["median_speedup"])}</span>
                       {memory_delta_badge(summary["median_memory_delta"])}
                     </div>
@@ -680,7 +702,7 @@ def render_html_report(
                 </div>
               </summary>
               <div class="category-overview">
-                {category_problem_bars(problems)}
+                {category_problem_bars(problems, specs)}
               </div>
               <div class="problem-grid">{''.join(problem_cards)}</div>
             </details>
@@ -730,9 +752,10 @@ def render_html_report(
     .category-section > summary::-webkit-details-marker {{ display: none; }} .category-section h1 {{ font-size: 22px; margin-bottom: 0; }} .category-section summary strong {{ color: var(--muted); }}
     .category-actions {{ display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; }}
     .category-overview {{ display: grid; gap: 14px; padding: 16px 22px; border-bottom: 1px solid var(--line); background: #fff; }}
-    .category-bar {{ display: grid; grid-template-columns: minmax(160px, .8fr) minmax(330px, 1.25fr) minmax(330px, 1.25fr) auto; align-items: center; gap: 16px; color: var(--muted); }}
+    .category-bar {{ display: grid; grid-template-columns: minmax(160px, .8fr) minmax(210px, .9fr) minmax(300px, 1.2fr) minmax(300px, 1.2fr) auto; align-items: center; gap: 16px; color: var(--muted); }}
     .category-bar > span {{ color: var(--ink); font-weight: 800; }}
     .summary-metric {{ display: grid; gap: 7px; min-width: 0; }} .summary-metric + .summary-metric {{ border-left: 1px solid var(--line); padding-left: 16px; }} .metric-title {{ display: flex; align-items: center; justify-content: space-between; gap: 10px; }} .metric-title > span {{ color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }}
+    .metadata-row {{ display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }}
     .value-bars {{ display: grid; gap: 4px; }} .value-row {{ display: grid; grid-template-columns: 48px minmax(120px, 1fr) minmax(78px, auto); align-items: center; gap: 8px; font-size: 12px; }}
     .value-row span {{ color: var(--muted); font-weight: 700; text-align: right; }} .value-row strong {{ color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }} .value-row i {{ height: 8px; background: #e8edf4; border-radius: 999px; overflow: hidden; }} .value-row b {{ display: block; height: 100%; border-radius: inherit; }}
     .value-row.python b {{ background: var(--indigo); }} .value-row.sifr b {{ background: var(--teal); }}
@@ -781,6 +804,7 @@ def render_html_report(
     .meta-grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; }} .meta-grid div {{ display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }}
     .footnote {{ color: var(--muted); margin: 14px 0 0; font-size: 12px; max-width: 940px; }}
     .meta-grid span {{ color: var(--muted); }} footer {{ color: var(--muted); margin-top: 22px; font-size: 12px; }}
+    {metadata_styles()}
     @media (max-width: 920px) {{ .shell {{ padding: 20px 12px 40px; }} .hero, .visual-grid {{ grid-template-columns: 1fr; }} .hero {{ padding: 20px; }} .stats, .meta-grid {{ grid-template-columns: 1fr; }} .problem-heading, .category-section > summary {{ align-items: flex-start; flex-direction: column; }} .category-actions, .problem-actions {{ justify-content: flex-start; }} .category-bar {{ grid-template-columns: 1fr; align-items: start; }} .filter-bar {{ position: static; }} }}
   </style>
 </head>
@@ -790,7 +814,7 @@ def render_html_report(
       <div>
         <p class="eyebrow">Sifr Benchmark Report</p>
         <h1>Runtime: {format_runtime_advantage(stats["median_speedup"])} · Memory: {format_memory_advantage(stats["median_memory_delta"])}</h1>
-        <p>Hyperfine results for Python references and generated Sifr runners, grouped by category with runtime and memory verdicts before the detailed measurements.</p>
+        <p>Hyperfine results for Python references and generated Sifr runners. Summary metrics include only complete, equivalent-implementation comparisons; divergent, unknown, partial, and failed cases remain visible below with metadata badges.</p>
         <div class="legend">
           <span><b class="py"></b>Python</span>
           <span><b class="sf"></b>Sifr</span>
@@ -819,6 +843,7 @@ def render_html_report(
         <label><input id="stable-only" type="checkbox"> stable only</label>
       </div>
     </section>
+    {metadata_summary_panel(specs, results_dir)}
     {''.join(sections)}
     <section class="meta-panel">
       <p class="eyebrow">Run Environment</p>

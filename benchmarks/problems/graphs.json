@@ -135,7 +135,14 @@
         "20": 500,
         "40": 100,
         "80": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "matrix_clone",
+        "set_clone"
+      ]
     },
     {
       "id": "0695_max_area_of_island",
@@ -320,7 +327,13 @@
         "20": 500,
         "40": 100,
         "80": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "matrix_clone"
+      ]
     },
     {
       "id": "0994_rotting_oranges",
@@ -450,7 +463,13 @@
         "10": 500,
         "20": 100,
         "40": 20
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "0752_open_the_lock",
@@ -498,7 +517,15 @@
         "100": 200,
         "300": 50,
         "700": 10
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "string_indexing",
+        "set_clone",
+        "queue_clone"
+      ]
     },
     {
       "id": "0802_find_eventual_safe_states",
@@ -787,7 +814,15 @@
         "100": 200,
         "300": 50,
         "700": 10
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "dict_clone",
+        "list_clone",
+        "set_clone"
+      ]
     },
     {
       "id": "1254_number_of_closed_islands",

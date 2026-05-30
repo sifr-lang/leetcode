@@ -20,7 +20,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [10, 30, 60],
-      "loops_by_size": { "10": 200, "30": 50, "60": 10 }
+      "loops_by_size": { "10": 200, "30": 50, "60": 10 },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing",
+        "matrix_clone"
+      ]
     },
     {
       "id": "1584_min_cost_to_connect_all_points",
@@ -60,7 +67,13 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 1000, 5000],
-      "loops_by_size": { "100": 500, "1000": 100, "5000": 20 }
+      "loops_by_size": { "100": 500, "1000": 100, "5000": 20 },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value"
+      ]
     },
     {
       "id": "1514_path_with_maximum_probability",
@@ -102,7 +115,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [10, 30, 60],
-      "loops_by_size": { "10": 100, "30": 20, "60": 5 }
+      "loops_by_size": { "10": 100, "30": 20, "60": 5 },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing",
+        "matrix_clone"
+      ]
     },
     {
       "id": "0269_alien_dictionary",
@@ -121,7 +141,13 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 1000, 5000],
-      "loops_by_size": { "100": 500, "1000": 100, "5000": 20 }
+      "loops_by_size": { "100": 500, "1000": 100, "5000": 20 },
+      "benchmark_status": "failed_correctness",
+      "parity_status": "failed_correctness",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "correctness"
+      ]
     }
   ]
 }

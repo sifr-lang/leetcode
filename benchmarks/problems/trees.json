@@ -41,7 +41,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0144_binary_tree_preorder_traversal",
@@ -81,7 +88,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0145_binary_tree_postorder_traversal",
@@ -121,7 +135,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0226_invert_binary_tree",
@@ -161,7 +182,13 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone"
+      ]
     },
     {
       "id": "0104_maximum_depth_of_binary_tree",
@@ -201,7 +228,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0543_diameter_of_binary_tree",
@@ -334,7 +368,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0572_subtree_of_another_tree",
@@ -387,7 +428,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0108_convert_sorted_array_to_binary_search_tree",
@@ -427,7 +475,13 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone"
+      ]
     },
     {
       "id": "0617_merge_two_binary_trees",
@@ -480,7 +534,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0112_path_sum",
@@ -568,7 +629,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "string_allocation"
+      ]
     },
     {
       "id": "0701_insert_into_a_binary_search_tree",
@@ -616,7 +684,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0450_delete_node_in_a_bst",
@@ -664,7 +739,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0102_binary_tree_level_order_traversal",
@@ -704,7 +786,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0199_binary_tree_right_side_view",
@@ -744,7 +833,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone",
+        "list_clone"
+      ]
     },
     {
       "id": "0783_minimum_distance_between_bst_nodes",
@@ -864,7 +960,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0106_construct_binary_tree_from_inorder_and_postorder_traversal",
@@ -917,7 +1020,13 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone"
+      ]
     },
     {
       "id": "0662_maximum_width_of_binary_tree",
@@ -957,7 +1066,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "1448_count_good_nodes_in_binary_tree",
@@ -997,7 +1113,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "optional_type",
+        "tree_clone"
+      ]
     },
     {
       "id": "0098_validate_binary_search_tree",
@@ -1085,7 +1208,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "optional_type",
+        "tree_clone"
+      ]
     },
     {
       "id": "0105_construct_binary_tree_from_preorder_and_inorder_traversal",
@@ -1138,7 +1268,13 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "tree_clone"
+      ]
     },
     {
       "id": "0513_find_bottom_left_tree_value",
@@ -1178,7 +1314,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0669_trim_a_binary_search_tree",
@@ -1233,7 +1376,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "tree_clone"
+      ]
     },
     {
       "id": "0124_binary_tree_maximum_path_sum",

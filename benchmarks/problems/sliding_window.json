@@ -185,7 +185,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "set_clone"
+      ]
     },
     {
       "id": "0424_longest_repeating_character_replacement",
@@ -233,7 +240,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "dict_clone"
+      ]
     },
     {
       "id": "0567_permutation_in_string",
@@ -281,7 +295,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "string_indexing",
+        "list_clone"
+      ]
     },
     {
       "id": "1838_frequency_of_the_most_frequent_element",
@@ -417,7 +438,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing"
+      ]
     },
     {
       "id": "1888_minimum_number_of_flips_to_make_the_binary_string_alternating",
@@ -458,7 +485,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "string_allocation"
+      ]
     },
     {
       "id": "0209_minimum_size_subarray_sum",
@@ -705,7 +739,13 @@
         "1000": 500,
         "10000": 100,
         "50000": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "algorithm_divergence"
+      ]
     }
   ]
 }
