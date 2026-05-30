@@ -1,41 +1,39 @@
 # LeetCode 1396: Design Underground System
 
 class UndergroundSystem:
-    customerStation: dict[int, str]
-    customerTime: dict[int, int]
-    routeTotal: dict[str, int]
-    routeCount: dict[str, int]
+    customer: dict[int, tuple[str, int]]
+    time: dict[tuple[str, str], list[int]]
 
     def __init__(self):
-        self.customerStation = {}
-        self.customerTime = {}
-        self.routeTotal = {}
-        self.routeCount = {}
-
-    def _routeKey(self, startStation: str, endStation: str) -> str:
-        return str(len(startStation)) + "#" + startStation + "#" + endStation
+        self.customer = {}
+        self.time = {}
 
     def checkIn(self, id: int, stationName: str, t: int) -> None:
-        self.customerStation[id] = str(stationName)
-        self.customerTime[id] = t
+        self.customer[id] = (str(stationName), t)
 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
-        startStation = self.customerStation.get(id, "")
-        startTime = self.customerTime.get(id, 0)
-        route = self._routeKey(startStation, stationName)
-
-        total = self.routeTotal.get(route, 0)
-        count = self.routeCount.get(route, 0)
-        self.routeTotal[route] = total + (t - startTime)
-        self.routeCount[route] = count + 1
+        customer = self.customer.get(id, ("", 0))
+        startStation = customer[0]
+        startTime = customer[1]
+        route = (startStation, str(stationName))
+        stats = self.time.get(route, [0, 0])
+        total = stats[0]
+        count = stats[1]
+        if total is not None and count is not None:
+            stats[0] = total + (t - startTime)
+            stats[1] = count + 1
+            self.time[route] = stats
 
     def getAverageTime(self, startStation: str, endStation: str) -> float:
-        route = self._routeKey(startStation, endStation)
-        total = self.routeTotal.get(route, 0)
-        count = self.routeCount.get(route, 0)
+        route = (str(startStation), str(endStation))
+        stats = self.time.get(route, [0, 0])
+        total = stats[0]
+        count = stats[1]
         if count == 0:
             return 0.0
-        return float(total) / float(count)
+        if total is not None and count is not None:
+            return float(total) / float(count)
+        return 0.0
 
 
 def main():

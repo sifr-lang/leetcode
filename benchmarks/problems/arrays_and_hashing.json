@@ -2630,13 +2630,7 @@
         "100000": 3
       },
       "benchmark_status": "complete",
-      "parity_status": "equivalent",
-      "primary_slowness_owner": "mixed",
-      "slowness_tags": [
-        "stateful_object",
-        "field_clone",
-        "string_key"
-      ]
+      "parity_status": "equivalent"
     },
     {
       "id": "2483_minimum_penalty_for_a_shop",
