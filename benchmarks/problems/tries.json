@@ -56,12 +56,10 @@
       },
       "benchmark_status": "complete",
       "parity_status": "equivalent",
-      "primary_slowness_owner": "mixed",
+      "primary_slowness_owner": "noise",
       "slowness_tags": [
         "trie_parity",
-        "field_clone",
-        "dict_clone",
-        "stateful_object"
+        "small_residual_gap"
       ]
     },
     {
@@ -114,9 +112,8 @@
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
         "trie_parity",
-        "field_clone",
-        "dict_clone",
-        "stateful_object"
+        "recursive_search",
+        "dict_iteration"
       ]
     },
     {
