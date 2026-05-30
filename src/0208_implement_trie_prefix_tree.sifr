@@ -21,23 +21,19 @@ class Trie:
         self.end = [False]
 
     def insert(self, word: str) -> None:
-        edges: list[dict[str, int]] = self.edges
-        end: list[bool] = self.end
         node = 0
         for ch in word:
-            next_node = _child(edges, node, ch)
+            next_node = _child(self.edges, node, ch)
             if next_node == -1:
-                next_node = len(edges)
-                row: dict[str, int] | None = edges[node]
+                next_node = len(self.edges)
+                row: dict[str, int] | None = self.edges[node]
                 if row is not None:
                     row[ch] = next_node
-                    edges[node] = row
-                edges.append({})
-                end.append(False)
+                    self.edges[node] = row
+                self.edges.append({})
+                self.end.append(False)
             node = next_node
-        end[node] = True
-        self.edges = edges
-        self.end = end
+        self.end[node] = True
 
     def search(self, word: str) -> bool:
         node = 0
