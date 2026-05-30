@@ -1041,13 +1041,7 @@
         "10000": 20
       },
       "benchmark_status": "complete",
-      "parity_status": "equivalent",
-      "primary_slowness_owner": "mixed",
-      "slowness_tags": [
-        "stateful_object",
-        "field_clone",
-        "list_clone"
-      ]
+      "parity_status": "equivalent"
     },
     {
       "id": "0622_design_circular_queue",

@@ -9,9 +9,7 @@ class BrowserHistory:
         if len(self.history) < self.i + 2:
             self.history.append(str(url))
         else:
-            history: list[str] = self.history
-            history[self.i + 1] = str(url)
-            self.history = history
+            self.history[self.i + 1] = str(url)
         self.i += 1
         self.len = self.i + 1
     def back(self, steps: int) -> str:
