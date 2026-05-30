@@ -1,6 +1,8 @@
 # LeetCode 230: Kth Smallest Element In A Bst
 from helpers.tree_node import TreeNode, treeToString
-def kthSmallest(root: TreeNode, k: int) -> int:
+def kthSmallest(root: TreeNode | None, k: int) -> int:
+    if k <= 0:
+        return 0
     values: list[int] = []
 
     def inorder(node: TreeNode | None, mut values: list[int]) -> None:

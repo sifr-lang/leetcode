@@ -1,17 +1,19 @@
 # LeetCode 1448: Count Good Nodes In Binary Tree
 from helpers.tree_node import TreeNode, treeToString
-def goodNodes(root: TreeNode) -> int:
-    def dfs(node: TreeNode, maxVal: int) -> int:
+def goodNodes(root: TreeNode | None) -> int:
+    def dfs(node: TreeNode | None, maxVal: int) -> int:
+        if node is None:
+            return 0
         res = 1 if node.val >= maxVal else 0
         nextMax = max(maxVal, node.val)
         left = node.left
-        if left is not None:
-            res += dfs(left, nextMax)
+        res += dfs(left, nextMax)
         right = node.right
-        if right is not None:
-            res += dfs(right, nextMax)
+        res += dfs(right, nextMax)
         return res
 
+    if root is None:
+        return 0
     return dfs(root, root.val)
 
 def main():
