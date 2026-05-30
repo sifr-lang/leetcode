@@ -1,5 +1,7 @@
 # LeetCode 7: Reverse Integer
 
+from helpers.safe_math import div_or_zero, mod_or_zero, trunc_div_toward_zero_or_zero
+
 def reverse(mut x: int) -> int:
     # Integer.MAX_VALUE = 2147483647 (end with 7)
     # Integer.MIN_VALUE = -2147483648 (end with -8 )
@@ -9,12 +11,17 @@ def reverse(mut x: int) -> int:
 
     res = 0
     while x != 0:
-        digit = int(math.fmod(x, 10))  # (python dumb) -1 %  10 = 9
-        x = int(x / 10)  # (python dumb) -1 // 10 = -1
+        next_x = trunc_div_toward_zero_or_zero(x, 10)
+        digit = x - next_x * 10
+        x = next_x
 
-        if res > MAX // 10 or (res == MAX // 10 and digit > MAX % 10):
+        max_limit = div_or_zero(MAX, 10)
+        max_digit = mod_or_zero(MAX, 10)
+        min_limit = trunc_div_toward_zero_or_zero(MIN, 10)
+        min_digit = MIN - min_limit * 10
+        if res > max_limit or (res == max_limit and digit > max_digit):
             return 0
-        if res < MIN // 10 or (res == MIN // 10 and digit < MIN % 10):
+        if res < min_limit or (res == min_limit and digit < min_digit):
             return 0
         res = (res * 10) + digit
 

@@ -1,0 +1,46 @@
+def div_or_zero(a: int, b: int) -> int:
+    if b == 0:
+        return 0
+    try:
+        value: int = a // b
+        return value
+    except DivisionError:
+        return 0
+
+
+def mod_or_zero(a: int, b: int) -> int:
+    if b == 0:
+        return 0
+    try:
+        value: int = a % b
+        return value
+    except DivisionError:
+        return 0
+
+
+def ceil_div_positive_or_zero(a: int, b: int) -> int:
+    if a <= 0 or b <= 0:
+        return 0
+    return div_or_zero(a + b - 1, b)
+
+
+def trunc_div_toward_zero_or_zero(a: int, b: int) -> int:
+    if b == 0:
+        return 0
+    sign: int = 1
+    numerator: int = a
+    denominator: int = b
+    if numerator < 0:
+        numerator = -numerator
+        sign = -sign
+    if denominator < 0:
+        denominator = -denominator
+        sign = -sign
+    quotient: int = div_or_zero(numerator, denominator)
+    return quotient * sign
+
+
+def ratio_or_zero(a: int, b: int) -> float:
+    if b == 0:
+        return 0.0
+    return float(a) / float(b)

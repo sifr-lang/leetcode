@@ -1,5 +1,7 @@
 # LeetCode 622: Design Circular Queue
 
+from helpers.safe_math import mod_or_zero
+
 def unwrapInt(value: int | None) -> int:
     if value is None:
         return 0
@@ -21,7 +23,7 @@ class MyCircularQueue:
     def enQueue(self, value: int) -> bool:
         if self.isFull():
             return False
-        tail = (self.head + self.size) % self.capacity
+        tail = mod_or_zero(self.head + self.size, self.capacity)
         self.data[tail] = value
         self.size += 1
         return True
@@ -29,7 +31,7 @@ class MyCircularQueue:
     def deQueue(self) -> bool:
         if self.isEmpty():
             return False
-        self.head = (self.head + 1) % self.capacity
+        self.head = mod_or_zero(self.head + 1, self.capacity)
         self.size -= 1
         return True
 
@@ -41,7 +43,7 @@ class MyCircularQueue:
     def Rear(self) -> int:
         if self.isEmpty():
             return -1
-        tail = (self.head + self.size - 1) % self.capacity
+        tail = mod_or_zero(self.head + self.size - 1, self.capacity)
         return unwrapInt(self.data[tail])
 
     def isEmpty(self) -> bool:

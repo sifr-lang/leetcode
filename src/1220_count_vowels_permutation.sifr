@@ -1,5 +1,7 @@
 # LeetCode 1220: Count Vowels Permutation
 
+from helpers.safe_math import mod_or_zero
+
 def countVowelPermutation(n: int, c: str = '') -> int:
     MOD = 1000000007
     if n <= 0:
@@ -22,14 +24,14 @@ def countVowelPermutation(n: int, c: str = '') -> int:
         return 0
 
     for _ in range(1, n):
-        nextA = (e + i + u) % MOD
-        nextE = (a + i) % MOD
-        nextI = (e + o) % MOD
-        nextO = i % MOD
-        nextU = (i + o) % MOD
+        nextA = mod_or_zero(e + i + u, MOD)
+        nextE = mod_or_zero(a + i, MOD)
+        nextI = mod_or_zero(e + o, MOD)
+        nextO = mod_or_zero(i, MOD)
+        nextU = mod_or_zero(i + o, MOD)
         a, e, i, o, u = nextA, nextE, nextI, nextO, nextU
 
-    return (a + e + i + o + u) % MOD
+    return mod_or_zero(a + e + i + o + u, MOD)
 
 def main():
     assert str(countVowelPermutation(1)) == '5'

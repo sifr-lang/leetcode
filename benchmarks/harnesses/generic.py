@@ -409,7 +409,8 @@ def sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str]
     raise RuntimeError(f"unsupported runner call mode: {call['mode']}")
 
 def render_sifr_runner(algorithm: str, function: str, runner: dict[str, Any]) -> str:
-    body = sifr_runner_body(function, runner, owned_args_for_function(algorithm, function, runner["call"]["args"]))
+    call_args = runner["call"].get("args", [])
+    body = sifr_runner_body(function, runner, owned_args_for_function(algorithm, function, call_args))
     return f"{algorithm.rstrip()}\n\n{missing_helper_imports(algorithm)}{SIFR_PRELUDE}\n\n\n{body}".rstrip() + "\n"
 
 def owned_args_for_function(algorithm: str, function: str, call_args: list[str]) -> set[str]:

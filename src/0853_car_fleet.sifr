@@ -1,5 +1,7 @@
 # LeetCode 853: Car Fleet
 
+from helpers.safe_math import ratio_or_zero
+
 def _nz_int(value: int | None) -> int:
     if value is None:
         return 0
@@ -20,7 +22,7 @@ def carFleet(target: int, position: list[int], speed: list[int]) -> int:
 
     stack: list[float] = []
     for p, s in pair:
-        travel_time = (target - p) / s
+        travel_time: float = ratio_or_zero(target - p, s)
         stack.append(travel_time)
         if len(stack) >= 2 and _nz_float(stack[-1]) <= _nz_float(stack[-2]):
             stack.pop()

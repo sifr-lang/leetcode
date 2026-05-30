@@ -1,5 +1,7 @@
 # LeetCode 1383: Maximum Performance Of A Team
 
+from helpers.safe_math import mod_or_zero
+
 def unwrapInt(value: int | None) -> int:
     if value is None:
         return 0
@@ -26,7 +28,7 @@ def maxPerformance(n: int, speed: list[int], efficiency: list[int], k: int) -> i
         speed_sum += spd
         heapq.heappush(minHeap, spd)
         res = max(res, eff * speed_sum)
-    return res % mod
+    return mod_or_zero(res, mod)
 
 def main():
     assert maxPerformance(6, [2, 10, 3, 1, 5, 8], [5, 4, 3, 9, 7, 2], 2) == 60

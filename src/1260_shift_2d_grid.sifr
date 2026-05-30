@@ -1,17 +1,27 @@
 # LeetCode 1260: Shift 2D Grid
 
+from helpers.safe_math import div_or_zero, mod_or_zero
+
 def shiftGrid(grid: list[list[int]], k: int) -> list[list[int]]:
-    M, N = len(grid), len(grid[0])
+    M = len(grid)
+    if M <= 0:
+        return []
+    first_row: list[int] | None = grid[0]
+    if first_row is None:
+        return []
+    N = len(first_row)
+    if N <= 0:
+        return []
     
     def posToVal(r, c):
         return r * N + c
     def valToPos(v):
-        return [v // N, v % N] # r, c
+        return [div_or_zero(v, N), mod_or_zero(v, N)]
     
     res = [[0] * N for i in range(M)]
     for r in range(M):
         for c in range(N):
-            newVal = (posToVal(r, c) + k) % (M * N)
+            newVal = mod_or_zero(posToVal(r, c) + k, M * N)
             pos = valToPos(newVal)
             newR = pos[0]
             newC = pos[1]

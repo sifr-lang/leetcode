@@ -1,19 +1,23 @@
 # LeetCode 909: Snakes And Ladders
 
+from helpers.safe_math import div_or_zero, mod_or_zero
+
 def _nz_int(value: int | None) -> int:
     if value is None:
         return 0
     return value
 
 def _int_to_pos(square: int, length: int) -> list[int]:
-    r = (square - 1) // length
-    c = (square - 1) % length
-    if r % 2 == 1:
+    r = div_or_zero(square - 1, length)
+    c = mod_or_zero(square - 1, length)
+    if mod_or_zero(r, 2) == 1:
         c = length - 1 - c
     return [r, c]
 
 def snakesAndLadders(mut board: list[list[int]]) -> int:
     length = len(board)
+    if length <= 0:
+        return -1
     board.reverse()
 
     q = [[1, 0]]
