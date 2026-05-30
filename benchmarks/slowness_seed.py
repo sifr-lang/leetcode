@@ -126,8 +126,6 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
 }
 
 FAILED_SEED: dict[str, dict[str, Any]] = {
-    "0739_daily_temperatures": {"benchmark_status": "failed_build", "slowness_tags": ["type_error"]},
-    "0084_largest_rectangle_in_histogram": {"benchmark_status": "failed_build", "slowness_tags": ["type_error"]},
     "0206_reverse_linked_list": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0021_merge_two_sorted_lists": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0234_palindrome_linked_list": {"benchmark_status": "partial", "slowness_tags": ["optional_type", "list_node_clone"]},
@@ -166,7 +164,6 @@ FAILED_SEED: dict[str, dict[str, Any]] = {
         "primary_slowness_owner": "leetcode_sifr_code",
         "slowness_tags": ["correctness"],
     },
-    "0006_zigzag_conversion": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "string_indexing"]},
 }
 
 

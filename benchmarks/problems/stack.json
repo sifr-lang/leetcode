@@ -456,12 +456,8 @@
         "10000": 200,
         "100000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "type_error"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0901_online_stock_span",
@@ -887,12 +883,8 @@
         "10000": 200,
         "100000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "type_error"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     }
   ]
 }
