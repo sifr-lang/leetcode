@@ -53,7 +53,6 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0211_design_add_and_search_words_data_structure": mixed("trie_parity", "recursive_search", "dict_iteration", parity="equivalent"),
     "0212_word_search_ii": mixed("trie_parity", "field_clone", "dict_clone", "recursive_search", parity="equivalent"),
     "0973_k_closest_points_to_origin": leetcode_fixed("heap_parity"),
-    "0535_encode_and_decode_tinyurl": compiler("field_clone", "stateful_object", "string_allocation"),
     "0208_implement_trie_prefix_tree": noise("trie_parity", "small_residual_gap"),
     "0567_permutation_in_string": mixed("string_indexing", "list_clone"),
     "2130_maximum_twin_sum_of_a_linked_list": compiler("list_node_clone", "optional_clone"),
