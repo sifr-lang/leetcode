@@ -31,11 +31,6 @@ VALID_FAILURE_MODES = {
 
 
 FAILED_DETAILS: dict[str, dict[str, str]] = {
-    "0206_reverse_linked_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
     "0021_merge_two_sorted_lists": {
         "primary_track": "benchmark_harness",
         "failure_mode": "moved_result_rendering",

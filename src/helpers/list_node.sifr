@@ -24,11 +24,17 @@ def hasNode(node: ListNode | None) -> bool:
 
 
 def listNodeToString(own node: ListNode | None) -> str:
-    if node is None:
-        return "None"
     parts: list[str] = []
     cur: ListNode | None = node
     while hasNode(cur):
-        parts.append(str(nodeVal(cur)))
-        cur = nodeNext(cur)
+        next_cur: ListNode | None = None
+        if cur is not None:
+            value: int = cur.val
+            next_cur = cur.next
+            parts.append(str(value))
+        else:
+            break
+        cur = next_cur
+    if len(parts) == 0:
+        return "None"
     return "->".join(parts)

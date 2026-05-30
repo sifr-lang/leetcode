@@ -42,13 +42,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0021_merge_two_sorted_lists",

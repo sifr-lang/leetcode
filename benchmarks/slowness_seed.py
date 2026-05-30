@@ -126,7 +126,6 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
 }
 
 FAILED_SEED: dict[str, dict[str, Any]] = {
-    "0206_reverse_linked_list": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0021_merge_two_sorted_lists": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
     "0234_palindrome_linked_list": {"benchmark_status": "partial", "slowness_tags": ["optional_type", "list_node_clone"]},
     "0203_remove_linked_list_elements": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "list_node_clone"]},
