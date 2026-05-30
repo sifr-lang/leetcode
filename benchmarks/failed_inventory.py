@@ -31,16 +31,6 @@ VALID_FAILURE_MODES = {
 
 
 FAILED_DETAILS: dict[str, dict[str, str]] = {
-    "0739_daily_temperatures": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "typed_stack_inference",
-        "first_fix": "add_typed_tuple_stack_and_optional_safe_pop",
-    },
-    "0084_largest_rectangle_in_histogram": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "typed_stack_inference",
-        "first_fix": "add_typed_tuple_stack_and_optional_safe_pop",
-    },
     "0206_reverse_linked_list": {
         "primary_track": "benchmark_harness",
         "failure_mode": "moved_result_rendering",
@@ -205,11 +195,6 @@ FAILED_DETAILS: dict[str, dict[str, str]] = {
         "primary_track": "benchmark_harness",
         "failure_mode": "correctness_expected_shape",
         "first_fix": "validate_topological_order_shape",
-    },
-    "0006_zigzag_conversion": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "moved_string_parameter",
-        "first_fix": "remove_unnecessary_owned_string_parameter",
     },
 }
 

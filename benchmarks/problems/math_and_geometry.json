@@ -315,13 +315,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
       "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "string_indexing"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     }
   ]
 }
