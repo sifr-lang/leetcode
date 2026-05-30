@@ -1,4 +1,6 @@
 # LeetCode 1834: Single Threaded Cpu
+from sifr.heapq import heappop, heappush
+from helpers.safe_math import div_or_zero, mod_or_zero
 
 def _nz_int(value: int | None) -> int:
     if value is None:
@@ -13,47 +15,31 @@ def getOrder(tasks: list[list[int]]) -> list[int]:
     jobs.sort()
 
     n = len(jobs)
-    done: set[int] = set()
+    heap: list[int] = []
     result: list[int] = []
     if n == 0:
         return result
 
-    cur_time = jobs[0][0]
+    cur_task_index = 0
+    cur_time = _nz_int(jobs[0][0])
+    base = n + 1
     while len(result) < n:
-        best_idx = -1
-        best_proc = 0
-        best_orig = 0
+        while cur_task_index < n and _nz_int(jobs[cur_task_index][0]) <= cur_time:
+            proc = _nz_int(jobs[cur_task_index][1])
+            orig = _nz_int(jobs[cur_task_index][2])
+            heappush(heap, (proc * base) + orig)
+            cur_task_index += 1
 
-        for j in range(n):
-            if j in done:
-                continue
-            enqueue = jobs[j][0]
-            proc = jobs[j][1]
-            orig = jobs[j][2]
-            if enqueue <= cur_time:
-                if (
-                    best_idx == -1
-                    or proc < best_proc
-                    or (proc == best_proc and orig < best_orig)
-                ):
-                    best_idx = j
-                    best_proc = proc
-                    best_orig = orig
-
-        if best_idx == -1:
-            next_time = -1
-            for j in range(n):
-                if j in done:
-                    continue
-                enqueue = jobs[j][0]
-                if next_time == -1 or enqueue < next_time:
-                    next_time = enqueue
-            cur_time = next_time
-            continue
-
-        done.add(best_idx)
-        result.append(best_orig)
-        cur_time += best_proc
+        if len(heap) > 0:
+            item: int | None = heappop(heap)
+            if item is not None:
+                encoded: int = item
+                proc2 = div_or_zero(encoded, base)
+                orig2 = mod_or_zero(encoded, base)
+                cur_time += proc2
+                result.append(orig2)
+        elif cur_task_index < n:
+            cur_time = _nz_int(jobs[cur_task_index][0])
 
     return result
 

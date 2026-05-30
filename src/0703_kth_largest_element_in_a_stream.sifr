@@ -1,29 +1,28 @@
 # LeetCode 703: Kth Largest Element In A Stream
+from sifr.heapq import heapify, heappop, heappush
 
 class KthLargest:
-    values: list[int]
+    minHeap: list[int]
     k: int
 
     def __init__(self, k: int, nums: list[int]):
         self.k = k
-        ordered = nums.copy()
-        ordered.sort()
-        self.values = ordered
+        heap = nums
+        heapify(heap)
+        while len(heap) > k:
+            heappop(heap)
+        self.minHeap = heap
 
     def add(self, val: int) -> int:
-        self.values.append(val)
-        self.values.sort()
-
-        idx = len(self.values) - self.k
-        if idx < 0:
-            idx = 0
-        if idx >= len(self.values):
-            return val
-        kth = self.values[idx]
+        heap: list[int] = self.minHeap
+        heappush(heap, val)
+        if len(heap) > self.k:
+            heappop(heap)
+        kth: int | None = heap[0]
+        self.minHeap = heap
         if kth is None:
             return val
-        kth_val = kth
-        return kth_val
+        return kth
 
 def main():
     obj = KthLargest(3, [4, 5, 8, 2])

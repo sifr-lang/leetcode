@@ -1,48 +1,35 @@
 # LeetCode 973: K Closest Points To Origin
+from sifr.heapq import heapify, heappop
+from helpers.safe_math import div_or_zero, mod_or_zero
+
+def _nz_int(value: int | None) -> int:
+    if value is None:
+        return 0
+    return value
 
 def kClosest(points: list[list[int]], k: int) -> list[list[int]]:
+    heap: list[int] = []
+    base = 200_001
+    offset = 100_000
+    for point in points:
+        x = _nz_int(point[0])
+        y = _nz_int(point[1])
+        dist = (x * x) + (y * y)
+        heap.append((dist * base * base) + ((x + offset) * base) + (y + offset))
+    heapify(heap)
+
     res: list[list[int]] = []
-    used = set()
-
-    for _ in range(k):
-        best_idx = -1
-        best_dist = 0
-        for idx in range(len(points)):
-            if idx in used:
-                continue
-            point = points[idx]
-            if point is None:
-                continue
-            x0 = point[0]
-            y0 = point[1]
-            x = 0
-            y = 0
-            if x0 is not None and y0 is not None:
-                x = x0
-                y = y0
-            else:
-                continue
-            dist = (x * x) + (y * y)
-            if best_idx == -1 or dist < best_dist:
-                best_idx = idx
-                best_dist = dist
-        if best_idx == -1:
+    count = 0
+    while count < k:
+        item: int | None = heappop(heap)
+        if item is None:
             break
-
-        used.add(best_idx)
-        point = points[best_idx]
-        if point is None:
-            continue
-        x0 = point[0]
-        y0 = point[1]
-        x = 0
-        y = 0
-        if x0 is not None and y0 is not None:
-            x = x0
-            y = y0
-        else:
-            continue
-        res.append([x, y])
+        if item is not None:
+            encoded: int = item
+            x = mod_or_zero(div_or_zero(encoded, base), base) - offset
+            y = mod_or_zero(encoded, base) - offset
+            res.append([x, y])
+            count += 1
     return res
 
 def main():

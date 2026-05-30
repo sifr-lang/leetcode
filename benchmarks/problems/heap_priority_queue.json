@@ -50,10 +50,10 @@
         "10000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing",
+        "heap_parity",
         "stateful_object"
       ]
     },
@@ -97,10 +97,10 @@
         "10000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing"
+        "heap_parity"
       ]
     },
     {
@@ -153,10 +153,10 @@
         "10000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing"
+        "heap_parity"
       ]
     },
     {
@@ -367,10 +367,10 @@
         "700": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing"
+        "heap_parity"
       ]
     },
     {
@@ -467,10 +467,10 @@
         "10000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing",
+        "heap_parity",
         "string_indexing"
       ]
     },

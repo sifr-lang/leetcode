@@ -1,27 +1,28 @@
 # LeetCode 1985: Find The Kth Largest Integer In The Array
+from sifr.heapq import heapify, heappop
 
-def _is_less_numeric(a: str, b: str) -> bool:
-    if len(a) != len(b):
-        return len(a) < len(b)
-    return a < b
+def _parse_or_zero(value: str) -> int:
+    try:
+        parsed: int = int(value)
+        return parsed
+    except ParseError:
+        return 0
 
 def kthLargestNumber(nums: list[str], k: int) -> str:
-    nums_sorted: list[str] = []
+    heap: list[int] = []
     for value in nums:
-        pos = 0
-        while pos < len(nums_sorted):
-            current = nums_sorted[pos]
-            if current is None:
-                break
-            if _is_less_numeric(current, value):
-                pos += 1
-            else:
-                break
-        nums_sorted.insert(pos, value)
-    selected = nums_sorted[len(nums_sorted) - k]
+        heap.append(-_parse_or_zero(value))
+    heapify(heap)
+
+    count = 1
+    while count < k:
+        heappop(heap)
+        count += 1
+
+    selected: int | None = heap[0]
     if selected is None:
-        return ""
-    return selected
+        return "0"
+    return str(-selected)
 
 def main():
     assert kthLargestNumber(['3', '6', '7', '10'], 4) == '3'
