@@ -1,12 +1,8 @@
 # LeetCode 355: Design Twitter
+from sifr.heapq import heappop, heappush
+from helpers.safe_math import div_or_zero, mod_or_zero
 
 def unwrapTweet(value: tuple[int, int] | None) -> tuple[int, int]:
-    if value is None:
-        return (0, 0)
-    return value
-
-
-def unwrapPosition(value: tuple[int, int] | None) -> tuple[int, int]:
     if value is None:
         return (0, 0)
     return value
@@ -40,36 +36,33 @@ class Twitter:
 
         follows = self.followMap.get(userId, [])
 
-        positions: list[tuple[int, int]] = []
+        heap: list[int] = []
+        base = 20_001
+        offset = 100_000
         for followeeId in follows:
             tweets = self.tweetMap.get(followeeId, [])
             if len(tweets) > 0:
-                positions.append((followeeId, len(tweets) - 1))
+                index = len(tweets) - 1
+                count, _tweet_id = self._tweetAt(followeeId, index)
+                key = ((count + offset) * base * base) + (followeeId * base) + index
+                heappush(heap, key)
 
         res: list[int] = []
-        while len(res) < 10 and len(positions) > 0:
-            best_pos = 0
-            best_followee, best_index = unwrapPosition(positions[0])
-            best_count, best_tweet_id = self._tweetAt(best_followee, best_index)
+        while len(res) < 10 and len(heap) > 0:
+            item: int | None = heappop(heap)
+            if item is not None:
+                encoded: int = item
+                position = mod_or_zero(encoded, base * base)
+                followeeId = div_or_zero(position, base)
+                index = mod_or_zero(position, base)
+                count, tweet_id = self._tweetAt(followeeId, index)
 
-            pos_idx = 1
-            while pos_idx < len(positions):
-                cur_followee, cur_index = unwrapPosition(positions[pos_idx])
-                cur_count, cur_tweet_id = self._tweetAt(cur_followee, cur_index)
-                if cur_count < best_count:
-                    best_count = cur_count
-                    best_tweet_id = cur_tweet_id
-                    best_pos = pos_idx
-                    best_followee = cur_followee
-                    best_index = cur_index
-                pos_idx += 1
-
-            res.append(best_tweet_id)
-            next_index = best_index - 1
-            if next_index >= 0:
-                positions[best_pos] = (best_followee, next_index)
-            else:
-                positions.pop(best_pos)
+                res.append(tweet_id)
+                next_index = index - 1
+                if next_index >= 0:
+                    next_count, _next_tweet_id = self._tweetAt(followeeId, next_index)
+                    next_key = ((next_count + offset) * base * base) + (followeeId * base) + next_index
+                    heappush(heap, next_key)
 
         return res
 
@@ -92,8 +85,10 @@ def main():
     obj = Twitter()
     obj.postTweet(1, 5)
     assert obj.getNewsFeed(1) == [5]
+    obj.postTweet(1, 7)
+    assert obj.getNewsFeed(1) == [7, 5]
     obj.follow(1, 2)
     obj.postTweet(2, 6)
-    assert obj.getNewsFeed(1) == [6, 5]
+    assert obj.getNewsFeed(1) == [6, 7, 5]
     obj.unfollow(1, 2)
-    assert obj.getNewsFeed(1) == [5]
+    assert obj.getNewsFeed(1) == [7, 5]

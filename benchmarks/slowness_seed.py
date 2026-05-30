@@ -21,6 +21,15 @@ def leetcode(*tags: str) -> dict[str, Any]:
     }
 
 
+def leetcode_fixed(*tags: str) -> dict[str, Any]:
+    return {
+        "benchmark_status": "complete",
+        "parity_status": "equivalent",
+        "primary_slowness_owner": "leetcode_sifr_code",
+        "slowness_tags": list(tags),
+    }
+
+
 def mixed(*tags: str, parity: str = "unknown") -> dict[str, Any]:
     return {
         "benchmark_status": "complete",
@@ -40,9 +49,9 @@ def noise(*tags: str) -> dict[str, Any]:
 
 
 SLOWNESS_SEED: dict[str, dict[str, Any]] = {
-    "1985_find_the_kth_largest_integer_in_the_array": leetcode("heap_missing", "string_indexing"),
+    "1985_find_the_kth_largest_integer_in_the_array": leetcode_fixed("heap_parity", "string_indexing"),
     "0211_design_add_and_search_words_data_structure": mixed("trie_helper", "field_clone", parity="known_divergent"),
-    "0973_k_closest_points_to_origin": leetcode("heap_missing"),
+    "0973_k_closest_points_to_origin": leetcode_fixed("heap_parity"),
     "0535_encode_and_decode_tinyurl": compiler("field_clone", "stateful_object", "string_allocation"),
     "1472_design_browser_history": mixed("stateful_object", "field_clone", "list_clone"),
     "0208_implement_trie_prefix_tree": mixed("trie_helper", "field_clone", parity="known_divergent"),
@@ -59,17 +68,17 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "1930_unique_length_3_palindromic_subsequences": compiler("string_indexing", "set_clone"),
     "0187_repeated_dna_sequences": compiler("substring_allocation", "set_clone"),
     "0402_remove_k_digits": compiler("string_indexing", "list_clone", parity="unknown"),
-    "1631_path_with_minimum_effort": leetcode("heap_missing", "matrix_clone"),
+    "1631_path_with_minimum_effort": leetcode_fixed("heap_parity", "matrix_clone"),
     "0763_partition_labels": compiler("string_indexing", "dict_clone"),
     "0680_valid_palindrome_ii": compiler("string_indexing"),
     "0221_maximal_square": compiler("matrix_clone"),
     "1461_check_if_a_string_contains_all_binary_codes_of_size_k": compiler("substring_allocation", "set_clone"),
-    "0355_design_twitter": mixed("stateful_object", "field_clone", "heap_missing"),
+    "0355_design_twitter": mixed("stateful_object", "field_clone", "heap_parity", parity="equivalent"),
     "0424_longest_repeating_character_replacement": compiler("string_indexing", "dict_clone"),
     "0139_word_break": compiler("substring_allocation", "set_clone"),
     "1456_maximum_number_of_vowels_in_a_substring_of_given_length": compiler("string_indexing"),
     "0721_accounts_merge": mixed("dict_clone", "list_clone", "set_clone"),
-    "0703_kth_largest_element_in_a_stream": leetcode("heap_missing", "stateful_object"),
+    "0703_kth_largest_element_in_a_stream": leetcode_fixed("heap_parity", "stateful_object"),
     "0200_number_of_islands": compiler("matrix_clone", "set_clone"),
     "0149_max_points_on_a_line": compiler("dict_clone", "tuple_key_clone"),
     "0146_lru_cache": mixed("stateful_object", "field_clone"),
@@ -80,7 +89,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0392_is_subsequence": compiler("string_indexing"),
     "2013_detect_squares": mixed("stateful_object", "dict_clone"),
     "0205_isomorphic_strings": compiler("string_indexing", "dict_clone"),
-    "0778_swim_in_rising_water": leetcode("heap_missing", "matrix_clone"),
+    "0778_swim_in_rising_water": leetcode_fixed("heap_parity", "matrix_clone"),
     "0015_3sum": leetcode("algorithm_divergence"),
     "0067_add_binary": compiler("string_indexing", "string_allocation"),
     "1189_maximum_number_of_balloons": compiler("dict_clone", "string_iteration"),
@@ -98,14 +107,14 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0072_edit_distance": noise("string_indexing"),
     "0054_spiral_matrix": compiler("matrix_clone"),
     "0020_valid_parentheses": noise("list_clone", "dict_clone"),
-    "1834_single_threaded_cpu": leetcode("heap_missing"),
+    "1834_single_threaded_cpu": leetcode_fixed("heap_parity"),
     "0189_rotate_array": compiler("list_clone"),
     "0682_baseball_game": noise("stack_clone", "string_parse"),
     "0606_construct_string_from_binary_tree": compiler("tree_clone", "string_allocation"),
     "0064_minimum_path_sum": noise("matrix_clone"),
     "0752_open_the_lock": mixed("string_indexing", "set_clone", "queue_clone"),
     "0179_largest_number": mixed("string_allocation", "algorithm_parity_unknown"),
-    "0295_find_median_from_data_stream": mixed("heap_missing", "stateful_object"),
+    "0295_find_median_from_data_stream": mixed("heap_parity", "field_clone", "stateful_object", parity="equivalent"),
     "0094_binary_tree_inorder_traversal": compiler("tree_clone", "optional_clone"),
     "0380_insert_delete_getrandom_o1": mixed("stateful_object", "field_clone"),
     "1396_design_underground_system": mixed("stateful_object", "field_clone", "string_key"),
@@ -114,7 +123,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0013_roman_to_integer": compiler("string_indexing", "dict_clone"),
     "0496_next_greater_element_i": leetcode("algorithm_divergence"),
     "0239_sliding_window_maximum": leetcode("algorithm_divergence"),
-    "1046_last_stone_weight": leetcode("heap_missing"),
+    "1046_last_stone_weight": leetcode_fixed("heap_parity"),
 }
 
 FAILED_SEED: dict[str, dict[str, Any]] = {

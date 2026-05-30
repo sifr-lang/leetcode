@@ -316,12 +316,12 @@
         "10000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "unknown",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
         "stateful_object",
         "field_clone",
-        "heap_missing"
+        "heap_parity"
       ]
     },
     {
@@ -559,10 +559,11 @@
         "10000": 30
       },
       "benchmark_status": "complete",
-      "parity_status": "unknown",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
-        "heap_missing",
+        "heap_parity",
+        "field_clone",
         "stateful_object"
       ]
     },
