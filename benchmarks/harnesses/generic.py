@@ -204,7 +204,7 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
 
 
 def fresh_input_each_call(runner: dict[str, Any]) -> bool:
-    return any(binding["type"] == "list_node[int]" for binding in runner["input"]["bindings"])
+    return any(binding["type"] in ("list_node[int]", "balanced_tree[int]") for binding in runner["input"]["bindings"])
 
 
 def call_single(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> Any:
@@ -409,21 +409,23 @@ def sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str]
     raise RuntimeError(f"unsupported runner call mode: {call['mode']}")
 
 def render_sifr_runner(algorithm: str, function: str, runner: dict[str, Any]) -> str:
-    body = sifr_runner_body(function, runner, owned_args_for_function(algorithm, function))
+    body = sifr_runner_body(function, runner, owned_args_for_function(algorithm, function, runner["call"]["args"]))
     return f"{algorithm.rstrip()}\n\n{missing_helper_imports(algorithm)}{SIFR_PRELUDE}\n\n\n{body}".rstrip() + "\n"
 
-def owned_args_for_function(algorithm: str, function: str) -> set[str]:
+def owned_args_for_function(algorithm: str, function: str, call_args: list[str]) -> set[str]:
     match = re.search(rf"def\s+{re.escape(function)}\s*\(([^)]*)\)", algorithm)
     if match is None:
         return set()
     owned = set()
-    for raw_param in match.group(1).split(","):
+    for index, raw_param in enumerate(match.group(1).split(",")):
         param = raw_param.strip()
         if "own" not in param.split():
             continue
         before_type = param.split(":", 1)[0]
         name = before_type.split()[-1]
         owned.add(name)
+        if index < len(call_args):
+            owned.add(call_args[index])
     return owned
 
 def missing_helper_imports(algorithm: str) -> str:
@@ -439,9 +441,11 @@ def missing_helper_imports(algorithm: str) -> str:
 def single_sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str]) -> str:
     bindings = render_sifr_bindings(runner["input"]["bindings"])
     call = sifr_call(function, runner["call"]["args"], runner["input"]["bindings"], owned_args)
-    result_type = sifr_result_type(runner["expected"]["type"])
-    expected_check = sifr_expected_check(runner["expected"]["type"], "result")
-    checksum_expr = sifr_checksum_expr(runner["expected"]["type"], "loop_result")
+    expected_type = runner["expected"]["type"]
+    result_type = sifr_result_type(expected_type)
+    expected_check = sifr_expected_check(expected_type, "result")
+    wrong_result = sifr_wrong_result_expr(expected_type, "result")
+    checksum_expr = sifr_checksum_expr(expected_type, "loop_result")
     return f"""
 def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
     fixture_text: str = _bench_read_required(fixture_path)
@@ -451,7 +455,7 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
 {indent(bindings, 4)}
     result: {result_type} = {call}
 {indent(expected_check, 4)}
-        print("wrong result: " + str(result))
+        print("wrong result: " + {wrong_result})
         exit(1)
 
     checksum: int = 0
@@ -476,6 +480,7 @@ def mutates_single_sifr_runner_body(function: str, runner: dict[str, Any]) -> st
     mutated_arg = runner["call"]["mutated_arg"]
     expected_type = runner["expected"]["type"]
     expected_check = sifr_expected_check(expected_type, mutated_arg)
+    wrong_result = sifr_wrong_result_expr(expected_type, mutated_arg)
     checksum_expr = sifr_checksum_expr(expected_type, "loop_result")
     return f"""
 def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
@@ -486,7 +491,7 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
 {indent(bindings, 4)}
     {call}
 {indent(expected_check, 4)}
-        print("wrong result: " + str({mutated_arg}))
+        print("wrong result: " + {wrong_result})
         exit(1)
 
     checksum: int = 0
@@ -699,16 +704,9 @@ def sifr_object_method_branch(index: int, method: str, method_spec: dict[str, An
 
 
 def sifr_object_result_type(result_type: str) -> str:
-    if result_type == "bool":
-        return "bool"
-    if result_type == "int":
-        return "int"
-    if result_type == "float":
-        return "float"
-    if result_type == "str":
-        return "str"
-    if result_type == "list_int":
-        return "list[int]"
+    result_types = {"bool": "bool", "int": "int", "float": "float", "str": "str", "list_int": "list[int]"}
+    if result_type in result_types:
+        return result_types[result_type]
     raise RuntimeError(f"unsupported Sifr object result type: {result_type}")
 
 
@@ -798,26 +796,14 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
 
 
 def sifr_result_type(expected_type: str) -> str:
-    if expected_type == "int":
-        return "int"
-    if expected_type == "float":
-        return "float"
-    if expected_type == "bool":
-        return "bool"
-    if expected_type == "list_int":
-        return "list[int]"
-    if expected_type == "list_node_int":
-        return "ListNode | None"
-    if expected_type == "tree_node_int":
-        return "TreeNode | None"
-    if expected_type == "str":
-        return "str"
-    if expected_type == "list_str":
-        return "list[str]"
-    if expected_type == "list_list_int":
-        return "list[list[int]]"
-    if expected_type == "list_list_str":
-        return "list[list[str]]"
+    result_types = {
+        "int": "int", "float": "float", "bool": "bool", "list_int": "list[int]",
+        "list_node_int": "ListNode | None", "tree_node_int": "TreeNode | None",
+        "str": "str", "list_str": "list[str]", "list_list_int": "list[list[int]]",
+        "list_list_str": "list[list[str]]",
+    }
+    if expected_type in result_types:
+        return result_types[expected_type]
     raise RuntimeError(f"unsupported Sifr expected shape: {expected_type}")
 
 
@@ -831,9 +817,9 @@ def sifr_expected_check(expected_type: str, result_name: str) -> str:
     if expected_type == "list_int":
         return f"if str({result_name}) != expected_text.strip():"
     if expected_type == "list_node_int":
-        return f"if listNodeToString({result_name}) != expected_text.strip():"
+        return f"actual_text: str = listNodeToString({result_name})\nif actual_text != expected_text.strip():"
     if expected_type == "tree_node_int":
-        return f"if treeToString({result_name}) != expected_text.strip():"
+        return f"actual_text: str = treeToString({result_name})\nif actual_text != expected_text.strip():"
     if expected_type == "str":
         return f"if {result_name} != expected_text.strip():"
     if expected_type in ("list_str", "list_list_str"):
@@ -841,6 +827,12 @@ def sifr_expected_check(expected_type: str, result_name: str) -> str:
     if expected_type == "list_list_int":
         return f"if len({result_name}) != _bench_parse_int(_bench_nz_str(expected_tokens[0])):"
     raise RuntimeError(f"unsupported Sifr expected shape: {expected_type}")
+
+
+def sifr_wrong_result_expr(expected_type: str, result_name: str) -> str:
+    if expected_type in ("list_node_int", "tree_node_int"):
+        return "actual_text"
+    return f"str({result_name})"
 
 
 def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
@@ -886,6 +878,8 @@ def sifr_call(
             if not binding.get("nullable", True):
                 expression = f"_expect_list_node({expression})"
             rendered_args.append(expression)
+        elif binding and binding["type"] == "balanced_tree[int]":
+            rendered_args.append(f"_build_balanced_tree({arg}_values, 0, len({arg}_values) - 1)")
         elif binding and arg in owned_args and binding["type"] in ("list[int]", "list[str]", "list[float]", "matrix[int]", "matrix[str]"):
             rendered_args.append(f"{arg}.copy()")
         else:
