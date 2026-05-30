@@ -1,40 +1,28 @@
 # LeetCode 1396: Design Underground System
 
 class UndergroundSystem:
-    customerStationCode: dict[int, int]
+    customerStation: dict[int, str]
     customerTime: dict[int, int]
-    routeTotal: dict[int, int]
-    routeCount: dict[int, int]
+    routeTotal: dict[str, int]
+    routeCount: dict[str, int]
 
     def __init__(self):
-        self.customerStationCode = {}
+        self.customerStation = {}
         self.customerTime = {}
         self.routeTotal = {}
         self.routeCount = {}
 
-    def _stationCode(self, name: str) -> int:
-        if name == 'Leyton':
-            return 1
-        if name == 'Paradise':
-            return 2
-        if name == 'Waterloo':
-            return 3
-        if name == 'Cambridge':
-            return 4
-        return 0
-
-    def _routeKey(self, startCode: int, endCode: int) -> int:
-        return startCode * 1000 + endCode
+    def _routeKey(self, startStation: str, endStation: str) -> str:
+        return str(len(startStation)) + "#" + startStation + "#" + endStation
 
     def checkIn(self, id: int, stationName: str, t: int) -> None:
-        self.customerStationCode[id] = self._stationCode(stationName)
+        self.customerStation[id] = str(stationName)
         self.customerTime[id] = t
 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
-        startCode = self.customerStationCode.get(id, 0)
+        startStation = self.customerStation.get(id, "")
         startTime = self.customerTime.get(id, 0)
-        endCode = self._stationCode(stationName)
-        route = self._routeKey(startCode, endCode)
+        route = self._routeKey(startStation, stationName)
 
         total = self.routeTotal.get(route, 0)
         count = self.routeCount.get(route, 0)
@@ -42,7 +30,7 @@ class UndergroundSystem:
         self.routeCount[route] = count + 1
 
     def getAverageTime(self, startStation: str, endStation: str) -> float:
-        route = self._routeKey(self._stationCode(startStation), self._stationCode(endStation))
+        route = self._routeKey(startStation, endStation)
         total = self.routeTotal.get(route, 0)
         count = self.routeCount.get(route, 0)
         if count == 0:
