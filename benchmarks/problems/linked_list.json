@@ -557,13 +557,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "optional_type",
-        "list_node_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0287_find_the_duplicate_number",

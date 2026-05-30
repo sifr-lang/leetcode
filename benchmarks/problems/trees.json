@@ -89,13 +89,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0145_binary_tree_postorder_traversal",
@@ -136,13 +131,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0226_invert_binary_tree",
@@ -183,12 +173,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0104_maximum_depth_of_binary_tree",
@@ -476,12 +462,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0617_merge_two_binary_trees",
@@ -535,13 +517,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0112_path_sum",
@@ -685,13 +662,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0450_delete_node_in_a_bst",
@@ -740,13 +712,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0102_binary_tree_level_order_traversal",
@@ -961,13 +928,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0106_construct_binary_tree_from_inorder_and_postorder_traversal",
@@ -1021,12 +983,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0662_maximum_width_of_binary_tree",
@@ -1067,13 +1025,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "1448_count_good_nodes_in_binary_tree",
@@ -1114,13 +1067,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "optional_type",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0098_validate_binary_search_tree",
@@ -1209,13 +1157,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "optional_type",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0105_construct_binary_tree_from_preorder_and_inorder_traversal",
@@ -1269,12 +1212,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0513_find_bottom_left_tree_value",
@@ -1315,13 +1254,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0669_trim_a_binary_search_tree",
@@ -1377,13 +1311,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "tree_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0124_binary_tree_maximum_path_sum",
