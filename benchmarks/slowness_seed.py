@@ -113,7 +113,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0005_longest_palindromic_substring": compiler("string_indexing", "substring_allocation"),
     "0981_time_based_key_value_store": mixed("stateful_object", "field_clone", "binary_search"),
     "0572_subtree_of_another_tree": compiler("tree_clone", "optional_clone"),
-    "0234_palindrome_linked_list": {**compiler("list_node_clone", "optional_clone"), "benchmark_status": "partial"},
+    "0234_palindrome_linked_list": compiler("list_node_clone", "optional_clone"),
     "2405_optimal_partition_of_string": compiler("string_indexing", "set_clone"),
     "0100_same_tree": compiler("tree_clone", "optional_clone"),
     "0072_edit_distance": noise("string_indexing"),
@@ -137,9 +137,7 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "1046_last_stone_weight": leetcode_fixed("heap_parity"),
 }
 
-FAILED_SEED: dict[str, dict[str, Any]] = {
-    "0234_palindrome_linked_list": {"benchmark_status": "partial", "slowness_tags": ["optional_type", "list_node_clone"]},
-}
+FAILED_SEED: dict[str, dict[str, Any]] = {}
 
 
 def seed_metadata(problem_id: str) -> dict[str, Any] | None:

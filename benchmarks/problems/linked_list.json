@@ -144,7 +144,7 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "partial",
+      "benchmark_status": "complete",
       "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
