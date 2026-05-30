@@ -226,11 +226,6 @@ FAILED_DETAILS: dict[str, dict[str, str]] = {
         "failure_mode": "moved_owned_tree_input",
         "first_fix": "rebuild_owned_tree_input_per_call",
     },
-    "0212_word_search_ii": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "correctness_duplicate_output",
-        "first_fix": "emit_unique_found_words",
-    },
     "1383_maximum_performance_of_a_team": {
         "primary_track": "leetcode_sifr_code",
         "failure_mode": "division_result_unhandled",
