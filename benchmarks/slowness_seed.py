@@ -117,7 +117,6 @@ SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "0295_find_median_from_data_stream": mixed("heap_parity", "field_clone", "stateful_object", parity="equivalent"),
     "0094_binary_tree_inorder_traversal": compiler("tree_clone", "optional_clone"),
     "0380_insert_delete_getrandom_o1": mixed("stateful_object", "field_clone", "array_map_parity", parity="equivalent"),
-    "1396_design_underground_system": mixed("stateful_object", "field_clone", "string_key", parity="equivalent"),
     "0104_maximum_depth_of_binary_tree": compiler("tree_clone", "optional_clone"),
     "0199_binary_tree_right_side_view": compiler("tree_clone", "list_clone"),
     "0013_roman_to_integer": compiler("string_indexing", "dict_clone"),
