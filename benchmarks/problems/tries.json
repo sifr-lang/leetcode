@@ -55,11 +55,13 @@
         "10000": 20
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
-        "trie_helper",
-        "field_clone"
+        "trie_parity",
+        "field_clone",
+        "dict_clone",
+        "stateful_object"
       ]
     },
     {
@@ -108,11 +110,13 @@
         "10000": 20
       },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
-        "trie_helper",
-        "field_clone"
+        "trie_parity",
+        "field_clone",
+        "dict_clone",
+        "stateful_object"
       ]
     },
     {

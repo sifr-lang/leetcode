@@ -1,5 +1,59 @@
 # LeetCode 208: Implement Trie Prefix Tree
-from helpers.trie import Trie
+
+def _child(edges: list[dict[str, int]], node: int, ch: str) -> int:
+    row: dict[str, int] | None = edges[node]
+    if row is None:
+        return -1
+    return row.get(ch, -1)
+
+def _terminal(end: list[bool], node: int) -> bool:
+    value: bool | None = end[node]
+    if value is None:
+        return False
+    return value
+
+class Trie:
+    edges: list[dict[str, int]]
+    end: list[bool]
+
+    def __init__(self):
+        self.edges = [{}]
+        self.end = [False]
+
+    def insert(self, word: str) -> None:
+        edges: list[dict[str, int]] = self.edges
+        end: list[bool] = self.end
+        node = 0
+        for ch in word:
+            next_node = _child(edges, node, ch)
+            if next_node == -1:
+                next_node = len(edges)
+                row: dict[str, int] | None = edges[node]
+                if row is not None:
+                    row[ch] = next_node
+                    edges[node] = row
+                edges.append({})
+                end.append(False)
+            node = next_node
+        end[node] = True
+        self.edges = edges
+        self.end = end
+
+    def search(self, word: str) -> bool:
+        node = 0
+        for ch in word:
+            node = _child(self.edges, node, ch)
+            if node == -1:
+                return False
+        return _terminal(self.end, node)
+
+    def startsWith(self, prefix: str) -> bool:
+        node = 0
+        for ch in prefix:
+            node = _child(self.edges, node, ch)
+            if node == -1:
+                return False
+        return True
 
 def main():
     obj = Trie()
