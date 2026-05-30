@@ -12,7 +12,7 @@ def word(index: int) -> str:
     return "".join(letters)
 
 def generate_input(size: int) -> str:
-    lines = []
+    lines = ["__init__"]
     for i in range(size):
         w = word(i)
         lines.append(f"insert {w}")

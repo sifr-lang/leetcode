@@ -1,44 +1,92 @@
 # LeetCode 211: Design Add And Search Words Data Structure
-from helpers.trie import Trie
 
-def searchFrom(trie: Trie, pattern: str, index: int, node: int) -> bool:
+def _child(edges: list[dict[str, int]], node: int, ch: str) -> int:
+    row: dict[str, int] | None = edges[node]
+    if row is None:
+        return -1
+    return row.get(ch, -1)
+
+def _children(row: dict[str, int] | None) -> list[int]:
+    out: list[int] = []
+    if row is None:
+        return out
+    for value in row.values():
+        out.append(value)
+    return out
+
+def _terminal(end: list[bool], node: int) -> bool:
+    value: bool | None = end[node]
+    if value is None:
+        return False
+    return value
+
+def _search_from(edges: list[dict[str, int]], end: list[bool], pattern: str, index: int, node: int) -> bool:
     if index == len(pattern):
-        return trie.is_terminal(node)
+        return _terminal(end, node)
 
     ch: str | None = pattern[index]
     if ch is None:
         return False
 
     if ch == ".":
-        for child in trie.children(node):
-            if searchFrom(trie, pattern, index + 1, child):
+        row: dict[str, int] | None = edges[node]
+        for child in _children(row):
+            if _search_from(edges, end, pattern, index + 1, child):
                 return True
         return False
 
-    next_node: int | None = trie.child(node, ch)
-    if next_node is None:
+    next_node = _child(edges, node, ch)
+    if next_node == -1:
         return False
-    return searchFrom(trie, pattern, index + 1, next_node)
+    return _search_from(edges, end, pattern, index + 1, next_node)
 
 class WordDictionary:
-    trie: Trie
+    edges: list[dict[str, int]]
+    end: list[bool]
 
     def __init__(self):
-        self.trie = Trie()
+        self.edges = [{}]
+        self.end = [False]
 
     def addWord(self, word: str) -> None:
-        trie: Trie = self.trie
-        trie.insert(word)
-        self.trie = trie
+        edges: list[dict[str, int]] = self.edges
+        end: list[bool] = self.end
+        node = 0
+        for ch in word:
+            next_node = _child(edges, node, ch)
+            if next_node == -1:
+                next_node = len(edges)
+                row: dict[str, int] | None = edges[node]
+                if row is not None:
+                    row[ch] = next_node
+                    edges[node] = row
+                edges.append({})
+                end.append(False)
+            node = next_node
+        end[node] = True
+        self.edges = edges
+        self.end = end
 
     def search(self, pattern: str) -> bool:
-        return searchFrom(self.trie, pattern, 0, 0)
+        return _search_from(self.edges, self.end, pattern, 0, 0)
 
 def main():
+    obj2 = WordDictionary()
+    obj2.addWord('aaa')
+    assert obj2.search('aaa') == True
+    assert obj2.search('.aa') == True
+    obj2.addWord('baa')
+    assert obj2.search('baa') == True
+
     obj = WordDictionary()
     obj.addWord('bad')
     obj.addWord('dad')
     obj.addWord('mad')
+    obj.addWord('aaa')
+    obj.addWord('baa')
+    assert obj.search('aaa') == True
+    assert obj.search('.aa') == True
+    assert obj.search('baa') == True
     assert obj.search('pad') == False
     assert obj.search('bad') == True
     assert obj.search('.ad') == True

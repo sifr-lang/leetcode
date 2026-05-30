@@ -7,7 +7,7 @@ def word(index: int) -> str:
     return chr(ord("a") + index % 26) + chr(ord("a") + (index // 26) % 26) + chr(ord("a") + (index // 676) % 26)
 
 def generate_input(size: int) -> str:
-    lines = []
+    lines = ["__init__"]
     for i in range(size):
         w = word(i)
         lines.append(f"addWord {w}")
