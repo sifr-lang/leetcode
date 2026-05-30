@@ -1,5 +1,6 @@
 # LeetCode 502: Ipo
 
+from helpers.safe_math import div_or_zero, mod_or_zero
 from sifr.heapq import heappush, heappop
 
 def findMaximizedCapital(k: int, mut w: int, profits: list[int], capital: list[int]) -> int:
@@ -23,8 +24,8 @@ def findMaximizedCapital(k: int, mut w: int, profits: list[int], capital: list[i
         while minCapital:
             top = heappop(minCapital)
             if top is not None:
-                c = top // base
-                p = top % base
+                c = div_or_zero(top, base)
+                p = mod_or_zero(top, base)
                 if c <= w:
                     heappush(maxProfit, -p)
                 else:

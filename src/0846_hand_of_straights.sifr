@@ -1,7 +1,11 @@
 # LeetCode 846: Hand Of Straights
 
+from helpers.safe_math import mod_or_zero
+
 def isNStraightHand(hand: list[int], groupSize: int) -> bool:
-    if (len(hand) % groupSize) != 0:
+    if groupSize <= 0:
+        return False
+    if mod_or_zero(len(hand), groupSize) != 0:
         return False
 
     count = {}

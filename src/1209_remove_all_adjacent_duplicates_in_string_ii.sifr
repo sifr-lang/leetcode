@@ -1,6 +1,10 @@
 # LeetCode 1209: Remove All Adjacent Duplicates In String Ii
 
+from helpers.safe_math import mod_or_zero
+
 def removeDuplicates(s: str, k: int) -> str:
+    if k <= 0:
+        return "" + s
     current = s
     changed = True
 
@@ -21,7 +25,7 @@ def removeDuplicates(s: str, k: int) -> str:
                     break
 
             run = j - i
-            rem = run % k
+            rem = mod_or_zero(run, k)
             if rem != run:
                 changed = True
             r = 0

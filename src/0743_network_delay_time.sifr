@@ -1,5 +1,6 @@
 # LeetCode 743: Network Delay Time
 
+from helpers.safe_math import div_or_zero, mod_or_zero
 from sifr.heapq import heappush, heappop
 
 def networkDelayTime(times: list[list[int]], n: int, k: int) -> int:
@@ -46,8 +47,8 @@ def networkDelayTime(times: list[list[int]], n: int, k: int) -> int:
     while heap:
         top = heappop(heap)
         if top is not None:
-            w1 = top // node_base
-            n1 = top % node_base
+            w1 = div_or_zero(top, node_base)
+            n1 = mod_or_zero(top, node_base)
             if n1 in visit:
                 continue
             visit.add(n1)
@@ -56,8 +57,8 @@ def networkDelayTime(times: list[list[int]], n: int, k: int) -> int:
             neighbors = edges.get(n1)
             if neighbors is not None:
                 for encoded_edge in neighbors:
-                    n2 = encoded_edge // edge_base
-                    w2 = encoded_edge % edge_base
+                    n2 = div_or_zero(encoded_edge, edge_base)
+                    w2 = mod_or_zero(encoded_edge, edge_base)
                     if n2 not in visit:
                         heappush(heap, (w1 + w2) * node_base + n2)
         else:
