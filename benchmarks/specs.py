@@ -30,6 +30,10 @@ class ProblemSpec:
     fixture_stem: str
     sizes: tuple[int, ...]
     loops_by_size: dict[int, int]
+    benchmark_status: str
+    parity_status: str
+    primary_slowness_owner: str
+    slowness_tags: tuple[str, ...]
 
 
 def root_path(relative: str) -> Path:
@@ -68,6 +72,10 @@ def load_problem_specs() -> dict[str, ProblemSpec]:
                 fixture_stem=item["fixture_stem"],
                 sizes=tuple(int(size) for size in item["sizes"]),
                 loops_by_size={int(size): int(loops) for size, loops in item["loops_by_size"].items()},
+                benchmark_status=item.get("benchmark_status", "unknown"),
+                parity_status=item.get("parity_status", "unknown"),
+                primary_slowness_owner=item.get("primary_slowness_owner", "unknown"),
+                slowness_tags=tuple(str(tag) for tag in item.get("slowness_tags", [])),
             )
             specs[spec.problem_id] = spec
     return specs

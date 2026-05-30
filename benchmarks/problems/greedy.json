@@ -116,7 +116,13 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
-      "loops_by_size": { "1000": 500, "10000": 100, "100000": 10 }
+      "loops_by_size": { "1000": 500, "10000": 100, "100000": 10 },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "1423_maximum_points_you_can_obtain_from_cards",
@@ -171,7 +177,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
-      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "dict_clone"
+      ]
     },
     {
       "id": "0678_valid_parenthesis_string",

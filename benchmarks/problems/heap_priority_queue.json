@@ -48,7 +48,14 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing",
+        "stateful_object"
+      ]
     },
     {
       "id": "1046_last_stone_weight",
@@ -88,7 +95,13 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing"
+      ]
     },
     {
       "id": "0973_k_closest_points_to_origin",
@@ -138,7 +151,13 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing"
+      ]
     },
     {
       "id": "0215_kth_largest_element_in_an_array",
@@ -295,7 +314,15 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone",
+        "heap_missing"
+      ]
     },
     {
       "id": "1834_single_threaded_cpu",
@@ -338,7 +365,13 @@
         "100": 300,
         "300": 100,
         "700": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing"
+      ]
     },
     {
       "id": "1845_seat_reservation_manager",
@@ -432,7 +465,14 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "heap_missing",
+        "string_indexing"
+      ]
     },
     {
       "id": "0767_reorganize_string",
@@ -517,7 +557,14 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "heap_missing",
+        "stateful_object"
+      ]
     },
     {
       "id": "1383_maximum_performance_of_a_team",
@@ -584,7 +631,14 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result",
+        "heap_missing"
+      ]
     },
     {
       "id": "0502_ipo",
@@ -651,7 +705,14 @@
         "1000": 500,
         "5000": 100,
         "10000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result",
+        "heap_missing"
+      ]
     }
   ]
 }

@@ -179,7 +179,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "0977_squares_of_a_sorted_array",
@@ -587,7 +593,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "2616_minimize_the_maximum_difference_of_pairs",
@@ -820,7 +832,15 @@
         "1000": 1000,
         "5000": 200,
         "10000": 50
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone",
+        "binary_search"
+      ]
     },
     {
       "id": "0034_find_first_and_last_position_of_element_in_sorted_array",

@@ -53,7 +53,14 @@
         "1000": 200,
         "5000": 50,
         "10000": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "trie_helper",
+        "field_clone"
+      ]
     },
     {
       "id": "0211_design_add_and_search_words_data_structure",
@@ -99,7 +106,14 @@
         "1000": 200,
         "5000": 50,
         "10000": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "known_divergent",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "trie_helper",
+        "field_clone"
+      ]
     },
     {
       "id": "0212_word_search_ii",
@@ -153,7 +167,14 @@
         "100": 1000,
         "400": 300,
         "900": 100
-      }
+      },
+      "benchmark_status": "failed_correctness",
+      "parity_status": "failed_correctness",
+      "primary_slowness_owner": "leetcode_sifr_code",
+      "slowness_tags": [
+        "trie_helper",
+        "correctness_duplicate"
+      ]
     }
   ]
 }

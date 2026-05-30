@@ -41,7 +41,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0021_merge_two_sorted_lists",
@@ -94,7 +101,14 @@
         "100": 2000,
         "500": 800,
         "900": 400
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0234_palindrome_linked_list",
@@ -134,7 +148,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "partial",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "list_node_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0203_remove_linked_list_elements",
@@ -182,7 +203,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0083_remove_duplicates_from_sorted_list",
@@ -222,7 +250,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0876_middle_of_the_linked_list",
@@ -262,7 +297,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "2130_maximum_twin_sum_of_a_linked_list",
@@ -302,7 +344,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "list_node_clone",
+        "optional_clone"
+      ]
     },
     {
       "id": "0019_remove_nth_node_from_end_of_list",
@@ -350,7 +399,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "1721_swapping_nodes_in_a_linked_list",
@@ -398,7 +454,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0002_add_two_numbers",
@@ -451,7 +514,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0141_linked_list_cycle",
@@ -491,7 +561,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "optional_type",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0287_find_the_duplicate_number",
@@ -571,7 +648,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0148_sort_list",
@@ -611,7 +695,14 @@
         "100": 1000,
         "300": 300,
         "700": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0086_partition_list",
@@ -659,7 +750,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0061_rotate_list",
@@ -707,7 +805,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0147_insertion_sort_list",
@@ -747,7 +852,14 @@
         "100": 1000,
         "300": 300,
         "700": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0025_reverse_nodes_in_k_group",
@@ -795,7 +907,14 @@
         "100": 2000,
         "1000": 500,
         "5000": 100
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "list_node_clone"
+      ]
     },
     {
       "id": "0707_design_linked_list",
@@ -860,7 +979,14 @@
         "1000": 200,
         "5000": 50,
         "10000": 20
-      }
+      },
+      "benchmark_status": "failed_timeout",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "stateful_object",
+        "timeout"
+      ]
     },
     {
       "id": "1472_design_browser_history",
@@ -914,7 +1040,15 @@
         "1000": 200,
         "5000": 50,
         "10000": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone",
+        "list_clone"
+      ]
     },
     {
       "id": "0622_design_circular_queue",
@@ -976,7 +1110,13 @@
         "1000": 200,
         "5000": 50,
         "10000": 20
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "0146_lru_cache",
@@ -1025,7 +1165,14 @@
         "1000": 200,
         "5000": 50,
         "10000": 20
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone"
+      ]
     }
   ]
 }

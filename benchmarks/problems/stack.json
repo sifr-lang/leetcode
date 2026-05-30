@@ -42,7 +42,14 @@
         "1000": 5000,
         "10000": 1000,
         "100000": 100
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "noise",
+      "slowness_tags": [
+        "list_clone",
+        "dict_clone"
+      ]
     },
     {
       "id": "0682_baseball_game",
@@ -82,7 +89,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "noise",
+      "slowness_tags": [
+        "stack_clone",
+        "string_parse"
+      ]
     },
     {
       "id": "0225_implement_stack_using_queues",
@@ -441,7 +455,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "type_error"
+      ]
     },
     {
       "id": "0901_online_stock_span",
@@ -541,7 +561,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "0071_simplify_path",
@@ -671,7 +697,14 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "list_clone"
+      ]
     },
     {
       "id": "1209_remove_all_adjacent_duplicates_in_string_ii",
@@ -719,7 +752,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "0456_132_pattern",
@@ -803,7 +842,14 @@
         "1000": 1000,
         "5000": 200,
         "10000": 50
-      }
+      },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "field_clone"
+      ]
     },
     {
       "id": "0084_largest_rectangle_in_histogram",
@@ -843,7 +889,13 @@
         "1000": 1000,
         "10000": 200,
         "100000": 30
-      }
+      },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "type_error"
+      ]
     }
   ]
 }

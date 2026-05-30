@@ -76,7 +76,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 300, 800],
-      "loops_by_size": { "100": 200, "300": 50, "800": 10 }
+      "loops_by_size": { "100": 200, "300": 50, "800": 10 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "substring_allocation"
+      ]
     },
     {
       "id": "0647_palindromic_substrings",
@@ -91,7 +98,13 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 300, 800],
-      "loops_by_size": { "100": 200, "300": 50, "800": 10 }
+      "loops_by_size": { "100": 200, "300": 50, "800": 10 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing"
+      ]
     },
     {
       "id": "0091_decode_ways",
@@ -161,7 +174,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 50000],
-      "loops_by_size": { "1000": 1000, "10000": 200, "50000": 30 }
+      "loops_by_size": { "1000": 1000, "10000": 200, "50000": 30 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "substring_allocation",
+        "set_clone"
+      ]
     },
     {
       "id": "0300_longest_increasing_subsequence",

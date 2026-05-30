@@ -61,7 +61,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 300, 600],
-      "loops_by_size": { "100": 100, "300": 20, "600": 5 }
+      "loops_by_size": { "100": 100, "300": 20, "600": 5 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "dict_clone",
+        "tuple_key_clone"
+      ]
     },
     {
       "id": "0048_rotate_image",
@@ -91,7 +98,13 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 300, 700],
-      "loops_by_size": { "100": 200, "300": 50, "700": 10 }
+      "loops_by_size": { "100": 200, "300": 50, "700": 10 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "matrix_clone"
+      ]
     },
     {
       "id": "0073_set_matrix_zeroes",
@@ -166,7 +179,13 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
-      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result"
+      ]
     },
     {
       "id": "1260_shift_2d_grid",
@@ -186,7 +205,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [50, 150, 300],
-      "loops_by_size": { "50": 200, "150": 50, "300": 10 }
+      "loops_by_size": { "50": 200, "150": 50, "300": 10 },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "division_result",
+        "matrix_clone"
+      ]
     },
     {
       "id": "0013_roman_to_integer",
@@ -201,7 +227,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 1000, 5000],
-      "loops_by_size": { "100": 1000, "1000": 200, "5000": 30 }
+      "loops_by_size": { "100": 1000, "1000": 200, "5000": 30 },
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "string_indexing",
+        "dict_clone"
+      ]
     },
     {
       "id": "0012_integer_to_roman",
@@ -268,7 +301,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 500, 1000],
-      "loops_by_size": { "100": 200, "500": 50, "1000": 10 }
+      "loops_by_size": { "100": 200, "500": 50, "1000": 10 },
+      "benchmark_status": "complete",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "mixed",
+      "slowness_tags": [
+        "stateful_object",
+        "dict_clone"
+      ]
     },
     {
       "id": "0006_zigzag_conversion",
@@ -283,7 +323,14 @@
       },
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
-      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 }
+      "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 },
+      "benchmark_status": "failed_build",
+      "parity_status": "unknown",
+      "primary_slowness_owner": "compiler",
+      "slowness_tags": [
+        "moved_value",
+        "string_indexing"
+      ]
     }
   ]
 }
