@@ -17,12 +17,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [8, 12, 16],
       "loops_by_size": { "8": 5000, "12": 2000, "16": 1000 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0063_unique_paths_ii",
@@ -266,12 +262,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [50, 100, 200],
       "loops_by_size": { "50": 1000, "100": 500, "200": 100 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0312_burst_balloons",

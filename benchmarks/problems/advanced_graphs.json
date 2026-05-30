@@ -68,12 +68,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [100, 1000, 5000],
       "loops_by_size": { "100": 500, "1000": 100, "5000": 20 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "1514_path_with_maximum_probability",

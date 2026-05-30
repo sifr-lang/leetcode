@@ -180,12 +180,8 @@
         "10000": 200,
         "100000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0977_squares_of_a_sorted_array",
@@ -594,12 +590,8 @@
         "10000": 200,
         "100000": 30
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "2616_minimize_the_maximum_difference_of_pairs",

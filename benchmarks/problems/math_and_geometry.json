@@ -180,12 +180,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [1000, 10000, 100000],
       "loops_by_size": { "1000": 1000, "10000": 200, "100000": 30 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "1260_shift_2d_grid",
@@ -206,13 +202,8 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [50, 150, 300],
       "loops_by_size": { "50": 200, "150": 50, "300": 10 },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "division_result",
-        "matrix_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0013_roman_to_integer",
