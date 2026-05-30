@@ -1,5 +1,84 @@
 # LeetCode 212: Word Search Ii
-from helpers.trie import Trie
+
+def _child(edges: list[dict[str, int]], node: int, ch: str) -> int:
+    row: dict[str, int] | None = edges[node]
+    if row is None:
+        return -1
+    return row.get(ch, -1)
+
+def _bool_at(values: list[bool], index: int) -> bool:
+    value: bool | None = values[index]
+    if value is None:
+        return False
+    return value
+
+def _int_at(values: list[int], index: int) -> int:
+    value: int | None = values[index]
+    if value is None:
+        return 0
+    return value
+
+class WordTrie:
+    edges: list[dict[str, int]]
+    terminal: list[bool]
+    refs: list[int]
+
+    def __init__(self):
+        self.edges = [{}]
+        self.terminal = [False]
+        self.refs = [0]
+
+    def insert(self, word: str) -> None:
+        edges: list[dict[str, int]] = self.edges
+        terminal: list[bool] = self.terminal
+        refs: list[int] = self.refs
+
+        node = 0
+        refs[node] = _int_at(refs, node) + 1
+        for ch in word:
+            next_node = _child(edges, node, ch)
+            if next_node == -1:
+                next_node = len(edges)
+                row: dict[str, int] | None = edges[node]
+                if row is not None:
+                    row[ch] = next_node
+                    edges[node] = row
+                edges.append({})
+                terminal.append(False)
+                refs.append(0)
+            node = next_node
+            refs[node] = _int_at(refs, node) + 1
+
+        terminal[node] = True
+        self.edges = edges
+        self.terminal = terminal
+        self.refs = refs
+
+    def removeWord(self, word: str) -> None:
+        refs: list[int] = self.refs
+        node = 0
+        refs[node] = _int_at(refs, node) - 1
+        for ch in word:
+            next_node = _child(self.edges, node, ch)
+            if next_node == -1:
+                break
+            node = next_node
+            refs[node] = _int_at(refs, node) - 1
+        self.refs = refs
+
+    def child(self, node: int, ch: str) -> int:
+        return _child(self.edges, node, ch)
+
+    def hasRefs(self, node: int) -> bool:
+        return _int_at(self.refs, node) > 0
+
+    def isWord(self, node: int) -> bool:
+        return _bool_at(self.terminal, node)
+
+    def clearWord(self, node: int) -> None:
+        terminal: list[bool] = self.terminal
+        terminal[node] = False
+        self.terminal = terminal
 
 def boardChar(board: list[list[str]], r: int, c: int) -> str | None:
     row: list[str] | None = board[r]
@@ -11,7 +90,7 @@ def collectWords(
     board: list[list[str]],
     rows: int,
     cols: int,
-    trie: Trie,
+    mut trie: WordTrie,
     node: int,
     prefix: str,
     r: int,
@@ -28,13 +107,17 @@ def collectWords(
     if letter is None:
         return found
 
-    next_node: int | None = trie.child(node, letter)
-    if next_node is None:
+    next_node = trie.child(node, letter)
+    if next_node == -1:
+        return found
+    if not trie.hasRefs(next_node):
         return found
 
     next_prefix: str = prefix + letter
-    if trie.is_terminal(next_node):
+    if trie.isWord(next_node):
+        trie.clearWord(next_node)
         found[next_prefix] = True
+        trie.removeWord(next_prefix)
 
     visit.add((r, c))
     found = collectWords(board, rows, cols, trie, next_node, next_prefix, r + 1, c, visit, found)
@@ -55,7 +138,7 @@ def findWords(board: list[list[str]], words: list[str]) -> list[str]:
 
     rows = len(board)
     cols = len(first_row)
-    trie = Trie()
+    trie = WordTrie()
     for word in words:
         trie.insert(word)
 

@@ -51,6 +51,7 @@ def noise(*tags: str) -> dict[str, Any]:
 SLOWNESS_SEED: dict[str, dict[str, Any]] = {
     "1985_find_the_kth_largest_integer_in_the_array": leetcode_fixed("heap_parity", "string_indexing"),
     "0211_design_add_and_search_words_data_structure": mixed("trie_parity", "field_clone", "dict_clone", "stateful_object", parity="equivalent"),
+    "0212_word_search_ii": mixed("trie_parity", "field_clone", "dict_clone", "recursive_search", parity="equivalent"),
     "0973_k_closest_points_to_origin": leetcode_fixed("heap_parity"),
     "0535_encode_and_decode_tinyurl": compiler("field_clone", "stateful_object", "string_allocation"),
     "1472_design_browser_history": mixed("stateful_object", "field_clone", "list_clone"),
@@ -166,12 +167,6 @@ FAILED_SEED: dict[str, dict[str, Any]] = {
     "0105_construct_binary_tree_from_preorder_and_inorder_traversal": {"benchmark_status": "failed_build", "slowness_tags": ["tree_clone"]},
     "0513_find_bottom_left_tree_value": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
     "0669_trim_a_binary_search_tree": {"benchmark_status": "failed_build", "slowness_tags": ["moved_value", "tree_clone"]},
-    "0212_word_search_ii": {
-        "benchmark_status": "failed_correctness",
-        "parity_status": "failed_correctness",
-        "primary_slowness_owner": "leetcode_sifr_code",
-        "slowness_tags": ["trie_helper", "correctness_duplicate"],
-    },
     "1383_maximum_performance_of_a_team": {"benchmark_status": "failed_build", "slowness_tags": ["division_result", "heap_missing"]},
     "0502_ipo": {"benchmark_status": "failed_build", "slowness_tags": ["division_result", "heap_missing"]},
     "0698_partition_to_k_equal_sum_subsets": {"benchmark_status": "failed_build", "slowness_tags": ["division_result"]},

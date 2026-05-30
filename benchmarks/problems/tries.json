@@ -172,12 +172,14 @@
         "400": 300,
         "900": 100
       },
-      "benchmark_status": "failed_correctness",
-      "parity_status": "failed_correctness",
-      "primary_slowness_owner": "leetcode_sifr_code",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
+      "primary_slowness_owner": "mixed",
       "slowness_tags": [
-        "trie_helper",
-        "correctness_duplicate"
+        "trie_parity",
+        "field_clone",
+        "dict_clone",
+        "recursive_search"
       ]
     }
   ]
