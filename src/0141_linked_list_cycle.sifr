@@ -32,7 +32,7 @@ def listNodeToString(own node: ListNode | None) -> str:
         parts.append(str(nodeVal(cur)))
         cur = nodeNext(cur)
     return "->".join(parts)
-def hasCycle(own head: ListNode) -> bool:
+def hasCycle(own head: ListNode | None) -> bool:
     return False
 
 def main():

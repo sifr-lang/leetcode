@@ -2,12 +2,14 @@
 
 def largestRectangleArea(heights: list[int]) -> int:
     maxArea = 0
-    stack = []  # pair: (index, height)
+    stack: list[tuple[int, int]] = []
 
     for i, h in enumerate(heights):
         start = i
         while stack and stack[-1][1] > h:
-            pair = stack.pop()
+            pair: tuple[int, int] | None = stack.pop()
+            if pair is None:
+                break
             index = pair[0]
             height = pair[1]
             maxArea = max(maxArea, height * (i - index))
