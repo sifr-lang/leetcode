@@ -1426,13 +1426,7 @@
         "10000": 2
       },
       "benchmark_status": "complete",
-      "parity_status": "equivalent",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "field_clone",
-        "stateful_object",
-        "string_allocation"
-      ]
+      "parity_status": "equivalent"
     },
     {
       "id": "0554_brick_wall",

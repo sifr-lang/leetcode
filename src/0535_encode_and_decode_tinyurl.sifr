@@ -1,5 +1,4 @@
 # LeetCode 535: Encode And Decode Tinyurl
-from helpers.tree_node import TreeNode, treeToString
 class Codec:
     encodeMap: dict[str, str]
     decodeMap: dict[str, str]
@@ -10,16 +9,13 @@ class Codec:
         self.decodeMap = {}
         self.base = "http://tinyurl.com/"
     def encode(self, longUrl: str) -> str:
-        
-        if longUrl not in self.encodeMap: 
-            short_for_encode = self.base + str(len(self.encodeMap) + 1)
-            short_for_decode = self.base + str(len(self.encodeMap) + 1)
-            self.encodeMap[longUrl] = short_for_encode
-            self.decodeMap[short_for_decode] = str(longUrl)
-        encoded = self.encodeMap[longUrl]
-        if encoded is None:
-            return ""
-        return encoded
+        encoded = self.encodeMap.get(longUrl, "")
+        if encoded != "":
+            return encoded
+        shortUrl = self.base + str(len(self.encodeMap) + 1)
+        self.encodeMap[longUrl] = str(shortUrl)
+        self.decodeMap[str(shortUrl)] = str(longUrl)
+        return shortUrl
     def decode(self, shortUrl: str) -> str:
         decoded = self.decodeMap[shortUrl]
         if decoded is None:
