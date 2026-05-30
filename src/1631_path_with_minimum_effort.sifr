@@ -1,4 +1,6 @@
 # LeetCode 1631: Path With Minimum Effort
+from sifr.heapq import heappop, heappush
+from helpers.safe_math import div_or_zero, mod_or_zero
 
 def unwrapInt(value: int | None) -> int:
     if value is None:
@@ -50,57 +52,47 @@ def minimumEffortPath(heights: list[list[int]]) -> int:
 
     inf = 1_000_000_000
     dist: list[list[int]] = []
-    used: list[list[bool]] = []
     for _ in range(m):
         dist.append([inf] * n)
-        used.append([False] * n)
     setIntCell(dist, 0, 0, 0)
 
-    for _ in range(m * n):
-        best = inf
-        r = -1
-        c = -1
+    base = max(m, n) + 1
+    heap: list[int] = [0]
+    while len(heap) > 0:
+        item: int | None = heappop(heap)
+        if item is not None:
+            encoded: int = item
+            best = div_or_zero(encoded, base * base)
+            position = mod_or_zero(encoded, base * base)
+            r = div_or_zero(position, base)
+            c = mod_or_zero(position, base)
+            if best > getIntCell(dist, r, c):
+                continue
+            if r == m - 1 and c == n - 1:
+                return best
 
-        for i in range(m):
-            for j in range(n):
-                if getBoolCell(used, i, j):
+            directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            for direction in directions:
+                dr = direction[0]
+                dc = direction[1]
+                if dr is None or dc is None:
                     continue
-                cand = getIntCell(dist, i, j)
-                if cand < best:
-                    best = cand
-                    r = i
-                    c = j
 
-        if r == -1 or c == -1:
-            break
+                nr = r + dr
+                nc = c + dc
+                if nr < 0 or nc < 0 or nr >= m or nc >= n:
+                    continue
 
-        setBoolCell(used, r, c, True)
-        if r == m - 1 and c == n - 1:
-            return best
+                height_cur = getIntCell(heights, r, c)
+                height_next = getIntCell(heights, nr, nc)
+                edge = abs(height_next - height_cur)
+                effort = best
+                if edge > effort:
+                    effort = edge
 
-        directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-        for direction in directions:
-            dr = direction[0]
-            dc = direction[1]
-            if dr is None or dc is None:
-                continue
-
-            nr = r + dr
-            nc = c + dc
-            if nr < 0 or nc < 0 or nr >= m or nc >= n:
-                continue
-            if getBoolCell(used, nr, nc):
-                continue
-
-            height_cur = getIntCell(heights, r, c)
-            height_next = getIntCell(heights, nr, nc)
-            edge = abs(height_next - height_cur)
-            effort = best
-            if edge > effort:
-                effort = edge
-
-            if effort < getIntCell(dist, nr, nc):
-                setIntCell(dist, nr, nc, effort)
+                if effort < getIntCell(dist, nr, nc):
+                    setIntCell(dist, nr, nc, effort)
+                    heappush(heap, (effort * base * base) + (nr * base) + nc)
 
     return getIntCell(dist, m - 1, n - 1)
 

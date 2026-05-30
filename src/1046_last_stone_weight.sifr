@@ -1,4 +1,5 @@
 # LeetCode 1046: Last Stone Weight
+from sifr.heapq import _heapify_max, _heappop_max, _heapreplace_max
 
 def unwrapInt(value: int | None) -> int:
     if value is None:
@@ -6,16 +7,21 @@ def unwrapInt(value: int | None) -> int:
     return value
 
 def lastStoneWeight(mut stones: list[int]) -> int:
+    _heapify_max(stones)
     while len(stones) > 1:
-        stones.sort()
-        y = unwrapInt(stones.pop())
-        x = unwrapInt(stones.pop())
-        if y > x:
-            stones.append(y - x)
+        max_stone = unwrapInt(_heappop_max(stones))
+        next_stone: int | None = stones[0]
+        if next_stone is None:
+            return max_stone
+        diff = max_stone - next_stone
+        if diff != 0:
+            _heapreplace_max(stones, diff)
+        else:
+            _heappop_max(stones)
 
     if len(stones) == 0:
         return 0
-    return unwrapInt(stones.pop())
+    return unwrapInt(stones[0])
 
 def main():
     assert lastStoneWeight([2, 7, 4, 1, 8, 1]) == 1

@@ -22,10 +22,10 @@
       "sizes": [10, 30, 60],
       "loops_by_size": { "10": 200, "30": 50, "60": 10 },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing",
+        "heap_parity",
         "matrix_clone"
       ]
     },
@@ -117,10 +117,10 @@
       "sizes": [10, 30, 60],
       "loops_by_size": { "10": 100, "30": 20, "60": 5 },
       "benchmark_status": "complete",
-      "parity_status": "known_divergent",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "leetcode_sifr_code",
       "slowness_tags": [
-        "heap_missing",
+        "heap_parity",
         "matrix_clone"
       ]
     },

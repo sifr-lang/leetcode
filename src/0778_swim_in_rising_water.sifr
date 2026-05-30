@@ -1,4 +1,6 @@
 # LeetCode 778: Swim In Rising Water
+from sifr.heapq import heappop, heappush
+from helpers.safe_math import div_or_zero, mod_or_zero
 
 def unwrapInt(value: int | None) -> int:
     if value is None:
@@ -51,61 +53,51 @@ def swimInWater(grid: list[list[int]]) -> int:
         return 0
     start = unwrapInt(first_row[0])
     setIntCell(best, 0, 0, start)
+    setBoolCell(seen, 0, 0, True)
 
-    for _ in range(n * n):
-        cur_cost = inf
-        cur_r = -1
-        cur_c = -1
+    base = n + 1
+    heap: list[int] = [start * base * base]
+    while len(heap) > 0:
+        item: int | None = heappop(heap)
+        if item is not None:
+            encoded: int = item
+            cur_cost = div_or_zero(encoded, base * base)
+            position = mod_or_zero(encoded, base * base)
+            cur_r = div_or_zero(position, base)
+            cur_c = mod_or_zero(position, base)
 
-        for r in range(n):
-            best_row = best[r]
-            seen_row = seen[r]
-            if best_row is None or seen_row is None:
-                continue
-            for c in range(n):
-                if getBoolCell(seen, r, c):
+            if cur_r == n - 1 and cur_c == n - 1:
+                return cur_cost
+
+            directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            for direction in directions:
+                dr = direction[0]
+                dc = direction[1]
+                if dr is None or dc is None:
                     continue
-                cand = getIntCell(best, r, c)
-                if cand < cur_cost:
-                    cur_cost = cand
-                    cur_r = r
-                    cur_c = c
 
-        if cur_r == -1 or cur_c == -1:
-            break
+                nr = cur_r + dr
+                nc = cur_c + dc
+                if nr < 0 or nc < 0 or nr >= n or nc >= n:
+                    continue
 
-        setBoolCell(seen, cur_r, cur_c, True)
+                if getBoolCell(seen, nr, nc):
+                    continue
 
-        if cur_r == n - 1 and cur_c == n - 1:
-            return cur_cost
+                grid_row = grid[nr]
+                if grid_row is None:
+                    continue
 
-        directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-        for direction in directions:
-            dr = direction[0]
-            dc = direction[1]
-            if dr is None or dc is None:
-                continue
+                height = unwrapInt(grid_row[nc])
+                effort = cur_cost
+                if height > effort:
+                    effort = height
 
-            nr = cur_r + dr
-            nc = cur_c + dc
-            if nr < 0 or nc < 0 or nr >= n or nc >= n:
-                continue
-
-            if getBoolCell(seen, nr, nc):
-                continue
-
-            grid_row = grid[nr]
-            if grid_row is None:
-                continue
-
-            height = unwrapInt(grid_row[nc])
-            effort = cur_cost
-            if height > effort:
-                effort = height
-
-            old_effort = getIntCell(best, nr, nc)
-            if effort < old_effort:
-                setIntCell(best, nr, nc, effort)
+                old_effort = getIntCell(best, nr, nc)
+                if effort < old_effort:
+                    setIntCell(best, nr, nc, effort)
+                    setBoolCell(seen, nr, nc, True)
+                    heappush(heap, (effort * base * base) + (nr * base) + nc)
 
     last_row = best[n - 1]
     if last_row is None:
