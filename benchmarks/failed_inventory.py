@@ -30,13 +30,7 @@ VALID_FAILURE_MODES = {
 }
 
 
-FAILED_DETAILS: dict[str, dict[str, str]] = {
-    "0234_palindrome_linked_list": {
-        "primary_track": "leetcode_sifr_code",
-        "failure_mode": "nullable_signature_mismatch",
-        "first_fix": "accept_nullable_list_node_entrypoint",
-    },
-}
+FAILED_DETAILS: dict[str, dict[str, str]] = {}
 
 
 def failure_excerpt(problem_id: str, raw_dir: Path) -> str:
