@@ -65,10 +65,8 @@ def findWords(board: list[list[str]], words: list[str]) -> list[str]:
             found = collectWords(board, rows, cols, trie, 0, "", r, c, set(), found)
 
     out: list[str] = []
-    for word in words:
-        present: bool | None = found[word]
-        if present is not None:
-            out.append(word)
+    for word in found.keys():
+        out.append(word)
     return out
 
 def main():
