@@ -1607,10 +1607,11 @@
       },
       "benchmark_status": "complete",
       "parity_status": "equivalent",
-      "primary_slowness_owner": "compiler",
+      "primary_slowness_owner": "mixed",
       "slowness_tags": [
-        "string_indexing",
-        "set_clone"
+        "stateful_object",
+        "field_clone",
+        "array_map_parity"
       ]
     },
     {
@@ -2629,7 +2630,7 @@
         "100000": 3
       },
       "benchmark_status": "complete",
-      "parity_status": "unknown",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
         "stateful_object",

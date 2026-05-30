@@ -1041,7 +1041,7 @@
         "10000": 20
       },
       "benchmark_status": "complete",
-      "parity_status": "unknown",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
         "stateful_object",
@@ -1166,11 +1166,12 @@
         "10000": 20
       },
       "benchmark_status": "complete",
-      "parity_status": "unknown",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "mixed",
       "slowness_tags": [
         "stateful_object",
-        "field_clone"
+        "field_clone",
+        "lru_parity"
       ]
     }
   ]

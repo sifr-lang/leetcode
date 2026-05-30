@@ -1,6 +1,5 @@
 # LeetCode 1472: Design Browser History
 
-from helpers.list_node import ListNode, nodeVal, nodeNext, hasNode, listNodeToString
 class BrowserHistory:    
     def __init__(self, homepage: str):
         self.i = 0
@@ -10,9 +9,9 @@ class BrowserHistory:
         if len(self.history) < self.i + 2:
             self.history.append(str(url))
         else:
-            while len(self.history) > self.i + 1:
-                self.history.pop()
-            self.history.append(str(url))
+            history: list[str] = self.history
+            history[self.i + 1] = str(url)
+            self.history = history
         self.i += 1
         self.len = self.i + 1
     def back(self, steps: int) -> str:
