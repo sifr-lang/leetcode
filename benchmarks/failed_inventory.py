@@ -31,70 +31,15 @@ VALID_FAILURE_MODES = {
 
 
 FAILED_DETAILS: dict[str, dict[str, str]] = {
-    "0021_merge_two_sorted_lists": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
     "0234_palindrome_linked_list": {
         "primary_track": "leetcode_sifr_code",
         "failure_mode": "nullable_signature_mismatch",
         "first_fix": "accept_nullable_list_node_entrypoint",
     },
-    "0203_remove_linked_list_elements": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0083_remove_duplicates_from_sorted_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0876_middle_of_the_linked_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "1721_swapping_nodes_in_a_linked_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
     "0141_linked_list_cycle": {
         "primary_track": "leetcode_sifr_code",
         "failure_mode": "nullable_signature_mismatch",
         "first_fix": "accept_nullable_list_node_entrypoint",
-    },
-    "0024_swap_nodes_in_pairs": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0148_sort_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0086_partition_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0061_rotate_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0147_insertion_sort_list": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
-    },
-    "0025_reverse_nodes_in_k_group": {
-        "primary_track": "benchmark_harness",
-        "failure_mode": "moved_result_rendering",
-        "first_fix": "render_structured_result_once_in_runner",
     },
     "0707_design_linked_list": {
         "primary_track": "leetcode_sifr_code",

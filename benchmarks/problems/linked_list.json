@@ -97,12 +97,12 @@
         "500": 800,
         "900": 400
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -199,12 +199,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -246,12 +246,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -293,12 +293,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -450,12 +450,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -644,13 +644,8 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0148_sort_list",
@@ -691,12 +686,12 @@
         "300": 300,
         "700": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -746,12 +741,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -801,12 +796,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
@@ -848,13 +843,8 @@
         "300": 300,
         "700": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
-      "primary_slowness_owner": "compiler",
-      "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
-      ]
+      "benchmark_status": "complete",
+      "parity_status": "equivalent"
     },
     {
       "id": "0025_reverse_nodes_in_k_group",
@@ -903,12 +893,12 @@
         "1000": 500,
         "5000": 100
       },
-      "benchmark_status": "failed_build",
-      "parity_status": "unknown",
+      "benchmark_status": "complete",
+      "parity_status": "equivalent",
       "primary_slowness_owner": "compiler",
       "slowness_tags": [
-        "moved_value",
-        "list_node_clone"
+        "list_node_clone",
+        "optional_clone"
       ]
     },
     {
