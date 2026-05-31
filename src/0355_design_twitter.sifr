@@ -11,7 +11,7 @@ def unwrapTweet(value: tuple[int, int] | None) -> tuple[int, int]:
 class Twitter:
     count: int
     tweetMap: dict[int, list[tuple[int, int]]]
-    followMap: dict[int, list[int]]
+    followMap: dict[int, set[int]]
 
     def __init__(self):
         self.count = 0
@@ -19,22 +19,23 @@ class Twitter:
         self.followMap = {}
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        tweets = self.tweetMap.get(userId, [])
-        tweets.append((self.count, tweetId))
-        self.tweetMap[userId] = tweets
+        if userId not in self.tweetMap:
+            self.tweetMap[userId] = []
+        if userId in self.tweetMap:
+            self.tweetMap[userId].append((self.count, tweetId))
         self.count -= 1
 
     def _tweetAt(self, userId: int, index: int) -> tuple[int, int]:
-        tweets = self.tweetMap.get(userId, [])
-        return unwrapTweet(tweets[index])
+        if userId in self.tweetMap:
+            return unwrapTweet(self.tweetMap[userId][index])
+        return (0, 0)
 
     def getNewsFeed(self, userId: int) -> list[int]:
-        user_follows = self.followMap.get(userId, [])
-        if userId not in user_follows:
-            user_follows.append(userId)
-            self.followMap[userId] = user_follows
+        user_follows = self.followMap.get(userId, set())
+        user_follows.add(userId)
+        self.followMap[userId] = user_follows
 
-        follows = self.followMap.get(userId, [])
+        follows = self.followMap.get(userId, set())
 
         heap: list[int] = []
         base = 20_001
@@ -67,18 +68,16 @@ class Twitter:
         return res
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        user_follows = self.followMap.get(followerId, [])
+        user_follows = self.followMap.get(followerId, set())
         if followeeId not in user_follows:
-            user_follows.append(followeeId)
+            user_follows.add(followeeId)
             self.followMap[followerId] = user_follows
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        follows = self.followMap.get(followerId, [])
-        filtered: list[int] = []
-        for fid in follows:
-            if fid != followeeId:
-                filtered.append(fid)
-        self.followMap[followerId] = filtered
+        follows = self.followMap.get(followerId, set())
+        if followeeId in follows:
+            follows.remove(followeeId)
+        self.followMap[followerId] = follows
 
 
 def main():

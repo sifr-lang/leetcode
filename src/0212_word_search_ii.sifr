@@ -1,10 +1,11 @@
 # LeetCode 212: Word Search Ii
 
 def _child(edges: list[dict[str, int]], node: int, ch: str) -> int:
-    row: dict[str, int] | None = edges[node]
-    if row is None:
-        return -1
-    return row.get(ch, -1)
+    if ch in edges[node]:
+        child: int | None = edges[node][ch]
+        if child is not None:
+            return child
+    return -1
 
 def _bool_at(values: list[bool], index: int) -> bool:
     value: bool | None = values[index]
@@ -29,42 +30,34 @@ class WordTrie:
         self.refs = [0]
 
     def insert(self, word: str) -> None:
-        edges: list[dict[str, int]] = self.edges
-        terminal: list[bool] = self.terminal
-        refs: list[int] = self.refs
-
         node = 0
-        refs[node] = _int_at(refs, node) + 1
+        current_refs = _int_at(self.refs, node)
+        self.refs[node] = current_refs + 1
         for ch in word:
-            next_node = _child(edges, node, ch)
+            next_node = _child(self.edges, node, ch)
             if next_node == -1:
-                next_node = len(edges)
-                row: dict[str, int] | None = edges[node]
-                if row is not None:
-                    row[ch] = next_node
-                    edges[node] = row
-                edges.append({})
-                terminal.append(False)
-                refs.append(0)
+                next_node = len(self.edges)
+                self.edges[node][ch] = next_node
+                self.edges.append({})
+                self.terminal.append(False)
+                self.refs.append(0)
             node = next_node
-            refs[node] = _int_at(refs, node) + 1
+            current_refs = _int_at(self.refs, node)
+            self.refs[node] = current_refs + 1
 
-        terminal[node] = True
-        self.edges = edges
-        self.terminal = terminal
-        self.refs = refs
+        self.terminal[node] = True
 
     def removeWord(self, word: str) -> None:
-        refs: list[int] = self.refs
         node = 0
-        refs[node] = _int_at(refs, node) - 1
+        current_refs = _int_at(self.refs, node)
+        self.refs[node] = current_refs - 1
         for ch in word:
             next_node = _child(self.edges, node, ch)
             if next_node == -1:
                 break
             node = next_node
-            refs[node] = _int_at(refs, node) - 1
-        self.refs = refs
+            current_refs = _int_at(self.refs, node)
+            self.refs[node] = current_refs - 1
 
     def child(self, node: int, ch: str) -> int:
         return _child(self.edges, node, ch)
@@ -76,15 +69,10 @@ class WordTrie:
         return _bool_at(self.terminal, node)
 
     def clearWord(self, node: int) -> None:
-        terminal: list[bool] = self.terminal
-        terminal[node] = False
-        self.terminal = terminal
+        self.terminal[node] = False
 
 def boardChar(board: list[list[str]], r: int, c: int) -> str | None:
-    row: list[str] | None = board[r]
-    if row is None:
-        return None
-    return row[c]
+    return board[r][c]
 
 def collectWords(
     board: list[list[str]],

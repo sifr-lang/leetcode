@@ -76,6 +76,9 @@
           "mode": "single",
           "args": [
             "stones"
+          ],
+          "copy_args": [
+            "stones"
           ]
         },
         "expected": {
@@ -346,6 +349,9 @@
           "mode": "single",
           "args": [
             "tasks"
+          ],
+          "copy_args": [
+            "tasks"
           ]
         },
         "expected": {
@@ -446,6 +452,9 @@
           "args": [
             "nums",
             "k"
+          ],
+          "copy_args": [
+            "nums"
           ]
         },
         "expected": {

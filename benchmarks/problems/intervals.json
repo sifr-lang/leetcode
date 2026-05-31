@@ -75,7 +75,7 @@
       "source_sifr": "src/0253_meeting_rooms.sifr",
       "runner": {
         "input": { "bindings": [{ "name": "intervals", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
-        "call": { "mode": "single", "args": ["intervals"] },
+        "call": { "mode": "single", "args": ["intervals"], "copy_args": ["intervals"] },
         "expected": { "type": "int" },
         "checksum": { "type": "value" }
       },

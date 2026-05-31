@@ -204,7 +204,7 @@
       "source_sifr": "src/1029_two_city_scheduling.sifr",
       "runner": {
         "input": { "bindings": [{ "name": "costs", "type": "matrix[int]", "source": "matrix_tokens", "rows_index": 0, "cols_index": 1, "start": 2 }] },
-        "call": { "mode": "single", "args": ["costs"] },
+        "call": { "mode": "single", "args": ["costs"], "copy_args": ["costs"] },
         "expected": { "type": "int" },
         "checksum": { "type": "value" }
       },

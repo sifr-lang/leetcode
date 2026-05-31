@@ -25,6 +25,9 @@
           "mode": "single",
           "args": [
             "grid"
+          ],
+          "copy_args": [
+            "grid"
           ]
         },
         "expected": {
@@ -116,6 +119,9 @@
           "mode": "single",
           "args": [
             "grid"
+          ],
+          "copy_args": [
+            "grid"
           ]
         },
         "expected": {
@@ -165,6 +171,9 @@
         "call": {
           "mode": "single",
           "args": [
+            "grid"
+          ],
+          "copy_args": [
             "grid"
           ]
         },
@@ -356,6 +365,9 @@
         "call": {
           "mode": "single",
           "args": [
+            "grid"
+          ],
+          "copy_args": [
             "grid"
           ]
         },
@@ -698,6 +710,9 @@
           "mode": "single",
           "args": [
             "grid"
+          ],
+          "copy_args": [
+            "grid"
           ]
         },
         "expected": {
@@ -841,6 +856,9 @@
         "call": {
           "mode": "single",
           "args": [
+            "grid"
+          ],
+          "copy_args": [
             "grid"
           ]
         },

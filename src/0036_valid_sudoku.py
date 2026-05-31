@@ -2,26 +2,43 @@
 # LeetCode 36: Valid Sudoku
 # Python version
 
-import collections
+def _digit_mask(value: str) -> int:
+    if value == "1":
+        return 1
+    if value == "2":
+        return 2
+    if value == "3":
+        return 4
+    if value == "4":
+        return 8
+    if value == "5":
+        return 16
+    if value == "6":
+        return 32
+    if value == "7":
+        return 64
+    if value == "8":
+        return 128
+    if value == "9":
+        return 256
+    return 0
 
 def isValidSudoku(board: list[list[str]]) -> bool:
-    cols = collections.defaultdict(set)
-    rows = collections.defaultdict(set)
-    squares = collections.defaultdict(set)  # key = (r /3, c /3)
+    cols = [0] * 9
+    rows = [0] * 9
+    squares = [0] * 9
 
     for r in range(9):
         for c in range(9):
-            if board[r][c] == ".":
+            mask = _digit_mask(board[r][c])
+            if mask == 0:
                 continue
-            if (
-                board[r][c] in rows[r]
-                or board[r][c] in cols[c]
-                or board[r][c] in squares[(r // 3, c // 3)]
-            ):
+            square = (r // 3) * 3 + (c // 3)
+            if rows[r] & mask != 0 or cols[c] & mask != 0 or squares[square] & mask != 0:
                 return False
-            cols[c].add(board[r][c])
-            rows[r].add(board[r][c])
-            squares[(r // 3, c // 3)].add(board[r][c])
+            rows[r] = rows[r] | mask
+            cols[c] = cols[c] | mask
+            squares[square] = squares[square] | mask
 
     return True
 

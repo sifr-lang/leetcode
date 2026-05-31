@@ -1,10 +1,11 @@
 # LeetCode 211: Design Add And Search Words Data Structure
 
 def _child(edges: list[dict[str, int]], node: int, ch: str) -> int:
-    row: dict[str, int] | None = edges[node]
-    if row is None:
-        return -1
-    return row.get(ch, -1)
+    if ch in edges[node]:
+        child: int | None = edges[node][ch]
+        if child is not None:
+            return child
+    return -1
 
 def _terminal(end: list[bool], node: int) -> bool:
     value: bool | None = end[node]
@@ -47,10 +48,7 @@ class WordDictionary:
             next_node = _child(self.edges, node, ch)
             if next_node == -1:
                 next_node = len(self.edges)
-                row: dict[str, int] | None = self.edges[node]
-                if row is not None:
-                    row[ch] = next_node
-                    self.edges[node] = row
+                self.edges[node][ch] = next_node
                 self.edges.append({})
                 self.end.append(False)
             node = next_node

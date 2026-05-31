@@ -1,5 +1,6 @@
 # LeetCode 721: Accounts Merge
 
+from helpers.dsu import UnionFind
 
 def normalizeAccounts(accounts: list[list[str]]) -> list[str]:
     normalized: list[str] = []
@@ -18,82 +19,54 @@ def accountName(account: list[str]) -> str:
     return ""
 
 
-def mapGetInt(mapping: dict[int, int], key: int, default_value: int) -> int:
-    if key in mapping:
-        return mapping[key]
-    return default_value
-
-
-def findLeader(mut parent: dict[int, int], mut x: int) -> int:
-    while x != mapGetInt(parent, x, x):
-        px = mapGetInt(parent, x, x)
-        ppx = mapGetInt(parent, px, px)
-        parent[x] = ppx
-        x = ppx
-    return x
-
-
-def unionLeaders(mut parent: dict[int, int], mut size: dict[int, int], a: int, b: int) -> None:
-    ra = findLeader(parent, a)
-    rb = findLeader(parent, b)
-    if ra == rb:
-        return
-
-    size_ra = mapGetInt(size, ra, 1)
-    size_rb = mapGetInt(size, rb, 1)
-    if size_ra < size_rb:
-        tmp = ra
-        ra = rb
-        rb = tmp
-        tmp_size = size_ra
-        size_ra = size_rb
-        size_rb = tmp_size
-
-    parent[rb] = ra
-    size[ra] = size_ra + size_rb
-
-
 def accountsMerge(accounts: list[list[str]]) -> list[list[str]]:
-    parent: dict[int, int] = {}
-    size: dict[int, int] = {}
-
-    i = 0
-    while i < len(accounts):
-        parent[i] = i
-        size[i] = 1
-        i += 1
-
+    uf = UnionFind(len(accounts))
     email_owner: dict[str, int] = {}
+    emails_seen: list[str] = []
+    owners_seen: list[int] = []
+    names: list[str] = []
     for i, account in enumerate(accounts):
+        names.append(accountName(account))
         pos = 0
         for item in account:
             if pos > 0:
                 email = item
                 if email in email_owner:
-                    unionLeaders(parent, size, i, email_owner[email])
+                    uf.union(i, email_owner[email])
                 else:
                     email_owner[email] = i
+                    emails_seen.append(email)
+                    owners_seen.append(i)
             pos += 1
 
     grouped: dict[int, list[str]] = {}
-    for email, owner in email_owner.items():
-        leader = findLeader(parent, owner)
-        if leader in grouped:
-            grouped[leader].append(email)
-        else:
-            grouped[leader] = [email]
+    pos = 0
+    while pos < len(emails_seen):
+        email: str | None = emails_seen[pos]
+        owner: int | None = owners_seen[pos]
+        if email is not None and owner is not None:
+            leader = uf.find(owner)
+            if leader in grouped:
+                grouped[leader].append(email)
+            else:
+                grouped[leader] = [email]
+        pos += 1
 
     merged: list[list[str]] = []
-    for leader, emails in grouped.items():
-        sorted_emails = sorted(emails)
-        name = ""
-        idx = 0
-        for account in accounts:
-            if idx == leader:
-                name = accountName(account)
-                break
-            idx += 1
-        merged.append([name] + sorted_emails)
+    leader = 0
+    while leader < len(accounts):
+        if leader not in grouped:
+            leader += 1
+            continue
+        emails: list[str] | None = grouped[leader]
+        if emails is not None:
+            sorted_emails = sorted(emails)
+            name = ""
+            maybe_name: str | None = names[leader]
+            if maybe_name is not None:
+                name = maybe_name
+            merged.append([name] + sorted_emails)
+        leader += 1
 
     return merged
 

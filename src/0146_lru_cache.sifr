@@ -25,31 +25,23 @@ class LRUCache:
         self.next = {0: 1}
 
     def detach(self, node: int) -> None:
-        prev: dict[int, int] = self.prev
-        next: dict[int, int] = self.next
-        left: int | None = prev[node]
-        right: int | None = next[node]
+        left: int | None = self.prev[node]
+        right: int | None = self.next[node]
         if left is None or right is None:
             return
-        next[left] = right
-        prev[right] = left
-        del prev[node]
-        del next[node]
-        self.prev = prev
-        self.next = next
+        self.next[left] = right
+        self.prev[right] = left
+        del self.prev[node]
+        del self.next[node]
 
     def insertAfter(self, node: int, left: int) -> None:
-        prev: dict[int, int] = self.prev
-        next: dict[int, int] = self.next
-        right: int | None = next[left]
+        right: int | None = self.next[left]
         if right is None:
             return
-        prev[node] = left
-        next[node] = right
-        next[left] = node
-        prev[right] = node
-        self.prev = prev
-        self.next = next
+        self.prev[node] = left
+        self.next[node] = right
+        self.next[left] = node
+        self.prev[right] = node
 
     def moveToFront(self, node: int) -> None:
         self.detach(node)
@@ -65,15 +57,9 @@ class LRUCache:
 
         key: int | None = self.node_key[node]
         if key is not None:
-            key_to_node: dict[int, int] = self.key_to_node
-            del key_to_node[key]
-            self.key_to_node = key_to_node
-        node_key: dict[int, int] = self.node_key
-        node_value: dict[int, int] = self.node_value
-        del node_key[node]
-        del node_value[node]
-        self.node_key = node_key
-        self.node_value = node_value
+            del self.key_to_node[key]
+        del self.node_key[node]
+        del self.node_value[node]
         self.detach(node)
 
     def get(self, key: int) -> int:
@@ -93,9 +79,7 @@ class LRUCache:
 
         existing: int | None = self.key_to_node[key]
         if existing is not None:
-            node_value: dict[int, int] = self.node_value
-            node_value[existing] = value
-            self.node_value = node_value
+            self.node_value[existing] = value
             self.moveToFront(existing)
             return
 
@@ -104,15 +88,9 @@ class LRUCache:
 
         node = self.next_id
         self.next_id = self.next_id + 1
-        key_to_node: dict[int, int] = self.key_to_node
-        node_key: dict[int, int] = self.node_key
-        node_value: dict[int, int] = self.node_value
-        key_to_node[key] = node
-        node_key[node] = key
-        node_value[node] = value
-        self.key_to_node = key_to_node
-        self.node_key = node_key
-        self.node_value = node_value
+        self.key_to_node[key] = node
+        self.node_key[node] = key
+        self.node_value[node] = value
         self.insertAfter(node, self.head)
 
 def main():

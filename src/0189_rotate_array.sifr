@@ -1,17 +1,27 @@
 # LeetCode 189: Rotate Array
 
+def _reverse_range(mut nums: list[int], start: int, end: int) -> None:
+    l = start
+    r = end
+    while l < r:
+        left = nums[l]
+        right = nums[r]
+        if left is None or right is None:
+            return
+        nums[l] = right
+        nums[r] = left
+        l += 1
+        r -= 1
+
 def rotate(mut nums: list[int], k: int) -> None:
     if len(nums) == 0:
         return
     rot = k
     while rot >= len(nums):
         rot -= len(nums)
-    while rot > 0:
-        last = nums.pop()
-        if last is None:
-            return
-        nums.insert(0, last)
-        rot -= 1
+    _reverse_range(nums, 0, len(nums) - 1)
+    _reverse_range(nums, 0, rot - 1)
+    _reverse_range(nums, rot, len(nums) - 1)
 
 def main():
     arg0 = [1, 2, 3, 4, 5, 6, 7]

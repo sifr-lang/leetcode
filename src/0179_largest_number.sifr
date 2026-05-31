@@ -5,23 +5,16 @@ def unwrapStr(own value: str | None) -> str:
         return ""
     return value
 
+def repeatKey(value: str) -> str:
+    return value + value + value + value + value + value + value + value + value + value
+
 def largestNumber(mut nums: list[int]) -> str:
     values = []
     for n in nums:
         values.append(str(n))
 
-    i = 0
-    while i < len(values):
-        j = 0
-        while j + 1 < len(values) - i:
-            left = unwrapStr(values[j])
-            right = unwrapStr(values[j + 1])
-            if left + right < right + left:
-                tmp = unwrapStr(values[j])
-                values[j] = unwrapStr(values[j + 1])
-                values[j + 1] = tmp
-            j += 1
-        i += 1
+    values = sorted(values, key=repeatKey)
+    values.reverse()
 
     joined = "".join(values)
     k = 0

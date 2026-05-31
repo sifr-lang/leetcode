@@ -5,11 +5,20 @@
 def numUniqueEmails(emails: list[str]) -> int:
     unique_emails: set[str] = set()
     for email in emails:
-        local_name, domain_name = email.split('@')
-        local_name = local_name.split('+')[0]
-        local_name = local_name.replace('.', '')
-        email = local_name + '@' + domain_name
-        unique_emails.add(email)
+        normalized = ""
+        in_domain = False
+        skip_local = False
+        for ch in email:
+            if ch == "@":
+                in_domain = True
+                normalized += ch
+            elif in_domain:
+                normalized += ch
+            elif ch == "+":
+                skip_local = True
+            elif not skip_local and ch != ".":
+                normalized += ch
+        unique_emails.add(normalized)
     return len(unique_emails)
 
 

@@ -15,9 +15,10 @@ The maintained surface is intentionally small:
 - `generate_fixtures.py` runs each problem case generator, invokes the Python
   reference through the declared generic runner once per fixture to produce
   expected output, and writes fixture pairs.
-- `bench.py` builds generated Sifr runners, verifies correctness, invokes
-  `hyperfine` for runtime, captures `/usr/bin/time` RSS samples, and summarizes
-  results.
+- `bench.py` builds generated Sifr runners, renders Node.js runners,
+  verifies correctness, invokes `hyperfine` for runtime, captures
+  `/usr/bin/time` RSS samples, and summarizes results. Use repeatable
+  `--language` flags to choose any subset of `python`, `sifr`, and `nodejs`.
 - `report.py` renders the static HTML report from existing JSON results.
 - `specs.py` contains shared registry/path helpers used by the tools.
 - `fixtures/` stores checked-in deterministic input/output pairs.
@@ -34,7 +35,7 @@ Generate deterministic fixtures:
 python3 benchmarks/generate_fixtures.py
 ```
 
-Build generated Sifr runners:
+Build generated Sifr and Node.js runners:
 
 ```bash
 python3 benchmarks/bench.py build
@@ -53,6 +54,13 @@ Run a quick smoke benchmark:
 ```bash
 python3 benchmarks/generate_fixtures.py 0001_two_sum
 python3 benchmarks/bench.py run --runs 2 --warmup 1 0001_two_sum
+```
+
+Run only selected implementations:
+
+```bash
+python3 benchmarks/bench.py run --language python --language nodejs 0001_two_sum
+python3 benchmarks/bench.py report-html --language python --language nodejs
 ```
 
 If the Sifr compiler binary is not at `../../target/release/sifr` or

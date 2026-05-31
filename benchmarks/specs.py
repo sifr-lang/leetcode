@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-
 BENCH_ROOT = Path(__file__).resolve().parent
 REPO_ROOT = BENCH_ROOT.parents[2]
 FIXTURES_DIR = BENCH_ROOT / "fixtures"
@@ -14,9 +13,10 @@ GENERATED_DIR = BENCH_ROOT / "generated"
 RESULTS_DIR = BENCH_ROOT / "results"
 RAW_RESULTS_DIR = RESULTS_DIR / ".raw"
 SIFR_GENERATED_DIR = GENERATED_DIR / "sifr"
+NODEJS_GENERATED_DIR = GENERATED_DIR / "nodejs"
+RUST_GENERATED_DIR = GENERATED_DIR / "rust"
 BIN_DIR = GENERATED_DIR / "bin"
 PROBLEMS_DIR = BENCH_ROOT / "problems"
-
 
 @dataclass(frozen=True)
 class ProblemSpec:
@@ -26,6 +26,8 @@ class ProblemSpec:
     function: str
     source_py: Path
     source_sifr: Path
+    source_js: Path
+    source_rs: Path
     runner: dict[str, Any]
     fixture_stem: str
     sizes: tuple[int, ...]
@@ -35,16 +37,13 @@ class ProblemSpec:
     primary_slowness_owner: str
     slowness_tags: tuple[str, ...]
 
-
 def root_path(relative: str) -> Path:
     return BENCH_ROOT.parent / relative
-
 
 def category_slug(category: str) -> str:
     text = category.lower()
     text = text.replace("&", " and ")
     return re.sub(r"[^a-z0-9]+", "_", text).strip("_")
-
 
 def load_problem_groups() -> list[dict[str, Any]]:
     groups = []
@@ -53,7 +52,6 @@ def load_problem_groups() -> list[dict[str, Any]]:
         raw["_path"] = path
         groups.append(raw)
     return sorted(groups, key=lambda group: (int(group.get("order", 0)), group["_path"].name))
-
 
 def load_problem_specs() -> dict[str, ProblemSpec]:
     specs = {}
@@ -68,6 +66,8 @@ def load_problem_specs() -> dict[str, ProblemSpec]:
                 function=item["function"],
                 source_py=root_path(item["source_py"]),
                 source_sifr=root_path(item["source_sifr"]),
+                source_js=root_path(item.get("source_js", f"src/{item['id']}.js")),
+                source_rs=root_path(item.get("source_rs", f"src/{item['id']}.rs")),
                 runner=item["runner"],
                 fixture_stem=item["fixture_stem"],
                 sizes=tuple(int(size) for size in item["sizes"]),
@@ -80,7 +80,6 @@ def load_problem_specs() -> dict[str, ProblemSpec]:
             specs[spec.problem_id] = spec
     return specs
 
-
 def selected_specs(specs: dict[str, ProblemSpec], problem_ids: list[str]) -> list[ProblemSpec]:
     if not problem_ids:
         return list(specs.values())
@@ -91,10 +90,8 @@ def selected_specs(specs: dict[str, ProblemSpec], problem_ids: list[str]) -> lis
         selected.append(specs[problem_id])
     return selected
 
-
 def fixture_stem(spec: ProblemSpec, size: int) -> str:
     return spec.fixture_stem.format(size=size)
-
 
 def fixture_paths(spec: ProblemSpec, size: int) -> tuple[Path, Path]:
     base = FIXTURES_DIR / spec.problem_id / fixture_stem(spec, size)
