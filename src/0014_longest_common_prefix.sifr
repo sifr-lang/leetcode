@@ -3,24 +3,22 @@
 def longestCommonPrefix(strs: list[str]) -> str:
     if len(strs) == 0:
         return ""
-    shortest = len(strs[0])
-    for s in strs:
-        if len(s) < shortest:
-            shortest = len(s)
 
-    prefix = ""
-    for i in range(shortest):
-        first_ch = strs[0][i]
-        if first_ch is None:
+    first_opt = strs[0]
+    if first_opt is None:
+        return ""
+    prefix = first_opt
+
+    for i in range(1, len(strs)):
+        current_opt = strs[i]
+        if current_opt is None:
             return prefix
-        ch = first_ch
-        for s in strs:
-            cur_ch = s[i]
-            if cur_ch is None:
-                return prefix
-            if cur_ch != ch:
-                return prefix
-        prefix = prefix + ch
+        current = current_opt
+
+        while not current.startswith(prefix):
+            prefix = prefix[:len(prefix) - 1]
+            if len(prefix) == 0:
+                return ""
     return prefix
 
 def main():

@@ -388,7 +388,8 @@
           ]
         },
         "expected": {
-          "type": "list_list_str"
+          "type": "list_list_str",
+          "sort_result": true
         },
         "checksum": {
           "type": "list_len"
@@ -445,13 +446,13 @@
       "fixture_stem": "n={size:07d}",
       "sizes": [
         20,
-        100,
-        300
+        50,
+        67
       ],
       "loops_by_size": {
         "20": 2000,
-        "100": 500,
-        "300": 100
+        "50": 1000,
+        "67": 500
       }
     },
     {
@@ -481,6 +482,9 @@
           "args": [
             "nums",
             "val"
+          ],
+          "copy_args": [
+            "nums"
           ]
         },
         "expected": {
@@ -2078,7 +2082,8 @@
           ]
         },
         "expected": {
-          "type": "list_str"
+          "type": "list_str",
+          "sort_result": true
         },
         "checksum": {
           "type": "list_len"

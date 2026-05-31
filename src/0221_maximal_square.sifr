@@ -11,18 +11,20 @@ def maximalSquare(matrix: list[list[str]]) -> int:
 
     rows = len(matrix)
     cols = len(matrix[0])
-    dp: list[list[int]] = [[0 for _ in range(cols + 1)] for _ in range(rows + 1)]
+    prev: list[int] = [0] * (cols + 1)
     best = 0
 
     for r in range(rows - 1, -1, -1):
+        curr: list[int] = [0] * (cols + 1)
         for c in range(cols - 1, -1, -1):
             if matrix[r][c] == "1":
-                small = min(_nz_int(dp[r + 1][c]), _nz_int(dp[r][c + 1]))
-                small = min(small, _nz_int(dp[r + 1][c + 1]))
-                dp[r][c] = 1 + small
-                current = _nz_int(dp[r][c])
+                small = min(_nz_int(prev[c]), _nz_int(curr[c + 1]))
+                small = min(small, _nz_int(prev[c + 1]))
+                current = 1 + small
+                curr[c] = current
                 if current > best:
                     best = current
+        prev = curr
 
     return best * best
 

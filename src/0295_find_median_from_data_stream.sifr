@@ -10,26 +10,21 @@ class MedianFinder:
         self.large = []
 
     def addNum(self, num: int) -> None:
-        small: list[int] = self.small
-        large: list[int] = self.large
-        large_top: int | None = large[0]
+        large_top: int | None = self.large[0]
         if large_top is not None and num > large_top:
-            heappush(large, num)
+            heappush(self.large, num)
         else:
-            heappush(small, -num)
+            heappush(self.small, -num)
 
-        if len(small) > len(large) + 1:
-            moved: int | None = heappop(small)
+        if len(self.small) > len(self.large) + 1:
+            moved: int | None = heappop(self.small)
             if moved is not None:
-                heappush(large, -moved)
+                heappush(self.large, -moved)
 
-        if len(large) > len(small) + 1:
-            moved2: int | None = heappop(large)
+        if len(self.large) > len(self.small) + 1:
+            moved2: int | None = heappop(self.large)
             if moved2 is not None:
-                heappush(small, -moved2)
-
-        self.small = small
-        self.large = large
+                heappush(self.small, -moved2)
 
     def findMedian(self) -> float:
         if len(self.small) > len(self.large):

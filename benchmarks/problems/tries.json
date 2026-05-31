@@ -152,7 +152,8 @@
           ]
         },
         "expected": {
-          "type": "list_str"
+          "type": "list_str",
+          "sort_result": true
         },
         "checksum": {
           "type": "value"

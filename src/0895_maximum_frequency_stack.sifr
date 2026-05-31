@@ -17,27 +17,29 @@ class FreqStack:
         if valCnt > self.maxCnt:
             self.maxCnt = valCnt
 
-        stack = self.stacks.get(valCnt, [])
-        stack.append(val)
-        self.stacks[valCnt] = stack
+        if valCnt not in self.stacks:
+            self.stacks[valCnt] = []
+
+        if valCnt in self.stacks:
+            self.stacks[valCnt].append(val)
 
     def pop(self) -> int:
-        stack = self.stacks.get(self.maxCnt, [])
-        if len(stack) == 0:
-            return 0
+        max_count = self.maxCnt
+        if max_count in self.stacks:
+            res_opt = self.stacks[max_count].pop()
+            if res_opt is None:
+                return 0
+            res = res_opt
 
-        res = stack.pop()
-        stack_len = len(stack)
-        self.stacks[self.maxCnt] = stack
+            current = self.cnt.get(res, 0)
+            if current > 0:
+                self.cnt[res] = current - 1
 
-        current = self.cnt.get(res, 0)
-        if current > 0:
-            self.cnt[res] = current - 1
+            if max_count in self.stacks and len(self.stacks[max_count]) == 0:
+                self.maxCnt -= 1
 
-        if stack_len == 0:
-            self.maxCnt -= 1
-
-        return res
+            return res
+        return 0
 
 
 def main():

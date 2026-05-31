@@ -1,16 +1,73 @@
 # LeetCode 2405: Optimal Partition Of String
 
+def _mask_for(value: str | None) -> int:
+    if value is None:
+        return 0
+    if value == "a":
+        return 1
+    if value == "b":
+        return 2
+    if value == "c":
+        return 4
+    if value == "d":
+        return 8
+    if value == "e":
+        return 16
+    if value == "f":
+        return 32
+    if value == "g":
+        return 64
+    if value == "h":
+        return 128
+    if value == "i":
+        return 256
+    if value == "j":
+        return 512
+    if value == "k":
+        return 1024
+    if value == "l":
+        return 2048
+    if value == "m":
+        return 4096
+    if value == "n":
+        return 8192
+    if value == "o":
+        return 16384
+    if value == "p":
+        return 32768
+    if value == "q":
+        return 65536
+    if value == "r":
+        return 131072
+    if value == "s":
+        return 262144
+    if value == "t":
+        return 524288
+    if value == "u":
+        return 1048576
+    if value == "v":
+        return 2097152
+    if value == "w":
+        return 4194304
+    if value == "x":
+        return 8388608
+    if value == "y":
+        return 16777216
+    if value == "z":
+        return 33554432
+    return 0
+
 def partitionString(s: str) -> int:
-    c=0
-    res=set()
-    for i in s:
-        if i in res:
-            c=c+1
-            res=set()
-        res.add(i)
-    return c+1
+    count = 1
+    seen = 0
+    for index in range(len(s)):
+        mask = _mask_for(s[index])
+        if seen & mask != 0:
+            count += 1
+            seen = 0
+        seen = seen | mask
+    return count
 
 def main():
     assert partitionString("abacbc") == 3
     assert partitionString("ssssss") == 6
-

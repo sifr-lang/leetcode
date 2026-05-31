@@ -29,28 +29,29 @@ class TimeMap:
         return ""
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        values = self.valueCodeStore.get(key, [])
-        times = self.timeStore.get(key, [])
-        values.append(self._encode(value))
-        times.append(timestamp)
-        self.valueCodeStore[key] = values
-        self.timeStore[key] = times
+        code: int = self._encode(value)
+        if key not in self.valueCodeStore:
+            self.valueCodeStore[key] = []
+        if key not in self.timeStore:
+            self.timeStore[key] = []
+        if key in self.valueCodeStore:
+            self.valueCodeStore[key].append(code)
+        if key in self.timeStore:
+            self.timeStore[key].append(timestamp)
 
     def get(self, key: str, timestamp: int) -> str:
-        times = self.timeStore.get(key, [])
-        values = self.valueCodeStore.get(key, [])
-
         res_code = 0
-        l = 0
-        r = len(times) - 1
-        while l <= r:
-            m = (l + r) // 2
-            time_m = unwrapInt(times[m])
-            if time_m <= timestamp:
-                res_code = unwrapInt(values[m])
-                l = m + 1
-            else:
-                r = m - 1
+        if key in self.timeStore:
+            l = 0
+            r = len(self.timeStore[key]) - 1
+            while l <= r:
+                m = (l + r) // 2
+                time_m = unwrapInt(self.timeStore[key][m])
+                if time_m <= timestamp:
+                    res_code = unwrapInt(self.valueCodeStore[key][m])
+                    l = m + 1
+                else:
+                    r = m - 1
         return self._decode(res_code)
 
 

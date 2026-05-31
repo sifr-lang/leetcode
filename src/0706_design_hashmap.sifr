@@ -42,9 +42,7 @@ class MyHashMap:
         if not replaced:
             next_bucket.append((key, value))
 
-        buckets: list[list[tuple[int, int]]] = self.buckets
-        buckets[index] = next_bucket
-        self.buckets = buckets
+        self.buckets[index] = next_bucket
 
     def get(self, key: int) -> int:
         index = self.hashcode(key)
@@ -67,9 +65,7 @@ class MyHashMap:
             if existing_key != key:
                 next_bucket.append((existing_key, existing_value))
 
-        buckets: list[list[tuple[int, int]]] = self.buckets
-        buckets[index] = next_bucket
-        self.buckets = buckets
+        self.buckets[index] = next_bucket
 
 
 def main():

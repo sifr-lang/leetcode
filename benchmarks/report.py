@@ -16,12 +16,10 @@ from report_metadata import (
     metadata_summary_panel,
     metadata_styles,
 )
-from report_table import comparison_header, comparison_rows, sorted_impls
-
+from report_table import comparison_header, comparison_rows, impl_label, sorted_impls
 
 def fixture_stem(spec: Any, size: int) -> str:
     return spec.fixture_stem.format(size=size)
-
 
 def load_memory_rows(path: Path) -> dict[str, dict[str, Any]]:
     memory_path = Path(str(path).replace(".hyperfine.json", ".memory.json"))
@@ -29,7 +27,6 @@ def load_memory_rows(path: Path) -> dict[str, dict[str, Any]]:
         return {}
     data = json.loads(memory_path.read_text(encoding="utf-8"))
     return {measurement["impl"]: measurement for measurement in data.get("measurements", [])}
-
 
 def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -90,7 +87,6 @@ def summarize_result(path: Path, spec: Any, size: int) -> list[dict[str, Any]]:
         )
     return rows
 
-
 def collect_summary_rows(problem_ids: list[str], specs: dict[str, Any], results_dir: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     selected = [specs[problem_id] for problem_id in problem_ids] if problem_ids else list(specs.values())
@@ -100,7 +96,6 @@ def collect_summary_rows(problem_ids: list[str], specs: dict[str, Any], results_
             if result_path.exists():
                 rows.extend(summarize_result(result_path, spec, size))
     return rows
-
 
 def print_summary(problem_ids: list[str], specs: dict[str, Any], results_dir: Path) -> None:
     rows = collect_summary_rows(problem_ids, specs, results_dir)
@@ -124,14 +119,12 @@ def print_summary(problem_ids: list[str], specs: dict[str, Any], results_dir: Pa
             f"{time_per_op},{memory},{peak_memory},{row['verdict']}"
         )
 
-
 def format_ms(value: float | None) -> str:
     if value is None:
         return "n/a"
     if value >= 1000:
         return f"{value / 1000:.2f}s"
     return f"{value:.1f}ms"
-
 
 def format_rate(value: float | None) -> str:
     if value is None:
@@ -142,12 +135,10 @@ def format_rate(value: float | None) -> str:
         return f"{value / 1_000:.1f}K/s"
     return f"{value:.0f}/s"
 
-
 def format_memory(value: float | None) -> str:
     if value is None:
         return "n/a"
     return f"{value:.1f} MB"
-
 
 def format_ns(value: float | None) -> str:
     if value is None:
@@ -156,7 +147,6 @@ def format_ns(value: float | None) -> str:
         return f"{value / 1_000:.2f} us/op"
     return f"{value:.1f} ns/op"
 
-
 def grouped_report_rows(rows: list[dict[str, Any]]) -> dict[str, dict[str, dict[int, dict[str, dict[str, Any]]]]]:
     grouped: dict[str, dict[str, dict[int, dict[str, dict[str, Any]]]]] = {}
     for row in rows:
@@ -164,7 +154,6 @@ def grouped_report_rows(rows: list[dict[str, Any]]) -> dict[str, dict[str, dict[
             row["impl"]
         ] = row
     return grouped
-
 
 def report_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
     pair_speedups = []
@@ -202,7 +191,6 @@ def report_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "memory_comparisons": len(memory_deltas),
     }
 
-
 def speedup_tier(speedup: float | None) -> str:
     if speedup is None:
         return "neutral"
@@ -214,10 +202,8 @@ def speedup_tier(speedup: float | None) -> str:
         return "marginal"
     return "regress"
 
-
 RUNTIME_TIER_TITLES = {"strong": "Strong: Sifr is at least 3x faster", "good": "Good: Sifr is at least 2x faster", "marginal": "Marginal: Sifr is faster, but under 2x", "regress": "Regression: Sifr is slower", "neutral": "No runtime comparison"}
 MEMORY_TIER_TITLES = {"strong": "Strong: Sifr uses at least 10% less peak RSS", "good": "Good: Sifr uses at least 2% less peak RSS", "neutral": "Neutral: peak RSS differs by less than 2%", "regress": "Regression: Sifr uses more peak RSS"}
-
 
 def delta_tier(value: float | None) -> str:
     if value is None:
@@ -230,14 +216,12 @@ def delta_tier(value: float | None) -> str:
         return "neutral"
     return "regress"
 
-
 def format_runtime_advantage(speedup: float | None) -> str:
     if speedup is None:
         return "n/a"
     if speedup >= 1:
         return f"Sifr {format_fold(speedup)} faster"
     return f"Sifr {format_fold(1 / speedup)} slower"
-
 
 def format_memory_advantage(delta: float | None, *, include_metric: bool = False) -> str:
     prefix = "Memory: " if include_metric else ""
@@ -248,18 +232,15 @@ def format_memory_advantage(delta: float | None, *, include_metric: bool = False
     direction = "less" if delta > 0 else "more"
     return f"{prefix}Sifr {abs(delta) * 100:.0f}% {direction}"
 
-
 def format_cv(value: float | None) -> str:
     if value is None:
         return "n/a"
     return f"{value * 100:.1f}%"
 
-
 def format_number(value: float | None) -> str:
     if value is None:
         return "n/a"
     return f"{value:,.0f}"
-
 
 def speedup_for_impls(impls: dict[str, dict[str, Any]]) -> float | None:
     python = impls.get("python")
@@ -269,7 +250,6 @@ def speedup_for_impls(impls: dict[str, dict[str, Any]]) -> float | None:
     if python["operations"] != sifr["operations"]:
         return None
     return python["mean_ms"] / sifr["mean_ms"]
-
 
 def memory_delta_for_impls(impls: dict[str, dict[str, Any]]) -> float | None:
     python = impls.get("python")
@@ -282,7 +262,6 @@ def memory_delta_for_impls(impls: dict[str, dict[str, Any]]) -> float | None:
         return None
     return (python_memory - sifr_memory) / python_memory
 
-
 def speedups_for_sizes(sizes: dict[int, dict[str, dict[str, Any]]]) -> list[tuple[int, float]]:
     pairs = []
     for size, impls in sorted(sizes.items()):
@@ -290,7 +269,6 @@ def speedups_for_sizes(sizes: dict[int, dict[str, dict[str, Any]]]) -> list[tupl
         if speedup is not None:
             pairs.append((size, speedup))
     return pairs
-
 
 def problem_summary(sizes: dict[int, dict[str, dict[str, Any]]]) -> dict[str, Any]:
     speedups = [speedup for _, speedup in speedups_for_sizes(sizes)]
@@ -312,7 +290,6 @@ def problem_summary(sizes: dict[int, dict[str, dict[str, Any]]]) -> dict[str, An
         "noisy": noisy,
     }
 
-
 def category_summary(problems: dict[str, dict[int, dict[str, dict[str, Any]]]]) -> dict[str, Any]:
     summaries = [
         problem_summary(sizes)
@@ -327,14 +304,12 @@ def category_summary(problems: dict[str, dict[int, dict[str, dict[str, Any]]]]) 
         "noisy": any(summary["noisy"] for summary in summaries),
     }
 
-
 def format_size_label(size: int) -> str:
     if size >= 1_000_000:
         return f"{size / 1_000_000:g}M"
     if size >= 1_000:
         return f"{size / 1_000:g}K"
     return str(size)
-
 
 def format_axis_ms(value: float) -> str:
     if value >= 1000:
@@ -343,14 +318,12 @@ def format_axis_ms(value: float) -> str:
         return f"{value:.0f}ms"
     return f"{value:.1f}ms"
 
-
 def format_axis_memory(value: float) -> str:
     if value >= 1000:
         return f"{value / 1024:.2g} GB"
     if value >= 100:
         return f"{value:.0f} MB"
     return f"{value:.1f} MB"
-
 
 def log_x_positions(sizes: list[int], left: int, width: int) -> dict[int, float]:
     if len(sizes) == 1:
@@ -360,10 +333,8 @@ def log_x_positions(sizes: list[int], left: int, width: int) -> dict[int, float]
     span = max(logs) - minimum or 1.0
     return {size: left + ((math.log10(size) - minimum) / span) * width for size in sizes}
 
-
 def svg_points(points: list[tuple[float, float]]) -> str:
     return " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
-
 
 def collect_metric_points(
     sizes: dict[int, dict[str, dict[str, Any]]],
@@ -377,7 +348,6 @@ def collect_metric_points(
             if value is not None and value > 0:
                 points[impl].append((size, float(value)))
     return points
-
 
 def metric_range_label(
     sizes: dict[int, dict[str, dict[str, Any]]],
@@ -393,7 +363,6 @@ def metric_range_label(
     if not values:
         return "n/a"
     return f"{formatter(min(values))}-{formatter(max(values))}"
-
 
 def y_scale(values: list[float], *, log_scale: bool) -> tuple[list[float], Any]:
     if log_scale:
@@ -429,7 +398,6 @@ def y_scale(values: list[float], *, log_scale: bool) -> tuple[list[float], Any]:
         return (value - minimum) / span
 
     return [minimum + (span * index / 4) for index in range(5)], normalize
-
 
 def dual_line_chart(
     sizes: dict[int, dict[str, dict[str, Any]]],
@@ -530,7 +498,6 @@ def dual_line_chart(
     {note}
     """
 
-
 def speedup_bar(speedup: float | None, max_speedup: float) -> str:
     tier = speedup_tier(speedup)
     if speedup is None:
@@ -543,11 +510,9 @@ def speedup_bar(speedup: float | None, max_speedup: float) -> str:
     </div>
     """
 
-
 def memory_delta_badge(delta: float | None) -> str:
     tier = delta_tier(delta)
     return f'<span class="delta-badge {tier}" title="{MEMORY_TIER_TITLES[tier]}">{format_memory_advantage(delta, include_metric=True)}</span>'
-
 
 def median_impl_metric(
     sizes: dict[int, dict[str, dict[str, Any]]],
@@ -561,7 +526,6 @@ def median_impl_metric(
     ]
     return statistics.median(values) if values else None
 
-
 def comparison_value_bars(
     sizes: dict[int, dict[str, dict[str, Any]]],
     *,
@@ -570,9 +534,9 @@ def comparison_value_bars(
     formatter: Any,
     badge: str,
 ) -> str:
-    python_value = median_impl_metric(sizes, "python", key)
-    sifr_value = median_impl_metric(sizes, "sifr", key)
-    maximum = max((value for value in (python_value, sifr_value) if value is not None), default=1.0)
+    impl_names = sorted_impls({impl: row for impls in sizes.values() for impl, row in impls.items()})
+    values_by_impl = {impl: median_impl_metric(sizes, impl, key) for impl in impl_names}
+    maximum = max((value for value in values_by_impl.values() if value is not None), default=1.0)
 
     def row(label: str, value: float | None, class_name: str) -> str:
         width = 0.0 if value is None or maximum <= 0 else max(5.0, (value / maximum) * 100.0)
@@ -588,12 +552,10 @@ def comparison_value_bars(
     <div class="summary-metric">
       <div class="metric-title"><span>{title}</span>{badge}</div>
       <div class="value-bars">
-        {row("Python", python_value, "python")}
-        {row("Sifr", sifr_value, "sifr")}
+        {"".join(row(impl_label(impl), values_by_impl[impl], impl) for impl in impl_names)}
       </div>
     </div>
     """
-
 
 def category_problem_bars(
     problems: dict[str, dict[int, dict[str, dict[str, Any]]]],
@@ -622,14 +584,16 @@ def category_problem_bars(
         )
     return "".join(bars)
 
-
 def render_html_report(
     problem_ids: list[str],
     output_path: Path,
     specs: dict[str, Any],
     results_dir: Path,
+    languages: set[str] | None = None,
 ) -> None:
     rows = collect_summary_rows(problem_ids, specs, results_dir)
+    if languages is not None:
+        rows = [row for row in rows if row["impl"] in languages]
     if not rows:
         raise SystemExit("no benchmark results found; run `python3 benchmarks/bench.py run` first")
     stats = report_stats(rows)
@@ -758,7 +722,7 @@ def render_html_report(
     .metadata-row {{ display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }}
     .value-bars {{ display: grid; gap: 4px; }} .value-row {{ display: grid; grid-template-columns: 48px minmax(120px, 1fr) minmax(78px, auto); align-items: center; gap: 8px; font-size: 12px; }}
     .value-row span {{ color: var(--muted); font-weight: 700; text-align: right; }} .value-row strong {{ color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }} .value-row i {{ height: 8px; background: #e8edf4; border-radius: 999px; overflow: hidden; }} .value-row b {{ display: block; height: 100%; border-radius: inherit; }}
-    .value-row.python b {{ background: var(--indigo); }} .value-row.sifr b {{ background: var(--teal); }}
+    .value-row.python b {{ background: var(--indigo); }} .value-row.sifr b {{ background: var(--teal); }} .value-row.rust b {{ background: var(--red); }} .value-row.nodejs b {{ background: var(--green); }}
     .problem-grid {{ display: grid; gap: 12px; padding: 16px 22px; }} .problem-card {{ background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }} .problem-card[hidden] {{ display: none; }}
     .problem-card > summary::-webkit-details-marker {{ display: none; }} .problem-card[open] {{ box-shadow: 0 10px 28px rgba(20, 26, 39, .06); }} .problem-body {{ border-top: 1px solid var(--line); }}
     .problem-heading {{ list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 18px; }}
@@ -814,7 +778,7 @@ def render_html_report(
       <div>
         <p class="eyebrow">Sifr Benchmark Report</p>
         <h1>Runtime: {format_runtime_advantage(stats["median_speedup"])} · Memory: {format_memory_advantage(stats["median_memory_delta"])}</h1>
-        <p>Hyperfine results for Python references and generated Sifr runners. Summary metrics include only complete, equivalent-implementation comparisons; divergent, unknown, partial, and failed cases remain visible below with metadata badges.</p>
+        <p>Hyperfine results for selected Python, Sifr, and Node.js implementations. Summary speedup metrics keep Python/Sifr apples-to-apples continuity; per-problem bars, per-size tables, and diagnostics compare every selected implementation.</p>
         <div class="legend">
           <span><b class="py"></b>Python</span>
           <span><b class="sf"></b>Sifr</span>

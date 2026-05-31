@@ -4,22 +4,24 @@ def addBinary(mut a: str, mut b: str) -> str:
     res = ""
     carry = 0
 
-    rev_a = a[::-1]
-    rev_b = b[::-1]
-    for i in range(max(len(rev_a), len(rev_b))):
+    i = len(a) - 1
+    j = len(b) - 1
+    while i >= 0 or j >= 0:
         bitA = 0
-        if i < len(rev_a):
-            if rev_a[i] == "1":
+        if i >= 0:
+            if a[i] == "1":
                 bitA = 1
         bitB = 0
-        if i < len(rev_b):
-            if rev_b[i] == "1":
+        if j >= 0:
+            if b[j] == "1":
                 bitB = 1
 
         total = bitA + bitB + carry
         char = str(total % 2)
         res = char + res
         carry = total // 2
+        i -= 1
+        j -= 1
 
     if carry != 0:
         res = "1" + res

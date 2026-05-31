@@ -1,24 +1,62 @@
 # LeetCode 567: Permutation In String
 
-ALPHA = "abcdefghijklmnopqrstuvwxyz"
-
 def unwrapInt(value: int | None) -> int:
     if value is None:
         return 0
     return value
 
-def charAt(s: str, index: int) -> str:
-    ch = s[index]
-    if ch is None:
-        return ""
-    return ch
-
 def alphaIndex(ch: str) -> int:
-    for i in range(26):
-        c = ALPHA[i]
-        if c is not None and c == ch:
-            return i
-    return -1
+    if ch == "a":
+        return 0
+    if ch == "b":
+        return 1
+    if ch == "c":
+        return 2
+    if ch == "d":
+        return 3
+    if ch == "e":
+        return 4
+    if ch == "f":
+        return 5
+    if ch == "g":
+        return 6
+    if ch == "h":
+        return 7
+    if ch == "i":
+        return 8
+    if ch == "j":
+        return 9
+    if ch == "k":
+        return 10
+    if ch == "l":
+        return 11
+    if ch == "m":
+        return 12
+    if ch == "n":
+        return 13
+    if ch == "o":
+        return 14
+    if ch == "p":
+        return 15
+    if ch == "q":
+        return 16
+    if ch == "r":
+        return 17
+    if ch == "s":
+        return 18
+    if ch == "t":
+        return 19
+    if ch == "u":
+        return 20
+    if ch == "v":
+        return 21
+    if ch == "w":
+        return 22
+    if ch == "x":
+        return 23
+    if ch == "y":
+        return 24
+    return 25
 
 def valueAt(arr: list[int], idx: int) -> int:
     if idx < 0 or idx >= len(arr):
@@ -41,8 +79,12 @@ def checkInclusion(s1: str, s2: str) -> bool:
     s2Count: list[int] = [0] * 26
 
     for i in range(len(s1)):
-        addAt(s1Count, alphaIndex(charAt(s1, i)), 1)
-        addAt(s2Count, alphaIndex(charAt(s2, i)), 1)
+        s1_ch = s1[i]
+        if s1_ch is not None:
+            addAt(s1Count, alphaIndex(s1_ch), 1)
+        s2_ch = s2[i]
+        if s2_ch is not None:
+            addAt(s2Count, alphaIndex(s2_ch), 1)
 
     matches = 0
     for i in range(26):
@@ -54,7 +96,10 @@ def checkInclusion(s1: str, s2: str) -> bool:
         if matches == 26:
             return True
 
-        add_idx = alphaIndex(charAt(s2, right))
+        add_idx = 0
+        add_ch = s2[right]
+        if add_ch is not None:
+            add_idx = alphaIndex(add_ch)
         before_add = valueAt(s2Count, add_idx)
         addAt(s2Count, add_idx, 1)
         after_add = valueAt(s2Count, add_idx)
@@ -65,7 +110,10 @@ def checkInclusion(s1: str, s2: str) -> bool:
         elif target_add == before_add:
             matches -= 1
 
-        remove_idx = alphaIndex(charAt(s2, left))
+        remove_idx = 0
+        remove_ch = s2[left]
+        if remove_ch is not None:
+            remove_idx = alphaIndex(remove_ch)
         before_remove = valueAt(s2Count, remove_idx)
         addAt(s2Count, remove_idx, -1)
         after_remove = valueAt(s2Count, remove_idx)

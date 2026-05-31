@@ -13,7 +13,7 @@ def nodeVal(node: ListNode | None) -> int:
     return node.val
 
 
-def nodeNext(node: ListNode | None) -> ListNode | None:
+def nodeNext(own node: ListNode | None) -> ListNode | None:
     if node is None:
         return None
     return node.next

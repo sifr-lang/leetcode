@@ -64,8 +64,8 @@ def openLock(deadends: list[str], target: str) -> int:
             ch = wheel[i]
             if ch is None:
                 continue
-            up = str(wheel)[:i] + nextDigit(ch) + str(wheel)[i + 1 :]
-            down = str(wheel)[:i] + prevDigit(ch) + str(wheel)[i + 1 :]
+            up = wheel[:i] + nextDigit(ch) + wheel[i + 1 :]
+            down = wheel[:i] + prevDigit(ch) + wheel[i + 1 :]
 
             if up not in visit:
                 visit.add(up)

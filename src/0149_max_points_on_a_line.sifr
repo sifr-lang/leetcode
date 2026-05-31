@@ -21,18 +21,22 @@ def _gcd(a: int, b: int) -> int:
         return 1
     return x
 
-def _slope_key(dx: int, dy: int) -> str:
+def _slope_key(dx: int, dy: int) -> tuple[int, int]:
     if dx == 0:
-        return "1/0"
+        return (1, 0)
     if dy == 0:
-        return "0/1"
+        return (0, 1)
     nx = dx
     ny = dy
     if nx < 0:
         nx = -nx
         ny = -ny
     g = _gcd(ny, nx)
-    return str(ny // g) + "/" + str(nx // g)
+    if g != 0:
+        key_y: int = ny // g
+        key_x: int = nx // g
+        return (key_y, key_x)
+    return (ny, nx)
 
 def maxPoints(points: list[list[int]]) -> int:
     # 1. For each pt determine if it lies on the longest line
@@ -46,7 +50,7 @@ def maxPoints(points: list[list[int]]) -> int:
             continue
         p1x = _nz_int(p1[0])
         p1y = _nz_int(p1[1])
-        count: dict[str, int] = {}
+        count: dict[tuple[int, int], int] = {}
         for j in range(i + 1, len(points)):
             p2 = points[j]
             if p2 is None:
@@ -55,7 +59,7 @@ def maxPoints(points: list[list[int]]) -> int:
             p2y = _nz_int(p2[1])
             dx = p2x - p1x
             dy = p2y - p1y
-            key = _slope_key(dx, dy)
+            key: tuple[int, int] = _slope_key(dx, dy)
             prev = count.get(key, 0)
             if prev is None:
                 prev = 0

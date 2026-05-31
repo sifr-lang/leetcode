@@ -22,7 +22,7 @@ def _gcd(a: int, b: int) -> int:
     return x
 
 def interchangeableRectangles(rectangles: list[list[int]]) -> int:
-    count: dict[str, int] = {}
+    count: dict[tuple[int, int], int] = {}
     res = 0
 
     for rect in rectangles:
@@ -33,11 +33,14 @@ def interchangeableRectangles(rectangles: list[list[int]]) -> int:
         if h == 0:
             continue
         g = _gcd(w, h)
-        key = str(w // g) + "/" + str(h // g)
-        prev = count.get(key, 0)
-        if prev is None:
-            prev = 0
-        count[key] = prev + 1
+        if g != 0:
+            key_w: int = w // g
+            key_h: int = h // g
+            key: tuple[int, int] = (key_w, key_h)
+            prev = count.get(key, 0)
+            if prev is None:
+                prev = 0
+            count[key] = prev + 1
 
     for c in count.values():
         if c is None:
