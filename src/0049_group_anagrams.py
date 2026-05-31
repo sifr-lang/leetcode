@@ -1,50 +1,46 @@
+import collections
+
 # LeetCode 49: Group Anagrams
 # Python version
 
+def groupAnagrams(strs: list[str]) -> list[list[str]]:
+    groups = {}
+
+    # Iterate over strings
+    for s in strs: # O(m)
+        count = {}
+
+        # Count frequency of each character
+        for char in s: # O(n)
+            count[char] = count.get(char, 0) + 1
+
+        # Convert count Dict to List, sort it, and then convert to Tuple (we cannot use dicts or lists as keys in a hashmap)
+        tup = tuple(sorted(count.items())) # O(1) because there is limited amount of possible keys in the alphabet -> O(26) + O(26*log26) + O(26)
+
+        if tup in groups:
+            groups[tup].append(s)
+        else:
+            groups[tup] = [s] 
+        
+    return list(groups.values())
+
 
 def groupAnagrams(strs: list[str]) -> list[list[str]]:
-    groups: dict[str, list[str]] = {}
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    ans = collections.defaultdict(list)
 
     for s in strs:
-        count: dict[str, int] = {}
+        count = [0] * 26
         for c in s:
-            if c in count:
-                count[c] += 1
-            else:
-                count[c] = 1
+            count[ord(c) - ord("a")] += 1
+        ans[tuple(count)].append(s)
+    return list(ans.values())
 
-        key = ""
-        for c in alphabet:
-            if c in count:
-                key = key + "#" + str(count[c])
-            else:
-                key = key + "#0"
-
-        if key in groups:
-            groups[key].append(s)
-        else:
-            groups[key] = [s]
-
-    res: list[list[str]] = []
-    for bucket in groups.values():
-        res.append(bucket)
-    return res
-
-
-def normalizeGroups(groups: list[list[str]]) -> list[str]:
-    normalized = []
-    for bucket in groups:
-        normalized.append(",".join(bucket))
-    normalized.sort()
-    return normalized
 
 
 def main():
-    assert normalizeGroups(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])) == normalizeGroups([["eat", "tea", "ate"], ["tan", "nat"], ["bat"]])
-    assert normalizeGroups(groupAnagrams([""])) == normalizeGroups([[""]])
-    assert normalizeGroups(groupAnagrams(["a"])) == normalizeGroups([["a"]])
-
+    assert groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) == [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+    assert groupAnagrams(['']) == [['']]
+    assert groupAnagrams(['a']) == [['a']]
 
 if __name__ == "__main__":
     main()

@@ -635,6 +635,30 @@ def command_run(args: argparse.Namespace) -> None:
                 )
         print_summary(args.problem)
 
+def command_memory(args: argparse.Namespace) -> None:
+    with benchmark_lock():
+        languages = selected_languages(args)
+        write_environment()
+        ensure_fixtures(args.problem)
+        for spec in selected_specs(args.problem):
+            if not spec.sizes:
+                print(f"skipped {spec.problem_id}: no benchmark fixtures registered")
+                continue
+            binary = build_sifr_runner(spec) if "sifr" in languages else None
+            nodejs_runner = render_nodejs_runner(spec) if "nodejs" in languages else None
+            rust_binary = build_rust_runner(spec) if "rust" in languages else None
+            for size in spec.sizes:
+                run_memory_measurements(
+                    spec,
+                    size,
+                    languages=languages,
+                    binary=binary,
+                    nodejs_runner=nodejs_runner,
+                    rust_binary=rust_binary,
+                    runs=args.memory_runs,
+                )
+        print_summary(args.problem)
+
 def command_run_python(args: argparse.Namespace) -> None:
     spec = PROBLEMS.get(args.problem)
     if spec is None:
@@ -681,6 +705,17 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--warmup", type=int, default=3, help="hyperfine warmup runs")
     run.add_argument("--memory-runs", type=int, default=3, help="RSS measurement runs with /usr/bin/time")
     run.set_defaults(func=command_run)
+
+    memory = subparsers.add_parser("memory", help="collect /usr/bin/time RSS measurements for existing fixtures")
+    memory.add_argument("problem", nargs="*", help="problem ids to measure")
+    memory.add_argument(
+        "--language",
+        action="append",
+        choices=LANGUAGE_CHOICES,
+        help="language to measure; repeatable (default: python, sifr, nodejs, rust)",
+    )
+    memory.add_argument("--memory-runs", type=int, default=3, help="RSS measurement runs with /usr/bin/time")
+    memory.set_defaults(func=command_memory)
 
     run_python_parser = subparsers.add_parser("run-python", help=argparse.SUPPRESS)
     run_python_parser.add_argument("problem")

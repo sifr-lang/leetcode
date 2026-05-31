@@ -3,15 +3,14 @@
 # Python version
 
 def partitionString(s: str) -> int:
-    count = 1
-    seen = 0
-    for ch in s:
-        mask = 1 << (ord(ch) - ord("a"))
-        if seen & mask:
-            count += 1
-            seen = 0
-        seen |= mask
-    return count
+    c=0
+    res=set()
+    for i in s:
+        if i in res:
+            c=c+1
+            res=set()
+        res.add(i)
+    return c+1
 
 
 

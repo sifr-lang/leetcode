@@ -3,22 +3,25 @@
 # Python version
 
 def maximalSquare(matrix: list[list[str]]) -> int:
-    if not matrix or not matrix[0]:
-        return 0
+    ROWS, COLS = len(matrix), len(matrix[0])
+    cache = {}  # map each (r, c) -> maxLength of square
 
-    rows, cols = len(matrix), len(matrix[0])
-    prev = [0] * (cols + 1)
-    best = 0
+    def helper(r, c):
+        if r >= ROWS or c >= COLS:
+            return 0
 
-    for r in range(rows - 1, -1, -1):
-        curr = [0] * (cols + 1)
-        for c in range(cols - 1, -1, -1):
+        if (r, c) not in cache:
+            down = helper(r + 1, c)
+            right = helper(r, c + 1)
+            diag = helper(r + 1, c + 1)
+
+            cache[(r, c)] = 0
             if matrix[r][c] == "1":
-                curr[c] = 1 + min(prev[c], curr[c + 1], prev[c + 1])
-                best = max(best, curr[c])
-        prev = curr
+                cache[(r, c)] = 1 + min(down, right, diag)
+        return cache[(r, c)]
 
-    return best * best
+    helper(0, 0)
+    return max(cache.values()) ** 2
 
 
 

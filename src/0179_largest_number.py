@@ -1,22 +1,23 @@
+from functools import cmp_to_key
+
 # LeetCode 179: Largest Number
 # Python version
 
-def repeatKey(value: str) -> str:
-    return value * 10
-
 def largestNumber(nums: list[int]) -> str:
-    values: list[str] = []
-    for n in nums:
-        values.append(str(n))
+    for i, n in enumerate(nums):
+        nums[i] = str(n)
 
-    values = sorted(values, key=repeatKey)
-    values.reverse()
-    joined = "".join(values)
+    def compare(n1, n2):
+        if n1 + n2 > n2 + n1:
+            return -1
+        else:
+            return 1
 
-    k = 0
-    while k + 1 < len(joined) and joined[k] == "0":
-        k += 1
-    return joined[k:]
+    nums = sorted(nums, key = cmp_to_key(compare))
+
+    return str(int("".join(nums)))
+
+
 
 def main():
     assert largestNumber([10, 2],) == "210"

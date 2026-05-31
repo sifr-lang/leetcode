@@ -6,27 +6,27 @@ def _nz_int(value: int | None) -> int:
     return value
 
 def maximalSquare(matrix: list[list[str]]) -> int:
-    if len(matrix) == 0 or len(matrix[0]) == 0:
-        return 0
+    ROWS = len(matrix)
+    COLS = len(matrix[0])
+    cache: dict[tuple[int, int], int] = {}
 
-    rows = len(matrix)
-    cols = len(matrix[0])
-    prev: list[int] = [0] * (cols + 1)
-    best = 0
+    def helper(r: int, c: int) -> int:
+        if r >= ROWS or c >= COLS:
+            return 0
 
-    for r in range(rows - 1, -1, -1):
-        curr: list[int] = [0] * (cols + 1)
-        for c in range(cols - 1, -1, -1):
+        key = (r, c)
+        if key not in cache:
+            down = helper(r + 1, c)
+            right = helper(r, c + 1)
+            diag = helper(r + 1, c + 1)
+
+            cache[key] = 0
             if matrix[r][c] == "1":
-                small = min(_nz_int(prev[c]), _nz_int(curr[c + 1]))
-                small = min(small, _nz_int(prev[c + 1]))
-                current = 1 + small
-                curr[c] = current
-                if current > best:
-                    best = current
-        prev = curr
+                cache[key] = 1 + min(down, right, diag)
+        return _nz_int(cache[key])
 
-    return best * best
+    helper(0, 0)
+    return _nz_int(max(cache.values())) ** 2
 
 def main():
     assert maximalSquare([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "0", "0", "1", "0"]]) == 4
