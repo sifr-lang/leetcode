@@ -5,44 +5,60 @@ def _nz_int(value: int | None) -> int:
         return 0
     return value
 
-def _pal_len_for_mask(s: str, mask: int) -> int:
-    chars: list[str] = []
-    for i in range(len(s)):
-        if (mask & (1 << i)) != 0:
-            ch = s[i]
-            if ch is None:
-                return 0
-            chars.append(ch)
+def _dp(m: int, s: str, first: list[int], last: list[int], mut memo: list[int]) -> int:
+    cached = _nz_int(memo[m])
+    if cached >= 0:
+        return cached
 
-    left = 0
-    right = len(chars) - 1
-    while left < right:
-        if chars[left] != chars[right]:
-            return 0
-        left += 1
-        right -= 1
-    return len(chars)
+    value = 0
+    if (m & (m - 1)) == 0:
+        if m != 0:
+            value = 1
+    else:
+        l = _nz_int(last[m])
+        f = _nz_int(first[m])
+        lb = 1 << l
+        fb = 1 << f
+        best = _dp(m - lb, s, first, last, memo)
+        without_first = _dp(m - fb, s, first, last, memo)
+        if without_first > best:
+            best = without_first
+
+        without_both = _dp(m - lb - fb, s, first, last, memo)
+        if s[l] == s[f]:
+            without_both += 2
+        if without_both > best:
+            best = without_both
+        value = best
+
+    memo[m] = value
+    return value
 
 def maxProduct(s: str) -> int:
     n = len(s)
     limit = 1 << n
-    pal_len: list[int] = [0 for _ in range(limit)]
+    first: list[int] = [0] * limit
+    last: list[int] = [0] * limit
 
-    for mask in range(1, limit):
-        pal_len[mask] = _pal_len_for_mask(s, mask)
+    for i in range(n):
+        start = 1 << i
+        stop = 1 << (i + 1)
+        for mask in range(start, stop):
+            first[mask] = i
 
+    for i in range(n):
+        step = 1 << (i + 1)
+        mask = 1 << i
+        while mask < limit:
+            last[mask] = i
+            mask += step
+
+    memo: list[int] = [-1] * limit
     ans = 0
-    for m1 in range(1, limit):
-        len1 = _nz_int(pal_len[m1])
-        if len1 == 0:
-            continue
-        for m2 in range(m1 + 1, limit):
-            if (m1 & m2) != 0:
-                continue
-            len2 = _nz_int(pal_len[m2])
-            prod = len1 * len2
-            if prod > ans:
-                ans = prod
+    for m in range(1, limit):
+        prod = _dp(m, s, first, last, memo) * _dp(limit - 1 - m, s, first, last, memo)
+        if prod > ans:
+            ans = prod
     return ans
 
 def main():

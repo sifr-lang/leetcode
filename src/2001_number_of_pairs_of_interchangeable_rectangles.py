@@ -2,23 +2,13 @@
 # LeetCode 2001: Number Of Pairs Of Interchangeable Rectangles
 # Python version
 
-def _gcd(a: int, b: int) -> int:
-    a = abs(a)
-    b = abs(b)
-    while b != 0:
-        a, b = b, a % b
-    return a if a != 0 else 1
-
 def interchangeableRectangles(rectangles: list[list[int]]) -> int:
-    count = {}
+    count = {}  # { W / H : Count }
     res = 0
 
     for w, h in rectangles:
-        if h == 0:
-            continue
-        g = _gcd(w, h)
-        key = (w // g, h // g)
-        count[key] = 1 + count.get(key, 0)
+        # Increment the count for the ratio
+        count[w / h] = 1 + count.get(w / h, 0)
 
     for c in count.values():
         res += (c * (c - 1)) // 2

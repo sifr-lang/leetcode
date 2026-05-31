@@ -1,23 +1,47 @@
 # LeetCode 49: Group Anagrams
 
 def groupAnagrams(strs: list[str]) -> list[list[str]]:
-    groups: dict[str, list[str]] = {}
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    groups: dict[tuple[tuple[int, int, int, int, int, int, int, int, int], tuple[int, int, int, int, int, int, int, int, int], tuple[int, int, int, int, int, int, int, int]], list[str]] = {}
 
     for s in strs:
-        count: dict[str, int] = {}
+        count: list[int] = [0] * 26
         for c in s:
-            if c in count:
-                count[c] += 1
-            else:
-                count[c] = 1
+            addAt(count, alphaIndex(c), 1)
 
-        key = ""
-        for c in alphabet:
-            if c in count:
-                key = key + "#" + str(count[c])
-            else:
-                key = key + "#0"
+        key = (
+            (
+                valueAt(count, 0),
+                valueAt(count, 1),
+                valueAt(count, 2),
+                valueAt(count, 3),
+                valueAt(count, 4),
+                valueAt(count, 5),
+                valueAt(count, 6),
+                valueAt(count, 7),
+                valueAt(count, 8),
+            ),
+            (
+                valueAt(count, 9),
+                valueAt(count, 10),
+                valueAt(count, 11),
+                valueAt(count, 12),
+                valueAt(count, 13),
+                valueAt(count, 14),
+                valueAt(count, 15),
+                valueAt(count, 16),
+                valueAt(count, 17),
+            ),
+            (
+                valueAt(count, 18),
+                valueAt(count, 19),
+                valueAt(count, 20),
+                valueAt(count, 21),
+                valueAt(count, 22),
+                valueAt(count, 23),
+                valueAt(count, 24),
+                valueAt(count, 25),
+            ),
+        )
 
         if key in groups:
             groups[key].append(s)
@@ -28,6 +52,72 @@ def groupAnagrams(strs: list[str]) -> list[list[str]]:
     for bucket in groups.values():
         res.append(bucket)
     return res
+
+def alphaIndex(ch: str) -> int:
+    if ch == "a":
+        return 0
+    if ch == "b":
+        return 1
+    if ch == "c":
+        return 2
+    if ch == "d":
+        return 3
+    if ch == "e":
+        return 4
+    if ch == "f":
+        return 5
+    if ch == "g":
+        return 6
+    if ch == "h":
+        return 7
+    if ch == "i":
+        return 8
+    if ch == "j":
+        return 9
+    if ch == "k":
+        return 10
+    if ch == "l":
+        return 11
+    if ch == "m":
+        return 12
+    if ch == "n":
+        return 13
+    if ch == "o":
+        return 14
+    if ch == "p":
+        return 15
+    if ch == "q":
+        return 16
+    if ch == "r":
+        return 17
+    if ch == "s":
+        return 18
+    if ch == "t":
+        return 19
+    if ch == "u":
+        return 20
+    if ch == "v":
+        return 21
+    if ch == "w":
+        return 22
+    if ch == "x":
+        return 23
+    if ch == "y":
+        return 24
+    return 25
+
+def valueAt(arr: list[int], idx: int) -> int:
+    if idx < 0 or idx >= len(arr):
+        return 0
+    value = arr[idx]
+    if value is None:
+        return 0
+    return value
+
+def addAt(mut arr: list[int], idx: int, delta: int) -> None:
+    if idx < 0 or idx >= len(arr):
+        return
+    arr[idx] = valueAt(arr, idx) + delta
 
 def normalizeGroups(groups: list[list[str]]) -> list[str]:
     normalized = []

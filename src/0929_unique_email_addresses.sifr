@@ -1,24 +1,20 @@
-# LeetCode 929: Unique Email Addresses
+def unwrapStr(own value: str | None) -> str:
+    if value is None:
+        return ''
+    return value
 
-def numUniqueEmails(emails: list[str]) -> int:
+def numUniqueEmails(own mut emails: list[str]) -> int:
     unique_emails: set[str] = set()
-    for email in emails:
-        normalized = ""
-        in_domain = False
-        skip_local = False
-        for index in range(len(email)):
-            ch = email[index]
-            if ch is None:
-                continue
-            if ch == "@":
-                in_domain = True
-                normalized += "@"
-            elif in_domain:
-                normalized += ch
-            elif ch == "+":
-                skip_local = True
-            elif not skip_local and ch != ".":
-                normalized += ch
+    while len(emails) > 0:
+        email = unwrapStr(emails.pop())
+        email_parts = email.split('@', 1)
+        local_name = unwrapStr(email_parts.pop(0))
+        domain_name = unwrapStr(email_parts.pop(0))
+
+        local_parts = local_name.split('+', 1)
+        local_name = unwrapStr(local_parts.pop(0))
+        local_name = local_name.replace('.', '')
+        normalized = local_name + '@' + domain_name
         unique_emails.add(normalized)
     return len(unique_emails)
 

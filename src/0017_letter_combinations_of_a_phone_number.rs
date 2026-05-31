@@ -1,46 +1,39 @@
 struct Solution;
 
-use std::collections::HashMap;
-
 impl Solution {
-    fn backtrack(
-        i: usize,
-        curr_str: String,
-        result: &mut Vec<String>,
-        digits: &String,
-        d_c_map: &HashMap<char, &str>,
-    ) {
-        if curr_str.len() == digits.len() {
-            result.push(curr_str);
+    fn letters_for_digit(digit: u8) -> &'static [u8] {
+        match digit {
+            b'2' => b"abc",
+            b'3' => b"def",
+            b'4' => b"ghi",
+            b'5' => b"jkl",
+            b'6' => b"mno",
+            b'7' => b"qprs",
+            b'8' => b"tuv",
+            b'9' => b"wxyz",
+            _ => b"",
+        }
+    }
+
+    fn backtrack(i: usize, current: &mut String, result: &mut Vec<String>, digits: &[u8]) {
+        if current.len() == digits.len() {
+            result.push(current.clone());
             return;
         }
 
-        let letters = d_c_map
-            .get(&digits.chars().nth(i).unwrap())
-            .unwrap()
-            .to_string();
-        for ch in letters.chars() {
-            let mut append_str = curr_str.clone();
-            append_str.push(ch);
-            Self::backtrack(i + 1, append_str, result, digits, d_c_map);
+        for &ch in Self::letters_for_digit(digits[i]) {
+            current.push(ch as char);
+            Self::backtrack(i + 1, current, result, digits);
+            current.pop();
         }
     }
 
     pub fn letter_combinations(digits: String) -> Vec<String> {
         let mut result = vec![];
-        let d_c_map = HashMap::from([
-            ('2', "abc"),
-            ('3', "def"),
-            ('4', "ghi"),
-            ('5', "jkl"),
-            ('6', "mno"),
-            ('7', "qprs"),
-            ('8', "tuv"),
-            ('9', "wxyz"),
-        ]);
 
         if !digits.is_empty() {
-            Solution::backtrack(0, "".to_string(), &mut result, &digits, &d_c_map);
+            let mut current = String::new();
+            Self::backtrack(0, &mut current, &mut result, digits.as_bytes());
         }
 
         result
