@@ -14,8 +14,21 @@ from specs import RAW_RESULTS_DIR, ProblemSpec, fixture_stem, load_problem_group
 
 START_MARKER = "<!-- analyze_slowness:start -->"
 END_MARKER = "<!-- analyze_slowness:end -->"
-VALID_BENCHMARK_STATUS = {"complete", "partial", "failed_build", "failed_correctness", "failed_timeout"}
-VALID_PARITY_STATUS = {"equivalent", "known_divergent", "unknown", "failed_correctness"}
+VALID_BENCHMARK_STATUS = {
+    "complete",
+    "partial",
+    "failed_build",
+    "failed_correctness",
+    "failed_timeout",
+    "unbenchmarked",
+}
+VALID_PARITY_STATUS = {
+    "equivalent",
+    "known_divergent",
+    "unknown",
+    "failed_correctness",
+    "source-and-tests-only",
+}
 VALID_OWNER = {"compiler", "leetcode_sifr_code", "mixed", "noise", "unknown"}
 METADATA_KEYS = ("benchmark_status", "parity_status", "primary_slowness_owner", "slowness_tags")
 
@@ -35,20 +48,24 @@ class ProblemAnalysis:
     fixtures: list[FixtureMeasurement] = field(default_factory=list)
 
     @property
+    def has_benchmark_fixtures(self) -> bool:
+        return bool(self.spec.sizes)
+
+    @property
     def complete_pair_count(self) -> int:
         return sum(1 for fixture in self.fixtures if fixture.has_pair)
 
     @property
     def is_complete(self) -> bool:
-        return self.complete_pair_count == len(self.spec.sizes)
+        return self.has_benchmark_fixtures and self.complete_pair_count == len(self.spec.sizes)
 
     @property
     def is_partial(self) -> bool:
-        return 0 < self.complete_pair_count < len(self.spec.sizes)
+        return self.has_benchmark_fixtures and 0 < self.complete_pair_count < len(self.spec.sizes)
 
     @property
     def has_no_pair(self) -> bool:
-        return self.complete_pair_count == 0
+        return self.has_benchmark_fixtures and self.complete_pair_count == 0
 
     @property
     def slower_fixtures(self) -> list[FixtureMeasurement]:
@@ -121,6 +138,8 @@ def metadata_for(problem_id: str) -> dict[str, Any]:
 def summary_counts(analyses: list[ProblemAnalysis]) -> dict[str, int]:
     return {
         "problems": len(analyses),
+        "benchmarkable_problems": sum(1 for analysis in analyses if analysis.has_benchmark_fixtures),
+        "unbenchmarked_problems": sum(1 for analysis in analyses if not analysis.has_benchmark_fixtures),
         "complete_problems": sum(1 for analysis in analyses if analysis.is_complete),
         "partial_problems": sum(1 for analysis in analyses if analysis.is_partial),
         "no_pair_problems": sum(1 for analysis in analyses if analysis.has_no_pair),
@@ -188,6 +207,8 @@ def render_markdown(analyses: list[ProblemAnalysis], raw_dir: Path) -> str:
                 [
                     ["Metric", "Count"],
                     ["Registry problems", str(counts["problems"])],
+                    ["Benchmarkable problems", str(counts["benchmarkable_problems"])],
+                    ["Source-only/unbenchmarked problems", str(counts["unbenchmarked_problems"])],
                     ["Fully complete problems", str(counts["complete_problems"])],
                     ["Complete fixture pairs", str(counts["complete_fixture_pairs"])],
                     ["Measured-slower problems", str(counts["measured_slower_problems"])],

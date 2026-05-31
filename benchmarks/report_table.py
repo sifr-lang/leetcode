@@ -9,8 +9,6 @@ IMPL_LABELS = {"python": "Python", "sifr": "Sifr", "nodejs": "Node.js", "node": 
 IMPL_SHORT_LABELS = {"python": "Py", "sifr": "Sf", "nodejs": "No", "node": "No", "bun": "Bu", "rust": "Rs"}
 IMPL_COLORS = {"python": "#4f46e5", "sifr": "#0f766e", "nodejs": "#15803d", "node": "#15803d", "bun": "#b45309", "rust": "#b91c1c"}
 IMPL_ORDER = {"python": 0, "sifr": 1, "rust": 2, "nodejs": 3, "node": 3, "bun": 4}
-RUNTIME_TITLES = {"strong": "Strong: at least 3x faster than Python", "good": "Good: at least 2x faster than Python", "marginal": "Marginal: faster than Python, but under 2x", "regress": "Regression: slower than Python", "neutral": "No runtime comparison"}
-MEMORY_TITLES = {"strong": "Strong: at least 10% less peak RSS than Python", "good": "Good: at least 2% less peak RSS than Python", "neutral": "Neutral: peak RSS differs by less than 2%", "regress": "Regression: more peak RSS than Python"}
 
 
 def format_ms(value: float | None) -> str:
@@ -77,43 +75,84 @@ def sorted_impls(impls: dict[str, dict[str, Any]]) -> list[str]:
     return sorted(impls, key=lambda impl: (IMPL_ORDER.get(impl, 99), impl))
 
 
-def best_runtime_for_impls(impls: dict[str, dict[str, Any]]) -> tuple[str, float] | None:
-    baseline = impls.get("python")
-    if not baseline:
+def runtime_title(tier: str, candidate_impl: str, baseline_impl: str) -> str:
+    candidate = impl_label(candidate_impl)
+    baseline = impl_label(baseline_impl)
+    return {
+        "strong": f"Strong: {candidate} is at least 3x faster than {baseline}",
+        "good": f"Good: {candidate} is at least 2x faster than {baseline}",
+        "marginal": f"Marginal: {candidate} is faster than {baseline}, but under 2x",
+        "regress": f"Regression: {candidate} is slower than {baseline}",
+        "neutral": "No runtime comparison",
+    }[tier]
+
+
+def memory_title(tier: str, candidate_impl: str, baseline_impl: str) -> str:
+    candidate = impl_label(candidate_impl)
+    baseline = impl_label(baseline_impl)
+    return {
+        "strong": f"Strong: {candidate} uses at least 10% less peak RSS than {baseline}",
+        "good": f"Good: {candidate} uses at least 2% less peak RSS than {baseline}",
+        "neutral": "Neutral: peak RSS differs by less than 2%",
+        "regress": f"Regression: {candidate} uses more peak RSS than {baseline}",
+    }[tier]
+
+
+def comparison_runtime_for_impls(
+    impls: dict[str, dict[str, Any]],
+    candidate_impl: str,
+    baseline_impl: str,
+) -> float | None:
+    candidate = impls.get(candidate_impl)
+    baseline = impls.get(baseline_impl)
+    if not candidate or not baseline or candidate["mean_ms"] <= 0:
         return None
-    candidates = [(impl, baseline["mean_ms"] / row["mean_ms"]) for impl, row in impls.items() if impl != "python" and row["mean_ms"] > 0 and row["operations"] == baseline["operations"]]
-    return max(candidates, key=lambda item: item[1]) if candidates else None
+    if candidate["operations"] != baseline["operations"]:
+        return None
+    return baseline["mean_ms"] / candidate["mean_ms"]
 
 
-def best_memory_for_impls(impls: dict[str, dict[str, Any]]) -> tuple[str, float] | None:
-    baseline = impls.get("python")
+def comparison_memory_for_impls(
+    impls: dict[str, dict[str, Any]],
+    candidate_impl: str,
+    baseline_impl: str,
+) -> float | None:
+    baseline = impls.get(baseline_impl)
+    candidate = impls.get(candidate_impl)
     base_memory = baseline.get("peak_memory_mb") if baseline else None
-    if base_memory is None or base_memory <= 0:
+    candidate_memory = candidate.get("peak_memory_mb") if candidate else None
+    if base_memory is None or candidate_memory is None or base_memory <= 0:
         return None
-    candidates = [(impl, (base_memory - memory) / base_memory) for impl, row in impls.items() if impl != "python" and (memory := row.get("peak_memory_mb")) is not None]
-    return max(candidates, key=lambda item: item[1]) if candidates else None
+    return (base_memory - candidate_memory) / base_memory
 
 
-def runtime_leader_cell(impls: dict[str, dict[str, Any]], max_speedup: float) -> str:
-    winner = best_runtime_for_impls(impls)
-    if winner is None:
+def runtime_leader_cell(
+    impls: dict[str, dict[str, Any]],
+    max_speedup: float,
+    candidate_impl: str,
+    baseline_impl: str,
+) -> str:
+    speedup = comparison_runtime_for_impls(impls, candidate_impl, baseline_impl)
+    if speedup is None:
         return '<span class="empty-chart">n/a</span>'
-    impl, speedup = winner
     tier = speedup_tier(speedup)
     width = min(100.0, max(4.0, (speedup / max_speedup) * 100.0))
     direction = "faster" if speedup >= 1 else "slower"
     value = speedup if speedup >= 1 else 1 / speedup
-    return f'<div class="leader-cell"><strong class="{tier}" title="{RUNTIME_TITLES[tier]}">{impl_label(impl)} {format_fold(value)} {direction}</strong><span class="bar"><span class="{tier}" style="width: {width:.1f}%"></span></span></div>'
+    return f'<div class="leader-cell"><strong class="{tier}" title="{runtime_title(tier, candidate_impl, baseline_impl)}">{impl_label(candidate_impl)} {format_fold(value)} {direction}</strong><span class="bar"><span class="{tier}" style="width: {width:.1f}%"></span></span></div>'
 
 
-def memory_leader_cell(impls: dict[str, dict[str, Any]]) -> str:
-    winner = best_memory_for_impls(impls)
-    if winner is None:
-        return f'<span class="delta-badge neutral" title="{MEMORY_TITLES["neutral"]}">Memory: n/a</span>'
-    impl, delta = winner
+def memory_leader_cell(
+    impls: dict[str, dict[str, Any]],
+    candidate_impl: str,
+    baseline_impl: str,
+) -> str:
+    delta = comparison_memory_for_impls(impls, candidate_impl, baseline_impl)
+    if delta is None:
+        return f'<span class="delta-badge neutral" title="{memory_title("neutral", candidate_impl, baseline_impl)}">Memory: n/a</span>'
     tier = delta_tier(delta)
-    text = f"Memory: {impl_label(impl)} about equal" if abs(delta) < 0.02 else f'Memory: {impl_label(impl)} {abs(delta) * 100:.0f}% {"less" if delta > 0 else "more"}'
-    return f'<span class="delta-badge {tier}" title="{MEMORY_TITLES[tier]}">{text}</span>'
+    text = f"Memory: {impl_label(candidate_impl)} about equal" if abs(delta) < 0.02 else f'Memory: {impl_label(candidate_impl)} {abs(delta) * 100:.0f}% {"less" if delta > 0 else "more"}'
+    return f'<span class="delta-badge {tier}" title="{memory_title(tier, candidate_impl, baseline_impl)}">{text}</span>'
 
 
 def metric_stack_cell(
@@ -150,13 +189,20 @@ def diagnostics_block(impls: dict[str, dict[str, Any]], impl_names: list[str]) -
     return f'<details class="diagnostics"><summary>Diagnostics</summary><div class="diagnostics-grid">{"".join(panels)}</div></details>'
 
 
-def comparison_rows(size: int, impls: dict[str, dict[str, Any]], impl_names: list[str], max_speedup: float) -> str:
-    winner = best_runtime_for_impls(impls)
-    tier = speedup_tier(winner[1] if winner else None)
+def comparison_rows(
+    size: int,
+    impls: dict[str, dict[str, Any]],
+    impl_names: list[str],
+    max_speedup: float,
+    candidate_impl: str,
+    baseline_impl: str,
+) -> str:
+    speedup = comparison_runtime_for_impls(impls, candidate_impl, baseline_impl)
+    tier = speedup_tier(speedup)
     verdict = "noisy" if any(row["verdict"] == "noisy" for row in impls.values()) else "stable"
     colspan = 6
-    valid = "yes" if winner is not None else "no"
-    main = f'<tr data-tier="{tier}" data-verdict="{verdict}" data-valid="{valid}"><td><span class="size-pill">{size:,}</span></td><td>{runtime_leader_cell(impls, max_speedup)}</td><td>{memory_leader_cell(impls)}</td>{core_metric_cells(impls, impl_names)}</tr>'
+    valid = "yes" if speedup is not None else "no"
+    main = f'<tr data-size="{size}" data-tier="{tier}" data-verdict="{verdict}" data-valid="{valid}"><td><span class="size-pill">{size:,}</span></td><td class="runtime-lead-cell">{runtime_leader_cell(impls, max_speedup, candidate_impl, baseline_impl)}</td><td class="memory-lead-cell">{memory_leader_cell(impls, candidate_impl, baseline_impl)}</td>{core_metric_cells(impls, impl_names)}</tr>'
     return f'{main}<tr class="detail-row"><td colspan="{colspan}">{diagnostics_block(impls, impl_names)}</td></tr>'
 
 

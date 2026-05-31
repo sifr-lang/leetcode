@@ -16,7 +16,13 @@ from report_metadata import (
     metadata_summary_panel,
     metadata_styles,
 )
-from report_table import comparison_header, comparison_rows, impl_label, sorted_impls
+from report_interactions import report_script
+from report_payload import json_safe
+from report_table import IMPL_COLORS, comparison_header, comparison_rows, impl_label, memory_title, runtime_title, sorted_impls
+
+
+DEFAULT_CANDIDATE_IMPL = "sifr"
+DEFAULT_BASELINE_IMPL = "python"
 
 def fixture_stem(spec: Any, size: int) -> str:
     return spec.fixture_stem.format(size=size)
@@ -155,7 +161,11 @@ def grouped_report_rows(rows: list[dict[str, Any]]) -> dict[str, dict[str, dict[
         ] = row
     return grouped
 
-def report_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
+def report_stats(
+    rows: list[dict[str, Any]],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> dict[str, Any]:
     pair_speedups = []
     memory_deltas = []
     problem_ids = set()
@@ -165,19 +175,19 @@ def report_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
     for category, problems in grouped_report_rows(rows).items():
         for problem_id, sizes in problems.items():
             for impls in sizes.values():
-                python = impls.get("python")
-                sifr = impls.get("sifr")
-                if python and sifr and sifr["mean_ms"] > 0:
+                baseline = impls.get(baseline_impl)
+                candidate = impls.get(candidate_impl)
+                if baseline and candidate and candidate["mean_ms"] > 0:
                     if not include_in_apples_to_apples_summary(impls):
                         continue
                     categories.add(category)
                     problem_ids.add(problem_id)
-                    pair_speedups.append(python["mean_ms"] / sifr["mean_ms"])
-                    memory_delta = memory_delta_for_impls(impls)
+                    pair_speedups.append(baseline["mean_ms"] / candidate["mean_ms"])
+                    memory_delta = memory_delta_for_impls(impls, candidate_impl, baseline_impl)
                     if memory_delta is not None:
                         memory_deltas.append(memory_delta)
                     total_pairs += 1
-                    if python["verdict"] == "stable" and sifr["verdict"] == "stable":
+                    if baseline["verdict"] == "stable" and candidate["verdict"] == "stable":
                         stable_pairs += 1
     return {
         "categories": len(categories),
@@ -202,8 +212,20 @@ def speedup_tier(speedup: float | None) -> str:
         return "marginal"
     return "regress"
 
-RUNTIME_TIER_TITLES = {"strong": "Strong: Sifr is at least 3x faster", "good": "Good: Sifr is at least 2x faster", "marginal": "Marginal: Sifr is faster, but under 2x", "regress": "Regression: Sifr is slower", "neutral": "No runtime comparison"}
-MEMORY_TIER_TITLES = {"strong": "Strong: Sifr uses at least 10% less peak RSS", "good": "Good: Sifr uses at least 2% less peak RSS", "neutral": "Neutral: peak RSS differs by less than 2%", "regress": "Regression: Sifr uses more peak RSS"}
+def runtime_tier_title(
+    tier: str,
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> str:
+    return runtime_title(tier, candidate_impl, baseline_impl)
+
+
+def memory_tier_title(
+    tier: str,
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> str:
+    return memory_title(tier, candidate_impl, baseline_impl)
 
 def delta_tier(value: float | None) -> str:
     if value is None:
@@ -216,21 +238,28 @@ def delta_tier(value: float | None) -> str:
         return "neutral"
     return "regress"
 
-def format_runtime_advantage(speedup: float | None) -> str:
+def format_runtime_advantage(speedup: float | None, candidate_impl: str = DEFAULT_CANDIDATE_IMPL) -> str:
+    candidate = impl_label(candidate_impl)
     if speedup is None:
         return "n/a"
     if speedup >= 1:
-        return f"Sifr {format_fold(speedup)} faster"
-    return f"Sifr {format_fold(1 / speedup)} slower"
+        return f"{candidate} {format_fold(speedup)} faster"
+    return f"{candidate} {format_fold(1 / speedup)} slower"
 
-def format_memory_advantage(delta: float | None, *, include_metric: bool = False) -> str:
+def format_memory_advantage(
+    delta: float | None,
+    *,
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    include_metric: bool = False,
+) -> str:
     prefix = "Memory: " if include_metric else ""
+    candidate = impl_label(candidate_impl)
     if delta is None:
         return f"{prefix}n/a"
     if abs(delta) < 0.02:
         return f"{prefix}about equal"
     direction = "less" if delta > 0 else "more"
-    return f"{prefix}Sifr {abs(delta) * 100:.0f}% {direction}"
+    return f"{prefix}{candidate} {abs(delta) * 100:.0f}% {direction}"
 
 def format_cv(value: float | None) -> str:
     if value is None:
@@ -242,46 +271,62 @@ def format_number(value: float | None) -> str:
         return "n/a"
     return f"{value:,.0f}"
 
-def speedup_for_impls(impls: dict[str, dict[str, Any]]) -> float | None:
-    python = impls.get("python")
-    sifr = impls.get("sifr")
-    if not python or not sifr or sifr["mean_ms"] <= 0:
+def speedup_for_impls(
+    impls: dict[str, dict[str, Any]],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> float | None:
+    candidate = impls.get(candidate_impl)
+    baseline = impls.get(baseline_impl)
+    if not candidate or not baseline or candidate["mean_ms"] <= 0:
         return None
-    if python["operations"] != sifr["operations"]:
+    if candidate["operations"] != baseline["operations"]:
         return None
-    return python["mean_ms"] / sifr["mean_ms"]
+    return baseline["mean_ms"] / candidate["mean_ms"]
 
-def memory_delta_for_impls(impls: dict[str, dict[str, Any]]) -> float | None:
-    python = impls.get("python")
-    sifr = impls.get("sifr")
-    if not python or not sifr:
+def memory_delta_for_impls(
+    impls: dict[str, dict[str, Any]],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> float | None:
+    candidate = impls.get(candidate_impl)
+    baseline = impls.get(baseline_impl)
+    if not candidate or not baseline:
         return None
-    python_memory = python.get("peak_memory_mb")
-    sifr_memory = sifr.get("peak_memory_mb")
-    if python_memory is None or sifr_memory is None or python_memory <= 0:
+    baseline_memory = baseline.get("peak_memory_mb")
+    candidate_memory = candidate.get("peak_memory_mb")
+    if baseline_memory is None or candidate_memory is None or baseline_memory <= 0:
         return None
-    return (python_memory - sifr_memory) / python_memory
+    return (baseline_memory - candidate_memory) / baseline_memory
 
-def speedups_for_sizes(sizes: dict[int, dict[str, dict[str, Any]]]) -> list[tuple[int, float]]:
+def speedups_for_sizes(
+    sizes: dict[int, dict[str, dict[str, Any]]],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> list[tuple[int, float]]:
     pairs = []
     for size, impls in sorted(sizes.items()):
-        speedup = speedup_for_impls(impls)
+        speedup = speedup_for_impls(impls, candidate_impl, baseline_impl)
         if speedup is not None:
             pairs.append((size, speedup))
     return pairs
 
-def problem_summary(sizes: dict[int, dict[str, dict[str, Any]]]) -> dict[str, Any]:
-    speedups = [speedup for _, speedup in speedups_for_sizes(sizes)]
+def problem_summary(
+    sizes: dict[int, dict[str, dict[str, Any]]],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> dict[str, Any]:
+    speedups = [speedup for _, speedup in speedups_for_sizes(sizes, candidate_impl, baseline_impl)]
     memory_deltas = [
         delta
         for impls in sizes.values()
-        if (delta := memory_delta_for_impls(impls)) is not None
+        if (delta := memory_delta_for_impls(impls, candidate_impl, baseline_impl)) is not None
     ]
     noisy = False
     for impls in sizes.values():
-        python = impls.get("python")
-        sifr = impls.get("sifr")
-        if (python and python["verdict"] == "noisy") or (sifr and sifr["verdict"] == "noisy"):
+        candidate = impls.get(candidate_impl)
+        baseline = impls.get(baseline_impl)
+        if (candidate and candidate["verdict"] == "noisy") or (baseline and baseline["verdict"] == "noisy"):
             noisy = True
     return {
         "median_speedup": statistics.median(speedups) if speedups else None,
@@ -290,9 +335,13 @@ def problem_summary(sizes: dict[int, dict[str, dict[str, Any]]]) -> dict[str, An
         "noisy": noisy,
     }
 
-def category_summary(problems: dict[str, dict[int, dict[str, dict[str, Any]]]]) -> dict[str, Any]:
+def category_summary(
+    problems: dict[str, dict[int, dict[str, dict[str, Any]]]],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> dict[str, Any]:
     summaries = [
-        problem_summary(sizes)
+        problem_summary(sizes, candidate_impl, baseline_impl)
         for sizes in problems.values()
         if all(include_in_apples_to_apples_summary(impls) for impls in sizes.values())
     ]
@@ -339,10 +388,11 @@ def svg_points(points: list[tuple[float, float]]) -> str:
 def collect_metric_points(
     sizes: dict[int, dict[str, dict[str, Any]]],
     key: str,
+    impl_names: tuple[str, str] = (DEFAULT_BASELINE_IMPL, DEFAULT_CANDIDATE_IMPL),
 ) -> dict[str, list[tuple[int, float]]]:
-    points: dict[str, list[tuple[int, float]]] = {"python": [], "sifr": []}
+    points: dict[str, list[tuple[int, float]]] = {impl: [] for impl in impl_names}
     for size, impls in sorted(sizes.items()):
-        for impl in ("python", "sifr"):
+        for impl in impl_names:
             row = impls.get(impl)
             value = row.get(key) if row else None
             if value is not None and value > 0:
@@ -408,11 +458,12 @@ def dual_line_chart(
     y_axis_title: str,
     y_formatter: Any,
     log_y: bool,
+    impl_names: tuple[str, str] = (DEFAULT_BASELINE_IMPL, DEFAULT_CANDIDATE_IMPL),
     overlap_tolerance: float | None = None,
     overlap_note: str | None = None,
 ) -> str:
-    points = collect_metric_points(sizes, key)
-    all_points = points["python"] + points["sifr"]
+    points = collect_metric_points(sizes, key, impl_names)
+    all_points = [point for impl in impl_names for point in points[impl]]
     if not all_points:
         return '<span class="empty-chart">n/a</span>'
     width = 720
@@ -437,12 +488,13 @@ def dual_line_chart(
             impl: {size: value for size, value in impl_points}
             for impl, impl_points in points.items()
         }
-        for size, python_value in values_by_impl["python"].items():
-            sifr_value = values_by_impl["sifr"].get(size)
-            if sifr_value is None:
+        baseline_impl, candidate_impl = impl_names
+        for size, baseline_value in values_by_impl[baseline_impl].items():
+            candidate_value = values_by_impl[candidate_impl].get(size)
+            if candidate_value is None:
                 continue
-            denominator = max(abs(python_value), abs(sifr_value), 1.0)
-            if abs(python_value - sifr_value) / denominator <= overlap_tolerance:
+            denominator = max(abs(baseline_value), abs(candidate_value), 1.0)
+            if abs(baseline_value - candidate_value) / denominator <= overlap_tolerance:
                 overlap_sizes.add(size)
 
     grid = []
@@ -461,20 +513,23 @@ def dual_line_chart(
         for size in sizes_list
     )
 
-    def series(impl: str) -> tuple[str, str]:
-        offset = -3.0 if impl == "python" else 3.0
+    def series(impl: str, index: int) -> tuple[str, str]:
+        offset = -3.0 if index == 0 else 3.0
         coordinates = [
             (x_positions[size], y_pos(value) + (offset if size in overlap_sizes else 0.0))
             for size, value in points[impl]
         ]
         circles = "".join(
-            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4"><title>{impl}: {y_formatter(value)}</title></circle>'
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4"><title>{impl_label(impl)}: {y_formatter(value)}</title></circle>'
             for (size, value), (x, y) in zip(points[impl], coordinates, strict=True)
         )
         return svg_points(coordinates), circles
 
-    python_line, python_circles = series("python")
-    sifr_line, sifr_circles = series("sifr")
+    baseline_impl, candidate_impl = impl_names
+    baseline_line, baseline_circles = series(baseline_impl, 0)
+    candidate_line, candidate_circles = series(candidate_impl, 1)
+    baseline_color = IMPL_COLORS.get(baseline_impl, "#475467")
+    candidate_color = IMPL_COLORS.get(candidate_impl, "#475467")
     note = ""
     if overlap_sizes and overlap_note:
         note = f'<p class="chart-note">{escape(overlap_note)}</p>'
@@ -483,14 +538,14 @@ def dual_line_chart(
       <g class="grid">{''.join(grid)}{x_grid}</g>
       <line class="axis" x1="{left}" y1="{top}" x2="{left}" y2="{height - bottom}"></line>
       <line class="axis" x1="{left}" y1="{height - bottom}" x2="{width - right}" y2="{height - bottom}"></line>
-      <polyline class="line py" points="{python_line}"></polyline>
-      <g class="series-py">{python_circles}</g>
-      <polyline class="line sf" points="{sifr_line}"></polyline>
-      <g class="series-sf">{sifr_circles}</g>
+      <polyline class="line" style="stroke: {baseline_color}" points="{baseline_line}"></polyline>
+      <g class="series" style="--impl-color: {baseline_color}">{baseline_circles}</g>
+      <polyline class="line" style="stroke: {candidate_color}" points="{candidate_line}"></polyline>
+      <g class="series" style="--impl-color: {candidate_color}">{candidate_circles}</g>
       {x_ticks}
       <g class="chart-legend" transform="translate({width - 178} 24)">
-        <circle class="legend-py" cx="0" cy="0" r="4"></circle><text x="10" y="4">Python</text>
-        <circle class="legend-sf" cx="82" cy="0" r="4"></circle><text x="92" y="4">Sifr</text>
+        <circle class="legend-dot" style="--impl-color: {baseline_color}" cx="0" cy="0" r="4"></circle><text x="10" y="4">{impl_label(baseline_impl)}</text>
+        <circle class="legend-dot" style="--impl-color: {candidate_color}" cx="82" cy="0" r="4"></circle><text x="92" y="4">{impl_label(candidate_impl)}</text>
       </g>
       <text class="axis-title" x="{left + plot_width / 2:.1f}" y="{height - 8}" text-anchor="middle">Input size (log scale)</text>
       <text class="axis-title" transform="rotate(-90 20 {top + plot_height / 2:.1f})" x="20" y="{top + plot_height / 2:.1f}" text-anchor="middle">{escape(y_axis_title)}</text>
@@ -498,21 +553,13 @@ def dual_line_chart(
     {note}
     """
 
-def speedup_bar(speedup: float | None, max_speedup: float) -> str:
-    tier = speedup_tier(speedup)
-    if speedup is None:
-        return '<span class="empty-chart">n/a</span>'
-    width = min(100.0, max(4.0, (speedup / max_speedup) * 100.0))
-    return f"""
-    <div class="speed-cell">
-      <strong class="speed {tier}" title="{RUNTIME_TIER_TITLES[tier]}">{format_runtime_advantage(speedup)}</strong>
-      <span class="bar"><span class="{tier}" style="width: {width:.1f}%"></span></span>
-    </div>
-    """
-
-def memory_delta_badge(delta: float | None) -> str:
+def memory_delta_badge(
+    delta: float | None,
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
+) -> str:
     tier = delta_tier(delta)
-    return f'<span class="delta-badge {tier}" title="{MEMORY_TIER_TITLES[tier]}">{format_memory_advantage(delta, include_metric=True)}</span>'
+    return f'<span class="delta-badge memory-comparison {tier}" title="{memory_tier_title(tier, candidate_impl, baseline_impl)}">{format_memory_advantage(delta, candidate_impl=candidate_impl, include_metric=True)}</span>'
 
 def median_impl_metric(
     sizes: dict[int, dict[str, dict[str, Any]]],
@@ -560,10 +607,12 @@ def comparison_value_bars(
 def category_problem_bars(
     problems: dict[str, dict[int, dict[str, dict[str, Any]]]],
     specs: dict[str, Any],
+    candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
+    baseline_impl: str = DEFAULT_BASELINE_IMPL,
 ) -> str:
     summaries = []
     for problem_id, sizes in problems.items():
-        summary = problem_summary(sizes)
+        summary = problem_summary(sizes, candidate_impl, baseline_impl)
         median = summary["median_speedup"]
         summaries.append((problem_id, median, summary, sizes))
     summaries.sort(key=lambda item: (item[1] is None, -(item[1] or 0.0), item[0]))
@@ -573,11 +622,11 @@ def category_problem_bars(
         memory_delta = summary["median_memory_delta"]
         bars.append(
             f"""
-            <div class="category-bar" data-tier="{tier}">
+            <div class="category-bar" data-problem="{escape(problem_id)}" data-tier="{tier}">
               <span>{escape(problem_id)}</span>
               <div class="metadata-row">{metadata_badges(specs[problem_id])}</div>
-              {comparison_value_bars(sizes, key="mean_ms", title="Runtime", formatter=format_ms, badge=f'<strong class="summary-badge {tier}" title="{RUNTIME_TIER_TITLES[tier]}">{format_runtime_advantage(median)}</strong>')}
-              {comparison_value_bars(sizes, key="peak_memory_mb", title="Memory", formatter=format_memory, badge=memory_delta_badge(memory_delta))}
+              {comparison_value_bars(sizes, key="mean_ms", title="Runtime", formatter=format_ms, badge=f'<strong class="summary-badge runtime-comparison {tier}" title="{runtime_tier_title(tier, candidate_impl, baseline_impl)}">{format_runtime_advantage(median, candidate_impl)}</strong>')}
+              {comparison_value_bars(sizes, key="peak_memory_mb", title="Memory", formatter=format_memory, badge=memory_delta_badge(memory_delta, candidate_impl, baseline_impl))}
               <em class="variance-dot {'noisy' if summary['noisy'] else 'stable'}" title="{'Noisy benchmark measurements' if summary['noisy'] else 'Stable benchmark measurements'}"></em>
             </div>
             """
@@ -596,7 +645,10 @@ def render_html_report(
         rows = [row for row in rows if row["impl"] in languages]
     if not rows:
         raise SystemExit("no benchmark results found; run `python3 benchmarks/bench.py run` first")
-    stats = report_stats(rows)
+    candidate_impl = DEFAULT_CANDIDATE_IMPL
+    baseline_impl = DEFAULT_BASELINE_IMPL
+    impl_pair = (baseline_impl, candidate_impl)
+    stats = report_stats(rows, candidate_impl, baseline_impl)
     grouped = grouped_report_rows(rows)
     generated_at = time.strftime("%Y-%m-%d %H:%M:%S %Z")
     environment_path = results_dir / "environment.json"
@@ -607,16 +659,16 @@ def render_html_report(
         problem_cards = []
         for problem_id, sizes in problems.items():
             spec = specs[problem_id]
-            summary = problem_summary(sizes)
+            summary = problem_summary(sizes, candidate_impl, baseline_impl)
             impl_names = sorted_impls({impl: row for impls in sizes.values() for impl, row in impls.items()})
             rows_html = [
-                comparison_rows(size, impls, impl_names, summary["max_speedup"])
+                comparison_rows(size, impls, impl_names, summary["max_speedup"], candidate_impl, baseline_impl)
                 for size, impls in sorted(sizes.items())
             ]
             tier = speedup_tier(summary["median_speedup"])
             problem_cards.append(
                 f"""
-                <details class="problem-card" data-problem="{escape(problem_id)}" data-tier="{tier}" data-verdict="{'noisy' if summary['noisy'] else 'stable'}" {metadata_data_attrs(spec)}>
+                <details class="problem-card" data-problem="{escape(problem_id)}" data-category="{escape(spec.category).lower()}" data-tier="{tier}" data-verdict="{'noisy' if summary['noisy'] else 'stable'}" {metadata_data_attrs(spec)}>
                   <summary class="problem-heading">
                     <div>
                       <p class="eyebrow">{escape(spec.category)}</p>
@@ -624,7 +676,7 @@ def render_html_report(
                     </div>
                     <div class="problem-actions">
                       {metadata_badges(spec)}
-                      <span class="speed-chip {tier}" title="{RUNTIME_TIER_TITLES[tier]}">{format_runtime_advantage(summary["median_speedup"])}</span>
+                      <span class="speed-chip runtime-comparison {tier}" title="{runtime_tier_title(tier, candidate_impl, baseline_impl)}">{format_runtime_advantage(summary["median_speedup"], candidate_impl)}</span>
                       {memory_delta_badge(summary["median_memory_delta"])}
                     </div>
                   </summary>
@@ -632,11 +684,11 @@ def render_html_report(
                     <div class="visual-grid">
                       <div class="chart-card">
                         <div><span>Mean runtime vs input size</span><strong>{metric_range_label(sizes, "mean_ms", format_axis_ms)}</strong></div>
-                        {dual_line_chart(sizes, key="mean_ms", chart_class="runtime-chart", aria_label="Mean runtime versus input size", y_axis_title="Mean runtime (log scale)", y_formatter=format_axis_ms, log_y=True)}
+                        <div class="chart-plot" data-chart-key="mean_ms">{dual_line_chart(sizes, key="mean_ms", chart_class="runtime-chart", aria_label="Mean runtime versus input size", y_axis_title="Mean runtime (log scale)", y_formatter=format_axis_ms, log_y=True, impl_names=impl_pair)}</div>
                       </div>
                       <div class="chart-card">
                         <div><span>Peak RSS vs input size</span><strong>{metric_range_label(sizes, "peak_memory_mb", format_axis_memory)}</strong></div>
-                        {dual_line_chart(sizes, key="peak_memory_mb", chart_class="memory-chart", aria_label="Peak RSS versus input size", y_axis_title="Peak RSS (MB, linear scale)", y_formatter=format_axis_memory, log_y=False, overlap_tolerance=0.01, overlap_note="Python and Sifr RSS are within measurement noise; lines are separated slightly for visibility.")}
+                        <div class="chart-plot" data-chart-key="peak_memory_mb">{dual_line_chart(sizes, key="peak_memory_mb", chart_class="memory-chart", aria_label="Peak RSS versus input size", y_axis_title="Peak RSS (MB, linear scale)", y_formatter=format_axis_memory, log_y=False, impl_names=impl_pair, overlap_tolerance=0.01, overlap_note="Selected RSS values are within measurement noise; lines are separated slightly for visibility.")}</div>
                       </div>
                     </div>
                     <div class="table-wrap">
@@ -649,7 +701,7 @@ def render_html_report(
                 </details>
                 """
             )
-        category_metrics = category_summary(problems)
+        category_metrics = category_summary(problems, candidate_impl, baseline_impl)
         category_tier = speedup_tier(category_metrics["median_speedup"])
         sections.append(
             f"""
@@ -660,13 +712,13 @@ def render_html_report(
                   <h1>{escape(category)}</h1>
                 </div>
                 <div class="category-actions">
-                  <span class="speed-chip {category_tier}" title="{RUNTIME_TIER_TITLES[category_tier]}">{format_runtime_advantage(category_metrics["median_speedup"])}</span>
+                  <span class="speed-chip runtime-comparison {category_tier}" title="{runtime_tier_title(category_tier, candidate_impl, baseline_impl)}">{format_runtime_advantage(category_metrics["median_speedup"], candidate_impl)}</span>
                   {memory_delta_badge(category_metrics["median_memory_delta"])}
                   <strong>{len(problems)} problem{'s' if len(problems) != 1 else ''}</strong>
                 </div>
               </summary>
               <div class="category-overview">
-                {category_problem_bars(problems, specs)}
+                {category_problem_bars(problems, specs, candidate_impl, baseline_impl)}
               </div>
               <div class="problem-grid">{''.join(problem_cards)}</div>
             </details>
@@ -678,7 +730,12 @@ def render_html_report(
         for key, value in environment.items()
         if key != "problems"
     )
-    payload = json.dumps({"rows": rows, "environment": environment}, indent=2)
+    available_impls = sorted_impls({row["impl"]: row for row in rows})
+    legend_entries = "".join(
+        f'<span><b style="background: {IMPL_COLORS.get(impl, "#475467")}"></b>{impl_label(impl)}</span>'
+        for impl in available_impls
+    )
+    payload = json.dumps(json_safe({"rows": rows, "environment": environment}), indent=2).replace("</", "<\\/")
     html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -706,9 +763,13 @@ def render_html_report(
     .legend {{ display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; color: var(--muted); font-size: 13px; }} .legend span {{ display: inline-flex; align-items: center; gap: 7px; }} .legend b {{ width: 12px; height: 12px; border-radius: 4px; display: inline-block; }}
     .legend .py {{ background: var(--indigo); }} .legend .sf {{ background: var(--teal); }}
     .filter-bar {{ position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin: 20px 0; padding: 12px; background: rgba(246, 247, 249, .94); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 8px; }}
+    .filter-left {{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-width: min(100%, 520px); }}
     .filter-bar input[type="search"] {{ min-width: min(320px, 100%); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; color: var(--ink); background: var(--panel); }}
+    .compare-controls {{ display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; border-left: 1px solid var(--line); padding-left: 10px; color: var(--muted); }}
+    .compare-controls label {{ display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }}
+    .compare-controls select {{ border: 1px solid var(--line); border-radius: 8px; padding: 8px 28px 8px 10px; color: var(--ink); background: var(--panel); font-weight: 700; }}
     .filter-bar button {{ border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; color: var(--ink); background: var(--panel); font-weight: 700; cursor: pointer; }}
-    .filter-bar button:focus-visible, .filter-bar input:focus-visible, summary:focus-visible {{ outline: 2px solid var(--teal); outline-offset: 2px; }}
+    .filter-bar button:focus-visible, .filter-bar input:focus-visible, .filter-bar select:focus-visible, summary:focus-visible {{ outline: 2px solid var(--teal); outline-offset: 2px; }}
     .filters {{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }} .filters label {{ display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }}
     .category-section {{ margin-top: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; }}
     .category-section > summary {{ list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 22px; background: var(--soft); }}
@@ -739,6 +800,7 @@ def render_html_report(
     .axis-chart .baseline-label {{ fill: var(--amber); font-size: 12px; font-weight: 700; }} .axis-chart .axis-label {{ fill: var(--muted); font-size: 12px; }} .axis-chart .axis-title {{ fill: #344054; font-size: 13px; font-weight: 700; }}
     .axis-chart .line {{ fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }}
     .axis-chart .line.sf {{ stroke: var(--teal); }} .axis-chart .line.py {{ stroke: var(--indigo); }} .axis-chart circle {{ fill: var(--panel); stroke-width: 2.4; }}
+    .axis-chart .series circle {{ stroke: var(--impl-color); }} .axis-chart .legend-dot {{ fill: var(--impl-color); stroke: var(--impl-color); }}
     .axis-chart .series-sf circle, .axis-chart .legend-sf {{ stroke: var(--teal); }} .axis-chart .series-py circle, .axis-chart .legend-py {{ stroke: var(--indigo); }}
     .axis-chart .legend-py {{ fill: var(--indigo); }} .axis-chart .legend-sf {{ fill: var(--teal); }} .chart-legend text {{ fill: var(--muted); font-size: 12px; font-weight: 700; }}
     .chart-note {{ margin: -4px 0 0 104px; max-width: 520px; color: var(--muted); font-size: 12px; font-style: italic; }}
@@ -769,7 +831,7 @@ def render_html_report(
     .footnote {{ color: var(--muted); margin: 14px 0 0; font-size: 12px; max-width: 940px; }}
     .meta-grid span {{ color: var(--muted); }} footer {{ color: var(--muted); margin-top: 22px; font-size: 12px; }}
     {metadata_styles()}
-    @media (max-width: 920px) {{ .shell {{ padding: 20px 12px 40px; }} .hero, .visual-grid {{ grid-template-columns: 1fr; }} .hero {{ padding: 20px; }} .stats, .meta-grid {{ grid-template-columns: 1fr; }} .problem-heading, .category-section > summary {{ align-items: flex-start; flex-direction: column; }} .category-actions, .problem-actions {{ justify-content: flex-start; }} .category-bar {{ grid-template-columns: 1fr; align-items: start; }} .filter-bar {{ position: static; }} }}
+    @media (max-width: 920px) {{ .shell {{ padding: 20px 12px 40px; }} .hero, .visual-grid {{ grid-template-columns: 1fr; }} .hero {{ padding: 20px; }} .stats, .meta-grid {{ grid-template-columns: 1fr; }} .problem-heading, .category-section > summary {{ align-items: flex-start; flex-direction: column; }} .category-actions, .problem-actions {{ justify-content: flex-start; }} .category-bar {{ grid-template-columns: 1fr; align-items: start; }} .filter-bar {{ position: static; }} .compare-controls {{ border-left: 0; padding-left: 0; }} }}
   </style>
 </head>
 <body>
@@ -777,11 +839,10 @@ def render_html_report(
     <section class="hero">
       <div>
         <p class="eyebrow">Sifr Benchmark Report</p>
-        <h1>Runtime: {format_runtime_advantage(stats["median_speedup"])} · Memory: {format_memory_advantage(stats["median_memory_delta"])}</h1>
-        <p>Hyperfine results for selected Python, Sifr, and Node.js implementations. Summary speedup metrics keep Python/Sifr apples-to-apples continuity; per-problem bars, per-size tables, and diagnostics compare every selected implementation.</p>
+        <h1 id="hero-title">Runtime: {format_runtime_advantage(stats["median_speedup"])} · Memory: {format_memory_advantage(stats["median_memory_delta"])}</h1>
+        <p id="hero-copy">Hyperfine results for selected implementations. Summary speedup metrics default to Sifr/Python apples-to-apples continuity; use the comparison controls to choose any measured language pair.</p>
         <div class="legend">
-          <span><b class="py"></b>Python</span>
-          <span><b class="sf"></b>Sifr</span>
+          {legend_entries}
           <span><span class="variance-dot stable"></span>stable</span>
           <span><span class="variance-dot noisy"></span>noisy</span>
         </div>
@@ -789,14 +850,21 @@ def render_html_report(
       <div class="stats">
         <div class="stat"><span>Problems</span><strong>{stats["problems"]}</strong></div>
         <div class="stat"><span>Categories</span><strong>{stats["categories"]}</strong></div>
-        <div class="stat"><span>Median Runtime</span><strong class="{speedup_tier(stats['median_speedup'])}">{format_runtime_advantage(stats["median_speedup"])}</strong></div>
-        <div class="stat"><span>Median Peak RSS</span><strong class="{delta_tier(stats['median_memory_delta'])}">{format_memory_advantage(stats["median_memory_delta"])}</strong></div>
-        <div class="stat"><span>Mean Runtime</span><strong class="{speedup_tier(stats['average_speedup'])}">{format_runtime_advantage(stats["average_speedup"])}</strong></div>
-        <div class="stat"><span>Reliable Comparisons</span><strong>{stats["stable_pairs"]}/{stats["comparisons"]}</strong></div>
+        <div class="stat"><span>Median Runtime</span><strong id="stat-median-runtime" class="{speedup_tier(stats['median_speedup'])}">{format_runtime_advantage(stats["median_speedup"])}</strong></div>
+        <div class="stat"><span>Median Peak RSS</span><strong id="stat-median-memory" class="{delta_tier(stats['median_memory_delta'])}">{format_memory_advantage(stats["median_memory_delta"])}</strong></div>
+        <div class="stat"><span>Mean Runtime</span><strong id="stat-mean-runtime" class="{speedup_tier(stats['average_speedup'])}">{format_runtime_advantage(stats["average_speedup"])}</strong></div>
+        <div class="stat"><span>Reliable Comparisons</span><strong id="stat-reliable">{stats["stable_pairs"]}/{stats["comparisons"]}</strong></div>
       </div>
     </section>
     <section class="filter-bar" aria-label="Report filters">
-      <input id="problem-search" type="search" placeholder="Filter by problem or category">
+      <div class="filter-left">
+        <input id="problem-search" type="search" placeholder="Filter by problem or category">
+        <div class="compare-controls" aria-label="Language comparison">
+          <label>Compare <select id="compare-candidate"></select></label>
+          <span>vs</span>
+          <label><select id="compare-baseline"></select></label>
+        </div>
+      </div>
       <div class="filters">
         <button type="button" id="expand-all">Expand all</button>
         <button type="button" id="collapse-all">Collapse all</button>
@@ -816,42 +884,8 @@ def render_html_report(
     </section>
     <footer>Generated {escape(generated_at)} from benchmark JSON exports in <code>benchmarks/results/.raw</code>.</footer>
   </main>
-  <script type="application/json" id="benchmark-data">{escape(payload)}</script>
-  <script>
-    const search = document.getElementById('problem-search');
-    const stableOnly = document.getElementById('stable-only');
-    const expandAll = document.getElementById('expand-all');
-    const collapseAll = document.getElementById('collapse-all');
-    const tierFilters = Array.from(document.querySelectorAll('[data-tier-filter]'));
-    const cards = Array.from(document.querySelectorAll('.problem-card'));
-
-    function applyFilters() {{
-      const query = search.value.trim().toLowerCase();
-      const tiers = new Set(tierFilters.filter((input) => input.checked).map((input) => input.dataset.tierFilter));
-      const onlyStable = stableOnly.checked;
-      for (const card of cards) {{
-        const category = card.closest('.category-section').dataset.category;
-        const matchesSearch = card.dataset.problem.toLowerCase().includes(query) || category.includes(query);
-        const matchesTier = tiers.has(card.dataset.tier);
-        const matchesStability = !onlyStable || card.dataset.verdict === 'stable';
-        card.hidden = !(matchesSearch && matchesTier && matchesStability);
-      }}
-      for (const section of document.querySelectorAll('.category-section')) {{
-        const visible = section.querySelectorAll('.problem-card:not([hidden])').length;
-        section.hidden = visible === 0;
-        if (query && visible > 0) section.open = true;
-        if (!query) section.open = false;
-      }}
-    }}
-
-    search.addEventListener('input', applyFilters);
-    stableOnly.addEventListener('change', applyFilters);
-    expandAll.addEventListener('click', () => document.querySelectorAll('.category-section:not([hidden]), .problem-card:not([hidden])').forEach((item) => item.open = true));
-    collapseAll.addEventListener('click', () => document.querySelectorAll('.category-section, .problem-card').forEach((item) => item.open = false));
-    for (const input of tierFilters) {{
-      input.addEventListener('change', applyFilters);
-    }}
-  </script>
+  <script type="application/json" id="benchmark-data">{payload}</script>
+  <script>{report_script()}</script>
 </body>
 </html>
 """

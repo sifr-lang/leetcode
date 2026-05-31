@@ -19,6 +19,7 @@ from typing import Any
 import report
 from harnesses import generic as harness
 from harnesses import nodejs as nodejs_harness
+from harnesses import rust as rust_harness
 from specs import (
     BIN_DIR,
     GENERATED_DIR,
@@ -26,6 +27,7 @@ from specs import (
     RAW_RESULTS_DIR,
     REPO_ROOT,
     RESULTS_DIR,
+    RUST_GENERATED_DIR,
     SIFR_GENERATED_DIR,
     ProblemSpec,
     fixture_paths,
@@ -38,7 +40,7 @@ sys.dont_write_bytecode = True
 
 BENCH_ROOT = Path(__file__).resolve().parent
 PROBLEMS = load_problem_specs()
-DEFAULT_LANGUAGES = ("python", "sifr", "nodejs")
+DEFAULT_LANGUAGES = ("python", "sifr", "nodejs", "rust")
 LANGUAGE_CHOICES = DEFAULT_LANGUAGES
 
 @contextlib.contextmanager
@@ -104,6 +106,15 @@ def render_nodejs_runner(spec: ProblemSpec) -> Path:
     output.write_text(rendered, encoding="utf-8")
     return output
 
+def render_rust_runner(spec: ProblemSpec) -> Path:
+    if not spec.source_rs.exists():
+        raise RuntimeError(f"missing Rust source for {spec.problem_id}: {spec.source_rs}")
+    rendered = rust_harness.render_rust_runner(spec.source_rs, spec.function, spec.runner)
+    RUST_GENERATED_DIR.mkdir(parents=True, exist_ok=True)
+    output = RUST_GENERATED_DIR / f"{spec.problem_id}_runner.rs"
+    output.write_text(rendered, encoding="utf-8")
+    return output
+
 def build_sifr_runner(spec: ProblemSpec) -> Path:
     runner_path = render_sifr_runner(spec)
     output_dir = BIN_DIR / "sifr" / spec.problem_id
@@ -130,6 +141,23 @@ def build_sifr_runner(spec: ProblemSpec) -> Path:
     stable_binary.chmod(stable_binary.stat().st_mode | 0o111)
     print(f"built {spec.problem_id} in {elapsed:.2f}s: {stable_binary}")
     return stable_binary
+
+def build_rust_runner(spec: ProblemSpec) -> Path:
+    runner_path = render_rust_runner(spec)
+    output_dir = BIN_DIR / "rust"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    binary = output_dir / f"{spec.problem_id}_rust"
+    cmd = ["rustc", "--edition=2021", "-O", str(runner_path), "-o", str(binary)]
+    start = time.perf_counter()
+    result = subprocess.run(cmd, cwd=REPO_ROOT, text=True, capture_output=True)
+    elapsed = time.perf_counter() - start
+    if result.returncode != 0:
+        sys.stderr.write(result.stdout)
+        sys.stderr.write(result.stderr)
+        raise SystemExit(result.returncode)
+    binary.chmod(binary.stat().st_mode | 0o111)
+    print(f"built rust {spec.problem_id} in {elapsed:.2f}s: {binary}")
+    return binary
 
 def default_sifr_binary(output_dir: Path) -> Path:
     return output_dir / "sifr_output" / "target" / "release" / "sifr_output"
@@ -191,6 +219,7 @@ def run_correctness(
     languages: set[str],
     binary: Path | None,
     nodejs_runner: Path | None,
+    rust_binary: Path | None,
 ) -> None:
     for size in spec.sizes:
         fixture_path, expected_path = fixture_paths(spec, size)
@@ -210,6 +239,20 @@ def run_correctness(
             if nodejs_runner is None:
                 raise RuntimeError("Node.js runner is required for Node.js correctness")
             run_nodejs(nodejs_runner, fixture_path, expected_path, loops)
+        if "rust" in languages:
+            if rust_binary is None:
+                raise RuntimeError("Rust binary is required for Rust correctness")
+            result = subprocess.run(
+                [str(rust_binary), str(fixture_path), str(expected_path), str(loops)],
+                cwd=REPO_ROOT,
+                text=True,
+                capture_output=True,
+            )
+            if result.returncode != 0:
+                sys.stderr.write(result.stdout)
+                sys.stderr.write(result.stderr)
+                raise SystemExit(result.returncode)
+            print(result.stdout.strip())
     print(f"correctness passed: {spec.problem_id}")
 
 def hyperfine_command(
@@ -219,6 +262,7 @@ def hyperfine_command(
     languages: set[str],
     binary: Path | None,
     nodejs_runner: Path | None,
+    rust_binary: Path | None,
     runs: int,
     warmup: int,
     result_path: Path | None = None,
@@ -239,7 +283,14 @@ def hyperfine_command(
         "--export-markdown",
         str(markdown_path),
     ]
-    for language, command in benchmark_commands(spec, size, languages=languages, binary=binary, nodejs_runner=nodejs_runner).items():
+    for language, command in benchmark_commands(
+        spec,
+        size,
+        languages=languages,
+        binary=binary,
+        nodejs_runner=nodejs_runner,
+        rust_binary=rust_binary,
+    ).items():
         cmd.extend(["--command-name", f"{language}:{spec.problem_id}:{size}", shlex_join(command)])
     return cmd
 
@@ -256,6 +307,7 @@ def benchmark_commands(
     languages: set[str],
     binary: Path | None,
     nodejs_runner: Path | None,
+    rust_binary: Path | None,
 ) -> dict[str, list[str]]:
     fixture_path, expected_path = fixture_paths(spec, size)
     loops = spec.loops_by_size[size]
@@ -278,6 +330,10 @@ def benchmark_commands(
         if nodejs_runner is None:
             raise RuntimeError("Node.js runner is required for Node.js benchmark command")
         commands["nodejs"] = nodejs_command([str(nodejs_runner), str(fixture_path), str(expected_path), str(loops)])
+    if "rust" in languages:
+        if rust_binary is None:
+            raise RuntimeError("Rust binary is required for Rust benchmark command")
+        commands["rust"] = [str(rust_binary), str(fixture_path), str(expected_path), str(loops)]
     return commands
 
 def shlex_join(parts: list[str]) -> str:
@@ -349,13 +405,21 @@ def run_memory_measurements(
     languages: set[str],
     binary: Path | None,
     nodejs_runner: Path | None,
+    rust_binary: Path | None,
     runs: int,
 ) -> None:
     RAW_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     if runs <= 0:
         return
     measurements = []
-    for impl, command in benchmark_commands(spec, size, languages=languages, binary=binary, nodejs_runner=nodejs_runner).items():
+    for impl, command in benchmark_commands(
+        spec,
+        size,
+        languages=languages,
+        binary=binary,
+        nodejs_runner=nodejs_runner,
+        rust_binary=rust_binary,
+    ).items():
         rss_values = []
         footprint_values = []
         for _ in range(runs):
@@ -400,6 +464,7 @@ def run_hyperfine(
     languages: set[str],
     binary: Path | None,
     nodejs_runner: Path | None,
+    rust_binary: Path | None,
     runs: int,
     warmup: int,
 ) -> None:
@@ -414,6 +479,7 @@ def run_hyperfine(
         languages=languages,
         binary=binary,
         nodejs_runner=nodejs_runner,
+        rust_binary=rust_binary,
         runs=runs,
         warmup=warmup,
         result_path=temp_result_path,
@@ -456,9 +522,20 @@ def collect_environment() -> dict[str, Any]:
         ).stdout.strip()
     except (SystemExit, subprocess.SubprocessError):
         node_version = "unknown"
+    try:
+        rust_version = subprocess.run(
+            ["rustc", "--version"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            timeout=30,
+        ).stdout.strip()
+    except subprocess.SubprocessError:
+        rust_version = "unknown"
     return {
         "python": sys.version.split()[0],
         "nodejs": node_version,
+        "rust": rust_version,
         "platform": platform.platform(),
         "machine": platform.machine(),
         "processor": platform.processor(),
@@ -472,6 +549,7 @@ def collect_environment() -> dict[str, Any]:
                 "source_py": str(spec.source_py),
                 "source_sifr": str(spec.source_sifr),
                 "source_js": str(spec.source_js),
+                "source_rs": str(spec.source_rs),
                 "runner": spec.runner,
                 "fixture_stem": spec.fixture_stem,
                 "sizes": list(spec.sizes),
@@ -504,11 +582,16 @@ def command_build(args: argparse.Namespace) -> None:
     with benchmark_lock():
         languages = selected_languages(args)
         for spec in selected_specs(args.problem):
+            if not spec.sizes:
+                print(f"skipped {spec.problem_id}: no benchmark fixtures registered")
+                continue
             if "sifr" in languages:
                 build_sifr_runner(spec)
             if "nodejs" in languages:
                 runner = render_nodejs_runner(spec)
                 print(f"rendered {spec.problem_id}: {runner}")
+            if "rust" in languages:
+                build_rust_runner(spec)
 
 def command_run(args: argparse.Namespace) -> None:
     with benchmark_lock():
@@ -517,9 +600,19 @@ def command_run(args: argparse.Namespace) -> None:
         write_environment()
         ensure_fixtures(args.problem)
         for spec in selected_specs(args.problem):
+            if not spec.sizes:
+                print(f"skipped {spec.problem_id}: no benchmark fixtures registered")
+                continue
             binary = build_sifr_runner(spec) if "sifr" in languages else None
             nodejs_runner = render_nodejs_runner(spec) if "nodejs" in languages else None
-            run_correctness(spec, languages=languages, binary=binary, nodejs_runner=nodejs_runner)
+            rust_binary = build_rust_runner(spec) if "rust" in languages else None
+            run_correctness(
+                spec,
+                languages=languages,
+                binary=binary,
+                nodejs_runner=nodejs_runner,
+                rust_binary=rust_binary,
+            )
             for size in spec.sizes:
                 run_hyperfine(
                     spec,
@@ -527,6 +620,7 @@ def command_run(args: argparse.Namespace) -> None:
                     languages=languages,
                     binary=binary,
                     nodejs_runner=nodejs_runner,
+                    rust_binary=rust_binary,
                     runs=args.runs,
                     warmup=args.warmup,
                 )
@@ -536,6 +630,7 @@ def command_run(args: argparse.Namespace) -> None:
                     languages=languages,
                     binary=binary,
                     nodejs_runner=nodejs_runner,
+                    rust_binary=rust_binary,
                     runs=args.memory_runs,
                 )
         print_summary(args.problem)
@@ -570,7 +665,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--language",
         action="append",
         choices=LANGUAGE_CHOICES,
-        help="language to prepare; repeatable (default: python, sifr, nodejs)",
+        help="language to prepare; repeatable (default: python, sifr, nodejs, rust)",
     )
     build.set_defaults(func=command_build)
 
@@ -580,7 +675,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--language",
         action="append",
         choices=LANGUAGE_CHOICES,
-        help="language to benchmark; repeatable (default: python, sifr, nodejs)",
+        help="language to benchmark; repeatable (default: python, sifr, nodejs, rust)",
     )
     run.add_argument("--runs", type=int, default=20, help="hyperfine measured runs")
     run.add_argument("--warmup", type=int, default=3, help="hyperfine warmup runs")

@@ -308,6 +308,11 @@ def format_sequence_result(result: Any, expected: dict[str, Any]) -> str:
 
 def normalize_sequence_result(result: Any, expected: dict[str, Any]) -> Any:
     normalized = normalize_sequence_value(result)
+    if expected.get("sort_inner_lists"):
+        normalized = [
+            sorted(item) if isinstance(item, list) else item
+            for item in normalized
+        ]
     if expected.get("sort_result"):
         return sorted(normalized)
     return normalized
@@ -805,17 +810,33 @@ def sifr_expected_check(expected: dict[str, Any], result_name: str) -> str:
         return f"actual_text: str = treeToString({result_name})\nif actual_text != expected_text.strip():"
     if expected_type == "str":
         return f"if {result_name} != expected_text.strip():"
-    if expected_type in ("list_str", "list_list_str", "list_list_int") and expected.get("sort_result"):
+    if expected_type in ("list_str", "list_list_str", "list_list_int") and (
+        expected.get("sort_result") or expected.get("sort_inner_lists")
+    ):
         item_type = sifr_result_type(expected_type)
-        return "\n".join(
-            [
+        if expected.get("sort_inner_lists"):
+            if expected_type not in ("list_list_str", "list_list_int"):
+                raise RuntimeError("sort_inner_lists requires a nested-list expected shape")
+            inner_type = "str" if expected_type == "list_list_str" else "int"
+            copy_lines = [
+                f"actual_result: {item_type} = []",
+                f"for _bench_item in {result_name}:",
+                f"    _bench_inner: list[{inner_type}] = []",
+                "    for _bench_value in _bench_item:",
+                "        _bench_inner.append(_bench_value)",
+                "    _bench_inner.sort()",
+                "    actual_result.append(_bench_inner)",
+            ]
+        else:
+            copy_lines = [
                 f"actual_result: {item_type} = []",
                 f"for _bench_item in {result_name}:",
                 "    actual_result.append(_bench_item)",
-                "actual_result.sort()",
-                "if str(actual_result) != expected_text.strip():",
             ]
-        )
+        if expected.get("sort_result"):
+            copy_lines.append("actual_result.sort()")
+        copy_lines.append("if str(actual_result) != expected_text.strip():")
+        return "\n".join(copy_lines)
     if expected_type in ("list_str", "list_list_str", "list_list_int"):
         return f"if str({result_name}) != expected_text.strip():"
     raise RuntimeError(f"unsupported Sifr expected shape: {expected_type}")
@@ -824,7 +845,9 @@ def sifr_wrong_result_expr(expected: dict[str, Any], result_name: str) -> str:
     expected_type = expected["type"]
     if expected_type in ("list_node_int", "tree_node_int"):
         return "actual_text"
-    if expected_type in ("list_str", "list_list_str", "list_list_int") and expected.get("sort_result"):
+    if expected_type in ("list_str", "list_list_str", "list_list_int") and (
+        expected.get("sort_result") or expected.get("sort_inner_lists")
+    ):
         return "str(actual_result)"
     return f"str({result_name})"
 
