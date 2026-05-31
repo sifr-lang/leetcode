@@ -113,7 +113,10 @@ function formatExpected(result, expected) {
 }
 
 function normalizeSequenceResult(value, expected) {
-  const normalized = normalizeSequenceValue(value);
+  let normalized = normalizeSequenceValue(value);
+  if (expected.sort_inner_lists) {
+    normalized = normalized.map((item) => Array.isArray(item) ? item.slice().sort(compareSequenceValues) : item);
+  }
   if (expected.sort_result) normalized.sort(compareSequenceValues);
   return normalized;
 }

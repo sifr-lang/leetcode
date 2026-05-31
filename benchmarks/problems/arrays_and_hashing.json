@@ -2422,7 +2422,8 @@
           ]
         },
         "expected": {
-          "type": "list_list_int"
+          "type": "list_list_int",
+          "sort_inner_lists": true
         },
         "checksum": {
           "type": "list_len"

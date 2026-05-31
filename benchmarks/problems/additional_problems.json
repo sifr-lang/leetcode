@@ -1,0 +1,2215 @@
+{
+  "category": "Additional Problems",
+  "slug": "additional_problems",
+  "order": 99,
+  "problems": [
+    {
+      "id": "0016_3sum_closest",
+      "function": "threeSumClosest",
+      "source_py": "src/0016_3sum_closest.py",
+      "source_sifr": "src/0016_3sum_closest.sifr",
+      "source_js": "src/0016_3sum_closest.js",
+      "source_rs": "src/0016_3sum_closest.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0023_merge_k_sorted_lists",
+      "function": "mergeKLists",
+      "source_py": "src/0023_merge_k_sorted_lists.py",
+      "source_sifr": "src/0023_merge_k_sorted_lists.sifr",
+      "source_js": "src/0023_merge_k_sorted_lists.js",
+      "source_rs": "src/0023_merge_k_sorted_lists.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0044_wildcard_matching",
+      "function": "isMatch",
+      "source_py": "src/0044_wildcard_matching.py",
+      "source_sifr": "src/0044_wildcard_matching.sifr",
+      "source_js": "src/0044_wildcard_matching.js",
+      "source_rs": "src/0044_wildcard_matching.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0092_reverse_linked_list_ii",
+      "function": "reverseBetween",
+      "source_py": "src/0092_reverse_linked_list_ii.py",
+      "source_sifr": "src/0092_reverse_linked_list_ii.sifr",
+      "source_js": "src/0092_reverse_linked_list_ii.js",
+      "source_rs": "src/0092_reverse_linked_list_ii.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0119_pascal_triangle_ii",
+      "function": "getRow",
+      "source_py": "src/0119_pascal_triangle_ii.py",
+      "source_sifr": "src/0119_pascal_triangle_ii.sifr",
+      "source_js": "src/0119_pascal_triangle_ii.js",
+      "source_rs": "src/0119_pascal_triangle_ii.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0133_clone_graph",
+      "function": "cloneGraph",
+      "source_py": "src/0133_clone_graph.py",
+      "source_sifr": "src/0133_clone_graph.sifr",
+      "source_js": "src/0133_clone_graph.js",
+      "source_rs": "src/0133_clone_graph.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0135_candy",
+      "function": "candy",
+      "source_py": "src/0135_candy.py",
+      "source_sifr": "src/0135_candy.sifr",
+      "source_js": "src/0135_candy.js",
+      "source_rs": "src/0135_candy.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0138_copy_list_with_random_pointer",
+      "function": "copyRandomList",
+      "source_py": "src/0138_copy_list_with_random_pointer.py",
+      "source_sifr": "src/0138_copy_list_with_random_pointer.sifr",
+      "source_js": "src/0138_copy_list_with_random_pointer.js",
+      "source_rs": "src/0138_copy_list_with_random_pointer.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0143_reorder_list",
+      "function": "reorderList",
+      "source_py": "src/0143_reorder_list.py",
+      "source_sifr": "src/0143_reorder_list.sifr",
+      "source_js": "src/0143_reorder_list.js",
+      "source_rs": "src/0143_reorder_list.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0151_reverse_words_in_a_string",
+      "function": "reverseWords",
+      "source_py": "src/0151_reverse_words_in_a_string.py",
+      "source_sifr": "src/0151_reverse_words_in_a_string.sifr",
+      "source_js": "src/0151_reverse_words_in_a_string.js",
+      "source_rs": "src/0151_reverse_words_in_a_string.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0160_intersection_of_two_linked_lists",
+      "function": "getIntersectionNode",
+      "source_py": "src/0160_intersection_of_two_linked_lists.py",
+      "source_sifr": "src/0160_intersection_of_two_linked_lists.sifr",
+      "source_js": "src/0160_intersection_of_two_linked_lists.js",
+      "source_rs": "src/0160_intersection_of_two_linked_lists.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0201_bitwise_and_of_numbers_range",
+      "function": "rangeBitwiseAnd",
+      "source_py": "src/0201_bitwise_and_of_numbers_range.py",
+      "source_sifr": "src/0201_bitwise_and_of_numbers_range.sifr",
+      "source_js": "src/0201_bitwise_and_of_numbers_range.js",
+      "source_rs": "src/0201_bitwise_and_of_numbers_range.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0207_course_schedule",
+      "function": "canFinish",
+      "source_py": "src/0207_course_schedule.py",
+      "source_sifr": "src/0207_course_schedule.sifr",
+      "source_js": "src/0207_course_schedule.js",
+      "source_rs": "src/0207_course_schedule.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0231_power_of_two",
+      "function": "isPowerOfTwo",
+      "source_py": "src/0231_power_of_two.py",
+      "source_sifr": "src/0231_power_of_two.sifr",
+      "source_js": "src/0231_power_of_two.js",
+      "source_rs": "src/0231_power_of_two.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0232_implement_queue_using_stacks",
+      "function": "MyQueue",
+      "source_py": "src/0232_implement_queue_using_stacks.py",
+      "source_sifr": "src/0232_implement_queue_using_stacks.sifr",
+      "source_js": "src/0232_implement_queue_using_stacks.js",
+      "source_rs": "src/0232_implement_queue_using_stacks.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0235_lowest_common_ancestor_of_a_binary_search_tree",
+      "function": "lowestCommonAncestor",
+      "source_py": "src/0235_lowest_common_ancestor_of_a_binary_search_tree.py",
+      "source_sifr": "src/0235_lowest_common_ancestor_of_a_binary_search_tree.sifr",
+      "source_js": "src/0235_lowest_common_ancestor_of_a_binary_search_tree.js",
+      "source_rs": "src/0235_lowest_common_ancestor_of_a_binary_search_tree.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0236_lowest_common_ancestor_of_a_binary_tree",
+      "function": "lowestCommonAncestor",
+      "source_py": "src/0236_lowest_common_ancestor_of_a_binary_tree.py",
+      "source_sifr": "src/0236_lowest_common_ancestor_of_a_binary_tree.sifr",
+      "source_js": "src/0236_lowest_common_ancestor_of_a_binary_tree.js",
+      "source_rs": "src/0236_lowest_common_ancestor_of_a_binary_tree.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0241_different_ways_to_add_parentheses",
+      "function": "diffWaysToCompute",
+      "source_py": "src/0241_different_ways_to_add_parentheses.py",
+      "source_sifr": "src/0241_different_ways_to_add_parentheses.sifr",
+      "source_js": "src/0241_different_ways_to_add_parentheses.js",
+      "source_rs": "src/0241_different_ways_to_add_parentheses.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0274_H_index",
+      "function": "hIndex",
+      "source_py": "src/0274_H_index.py",
+      "source_sifr": "src/0274_H_index.sifr",
+      "source_js": "src/0274_H_index.js",
+      "source_rs": "src/0274_H_index.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0278_first_bad_version",
+      "function": "firstBadVersion",
+      "source_py": "src/0278_first_bad_version.py",
+      "source_sifr": "src/0278_first_bad_version.sifr",
+      "source_js": "src/0278_first_bad_version.js",
+      "source_rs": "src/0278_first_bad_version.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0297_serialize_and_deserialize_binary_tree",
+      "function": "Codec",
+      "source_py": "src/0297_serialize_and_deserialize_binary_tree.py",
+      "source_sifr": "src/0297_serialize_and_deserialize_binary_tree.sifr",
+      "source_js": "src/0297_serialize_and_deserialize_binary_tree.js",
+      "source_rs": "src/0297_serialize_and_deserialize_binary_tree.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0323_number_of_connected_components_in_an_undirected_graph",
+      "function": "countComponents",
+      "source_py": "src/0323_number_of_connected_components_in_an_undirected_graph.py",
+      "source_sifr": "src/0323_number_of_connected_components_in_an_undirected_graph.sifr",
+      "source_js": "src/0323_number_of_connected_components_in_an_undirected_graph.js",
+      "source_rs": "src/0323_number_of_connected_components_in_an_undirected_graph.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0332_reconstruct_itinerary",
+      "function": "findItinerary",
+      "source_py": "src/0332_reconstruct_itinerary.py",
+      "source_sifr": "src/0332_reconstruct_itinerary.sifr",
+      "source_js": "src/0332_reconstruct_itinerary.js",
+      "source_rs": "src/0332_reconstruct_itinerary.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0334_increasing_triplet_subsequence",
+      "function": "increasingTriplet",
+      "source_py": "src/0334_increasing_triplet_subsequence.py",
+      "source_sifr": "src/0334_increasing_triplet_subsequence.sifr",
+      "source_js": "src/0334_increasing_triplet_subsequence.js",
+      "source_rs": "src/0334_increasing_triplet_subsequence.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0349_intersection_of_two_arrays",
+      "function": "intersection",
+      "source_py": "src/0349_intersection_of_two_arrays.py",
+      "source_sifr": "src/0349_intersection_of_two_arrays.sifr",
+      "source_js": "src/0349_intersection_of_two_arrays.js",
+      "source_rs": "src/0349_intersection_of_two_arrays.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0350_intersection_of_two_arrays_ii",
+      "function": "intersect",
+      "source_py": "src/0350_intersection_of_two_arrays_ii.py",
+      "source_sifr": "src/0350_intersection_of_two_arrays_ii.sifr",
+      "source_js": "src/0350_intersection_of_two_arrays_ii.js",
+      "source_rs": "src/0350_intersection_of_two_arrays_ii.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0383_ransom_note",
+      "function": "canConstruct",
+      "source_py": "src/0383_ransom_note.py",
+      "source_sifr": "src/0383_ransom_note.sifr",
+      "source_js": "src/0383_ransom_note.js",
+      "source_rs": "src/0383_ransom_note.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0442_find_all_duplicates_in_an_array",
+      "function": "findDuplicates",
+      "source_py": "src/0442_find_all_duplicates_in_an_array.py",
+      "source_sifr": "src/0442_find_all_duplicates_in_an_array.sifr",
+      "source_js": "src/0442_find_all_duplicates_in_an_array.js",
+      "source_rs": "src/0442_find_all_duplicates_in_an_array.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0452_minimum_number_of_arrows_to_burst_balloons",
+      "function": "findMinArrowShots",
+      "source_py": "src/0452_minimum_number_of_arrows_to_burst_balloons.py",
+      "source_sifr": "src/0452_minimum_number_of_arrows_to_burst_balloons.sifr",
+      "source_js": "src/0452_minimum_number_of_arrows_to_burst_balloons.js",
+      "source_rs": "src/0452_minimum_number_of_arrows_to_burst_balloons.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0459_repeated_substring_pattern",
+      "function": "repeatedSubstringPattern",
+      "source_py": "src/0459_repeated_substring_pattern.py",
+      "source_sifr": "src/0459_repeated_substring_pattern.sifr",
+      "source_js": "src/0459_repeated_substring_pattern.js",
+      "source_rs": "src/0459_repeated_substring_pattern.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0509_fibonacci_number",
+      "function": "fib",
+      "source_py": "src/0509_fibonacci_number.py",
+      "source_sifr": "src/0509_fibonacci_number.sifr",
+      "source_js": "src/0509_fibonacci_number.js",
+      "source_rs": "src/0509_fibonacci_number.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0525_contiguous_array",
+      "function": "findMaxLength",
+      "source_py": "src/0525_contiguous_array.py",
+      "source_sifr": "src/0525_contiguous_array.sifr",
+      "source_js": "src/0525_contiguous_array.js",
+      "source_rs": "src/0525_contiguous_array.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0684_redundant_connection",
+      "function": "findRedundantConnection",
+      "source_py": "src/0684_redundant_connection.py",
+      "source_sifr": "src/0684_redundant_connection.sifr",
+      "source_js": "src/0684_redundant_connection.js",
+      "source_rs": "src/0684_redundant_connection.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0729_my_calendar_i",
+      "function": "CalendarNode",
+      "source_py": "src/0729_my_calendar_i.py",
+      "source_sifr": "src/0729_my_calendar_i.sifr",
+      "source_js": "src/0729_my_calendar_i.js",
+      "source_rs": "src/0729_my_calendar_i.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0745_prefix_and_suffix_search",
+      "function": "WordFilter",
+      "source_py": "src/0745_prefix_and_suffix_search.py",
+      "source_sifr": "src/0745_prefix_and_suffix_search.sifr",
+      "source_js": "src/0745_prefix_and_suffix_search.js",
+      "source_rs": "src/0745_prefix_and_suffix_search.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0787_cheapest_flights_within_k_stops",
+      "function": "findCheapestPrice",
+      "source_py": "src/0787_cheapest_flights_within_k_stops.py",
+      "source_sifr": "src/0787_cheapest_flights_within_k_stops.sifr",
+      "source_js": "src/0787_cheapest_flights_within_k_stops.js",
+      "source_rs": "src/0787_cheapest_flights_within_k_stops.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0791_custom_sort_string",
+      "function": "customSortString",
+      "source_py": "src/0791_custom_sort_string.py",
+      "source_sifr": "src/0791_custom_sort_string.sifr",
+      "source_js": "src/0791_custom_sort_string.js",
+      "source_rs": "src/0791_custom_sort_string.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0862_shortest_subarray_with_sum_at_least_k",
+      "function": "shortestSubarray",
+      "source_py": "src/0862_shortest_subarray_with_sum_at_least_k.py",
+      "source_sifr": "src/0862_shortest_subarray_with_sum_at_least_k.sifr",
+      "source_js": "src/0862_shortest_subarray_with_sum_at_least_k.js",
+      "source_rs": "src/0862_shortest_subarray_with_sum_at_least_k.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0894_all_possible_full_binary_trees",
+      "function": "allPossibleFBT",
+      "source_py": "src/0894_all_possible_full_binary_trees.py",
+      "source_sifr": "src/0894_all_possible_full_binary_trees.sifr",
+      "source_js": "src/0894_all_possible_full_binary_trees.js",
+      "source_rs": "src/0894_all_possible_full_binary_trees.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0896_monotonic_array",
+      "function": "isMonotonic",
+      "source_py": "src/0896_monotonic_array.py",
+      "source_sifr": "src/0896_monotonic_array.sifr",
+      "source_js": "src/0896_monotonic_array.js",
+      "source_rs": "src/0896_monotonic_array.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0930_binary_subarrays_with_sum",
+      "function": "numSubarraysWithSum",
+      "source_py": "src/0930_binary_subarrays_with_sum.py",
+      "source_sifr": "src/0930_binary_subarrays_with_sum.sifr",
+      "source_js": "src/0930_binary_subarrays_with_sum.js",
+      "source_rs": "src/0930_binary_subarrays_with_sum.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0931_minimum_falling_path_sum",
+      "function": "minFallingPathSum",
+      "source_py": "src/0931_minimum_falling_path_sum.py",
+      "source_sifr": "src/0931_minimum_falling_path_sum.sifr",
+      "source_js": "src/0931_minimum_falling_path_sum.js",
+      "source_rs": "src/0931_minimum_falling_path_sum.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0948_bag_of_tokens",
+      "function": "bagOfTokensScore",
+      "source_py": "src/0948_bag_of_tokens.py",
+      "source_sifr": "src/0948_bag_of_tokens.sifr",
+      "source_js": "src/0948_bag_of_tokens.js",
+      "source_rs": "src/0948_bag_of_tokens.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "0997_find_the_town_judge",
+      "function": "findJudge",
+      "source_py": "src/0997_find_the_town_judge.py",
+      "source_sifr": "src/0997_find_the_town_judge.sifr",
+      "source_js": "src/0997_find_the_town_judge.js",
+      "source_rs": "src/0997_find_the_town_judge.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1074_number_of_submatrices_that_sum_to_target",
+      "function": "numSubmatrixSumTarget",
+      "source_py": "src/1074_number_of_submatrices_that_sum_to_target.py",
+      "source_sifr": "src/1074_number_of_submatrices_that_sum_to_target.sifr",
+      "source_js": "src/1074_number_of_submatrices_that_sum_to_target.js",
+      "source_rs": "src/1074_number_of_submatrices_that_sum_to_target.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1203_sort_items_by_groups_respecting_dependencies",
+      "function": "topologicalSort",
+      "source_py": "src/1203_sort_items_by_groups_respecting_dependencies.py",
+      "source_sifr": "src/1203_sort_items_by_groups_respecting_dependencies.sifr",
+      "source_js": "src/1203_sort_items_by_groups_respecting_dependencies.js",
+      "source_rs": "src/1203_sort_items_by_groups_respecting_dependencies.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1345_jump_game_iv",
+      "function": "minJumps",
+      "source_py": "src/1345_jump_game_iv.py",
+      "source_sifr": "src/1345_jump_game_iv.sifr",
+      "source_js": "src/1345_jump_game_iv.js",
+      "source_rs": "src/1345_jump_game_iv.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1397_find_all_good_strings",
+      "function": "findGoodStrings",
+      "source_py": "src/1397_find_all_good_strings.py",
+      "source_sifr": "src/1397_find_all_good_strings.sifr",
+      "source_js": "src/1397_find_all_good_strings.js",
+      "source_rs": "src/1397_find_all_good_strings.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1462_course_schedule_iv",
+      "function": "checkIfPrerequisite",
+      "source_py": "src/1462_course_schedule_iv.py",
+      "source_sifr": "src/1462_course_schedule_iv.sifr",
+      "source_js": "src/1462_course_schedule_iv.js",
+      "source_rs": "src/1462_course_schedule_iv.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1464_maximum_product_of_two_elements_in_an_array",
+      "function": "maxProduct",
+      "source_py": "src/1464_maximum_product_of_two_elements_in_an_array.py",
+      "source_sifr": "src/1464_maximum_product_of_two_elements_in_an_array.sifr",
+      "source_js": "src/1464_maximum_product_of_two_elements_in_an_array.js",
+      "source_rs": "src/1464_maximum_product_of_two_elements_in_an_array.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero",
+      "function": "minReorder",
+      "source_py": "src/1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero.py",
+      "source_sifr": "src/1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero.sifr",
+      "source_js": "src/1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero.js",
+      "source_rs": "src/1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1475_final_prices_with_a_special_discount_in_a_shop",
+      "function": "finalPrices",
+      "source_py": "src/1475_final_prices_with_a_special_discount_in_a_shop.py",
+      "source_sifr": "src/1475_final_prices_with_a_special_discount_in_a_shop.sifr",
+      "source_js": "src/1475_final_prices_with_a_special_discount_in_a_shop.js",
+      "source_rs": "src/1475_final_prices_with_a_special_discount_in_a_shop.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1481_least_number_of_unique_integers_after_k_removals",
+      "function": "findLeastNumOfUniqueInts",
+      "source_py": "src/1481_least_number_of_unique_integers_after_k_removals.py",
+      "source_sifr": "src/1481_least_number_of_unique_integers_after_k_removals.sifr",
+      "source_js": "src/1481_least_number_of_unique_integers_after_k_removals.js",
+      "source_rs": "src/1481_least_number_of_unique_integers_after_k_removals.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1489_find_critical_and_pseudo_critical_edges_in_minimum_spanning_tree",
+      "function": "findCriticalAndPseudoCriticalEdges",
+      "source_py": "src/1489_find_critical_and_pseudo_critical_edges_in_minimum_spanning_tree.py",
+      "source_sifr": "src/1489_find_critical_and_pseudo_critical_edges_in_minimum_spanning_tree.sifr",
+      "source_js": "src/1489_find_critical_and_pseudo_critical_edges_in_minimum_spanning_tree.js",
+      "source_rs": "src/1489_find_critical_and_pseudo_critical_edges_in_minimum_spanning_tree.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1582_special_positions_in_a_binary_matrix",
+      "function": "numSpecial",
+      "source_py": "src/1582_special_positions_in_a_binary_matrix.py",
+      "source_sifr": "src/1582_special_positions_in_a_binary_matrix.sifr",
+      "source_js": "src/1582_special_positions_in_a_binary_matrix.js",
+      "source_rs": "src/1582_special_positions_in_a_binary_matrix.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1609_even_odd_tree",
+      "function": "isEvenOddTree",
+      "source_py": "src/1609_even_odd_tree.py",
+      "source_sifr": "src/1609_even_odd_tree.sifr",
+      "source_js": "src/1609_even_odd_tree.js",
+      "source_rs": "src/1609_even_odd_tree.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1642_furthest_building_you_can_reach",
+      "function": "furthestBuilding",
+      "source_py": "src/1642_furthest_building_you_can_reach.py",
+      "source_sifr": "src/1642_furthest_building_you_can_reach.sifr",
+      "source_js": "src/1642_furthest_building_you_can_reach.js",
+      "source_rs": "src/1642_furthest_building_you_can_reach.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1669_merge_in_between_linked_lists",
+      "function": "mergeInBetween",
+      "source_py": "src/1669_merge_in_between_linked_lists.py",
+      "source_sifr": "src/1669_merge_in_between_linked_lists.sifr",
+      "source_js": "src/1669_merge_in_between_linked_lists.js",
+      "source_rs": "src/1669_merge_in_between_linked_lists.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1700_number_of_students_unable_to_eat_lunch",
+      "function": "countStudents",
+      "source_py": "src/1700_number_of_students_unable_to_eat_lunch.py",
+      "source_sifr": "src/1700_number_of_students_unable_to_eat_lunch.sifr",
+      "source_js": "src/1700_number_of_students_unable_to_eat_lunch.js",
+      "source_rs": "src/1700_number_of_students_unable_to_eat_lunch.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1750_minimum_length_of_string_after_deleting_similar_ends",
+      "function": "minimumLength",
+      "source_py": "src/1750_minimum_length_of_string_after_deleting_similar_ends.py",
+      "source_sifr": "src/1750_minimum_length_of_string_after_deleting_similar_ends.sifr",
+      "source_js": "src/1750_minimum_length_of_string_after_deleting_similar_ends.js",
+      "source_rs": "src/1750_minimum_length_of_string_after_deleting_similar_ends.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "1800_maximum_ascending_subarray_sum",
+      "function": "maxAscendingSum",
+      "source_py": "src/1800_maximum_ascending_subarray_sum.py",
+      "source_sifr": "src/1800_maximum_ascending_subarray_sum.sifr",
+      "source_js": "src/1800_maximum_ascending_subarray_sum.js",
+      "source_rs": "src/1800_maximum_ascending_subarray_sum.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2092_find_all_people_with_secret",
+      "function": "findAllPeople",
+      "source_py": "src/2092_find_all_people_with_secret.py",
+      "source_sifr": "src/2092_find_all_people_with_secret.sifr",
+      "source_js": "src/2092_find_all_people_with_secret.js",
+      "source_rs": "src/2092_find_all_people_with_secret.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2235_add_two_integers",
+      "function": "sum",
+      "source_py": "src/2235_add_two_integers.py",
+      "source_sifr": "src/2235_add_two_integers.sifr",
+      "source_js": "src/2235_add_two_integers.js",
+      "source_rs": "src/2235_add_two_integers.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2402_meeting_rooms_iii",
+      "function": "mostBooked",
+      "source_py": "src/2402_meeting_rooms_iii.py",
+      "source_sifr": "src/2402_meeting_rooms_iii.sifr",
+      "source_js": "src/2402_meeting_rooms_iii.js",
+      "source_rs": "src/2402_meeting_rooms_iii.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2482_difference_between_ones_and_zeros_in_row_and_column",
+      "function": "onesMinusZeros",
+      "source_py": "src/2482_difference_between_ones_and_zeros_in_row_and_column.py",
+      "source_sifr": "src/2482_difference_between_ones_and_zeros_in_row_and_column.sifr",
+      "source_js": "src/2482_difference_between_ones_and_zeros_in_row_and_column.js",
+      "source_rs": "src/2482_difference_between_ones_and_zeros_in_row_and_column.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2554_maximum_number_of_integers_to_choose_from_a_range_i",
+      "function": "maxCount",
+      "source_py": "src/2554_maximum_number_of_integers_to_choose_from_a_range_i.py",
+      "source_sifr": "src/2554_maximum_number_of_integers_to_choose_from_a_range_i.sifr",
+      "source_js": "src/2554_maximum_number_of_integers_to_choose_from_a_range_i.js",
+      "source_rs": "src/2554_maximum_number_of_integers_to_choose_from_a_range_i.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2709_greatest_common_divisor_traversal",
+      "function": "canTraverseAllPairs",
+      "source_py": "src/2709_greatest_common_divisor_traversal.py",
+      "source_sifr": "src/2709_greatest_common_divisor_traversal.sifr",
+      "source_js": "src/2709_greatest_common_divisor_traversal.js",
+      "source_rs": "src/2709_greatest_common_divisor_traversal.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2864_maximum_odd_binary_number",
+      "function": "maximumOddBinaryNumber",
+      "source_py": "src/2864_maximum_odd_binary_number.py",
+      "source_sifr": "src/2864_maximum_odd_binary_number.sifr",
+      "source_js": "src/2864_maximum_odd_binary_number.js",
+      "source_rs": "src/2864_maximum_odd_binary_number.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    },
+    {
+      "id": "2971_find_polygon_with_the_largest_perimeter",
+      "function": "largestPerimeter",
+      "source_py": "src/2971_find_polygon_with_the_largest_perimeter.py",
+      "source_sifr": "src/2971_find_polygon_with_the_largest_perimeter.sifr",
+      "source_js": "src/2971_find_polygon_with_the_largest_perimeter.js",
+      "source_rs": "src/2971_find_polygon_with_the_largest_perimeter.rs",
+      "runner": {
+        "input": {
+          "bindings": []
+        },
+        "call": {
+          "mode": "single",
+          "args": []
+        },
+        "expected": {
+          "type": "int"
+        },
+        "checksum": {
+          "type": "value"
+        }
+      },
+      "fixture_stem": "n={size:07d}",
+      "sizes": [],
+      "loops_by_size": {},
+      "benchmark_status": "unbenchmarked",
+      "parity_status": "source-and-tests-only",
+      "primary_slowness_owner": "unknown",
+      "slowness_tags": [
+        "missing_fixture_generator"
+      ]
+    }
+  ]
+}
