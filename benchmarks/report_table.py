@@ -7,8 +7,8 @@ from report_format import format_fold
 
 IMPL_LABELS = {"python": "Python", "sifr": "Sifr", "nodejs": "Node.js", "node": "Node.js", "bun": "Bun", "rust": "Rust"}
 IMPL_SHORT_LABELS = {"python": "Py", "sifr": "Sf", "nodejs": "No", "node": "No", "bun": "Bu", "rust": "Rs"}
-IMPL_COLORS = {"python": "#4f46e5", "sifr": "#0f766e", "nodejs": "#15803d", "node": "#15803d", "bun": "#b45309", "rust": "#b91c1c"}
-IMPL_ORDER = {"python": 0, "sifr": 1, "rust": 2, "nodejs": 3, "node": 3, "bun": 4}
+IMPL_COLORS = {"python": "#3776ab", "sifr": "#a21caf", "nodejs": "#3c873a", "node": "#3c873a", "bun": "#f4bf75", "rust": "#f97316"}
+IMPL_ORDER = {"python": 0, "nodejs": 1, "node": 1, "sifr": 2, "rust": 3, "bun": 4}
 
 
 def format_ms(value: float | None) -> str:
