@@ -45,6 +45,9 @@ def lowestCommonAncestor(root: TreeNode | None, p: TreeNode | None, q: TreeNode 
         return None
     return cloneNodeByValue(root, value)
 
+def lowestCommonAncestorByValue(root: TreeNode | None, p_val: int, q_val: int) -> TreeNode | None:
+    return lowestCommonAncestor(root, TreeNode(p_val, None, None), TreeNode(q_val, None, None))
+
 def main():
     root = TreeNode(
         3,

@@ -6,10 +6,13 @@ impl Solution {
             return false;
         }
 
+        let s1_bytes = s1.as_bytes();
+        let s2_bytes = s2.as_bytes();
+
         let (mut s1_cnt, mut s2_cnt) = ([0; 26], [0; 26]);
-        for i in 0..s1.len() {
-            s1_cnt[s1.chars().nth(i).unwrap() as usize - 'a' as usize] += 1;
-            s2_cnt[s2.chars().nth(i).unwrap() as usize - 'a' as usize] += 1;
+        for i in 0..s1_bytes.len() {
+            s1_cnt[(s1_bytes[i] - b'a') as usize] += 1;
+            s2_cnt[(s2_bytes[i] - b'a') as usize] += 1;
         }
 
         let mut matches = 0;
@@ -22,12 +25,12 @@ impl Solution {
         }
 
         let mut l = 0;
-        for r in s1.len()..s2.len() {
+        for r in s1_bytes.len()..s2_bytes.len() {
             if matches == 26 {
                 return true;
             }
 
-            let mut index = s2.chars().nth(r).unwrap() as usize - 'a' as usize;
+            let mut index = (s2_bytes[r] - b'a') as usize;
             s2_cnt[index] += 1;
             if s1_cnt[index] == s2_cnt[index] {
                 matches += 1;
@@ -35,7 +38,7 @@ impl Solution {
                 matches -= 1;
             }
 
-            index = s2.chars().nth(l).unwrap() as usize - 'a' as usize;
+            index = (s2_bytes[l] - b'a') as usize;
             s2_cnt[index] -= 1;
             if s1_cnt[index] == s2_cnt[index] {
                 matches += 1;

@@ -1,32 +1,90 @@
 # LeetCode 23: Merge K Sorted Lists
 from helpers.list_node import ListNode, nodeVal, nodeNext, hasNode, listNodeToString
 
-from sifr.heapq import heappush, heappop
-def appendTail(own mut node: ListNode | None, val: int) -> ListNode | None:
-    if node is None:
-        return ListNode(val, None)
-    node.next = appendTail(node.next, val)
-    return node
-
 def buildListNode(values: list[int]) -> ListNode | None:
     result: ListNode | None = None
-    for value in values:
-        result = appendTail(result, value)
-    return result
-def mergeKLists(lists: list[ListNode | None]) -> ListNode | None:
-    heap: list[int] = []
-    for node in lists:
-        cur: ListNode | None = node
-        while hasNode(cur):
-            heappush(heap, nodeVal(cur))
-            cur = nodeNext(cur)
-
-    result: ListNode | None = None
-    while len(heap) > 0:
-        value: int | None = heappop(heap)
+    i = len(values) - 1
+    while i >= 0:
+        value: int | None = values[i]
         if value is not None:
-            result = appendTail(result, value)
+            result = ListNode(value, result)
+        i -= 1
     return result
+
+def copyList(value: list[int] | None) -> list[int]:
+    copied: list[int] = []
+    if value is None:
+        return copied
+    for item in value:
+        copied.append(item)
+    return copied
+
+def nodeToValues(own node: ListNode | None) -> list[int]:
+    values: list[int] = []
+    cur: ListNode | None = node
+    while hasNode(cur):
+        values.append(nodeVal(cur))
+        cur = nodeNext(cur)
+    return values
+
+def mergeValues(list1: list[int], list2: list[int]) -> list[int]:
+    merged: list[int] = []
+    i = 0
+    j = 0
+
+    while i < len(list1) and j < len(list2):
+        v1 = 0
+        left: int | None = list1[i]
+        if left is not None:
+            v1 = left
+        v2 = 0
+        right: int | None = list2[j]
+        if right is not None:
+            v2 = right
+        if v1 < v2:
+            merged.append(v1)
+            i += 1
+        else:
+            merged.append(v2)
+            j += 1
+
+    while i < len(list1):
+        value: int | None = list1[i]
+        if value is not None:
+            merged.append(value)
+        i += 1
+
+    while j < len(list2):
+        value: int | None = list2[j]
+        if value is not None:
+            merged.append(value)
+        j += 1
+
+    return merged
+
+def mergeKLists(lists: list[ListNode | None]) -> ListNode | None:
+    if len(lists) == 0:
+        return None
+
+    current: list[list[int]] = []
+    for node in lists:
+        current.append(nodeToValues(node))
+
+    while len(current) > 1:
+        mergedLists: list[list[int]] = []
+        i = 0
+        while i < len(current):
+            l1 = copyList(current[i])
+            l2: list[int] = []
+            if i + 1 < len(current):
+                l2 = copyList(current[i + 1])
+            mergedLists.append(mergeValues(l1, l2))
+            i += 2
+        current = mergedLists
+
+    if len(current) > 0:
+        return buildListNode(copyList(current[0]))
+    return None
 
 def main():
     lists: list[ListNode | None] = [

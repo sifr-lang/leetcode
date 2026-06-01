@@ -1,10 +1,10 @@
 struct Solution;
 
 impl Solution {
-    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let mut res = Vec::new();
-        let mut subset = Vec::new();
-        dfs(0, &nums, &mut subset, &mut res);
+    pub fn subsets(nums: &[i32]) -> Vec<Vec<i32>> {
+        let mut res = Vec::with_capacity(1_usize << nums.len());
+        let mut subset = Vec::with_capacity(nums.len());
+        dfs(0, nums, &mut subset, &mut res);
         res
     }
 }
@@ -28,7 +28,7 @@ mod tests {
     #[test]
     fn mirrors_python_main_assertions() {
         assert_eq!(
-            Solution::subsets(vec![1, 2, 3]),
+            Solution::subsets(&[1, 2, 3]),
             vec![
                 vec![1, 2, 3],
                 vec![1, 2],

@@ -18,10 +18,12 @@ impl Solution {
     }
 
     pub fn subsets_with_dup(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let (mut nums, mut result) = (nums, vec![]);
+        let (mut nums, mut result) = (nums, Vec::new());
+        result.reserve(1_usize << nums.len());
         nums.sort();
 
-        Solution::backtrack(0_usize, &mut result, &mut nums, &mut vec![]);
+        let mut subset = Vec::with_capacity(nums.len());
+        Solution::backtrack(0_usize, &mut result, &nums, &mut subset);
         result
     }
 }

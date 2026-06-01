@@ -2,14 +2,13 @@ struct Solution;
 
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        let mut buy = i32::MAX;
-        let mut sell = 0;
-        for p in prices {
-            buy = std::cmp::min(buy, p - sell);
-            sell = std::cmp::max(sell, p - buy);
+        let mut max_profit = 0;
+        for i in 1..prices.len() {
+            if prices[i] > prices[i - 1] {
+                max_profit += prices[i] - prices[i - 1];
+            }
         }
-
-        return sell;
+        max_profit
     }
 }
 

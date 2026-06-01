@@ -33,6 +33,18 @@ def union(mut par: list[int], mut size: list[int], x: int, y: int) -> int:
     return 1
 
 
+def modValue(value: int, modulus: int) -> int:
+    if modulus == 0:
+        return 0
+    return value % modulus
+
+
+def divValue(value: int, divisor: int) -> int:
+    if divisor == 0:
+        return value
+    return value // divisor
+
+
 def canTraverseAllPairs(nums: list[int]) -> bool:
     n = len(nums)
     par = [i for i in range(n)]
@@ -44,13 +56,13 @@ def canTraverseAllPairs(nums: list[int]) -> bool:
         cur = value
         f = 2
         while f * f <= cur:
-            if cur % f == 0:
+            if modValue(cur, f) == 0:
                 if f in factor_index:
                     components -= union(par, size, i, factor_index.get(f, 0))
                 else:
                     factor_index[f] = i
-                while cur % f == 0:
-                    cur = cur // f
+                while modValue(cur, f) == 0:
+                    cur = divValue(cur, f)
             f += 1
         if cur > 1:
             if cur in factor_index:
