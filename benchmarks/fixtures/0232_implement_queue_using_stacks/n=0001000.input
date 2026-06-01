@@ -1,0 +1,1585 @@
+push 0
+peek
+pop
+push 1
+push 2
+push 3
+peek
+push 4
+pop
+push 5
+push 6
+peek
+push 7
+push 8
+pop
+push 9
+peek
+push 10
+push 11
+push 12
+peek
+pop
+push 13
+push 14
+push 15
+peek
+push 16
+pop
+push 17
+push 18
+peek
+push 19
+push 20
+pop
+push 21
+peek
+push 22
+push 23
+push 24
+peek
+pop
+push 25
+push 26
+push 27
+peek
+push 28
+pop
+push 29
+push 30
+peek
+push 31
+push 32
+pop
+push 33
+peek
+push 34
+push 35
+push 36
+peek
+pop
+push 37
+push 38
+push 39
+peek
+push 40
+pop
+push 41
+push 42
+peek
+push 43
+push 44
+pop
+push 45
+peek
+push 46
+push 47
+push 48
+peek
+pop
+push 49
+push 50
+push 51
+peek
+push 52
+pop
+push 53
+push 54
+peek
+push 55
+push 56
+pop
+push 57
+peek
+push 58
+push 59
+push 60
+peek
+pop
+push 61
+push 62
+push 63
+peek
+push 64
+pop
+push 65
+push 66
+peek
+push 67
+push 68
+pop
+push 69
+peek
+push 70
+push 71
+push 72
+peek
+pop
+push 73
+push 74
+push 75
+peek
+push 76
+pop
+push 77
+push 78
+peek
+push 79
+push 80
+pop
+push 81
+peek
+push 82
+push 83
+push 84
+peek
+pop
+push 85
+push 86
+push 87
+peek
+push 88
+pop
+push 89
+push 90
+peek
+push 91
+push 92
+pop
+push 93
+peek
+push 94
+push 95
+push 96
+peek
+pop
+push 97
+push 98
+push 99
+peek
+push 100
+pop
+push 101
+push 102
+peek
+push 103
+push 104
+pop
+push 105
+peek
+push 106
+push 107
+push 108
+peek
+pop
+push 109
+push 110
+push 111
+peek
+push 112
+pop
+push 113
+push 114
+peek
+push 115
+push 116
+pop
+push 117
+peek
+push 118
+push 119
+push 120
+peek
+pop
+push 121
+push 122
+push 123
+peek
+push 124
+pop
+push 125
+push 126
+peek
+push 127
+push 128
+pop
+push 129
+peek
+push 130
+push 131
+push 132
+peek
+pop
+push 133
+push 134
+push 135
+peek
+push 136
+pop
+push 137
+push 138
+peek
+push 139
+push 140
+pop
+push 141
+peek
+push 142
+push 143
+push 144
+peek
+pop
+push 145
+push 146
+push 147
+peek
+push 148
+pop
+push 149
+push 150
+peek
+push 151
+push 152
+pop
+push 153
+peek
+push 154
+push 155
+push 156
+peek
+pop
+push 157
+push 158
+push 159
+peek
+push 160
+pop
+push 161
+push 162
+peek
+push 163
+push 164
+pop
+push 165
+peek
+push 166
+push 167
+push 168
+peek
+pop
+push 169
+push 170
+push 171
+peek
+push 172
+pop
+push 173
+push 174
+peek
+push 175
+push 176
+pop
+push 177
+peek
+push 178
+push 179
+push 180
+peek
+pop
+push 181
+push 182
+push 183
+peek
+push 184
+pop
+push 185
+push 186
+peek
+push 187
+push 188
+pop
+push 189
+peek
+push 190
+push 191
+push 192
+peek
+pop
+push 193
+push 194
+push 195
+peek
+push 196
+pop
+push 197
+push 198
+peek
+push 199
+push 200
+pop
+push 201
+peek
+push 202
+push 203
+push 204
+peek
+pop
+push 205
+push 206
+push 207
+peek
+push 208
+pop
+push 209
+push 210
+peek
+push 211
+push 212
+pop
+push 213
+peek
+push 214
+push 215
+push 216
+peek
+pop
+push 217
+push 218
+push 219
+peek
+push 220
+pop
+push 221
+push 222
+peek
+push 223
+push 224
+pop
+push 225
+peek
+push 226
+push 227
+push 228
+peek
+pop
+push 229
+push 230
+push 231
+peek
+push 232
+pop
+push 233
+push 234
+peek
+push 235
+push 236
+pop
+push 237
+peek
+push 238
+push 239
+push 240
+peek
+pop
+push 241
+push 242
+push 243
+peek
+push 244
+pop
+push 245
+push 246
+peek
+push 247
+push 248
+pop
+push 249
+peek
+push 250
+push 251
+push 252
+peek
+pop
+push 253
+push 254
+push 255
+peek
+push 256
+pop
+push 257
+push 258
+peek
+push 259
+push 260
+pop
+push 261
+peek
+push 262
+push 263
+push 264
+peek
+pop
+push 265
+push 266
+push 267
+peek
+push 268
+pop
+push 269
+push 270
+peek
+push 271
+push 272
+pop
+push 273
+peek
+push 274
+push 275
+push 276
+peek
+pop
+push 277
+push 278
+push 279
+peek
+push 280
+pop
+push 281
+push 282
+peek
+push 283
+push 284
+pop
+push 285
+peek
+push 286
+push 287
+push 288
+peek
+pop
+push 289
+push 290
+push 291
+peek
+push 292
+pop
+push 293
+push 294
+peek
+push 295
+push 296
+pop
+push 297
+peek
+push 298
+push 299
+push 300
+peek
+pop
+push 301
+push 302
+push 303
+peek
+push 304
+pop
+push 305
+push 306
+peek
+push 307
+push 308
+pop
+push 309
+peek
+push 310
+push 311
+push 312
+peek
+pop
+push 313
+push 314
+push 315
+peek
+push 316
+pop
+push 317
+push 318
+peek
+push 319
+push 320
+pop
+push 321
+peek
+push 322
+push 323
+push 324
+peek
+pop
+push 325
+push 326
+push 327
+peek
+push 328
+pop
+push 329
+push 330
+peek
+push 331
+push 332
+pop
+push 333
+peek
+push 334
+push 335
+push 336
+peek
+pop
+push 337
+push 338
+push 339
+peek
+push 340
+pop
+push 341
+push 342
+peek
+push 343
+push 344
+pop
+push 345
+peek
+push 346
+push 347
+push 348
+peek
+pop
+push 349
+push 350
+push 351
+peek
+push 352
+pop
+push 353
+push 354
+peek
+push 355
+push 356
+pop
+push 357
+peek
+push 358
+push 359
+push 360
+peek
+pop
+push 361
+push 362
+push 363
+peek
+push 364
+pop
+push 365
+push 366
+peek
+push 367
+push 368
+pop
+push 369
+peek
+push 370
+push 371
+push 372
+peek
+pop
+push 373
+push 374
+push 375
+peek
+push 376
+pop
+push 377
+push 378
+peek
+push 379
+push 380
+pop
+push 381
+peek
+push 382
+push 383
+push 384
+peek
+pop
+push 385
+push 386
+push 387
+peek
+push 388
+pop
+push 389
+push 390
+peek
+push 391
+push 392
+pop
+push 393
+peek
+push 394
+push 395
+push 396
+peek
+pop
+push 397
+push 398
+push 399
+peek
+push 400
+pop
+push 401
+push 402
+peek
+push 403
+push 404
+pop
+push 405
+peek
+push 406
+push 407
+push 408
+peek
+pop
+push 409
+push 410
+push 411
+peek
+push 412
+pop
+push 413
+push 414
+peek
+push 415
+push 416
+pop
+push 417
+peek
+push 418
+push 419
+push 420
+peek
+pop
+push 421
+push 422
+push 423
+peek
+push 424
+pop
+push 425
+push 426
+peek
+push 427
+push 428
+pop
+push 429
+peek
+push 430
+push 431
+push 432
+peek
+pop
+push 433
+push 434
+push 435
+peek
+push 436
+pop
+push 437
+push 438
+peek
+push 439
+push 440
+pop
+push 441
+peek
+push 442
+push 443
+push 444
+peek
+pop
+push 445
+push 446
+push 447
+peek
+push 448
+pop
+push 449
+push 450
+peek
+push 451
+push 452
+pop
+push 453
+peek
+push 454
+push 455
+push 456
+peek
+pop
+push 457
+push 458
+push 459
+peek
+push 460
+pop
+push 461
+push 462
+peek
+push 463
+push 464
+pop
+push 465
+peek
+push 466
+push 467
+push 468
+peek
+pop
+push 469
+push 470
+push 471
+peek
+push 472
+pop
+push 473
+push 474
+peek
+push 475
+push 476
+pop
+push 477
+peek
+push 478
+push 479
+push 480
+peek
+pop
+push 481
+push 482
+push 483
+peek
+push 484
+pop
+push 485
+push 486
+peek
+push 487
+push 488
+pop
+push 489
+peek
+push 490
+push 491
+push 492
+peek
+pop
+push 493
+push 494
+push 495
+peek
+push 496
+pop
+push 497
+push 498
+peek
+push 499
+push 500
+pop
+push 501
+peek
+push 502
+push 503
+push 504
+peek
+pop
+push 505
+push 506
+push 507
+peek
+push 508
+pop
+push 509
+push 510
+peek
+push 511
+push 512
+pop
+push 513
+peek
+push 514
+push 515
+push 516
+peek
+pop
+push 517
+push 518
+push 519
+peek
+push 520
+pop
+push 521
+push 522
+peek
+push 523
+push 524
+pop
+push 525
+peek
+push 526
+push 527
+push 528
+peek
+pop
+push 529
+push 530
+push 531
+peek
+push 532
+pop
+push 533
+push 534
+peek
+push 535
+push 536
+pop
+push 537
+peek
+push 538
+push 539
+push 540
+peek
+pop
+push 541
+push 542
+push 543
+peek
+push 544
+pop
+push 545
+push 546
+peek
+push 547
+push 548
+pop
+push 549
+peek
+push 550
+push 551
+push 552
+peek
+pop
+push 553
+push 554
+push 555
+peek
+push 556
+pop
+push 557
+push 558
+peek
+push 559
+push 560
+pop
+push 561
+peek
+push 562
+push 563
+push 564
+peek
+pop
+push 565
+push 566
+push 567
+peek
+push 568
+pop
+push 569
+push 570
+peek
+push 571
+push 572
+pop
+push 573
+peek
+push 574
+push 575
+push 576
+peek
+pop
+push 577
+push 578
+push 579
+peek
+push 580
+pop
+push 581
+push 582
+peek
+push 583
+push 584
+pop
+push 585
+peek
+push 586
+push 587
+push 588
+peek
+pop
+push 589
+push 590
+push 591
+peek
+push 592
+pop
+push 593
+push 594
+peek
+push 595
+push 596
+pop
+push 597
+peek
+push 598
+push 599
+push 600
+peek
+pop
+push 601
+push 602
+push 603
+peek
+push 604
+pop
+push 605
+push 606
+peek
+push 607
+push 608
+pop
+push 609
+peek
+push 610
+push 611
+push 612
+peek
+pop
+push 613
+push 614
+push 615
+peek
+push 616
+pop
+push 617
+push 618
+peek
+push 619
+push 620
+pop
+push 621
+peek
+push 622
+push 623
+push 624
+peek
+pop
+push 625
+push 626
+push 627
+peek
+push 628
+pop
+push 629
+push 630
+peek
+push 631
+push 632
+pop
+push 633
+peek
+push 634
+push 635
+push 636
+peek
+pop
+push 637
+push 638
+push 639
+peek
+push 640
+pop
+push 641
+push 642
+peek
+push 643
+push 644
+pop
+push 645
+peek
+push 646
+push 647
+push 648
+peek
+pop
+push 649
+push 650
+push 651
+peek
+push 652
+pop
+push 653
+push 654
+peek
+push 655
+push 656
+pop
+push 657
+peek
+push 658
+push 659
+push 660
+peek
+pop
+push 661
+push 662
+push 663
+peek
+push 664
+pop
+push 665
+push 666
+peek
+push 667
+push 668
+pop
+push 669
+peek
+push 670
+push 671
+push 672
+peek
+pop
+push 673
+push 674
+push 675
+peek
+push 676
+pop
+push 677
+push 678
+peek
+push 679
+push 680
+pop
+push 681
+peek
+push 682
+push 683
+push 684
+peek
+pop
+push 685
+push 686
+push 687
+peek
+push 688
+pop
+push 689
+push 690
+peek
+push 691
+push 692
+pop
+push 693
+peek
+push 694
+push 695
+push 696
+peek
+pop
+push 697
+push 698
+push 699
+peek
+push 700
+pop
+push 701
+push 702
+peek
+push 703
+push 704
+pop
+push 705
+peek
+push 706
+push 707
+push 708
+peek
+pop
+push 709
+push 710
+push 711
+peek
+push 712
+pop
+push 713
+push 714
+peek
+push 715
+push 716
+pop
+push 717
+peek
+push 718
+push 719
+push 720
+peek
+pop
+push 721
+push 722
+push 723
+peek
+push 724
+pop
+push 725
+push 726
+peek
+push 727
+push 728
+pop
+push 729
+peek
+push 730
+push 731
+push 732
+peek
+pop
+push 733
+push 734
+push 735
+peek
+push 736
+pop
+push 737
+push 738
+peek
+push 739
+push 740
+pop
+push 741
+peek
+push 742
+push 743
+push 744
+peek
+pop
+push 745
+push 746
+push 747
+peek
+push 748
+pop
+push 749
+push 750
+peek
+push 751
+push 752
+pop
+push 753
+peek
+push 754
+push 755
+push 756
+peek
+pop
+push 757
+push 758
+push 759
+peek
+push 760
+pop
+push 761
+push 762
+peek
+push 763
+push 764
+pop
+push 765
+peek
+push 766
+push 767
+push 768
+peek
+pop
+push 769
+push 770
+push 771
+peek
+push 772
+pop
+push 773
+push 774
+peek
+push 775
+push 776
+pop
+push 777
+peek
+push 778
+push 779
+push 780
+peek
+pop
+push 781
+push 782
+push 783
+peek
+push 784
+pop
+push 785
+push 786
+peek
+push 787
+push 788
+pop
+push 789
+peek
+push 790
+push 791
+push 792
+peek
+pop
+push 793
+push 794
+push 795
+peek
+push 796
+pop
+push 797
+push 798
+peek
+push 799
+push 800
+pop
+push 801
+peek
+push 802
+push 803
+push 804
+peek
+pop
+push 805
+push 806
+push 807
+peek
+push 808
+pop
+push 809
+push 810
+peek
+push 811
+push 812
+pop
+push 813
+peek
+push 814
+push 815
+push 816
+peek
+pop
+push 817
+push 818
+push 819
+peek
+push 820
+pop
+push 821
+push 822
+peek
+push 823
+push 824
+pop
+push 825
+peek
+push 826
+push 827
+push 828
+peek
+pop
+push 829
+push 830
+push 831
+peek
+push 832
+pop
+push 833
+push 834
+peek
+push 835
+push 836
+pop
+push 837
+peek
+push 838
+push 839
+push 840
+peek
+pop
+push 841
+push 842
+push 843
+peek
+push 844
+pop
+push 845
+push 846
+peek
+push 847
+push 848
+pop
+push 849
+peek
+push 850
+push 851
+push 852
+peek
+pop
+push 853
+push 854
+push 855
+peek
+push 856
+pop
+push 857
+push 858
+peek
+push 859
+push 860
+pop
+push 861
+peek
+push 862
+push 863
+push 864
+peek
+pop
+push 865
+push 866
+push 867
+peek
+push 868
+pop
+push 869
+push 870
+peek
+push 871
+push 872
+pop
+push 873
+peek
+push 874
+push 875
+push 876
+peek
+pop
+push 877
+push 878
+push 879
+peek
+push 880
+pop
+push 881
+push 882
+peek
+push 883
+push 884
+pop
+push 885
+peek
+push 886
+push 887
+push 888
+peek
+pop
+push 889
+push 890
+push 891
+peek
+push 892
+pop
+push 893
+push 894
+peek
+push 895
+push 896
+pop
+push 897
+peek
+push 898
+push 899
+push 900
+peek
+pop
+push 901
+push 902
+push 903
+peek
+push 904
+pop
+push 905
+push 906
+peek
+push 907
+push 908
+pop
+push 909
+peek
+push 910
+push 911
+push 912
+peek
+pop
+push 913
+push 914
+push 915
+peek
+push 916
+pop
+push 917
+push 918
+peek
+push 919
+push 920
+pop
+push 921
+peek
+push 922
+push 923
+push 924
+peek
+pop
+push 925
+push 926
+push 927
+peek
+push 928
+pop
+push 929
+push 930
+peek
+push 931
+push 932
+pop
+push 933
+peek
+push 934
+push 935
+push 936
+peek
+pop
+push 937
+push 938
+push 939
+peek
+push 940
+pop
+push 941
+push 942
+peek
+push 943
+push 944
+pop
+push 945
+peek
+push 946
+push 947
+push 948
+peek
+pop
+push 949
+push 950
+push 951
+peek
+push 952
+pop
+push 953
+push 954
+peek
+push 955
+push 956
+pop
+push 957
+peek
+push 958
+push 959
+push 960
+peek
+pop
+push 961
+push 962
+push 963
+peek
+push 964
+pop
+push 965
+push 966
+peek
+push 967
+push 968
+pop
+push 969
+peek
+push 970
+push 971
+push 972
+peek
+pop
+push 973
+push 974
+push 975
+peek
+push 976
+pop
+push 977
+push 978
+peek
+push 979
+push 980
+pop
+push 981
+peek
+push 982
+push 983
+push 984
+peek
+pop
+push 985
+push 986
+push 987
+peek
+push 988
+pop
+push 989
+push 990
+peek
+push 991
+push 992
+pop
+push 993
+peek
+push 994
+push 995
+push 996
+peek
+pop
+push 997
+push 998
+push 999
+peek
+empty

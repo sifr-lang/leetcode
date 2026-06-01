@@ -48,11 +48,17 @@ def isConnected(mut par: list[int], n: int) -> bool:
     return len(roots) == 1
 
 
-def findCriticalAndPseudoCriticalEdges(n: int, edges: list[tuple[int, int, int]]) -> list[list[int]]:
+def findCriticalAndPseudoCriticalEdges(n: int, edges: list[list[int]]) -> list[list[int]]:
     edges_with_idx: list[tuple[int, int, int, int]] = []
     idx = 0
     while idx < len(edges):
-        v1, v2, w = edges[idx]
+        edge = edges[idx]
+        if edge is None or len(edge) < 3:
+            idx += 1
+            continue
+        v1 = unwrapInt(edge[0])
+        v2 = unwrapInt(edge[1])
+        w = unwrapInt(edge[2])
         edges_with_idx.append((v1, v2, w, idx))
         idx += 1
 
@@ -124,5 +130,5 @@ def findCriticalAndPseudoCriticalEdges(n: int, edges: list[tuple[int, int, int]]
 
 
 def main():
-    assert findCriticalAndPseudoCriticalEdges(5, [(0, 1, 1), (1, 2, 1), (2, 3, 2), (0, 3, 2), (0, 4, 3), (3, 4, 3), (1, 4, 6)]) == [[0, 1], [2, 3, 4, 5]]
-    assert findCriticalAndPseudoCriticalEdges(4, [(0, 1, 1), (1, 2, 1), (2, 3, 1), (0, 3, 1)]) == [[], [0, 1, 2, 3]]
+    assert findCriticalAndPseudoCriticalEdges(5, [[0, 1, 1], [1, 2, 1], [2, 3, 2], [0, 3, 2], [0, 4, 3], [3, 4, 3], [1, 4, 6]]) == [[0, 1], [2, 3, 4, 5]]
+    assert findCriticalAndPseudoCriticalEdges(4, [[0, 1, 1], [1, 2, 1], [2, 3, 1], [0, 3, 1]]) == [[], [0, 1, 2, 3]]

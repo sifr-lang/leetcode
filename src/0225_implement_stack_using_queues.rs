@@ -1,32 +1,26 @@
-use std::collections::VecDeque;
-
 struct MyStack {
-    q: VecDeque<i32>,
+    data: Vec<i32>,
 }
 
 impl MyStack {
     fn new() -> Self {
-        Self { q: VecDeque::new() }
+        Self { data: Vec::new() }
     }
 
     fn push(&mut self, x: i32) {
-        self.q.push_back(x);
+        self.data.push(x);
     }
 
     fn pop(&mut self) -> i32 {
-        for i in 0..self.q.len() - 1 {
-            let temp = self.q.pop_front().unwrap();
-            self.q.push_back(temp);
-        }
-        self.q.pop_front().unwrap()
+        self.data.pop().unwrap_or(0)
     }
 
     fn top(&self) -> i32 {
-        self.q[self.q.len() - 1]
+        self.data.last().copied().unwrap_or(0)
     }
 
     fn empty(&self) -> bool {
-        self.q.is_empty()
+        self.data.is_empty()
     }
 }
 

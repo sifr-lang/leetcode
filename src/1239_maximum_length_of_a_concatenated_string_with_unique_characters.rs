@@ -1,41 +1,44 @@
 struct Solution;
 
-use std::collections::{HashMap, HashSet};
-
 impl Solution {
-    fn overlap(char_set: &HashSet<char>, s: &str) -> bool {
-        let mut counts: HashMap<char, i32> = HashMap::new();
-        for &ch in char_set {
-            *counts.entry(ch).or_insert(0) += 1;
-        }
-        for ch in s.chars() {
-            *counts.entry(ch).or_insert(0) += 1;
-        }
-        counts.values().copied().max().unwrap_or(0) > 1
-    }
-
-    fn max_length_backtrack(i: usize, arr: &[String], char_set: &mut HashSet<char>) -> i32 {
-        if i == arr.len() {
-            return char_set.len() as i32;
-        }
-
-        let mut res = 0;
-        if !Self::overlap(char_set, &arr[i]) {
-            for c in arr[i].chars() {
-                char_set.insert(c);
-            }
-            res = Self::max_length_backtrack(i + 1, arr, char_set);
-            for c in arr[i].chars() {
-                char_set.remove(&c);
-            }
-        }
-
-        res.max(Self::max_length_backtrack(i + 1, arr, char_set))
-    }
-
     pub fn max_length(arr: Vec<String>) -> i32 {
-        let mut char_set = HashSet::new();
-        Self::max_length_backtrack(0, &arr, &mut char_set)
+        let mut masks = vec![0_i32];
+        let mut best = 0_i32;
+
+        for word in arr {
+            let mut word_mask = 0_i32;
+            let mut valid_word = true;
+
+            for byte in word.bytes() {
+                if !byte.is_ascii_lowercase() {
+                    valid_word = false;
+                    break;
+                }
+
+                let bit_mask = 1_i32 << (byte - b'a');
+                if (word_mask & bit_mask) != 0 {
+                    valid_word = false;
+                    break;
+                }
+                word_mask |= bit_mask;
+            }
+
+            if !valid_word {
+                continue;
+            }
+
+            let existing = masks.len();
+            for i in 0..existing {
+                let base_mask = masks[i];
+                if (base_mask & word_mask) == 0 {
+                    let combined = base_mask | word_mask;
+                    masks.push(combined);
+                    best = best.max(combined.count_ones() as i32);
+                }
+            }
+        }
+
+        best
     }
 }
 

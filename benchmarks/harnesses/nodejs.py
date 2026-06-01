@@ -50,11 +50,37 @@ function parseBinding(tokens, binding) {
     }
     return matrix;
   }
+  if (binding.type === 'ragged[int]' && binding.source === 'segmented_tokens') {
+    const rows = Number(tokens[Number(binding.count_index)]);
+    let index = Number(binding.start || 0);
+    const result = [];
+    for (let row = 0; row < rows; row++) {
+      const valueCount = Number(tokens[index]);
+      index++;
+      result.push(tokens.slice(index, index + valueCount).map(Number));
+      index += valueCount;
+    }
+    return result;
+  }
   if (binding.type === 'list_node[int]' && binding.source === 'tokens') {
     const values = parseBinding(tokens, { ...binding, type: 'list[int]' });
     let head = null;
     for (let index = values.length - 1; index >= 0; index--) head = new ListNode(values[index], head);
     return head;
+  }
+  if (binding.type === 'list[list_node[int]]' && binding.source === 'segmented_tokens') {
+    const listCount = Number(tokens[Number(binding.count_index)]);
+    let index = Number(binding.start || 0);
+    const lists = [];
+    for (let listIndex = 0; listIndex < listCount; listIndex++) {
+      const valueCount = Number(tokens[index]);
+      index++;
+      let head = null;
+      for (let valueIndex = index + valueCount - 1; valueIndex >= index; valueIndex--) head = new ListNode(Number(tokens[valueIndex]), head);
+      index += valueCount;
+      lists.push(head);
+    }
+    return lists;
   }
   if (binding.type === 'balanced_tree[int]' && binding.source === 'tokens') {
     const values = parseBinding(tokens, { ...binding, type: 'list[int]' });
@@ -77,6 +103,9 @@ class TreeNode {
 }
 
 function callSingle(values, call) {
+  if (call.python_adapter === 'graph_adjacency') {
+    return graphToAdjacency(target(buildGraphFromAdjacency(values[call.args[0]])));
+  }
   const args = call.args.map((name) => call.copy_args?.includes(name) ? copyArg(values[name]) : values[name]);
   if (call.python_self) args.unshift(null);
   return target(...args);
@@ -88,7 +117,35 @@ function copyArg(value) {
 }
 
 function freshInputEachCall() {
-  return runner.input.bindings.some((binding) => ['list_node[int]', 'balanced_tree[int]'].includes(binding.type));
+  return runner.input.bindings.some((binding) => ['list_node[int]', 'list[list_node[int]]', 'balanced_tree[int]'].includes(binding.type));
+}
+
+function buildGraphFromAdjacency(adjacency) {
+  if (adjacency.length === 0) return null;
+  const nodes = adjacency.map((_, index) => ({ val: index + 1, neighbors: [] }));
+  for (let index = 0; index < adjacency.length; index++) {
+    nodes[index].neighbors = adjacency[index]
+      .filter((value) => value >= 1 && value <= nodes.length)
+      .map((value) => nodes[value - 1]);
+  }
+  return nodes[0];
+}
+
+function graphToAdjacency(node) {
+  if (node === null || node === undefined) return [];
+  const seen = new Map();
+  const stack = [node];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    if (seen.has(current.val)) continue;
+    seen.set(current.val, current);
+    for (const neighbor of current.neighbors || []) {
+      if (!seen.has(neighbor.val)) stack.push(neighbor);
+    }
+  }
+  return [...seen.keys()]
+    .sort((left, right) => left - right)
+    .map((value) => (seen.get(value).neighbors || []).map((neighbor) => neighbor.val).sort((left, right) => left - right));
 }
 
 function assertExpected(actual, expectedText, expected) {
@@ -104,7 +161,7 @@ function formatExpected(result, expected) {
     return `${Number.isInteger(value) ? value.toFixed(1) : String(value)}\n`;
   }
   if (expected.type === 'bool') return `${result ? 1 : 0}\n`;
-  if (expected.type === 'list_int') return `${pyList(result)}\n`;
+  if (expected.type === 'list_int') return `${pyList(normalizeSequenceResult(result, expected))}\n`;
   if (expected.type === 'list_node_int') return `${listNodeToText(result)}\n`;
   if (expected.type === 'tree_node_int') return `${treeNodeToText(result)}\n`;
   if (expected.type === 'str') return `${String(result)}\n`;
@@ -127,13 +184,18 @@ function normalizeSequenceValue(value) {
 }
 
 function compareSequenceValues(left, right) {
-  const leftKey = pyListComparable(left);
-  const rightKey = pyListComparable(right);
+  if (Array.isArray(left) && Array.isArray(right)) {
+    const limit = Math.min(left.length, right.length);
+    for (let index = 0; index < limit; index++) {
+      const compared = compareSequenceValues(left[index], right[index]);
+      if (compared !== 0) return compared;
+    }
+    return left.length - right.length;
+  }
+  if (typeof left === 'number' && typeof right === 'number') return left - right;
+  const leftKey = pyAtom(left);
+  const rightKey = pyAtom(right);
   return leftKey < rightKey ? -1 : leftKey > rightKey ? 1 : 0;
-}
-
-function pyListComparable(value) {
-  return Array.isArray(value) ? pyList(value) : pyAtom(value);
 }
 
 function pyList(value) {

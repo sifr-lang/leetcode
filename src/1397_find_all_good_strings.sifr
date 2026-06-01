@@ -32,6 +32,11 @@ def boolToInt(value: bool) -> int:
         return 1
     return 0
 
+def modValue(value: int, modulus: int) -> int:
+    if modulus == 0:
+        return 0
+    return value % modulus
+
 def advanceMatch(evil: str, lps: list[int], mut matched: int, ch: str) -> int:
     while matched > 0 and charAt(evil, matched) != ch:
         matched = lpsAt(lps, matched - 1)
@@ -88,7 +93,7 @@ def dpCount(
         next_low = tightLow and idx == lower_bound
         next_high = tightHigh and idx == upper_bound
 
-        ans = (ans + dpCount(pos + 1, next_low, next_high, next_matched, n, s1, s2, evil, lps, memo)) % MOD
+        ans = modValue(ans + dpCount(pos + 1, next_low, next_high, next_matched, n, s1, s2, evil, lps, memo), MOD)
 
     memo[key] = ans
     return ans

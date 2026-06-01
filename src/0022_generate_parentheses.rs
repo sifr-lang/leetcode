@@ -2,27 +2,28 @@ struct Solution;
 
 impl Solution {
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
-        // Using the function stack instead of an explicitly allocated Vec
-        let mut res: Vec<String> = vec![];
+        let mut stack = String::new();
+        let mut res: Vec<String> = Vec::new();
 
-        fn backtrack(res: &mut Vec<String>, s: String, open: i32, close: i32) {
-            if open == 0 && close == 0 {
-                res.push(s);
+        fn backtrack(stack: &mut String, res: &mut Vec<String>, open: i32, closed: i32, n: i32) {
+            if open == n && closed == n {
+                res.push(stack.clone());
                 return;
             }
-            if open == close {
-                backtrack(res, s.clone() + "(", open - 1, close);
-            } else {
-                if open > 0 {
-                    backtrack(res, s.clone() + "(", open - 1, close);
-                }
-                if close > 0 {
-                    backtrack(res, s.clone() + ")", open, close - 1);
-                }
+
+            if open < n {
+                stack.push('(');
+                backtrack(stack, res, open + 1, closed, n);
+                stack.pop();
+            }
+            if closed < open {
+                stack.push(')');
+                backtrack(stack, res, open, closed + 1, n);
+                stack.pop();
             }
         }
 
-        backtrack(&mut res, String::from(""), n, n);
+        backtrack(&mut stack, &mut res, 0, 0, n);
         res
     }
 }

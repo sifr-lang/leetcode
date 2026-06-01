@@ -1,18 +1,12 @@
 # LeetCode 201: Bitwise And Of Numbers Range
 
-def rangeBitwiseAnd(left: int, right: int) -> int:
-    res = 0
-
-    for i in range(32):
-        bit = (left >> i) & 1
-        if bit == 0:
-            continue
-        
-        remain = left % (1 << (i + 1))
-        diff = (1 << (i + 1)) - remain
-        if right - left < diff:
-            res = res | (1 << i)
-    return res
+def rangeBitwiseAnd(mut left: int, mut right: int) -> int:
+    i = 0
+    while left != right:
+        left = left >> 1
+        right = right >> 1
+        i += 1
+    return left << i
 
 def main():
     assert rangeBitwiseAnd(5, 7) == 4

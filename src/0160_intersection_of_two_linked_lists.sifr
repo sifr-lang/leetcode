@@ -54,12 +54,15 @@ def getIntersectionNode(own headA: ListNode | None, own headB: ListNode | None) 
     idsA: set[int] = set()
     curA = headA
     while hasNode(curA):
-        idsA.add(nodeId(curA))
+        current_id = nodeId(curA)
+        if current_id > 0:
+            idsA.add(current_id)
         curA = nodeNext(curA)
 
     curB = headB
     while hasNode(curB):
-        if nodeId(curB) in idsA:
+        current_id = nodeId(curB)
+        if current_id > 0 and current_id in idsA:
             return cloneList(curB)
         curB = nodeNext(curB)
 

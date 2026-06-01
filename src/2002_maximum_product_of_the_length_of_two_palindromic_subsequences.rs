@@ -2,57 +2,67 @@ struct Solution;
 
 impl Solution {
     pub fn max_product(s: String) -> i32 {
-        let s: Vec<char> = s.chars().collect();
-        let mut s1 = vec![];
-        let mut s2 = vec![];
-        let mut res = 0;
+        let s = s.into_bytes();
+        let n = s.len();
+        let limit = 1_usize << n;
+        let mut first = vec![0_usize; limit];
+        let mut last = vec![0_usize; limit];
 
-        Solution::dfs(&s, &mut s1, &mut s2, &mut res, 0);
+        for i in 0..n {
+            let start = 1_usize << i;
+            let stop = 1_usize << (i + 1);
+            for mask in start..stop {
+                first[mask] = i;
+            }
+        }
 
-        res
+        for i in 0..n {
+            let step = 1_usize << (i + 1);
+            let mut mask = 1_usize << i;
+            while mask < limit {
+                last[mask] = i;
+                mask += step;
+            }
+        }
+
+        let mut memo = vec![-1_i32; limit];
+        let mut ans = 0;
+        for mask in 1..limit {
+            let product = Self::dp(mask, &s, &first, &last, &mut memo)
+                * Self::dp(limit - 1 - mask, &s, &first, &last, &mut memo);
+            ans = ans.max(product);
+        }
+
+        ans
     }
 
-    fn dfs(s: &[char], s1: &mut Vec<char>, s2: &mut Vec<char>, res: &mut i32, index: usize) {
-        // Base case
-        if index == s.len() {
-            if Solution::is_palindrome(s1) && Solution::is_palindrome(s2) {
-                let new_max = s1.len() * s2.len();
-                *res = std::cmp::max(*res, new_max as i32);
+    fn dp(mask: usize, s: &[u8], first: &[usize], last: &[usize], memo: &mut [i32]) -> i32 {
+        if mask == 0 {
+            return 0;
+        }
+        if memo[mask] >= 0 {
+            return memo[mask];
+        }
+
+        let value = if (mask & (mask - 1)) == 0 {
+            1
+        } else {
+            let left = last[mask];
+            let right = first[mask];
+            let left_bit = 1_usize << left;
+            let right_bit = 1_usize << right;
+            let mut best = Self::dp(mask - left_bit, s, first, last, memo)
+                .max(Self::dp(mask - right_bit, s, first, last, memo));
+            let mut without_both = Self::dp(mask - left_bit - right_bit, s, first, last, memo);
+            if s[left] == s[right] {
+                without_both += 2;
             }
-            return;
-        }
+            best = best.max(without_both);
+            best
+        };
 
-        // Option 0: Not in S1 nor S2
-        Solution::dfs(s, s1, s2, res, index + 1);
-
-        // Option 1: in S1
-        s1.push(s[index]);
-        Solution::dfs(s, s1, s2, res, index + 1);
-        s1.pop();
-
-        // Option 2: in S2
-        s2.push(s[index]);
-        Solution::dfs(s, s1, s2, res, index + 1);
-        s2.pop();
-    }
-
-    fn is_palindrome(s: &[char]) -> bool {
-        if s.len() <= 1 {
-            return true;
-        }
-
-        let mut l = 0;
-        let mut r = s.len() - 1;
-
-        while l < r {
-            if s[l] != s[r] {
-                return false;
-            }
-            l += 1;
-            r -= 1;
-        }
-
-        true
+        memo[mask] = value;
+        value
     }
 }
 

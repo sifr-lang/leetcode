@@ -167,6 +167,8 @@ def function_body(receiver: str, function: str, param_types: list[str], runner: 
 
 
 def single_body(receiver: str, function: str, param_types: list[str], runner: dict[str, Any]) -> str:
+    if runner["call"].get("python_adapter") == "graph_adjacency" and param_types and "Node" in param_types[0]:
+        return graph_adjacency_body(receiver, function, runner)
     bindings = parse_bindings(runner["input"]["bindings"])
     expected = runner["expected"]
     format_fn = rust_format_function(expected)
@@ -194,6 +196,90 @@ fn run_benchmark(fixture_path: &str, expected_path: &str, loops: usize) {{
         checksum += checksum_{expected['type']}(&loop_result);
     }}
     println!("OK {{}}", checksum);
+}}
+
+{RUNTIME_SUPPORT}
+""".strip()
+
+
+def graph_adjacency_body(receiver: str, function: str, runner: dict[str, Any]) -> str:
+    bindings = parse_bindings(runner["input"]["bindings"])
+    expected = runner["expected"]
+    format_fn = rust_format_function(expected)
+    arg = runner["call"]["args"][0]
+    return f"""
+fn run_benchmark(fixture_path: &str, expected_path: &str, loops: usize) {{
+    let fixture_text = fs::read_to_string(fixture_path).expect("fixture read failed");
+    let expected_text = fs::read_to_string(expected_path).expect("expected read failed");
+    let tokens: Vec<&str> = fixture_text.split_whitespace().collect();
+{indent(bindings, 4)}
+    let graph_input = build_graph_from_adjacency(&{arg});
+    let result = graph_to_adjacency({receiver}{function}(graph_input));
+    assert_expected(&{format_fn}(&result), &expected_text);
+
+    let mut checksum: i64 = 0;
+    for _loop_index in 0..loops {{
+        let graph_input = build_graph_from_adjacency(&{arg});
+        let loop_result = graph_to_adjacency({receiver}{function}(graph_input));
+        checksum += checksum_{expected['type']}(&loop_result);
+    }}
+    println!("OK {{}}", checksum);
+}}
+
+fn build_graph_from_adjacency(adjacency: &Vec<Vec<i32>>) -> Option<std::rc::Rc<std::cell::RefCell<Node>>> {{
+    if adjacency.is_empty() {{
+        return None;
+    }}
+    let nodes: Vec<_> = (0..adjacency.len())
+        .map(|index| std::rc::Rc::new(std::cell::RefCell::new(Node::new(index as i32 + 1))))
+        .collect();
+    for (index, neighbors) in adjacency.iter().enumerate() {{
+        nodes[index].borrow_mut().neighbors = neighbors
+            .iter()
+            .filter_map(|value| {{
+                if *value >= 1 && (*value as usize) <= nodes.len() {{
+                    Some(nodes[*value as usize - 1].clone())
+                }} else {{
+                    None
+                }}
+            }})
+            .collect();
+    }}
+    Some(nodes[0].clone())
+}}
+
+fn graph_to_adjacency(node: Option<std::rc::Rc<std::cell::RefCell<Node>>>) -> Vec<Vec<i32>> {{
+    let Some(start) = node else {{
+        return Vec::new();
+    }};
+    let mut seen: std::collections::BTreeMap<i32, std::rc::Rc<std::cell::RefCell<Node>>> = std::collections::BTreeMap::new();
+    let mut stack = vec![start];
+    while let Some(current) = stack.pop() {{
+        let val = current.borrow().val;
+        if seen.contains_key(&val) {{
+            continue;
+        }}
+        seen.insert(val, current.clone());
+        let neighbors = current.borrow().neighbors.clone();
+        for neighbor in neighbors {{
+            let neighbor_val = neighbor.borrow().val;
+            if !seen.contains_key(&neighbor_val) {{
+                stack.push(neighbor);
+            }}
+        }}
+    }}
+    seen.values()
+        .map(|node| {{
+            let mut row: Vec<i32> = node
+                .borrow()
+                .neighbors
+                .iter()
+                .map(|neighbor| neighbor.borrow().val)
+                .collect();
+            row.sort_unstable();
+            row
+        }})
+        .collect()
 }}
 
 {RUNTIME_SUPPORT}
@@ -366,11 +452,16 @@ def converted_arg_expr(name: str, arg_type: str, param_type: str) -> str:
 def clone_expr(name: str, arg_type: str) -> str:
     if arg_type in ("int", "float"):
         return name
+    if arg_type == "list_node[int]":
+        return name
     return f"{name}.clone()"
 
 
 def fresh_input_each_call(runner: dict[str, Any]) -> bool:
-    return any(binding["type"] in ("list_node[int]", "balanced_tree[int]") for binding in runner["input"]["bindings"])
+    return any(
+        binding["type"] in ("list_node[int]", "list[list_node[int]]", "balanced_tree[int]")
+        for binding in runner["input"]["bindings"]
+    )
 
 
 def parse_bindings(bindings: list[dict[str, Any]], mutable_names: set[str] | None = None) -> str:
@@ -435,9 +526,72 @@ def parse_binding(binding: dict[str, Any], *, mutable: bool = False) -> list[str
             ]
         )
         return lines
+    if typ in ("list[tuple[int,int]]", "list[tuple[int,int,int]]", "list[tuple[str,str]]") and binding.get("source") == "tuple_tokens":
+        count = int(binding["count_index"])
+        start = int(binding.get("start", 0))
+        width = 3 if typ == "list[tuple[int,int,int]]" else 2
+        rust_type = "Vec<Vec<String>>" if typ == "list[tuple[str,str]]" else "Vec<Vec<i32>>"
+        parser = "tokens[{name}_cursor + offset].to_string()" if typ == "list[tuple[str,str]]" else "parse_i32(tokens[{name}_cursor + offset])"
+        lines = [
+            f"let {name}_count: usize = parse_usize(tokens[{count}]);",
+            f"let mut {name}_cursor: usize = {start};",
+            f"{let_kw} {name}: {rust_type} = {{",
+            f"    let mut items = Vec::with_capacity({name}_count);",
+            f"    for _tuple_index in 0..{name}_count {{",
+            f"        let mut item = Vec::with_capacity({width});",
+            f"        for offset in 0..{width} {{",
+            f"            item.push({parser.format(name=name)});",
+            "        }",
+            "        items.push(item);",
+            f"        {name}_cursor += {width};",
+            "    }",
+            "    items",
+            "};",
+        ]
+        return lines
+    if typ == "ragged[int]" and binding.get("source") == "segmented_tokens":
+        lines = [
+            f"let {name}_rows: usize = parse_usize(tokens[{int(binding['count_index'])}]);",
+            f"let mut {name}_cursor: usize = {int(binding.get('start', 0))};",
+            f"{let_kw} {name}: Vec<Vec<i32>> = {{",
+            f"    let mut rows = Vec::with_capacity({name}_rows);",
+            f"    for _row_index in 0..{name}_rows {{",
+            f"        let value_count = parse_usize(tokens[{name}_cursor]);",
+            f"        {name}_cursor += 1;",
+            "        let mut row = Vec::with_capacity(value_count);",
+            "        for _value_index in 0..value_count {",
+            f"            row.push(parse_i32(tokens[{name}_cursor]));",
+            f"            {name}_cursor += 1;",
+            "        }",
+            "        rows.push(row);",
+            "    }",
+            "    rows",
+            "};",
+        ]
+        return lines
     if typ == "list_node[int]" and binding.get("source") == "tokens":
         base = {**binding, "type": "list[int]"}
         return parse_binding(base) + [f"{let_kw} {name} = build_list_node(&{name});"]
+    if typ == "list[list_node[int]]" and binding.get("source") == "segmented_tokens":
+        lines = [
+            f"let {name}_lists: usize = parse_usize(tokens[{int(binding['count_index'])}]);",
+            f"let mut {name}_cursor: usize = {int(binding.get('start', 0))};",
+            f"{let_kw} {name}: Vec<Option<Box<ListNode>>> = {{",
+            f"    let mut lists = Vec::with_capacity({name}_lists);",
+            f"    for _list_index in 0..{name}_lists {{",
+            f"        let value_count = parse_usize(tokens[{name}_cursor]);",
+            f"        {name}_cursor += 1;",
+            "        let mut values = Vec::with_capacity(value_count);",
+            "        for _value_index in 0..value_count {",
+            f"            values.push(parse_i32(tokens[{name}_cursor]));",
+            f"            {name}_cursor += 1;",
+            "        }",
+            "        lists.push(build_list_node(&values));",
+            "    }",
+            "    lists",
+            "};",
+        ]
+        return lines
     if typ == "balanced_tree[int]" and binding.get("source") == "tokens":
         base = {**binding, "type": "list[int]"}
         return parse_binding(base) + [f"{let_kw} {name} = build_balanced_tree(&{name}, 0, {name}.len() as isize - 1);"]
@@ -460,6 +614,8 @@ def rust_expected_type(expected_type: str) -> str:
 
 
 def rust_format_function(expected: dict[str, Any]) -> str:
+    if expected.get("sort_result") and expected["type"] == "list_int":
+        return "format_expected_list_int_sorted"
     if expected.get("sort_result") and expected["type"] in ("list_str", "list_list_str"):
         return f"format_expected_{expected['type']}_sorted"
     return f"format_expected_{expected['type']}"
@@ -636,8 +792,13 @@ fn format_expected_int(value: &i64) -> String { format!("{}\n", value) }
 fn format_expected_float(value: &f64) -> String { format!("{}\n", py_float(*value)) }
 fn format_expected_bool(value: &bool) -> String { format!("{}\n", if *value { 1 } else { 0 }) }
 fn format_expected_list_int<T: PyIntAtom>(value: &Vec<T>) -> String { format!("{}\n", py_list_num(value)) }
+fn format_expected_list_int_sorted<T: PyIntAtom + Ord + Clone>(value: &Vec<T>) -> String {
+    let mut sorted = value.clone();
+    sorted.sort();
+    format!("{}\n", py_list_num(&sorted))
+}
 fn format_expected_list_str(value: &Vec<String>) -> String { format!("{}\n", py_list_str(value)) }
-fn format_expected_list_list_int<T: PyIntAtom>(value: &Vec<Vec<T>>) -> String { format!("{}\n", py_list_list_num(value)) }
+fn format_expected_list_list_int<T: std::fmt::Debug>(value: &Vec<Vec<T>>) -> String { format!("{:?}\n", value) }
 fn format_expected_list_list_str(value: &Vec<Vec<String>>) -> String { format!("{}\n", py_list_list_str(value)) }
 fn format_expected_list_str_sorted(value: &Vec<String>) -> String {
     let mut sorted = value.clone();
@@ -658,7 +819,7 @@ fn checksum_float(value: &f64) -> i64 { (*value * 1000.0) as i64 }
 fn checksum_bool(value: &bool) -> i64 { if *value { 1 } else { 0 } }
 fn checksum_list_int<T>(value: &Vec<T>) -> i64 { value.len() as i64 }
 fn checksum_list_str(value: &Vec<String>) -> i64 { py_list_str(value).len() as i64 }
-fn checksum_list_list_int<T: PyIntAtom>(value: &Vec<Vec<T>>) -> i64 { py_list_list_num(value).len() as i64 }
+fn checksum_list_list_int<T: std::fmt::Debug>(value: &Vec<Vec<T>>) -> i64 { format!("{:?}", value).len() as i64 }
 fn checksum_list_list_str(value: &Vec<Vec<String>>) -> i64 { py_list_list_str(value).len() as i64 }
 fn checksum_list_node_int(value: &Option<Box<ListNode>>) -> i64 { list_node_to_text(value).len() as i64 }
 fn checksum_tree_node_int(value: &Option<std::rc::Rc<std::cell::RefCell<TreeNode>>>) -> i64 { tree_node_to_text(value).len() as i64 }

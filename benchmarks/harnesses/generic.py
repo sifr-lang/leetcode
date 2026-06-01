@@ -70,18 +70,23 @@ def run_python(fixture_text: str, expected_text: str, oracle: Any, loops: int, r
 
 def parse_input(input_text: str, runner: dict[str, Any]) -> dict[str, Any]:
     tokens = input_text.split()
+    lines = input_text.splitlines()
     values: dict[str, Any] = {}
     for binding in runner["input"]["bindings"]:
-        values[binding["name"]] = parse_binding(tokens, binding)
+        values[binding["name"]] = parse_binding(tokens, binding, lines)
     return values
 
-def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
+def parse_binding(tokens: list[str], binding: dict[str, Any], lines: list[str] | None = None) -> Any:
     if binding["type"] == "int" and binding["source"] == "token":
         return int(tokens[int(binding["index"])])
     if binding["type"] == "float" and binding["source"] == "token":
         return float(tokens[int(binding["index"])])
     if binding["type"] == "str" and binding["source"] == "token":
         return tokens[int(binding["index"])]
+    if binding["type"] == "str" and binding["source"] == "line":
+        if lines is None:
+            raise RuntimeError("line-sourced binding requires input lines")
+        return lines[int(binding["line_index"])]
     if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":
         start = int(binding.get("start", 0))
         start += sum(int(tokens[int(index)]) for index in binding.get("start_after_count_indices", []))
@@ -94,6 +99,45 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
         if binding["type"] == "list[float]":
             return [float(token) for token in selected]
         return selected
+    if binding["type"] in ("list[tuple[int,int]]", "list[tuple[int,int,int]]", "list[tuple[str,str]]") and binding["source"] == "tuple_tokens":
+        start = int(binding.get("start", 0))
+        count = int(tokens[int(binding["count_index"])])
+        width = 3 if binding["type"] == "list[tuple[int,int,int]]" else 2
+        values = []
+        index = start
+        for _ in range(count):
+            selected = tokens[index : index + width]
+            index += width
+            if binding["type"] == "list[tuple[str,str]]":
+                values.append((selected[0], selected[1]))
+            else:
+                values.append(tuple(int(token) for token in selected))
+        return values
+    if binding["type"] == "list[list_node[int]]" and binding["source"] == "segmented_tokens":
+        from helpers.list_node import ListNode
+
+        lists = []
+        index = int(binding.get("start", 0))
+        list_count = int(tokens[int(binding["count_index"])])
+        for _ in range(list_count):
+            value_count = int(tokens[index])
+            index += 1
+            head = None
+            for value in reversed([int(token) for token in tokens[index : index + value_count]]):
+                head = ListNode(value, head)
+            index += value_count
+            lists.append(head)
+        return lists
+    if binding["type"] == "ragged[int]" and binding["source"] == "segmented_tokens":
+        rows = []
+        index = int(binding.get("start", 0))
+        row_count = int(tokens[int(binding["count_index"])])
+        for _ in range(row_count):
+            value_count = int(tokens[index])
+            index += 1
+            rows.append([int(token) for token in tokens[index : index + value_count]])
+            index += value_count
+        return rows
     if binding["type"] == "matrix[int]" and binding["source"] == "matrix_tokens":
         rows = int(tokens[int(binding["rows_index"])])
         cols = int(tokens[int(binding["cols_index"])])
@@ -118,7 +162,7 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
     if binding["type"] == "list_node[int]" and binding["source"] == "tokens":
         from helpers.list_node import ListNode
 
-        values = parse_binding(tokens, {**binding, "type": "list[int]"})
+        values = parse_binding(tokens, {**binding, "type": "list[int]"}, lines)
         head = None
         for value in reversed(values):
             head = ListNode(value, head)
@@ -126,7 +170,7 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
     if binding["type"] == "balanced_tree[int]" and binding["source"] == "tokens":
         from helpers.tree_node import TreeNode
 
-        values = parse_binding(tokens, {**binding, "type": "list[int]"})
+        values = parse_binding(tokens, {**binding, "type": "list[int]"}, lines)
 
         def build(left: int, right: int) -> Any:
             if left > right:
@@ -138,14 +182,71 @@ def parse_binding(tokens: list[str], binding: dict[str, Any]) -> Any:
     raise RuntimeError(f"unsupported input binding: {binding}")
 
 def fresh_input_each_call(runner: dict[str, Any]) -> bool:
-    return any(binding["type"] in ("list_node[int]", "balanced_tree[int]") for binding in runner["input"]["bindings"])
+    return any(
+        binding["type"] in ("list_node[int]", "list[list_node[int]]", "balanced_tree[int]")
+        for binding in runner["input"]["bindings"]
+    )
 
 def call_single(oracle: Any, values: dict[str, Any], call: dict[str, Any]) -> Any:
+    adapter = call.get("python_adapter")
+    if adapter == "graph_adjacency":
+        node = build_graph_from_adjacency(values[call["args"][0]], oracle)
+        return graph_to_adjacency(oracle(node))
+    if adapter == "random_list_spec":
+        spec = values[call["args"][0]]
+        head = oracle.__globals__["build_random_list"](spec)
+        return oracle.__globals__["random_list_to_pairs"](oracle(head))
+    if adapter == "lca_by_value":
+        root = values[call["args"][0]]
+        p = find_tree_node(root, values[call["args"][1]])
+        q = find_tree_node(root, values[call["args"][2]])
+        args = [root, p, q]
+        if call.get("python_self"):
+            args.insert(0, None)
+        return oracle(*args)
+    if adapter == "mutating_list_node_return_arg":
+        head = values[call["args"][0]]
+        oracle(head)
+        return head
     copied = set(call.get("copy_args", []))
     args = [copy_arg(values[name]) if name in copied else values[name] for name in call["args"]]
     if call.get("python_self"):
         args.insert(0, None)
     return oracle(*args)
+
+def build_graph_from_adjacency(adjacency: list[list[int]], oracle: Any) -> Any:
+    if not adjacency:
+        return None
+    node_class = oracle.__globals__["Node"]
+    nodes = [node_class(index + 1) for index in range(len(adjacency))]
+    for index, neighbors in enumerate(adjacency):
+        nodes[index].neighbors = [nodes[value - 1] for value in neighbors if 1 <= value <= len(nodes)]
+    return nodes[0]
+
+def graph_to_adjacency(node: Any) -> list[list[int]]:
+    if node is None:
+        return []
+    seen: dict[int, Any] = {}
+    stack = [node]
+    while stack:
+        current = stack.pop()
+        if current.val in seen:
+            continue
+        seen[current.val] = current
+        for neighbor in current.neighbors:
+            if neighbor.val not in seen:
+                stack.append(neighbor)
+    return [[neighbor.val for neighbor in seen[index].neighbors] for index in sorted(seen)]
+
+def find_tree_node(root: Any, value: int) -> Any:
+    if root is None:
+        return None
+    if root.val == value:
+        return root
+    left = find_tree_node(root.left, value)
+    if left is not None:
+        return left
+    return find_tree_node(root.right, value)
 
 def copy_arg(value: Any) -> Any:
     if isinstance(value, list):
@@ -187,6 +288,11 @@ def result_checksum(result: Any, expected: dict[str, Any]) -> int:
         return len(result)
     if expected_type in ("list_str", "list_list_int", "list_list_str"):
         return len(format_sequence_result(result, expected))
+    if expected_type == "list_bool_index_checksum":
+        count, checksum = bool_batch_checksum(result)
+        return count + checksum
+    if expected_type == "list_tree_node_int":
+        return len(format_tree_list_result(result, expected))
     if expected_type == "list_node_int":
         return len(list_node_to_text(result))
     if expected_type == "tree_node_int":
@@ -238,6 +344,8 @@ def format_expected(result: Any, expected: dict[str, Any]) -> str:
     if expected_type == "bool":
         return f"{1 if result else 0}\n"
     if expected_type == "list_int":
+        if expected.get("sort_result"):
+            return f"{sorted(result)}\n"
         return f"{result}\n"
     if expected_type == "list_node_int":
         return f"{list_node_to_text(result)}\n"
@@ -247,7 +355,18 @@ def format_expected(result: Any, expected: dict[str, Any]) -> str:
         return f"{result}\n"
     if expected_type in ("list_str", "list_list_str", "list_list_int"):
         return f"{format_sequence_result(result, expected)}\n"
+    if expected_type == "list_bool_index_checksum":
+        true_count, checksum = bool_batch_checksum(result)
+        return f"{true_count} {checksum}\n"
+    if expected_type == "list_tree_node_int":
+        return f"{format_tree_list_result(result, expected)}\n"
     raise RuntimeError(f"unsupported expected shape: {expected_type}")
+
+def format_tree_list_result(result: Any, expected: dict[str, Any]) -> str:
+    values = [tree_node_to_text(node) for node in result]
+    if expected.get("sort_result"):
+        values.sort()
+    return json.dumps(values)
 
 def format_sequence_result(result: Any, expected: dict[str, Any]) -> str:
     return json.dumps(normalize_sequence_result(result, expected))
@@ -276,6 +395,8 @@ def run_object_ops(input_text: str, constructor: Any, runner: dict[str, Any]) ->
     if lines and lines[0].split()[0] == "__init__":
         constructor_args = parse_object_args(lines[0].split()[1:], call.get("constructor_args", []))
         start_line = 1
+    if not constructor_args and call.get("constructor_args") and lines and lines[0].split()[0] == "__init__":
+        constructor_args = parse_object_args(lines[0].split()[1:], call["constructor_args"])
     obj = constructor(*constructor_args)
     result_count = 0
     checksum = 0
@@ -319,6 +440,11 @@ def parse_object_arg(tokens: list[str], cursor: int, spec: dict[str, Any]) -> tu
         start = cursor + 1
         end = start + count
         return [int(token) for token in tokens[start:end]], end
+    if arg_type == "list[str]":
+        count = int(tokens[cursor])
+        start = cursor + 1
+        end = start + count
+        return tokens[start:end], end
     if arg_type == "matrix[int]":
         rows = int(tokens[cursor])
         cols = int(tokens[cursor + 1])
@@ -328,6 +454,20 @@ def parse_object_arg(tokens: list[str], cursor: int, spec: dict[str, Any]) -> tu
             matrix.append([int(token) for token in tokens[index : index + cols]])
             index += cols
         return matrix, index
+    if arg_type == "balanced_tree[int]":
+        from helpers.tree_node import TreeNode
+
+        count = int(tokens[cursor])
+        start = cursor + 1
+        values = [int(token) for token in tokens[start : start + count]]
+
+        def build(left: int, right: int) -> Any:
+            if left > right:
+                return None
+            mid = (left + right) // 2
+            return TreeNode(values[mid], build(left, mid - 1), build(mid + 1, right))
+
+        return build(0, len(values) - 1), start + count
     raise RuntimeError(f"unsupported object argument type: {arg_type}")
 
 def object_result_checksum(result: Any, result_type: str) -> int:
@@ -341,10 +481,13 @@ def object_result_checksum(result: Any, result_type: str) -> int:
         return len(result)
     if result_type == "list_int":
         return len(result)
+    if result_type == "tree_node_int":
+        return len(tree_node_to_text(result))
     raise RuntimeError(f"unsupported object result type: {result_type}")
 
 def sifr_runner_body(function: str, runner: dict[str, Any], owned_args: set[str] | None = None) -> str:
     call = runner["call"]
+    function = call.get("sifr_function", function)
     if call["mode"] == "single":
         return single_sifr_runner_body(function, runner, owned_args or set())
     if call["mode"] == "mutates_single":
@@ -533,14 +676,17 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
 def _run_object_ops(fixture_text: str, expected_count: int, expected_checksum: int, validate: bool) -> int:
     lines: list[str] = fixture_text.split("\\n")
     init_parts: list[str] = []
+    start_line: int = 0
     if len(lines) > 0:
         init_parts = _bench_nz_str(lines[0]).split()
+        if len(init_parts) > 0 and _bench_nz_str(init_parts[0]) == "__init__":
+            start_line = 1
 {indent(constructor_lines, 4)}
     obj = {class_name}({", ".join(constructor_args)})
     result_count: int = 0
     checksum_value: int = 0
     query_index: int = 0
-    for line_index in range(1, len(lines)):
+    for line_index in range(start_line, len(lines)):
         line: str = _bench_nz_str(lines[line_index])
         parts: list[str] = line.split()
         if len(parts) < 1:
@@ -594,6 +740,21 @@ def sifr_object_arg_binding(name: str, parts_name: str, cursor: str, spec: dict[
             ),
             next_cursor,
         )
+    if arg_type == "list[str]":
+        count_name = f"{name}_count"
+        index_name = f"{name}_index"
+        next_cursor = f"{cursor} + 1 + {count_name}"
+        return (
+            "\n".join(
+                [
+                    f"{count_name}: int = _bench_parse_int(_bench_nz_str({parts_name}[{cursor}]))",
+                    f"{name}: list[str] = []",
+                    f"for {index_name} in range(0, {count_name}):",
+                    f"    {name}.append(_bench_nz_str({parts_name}[{cursor} + 1 + {index_name}]))",
+                ]
+            ),
+            next_cursor,
+        )
     if arg_type == "matrix[int]":
         rows_name = f"{name}_rows"
         cols_name = f"{name}_cols"
@@ -619,6 +780,23 @@ def sifr_object_arg_binding(name: str, parts_name: str, cursor: str, spec: dict[
             ),
             next_cursor,
         )
+    if arg_type == "balanced_tree[int]":
+        count_name = f"{name}_count"
+        values_name = f"{name}_values"
+        index_name = f"{name}_index"
+        next_cursor = f"{cursor} + 1 + {count_name}"
+        return (
+            "\n".join(
+                [
+                    f"{count_name}: int = _bench_parse_int(_bench_nz_str({parts_name}[{cursor}]))",
+                    f"{values_name}: list[int] = []",
+                    f"for {index_name} in range(0, {count_name}):",
+                    f"    {values_name}.append(_bench_parse_int(_bench_nz_str({parts_name}[{cursor} + 1 + {index_name}])))",
+                    f"{name}: TreeNode | None = _build_balanced_tree({values_name}, 0, len({values_name}) - 1)",
+                ]
+            ),
+            next_cursor,
+        )
     raise RuntimeError(f"unsupported Sifr object argument type: {arg_type}")
 
 def sifr_object_method_branch(index: int, method: str, method_spec: dict[str, Any]) -> str:
@@ -637,13 +815,26 @@ def sifr_object_method_branch(index: int, method: str, method_spec: dict[str, An
     else:
         result_var = f"method_{index}_result"
         lines.append(f"    {result_var}: {sifr_object_result_type(result_type)} = {call}")
-        lines.append("    query_index = query_index + 1")
-        lines.append("    result_count = result_count + 1")
-        lines.append(f"    checksum_value = checksum_value + (query_index * {sifr_object_checksum_expr(result_type, result_var)})")
+        if result_type == "tree_node_int":
+            lines.append(f"    if {result_var} is not None:")
+            lines.append("        query_index = query_index + 1")
+            lines.append("        result_count = result_count + 1")
+            lines.append(f"        checksum_value = checksum_value + (query_index * {sifr_object_checksum_expr(result_type, result_var)})")
+        else:
+            lines.append("    query_index = query_index + 1")
+            lines.append("    result_count = result_count + 1")
+            lines.append(f"    checksum_value = checksum_value + (query_index * {sifr_object_checksum_expr(result_type, result_var)})")
     return "\n".join(lines)
 
 def sifr_object_result_type(result_type: str) -> str:
-    result_types = {"bool": "bool", "int": "int", "float": "float", "str": "str", "list_int": "list[int]"}
+    result_types = {
+        "bool": "bool",
+        "int": "int",
+        "float": "float",
+        "str": "str",
+        "list_int": "list[int]",
+        "tree_node_int": "TreeNode | None",
+    }
     if result_type in result_types:
         return result_types[result_type]
     raise RuntimeError(f"unsupported Sifr object result type: {result_type}")
@@ -659,6 +850,8 @@ def sifr_object_checksum_expr(result_type: str, result_name: str) -> str:
         return f"len({result_name})"
     if result_type == "list_int":
         return f"len({result_name})"
+    if result_type == "tree_node_int":
+        return f"len(treeToString({result_name}))"
     raise RuntimeError(f"unsupported Sifr object result type: {result_type}")
 
 def render_sifr_bindings(bindings: list[dict[str, Any]]) -> str:
@@ -677,6 +870,8 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
         return f"{name}: float = _bench_parse_float(_bench_nz_str(_bench_tokens[{int(binding['index'])}]))"
     if binding["type"] == "str" and binding["source"] == "token":
         return f"{name}: str = _bench_nz_str(_bench_tokens[{int(binding['index'])}])"
+    if binding["type"] == "str" and binding["source"] == "line":
+        return f"{name}: str = _bench_nz_str(fixture_text.split(\"\\n\")[{int(binding['line_index'])}])"
     if binding["type"] in ("list[int]", "list[str]", "list[float]") and binding["source"] == "tokens":
         start = int(binding.get("start", 0))
         start_expr = str(start)
@@ -699,6 +894,60 @@ def sifr_binding_code(binding: dict[str, Any]) -> str:
                 f"{name}: list[{scalar_type}] = []",
                 f"for index in range({start_expr}, {upper}):",
                 f"    {name}.append({parse})",
+            ]
+        )
+    if binding["type"] in ("list[tuple[int,int]]", "list[tuple[int,int,int]]", "list[tuple[str,str]]") and binding["source"] == "tuple_tokens":
+        start_expr = str(int(binding.get("start", 0)))
+        count = f"_bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['count_index'])}]))"
+        tuple_type = {
+            "list[tuple[int,int]]": "tuple[int, int]",
+            "list[tuple[int,int,int]]": "tuple[int, int, int]",
+            "list[tuple[str,str]]": "tuple[str, str]",
+        }[binding["type"]]
+        width = 3 if binding["type"] == "list[tuple[int,int,int]]" else 2
+        parse_items = []
+        for offset in range(width):
+            token = f"_bench_nz_str(_bench_tokens[index + {offset}])"
+            parse_items.append(token if binding["type"] == "list[tuple[str,str]]" else f"_bench_parse_int({token})")
+        tuple_expr = f"({', '.join(parse_items)})"
+        return "\n".join(
+            [
+                f"{name}: list[{tuple_type}] = []",
+                f"index: int = {start_expr}",
+                f"for _tuple_index in range(0, {count}):",
+                f"    {name}.append({tuple_expr})",
+                f"    index = index + {width}",
+            ]
+        )
+    if binding["type"] == "list[list_node[int]]" and binding["source"] == "segmented_tokens":
+        list_count = f"_bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['count_index'])}]))"
+        start_expr = str(int(binding.get("start", 0)))
+        return "\n".join(
+            [
+                f"{name}: list[ListNode | None] = []",
+                f"index: int = {start_expr}",
+                f"for _list_index in range(0, {list_count}):",
+                "    value_count: int = _bench_parse_int(_bench_nz_str(_bench_tokens[index]))",
+                "    index = index + 1",
+                f"    {name}.append(_build_list_node(_bench_tokens, index, index + value_count))",
+                "    index = index + value_count",
+            ]
+        )
+    if binding["type"] == "ragged[int]" and binding["source"] == "segmented_tokens":
+        row_count = f"_bench_parse_int(_bench_nz_str(_bench_tokens[{int(binding['count_index'])}]))"
+        start_expr = str(int(binding.get("start", 0)))
+        return "\n".join(
+            [
+                f"{name}: list[list[int]] = []",
+                f"index: int = {start_expr}",
+                f"for _row_index in range(0, {row_count}):",
+                "    value_count: int = _bench_parse_int(_bench_nz_str(_bench_tokens[index]))",
+                "    index = index + 1",
+                "    row: list[int] = []",
+                "    for _value_index in range(0, value_count):",
+                "        row.append(_bench_parse_int(_bench_nz_str(_bench_tokens[index])))",
+                "        index = index + 1",
+                f"    {name}.append(row)",
             ]
         )
     if binding["type"] in ("matrix[int]", "matrix[str]") and binding["source"] == "matrix_tokens":
@@ -735,7 +984,8 @@ def sifr_result_type(expected_type: str) -> str:
         "int": "int", "float": "float", "bool": "bool", "list_int": "list[int]",
         "list_node_int": "ListNode | None", "tree_node_int": "TreeNode | None",
         "str": "str", "list_str": "list[str]", "list_list_int": "list[list[int]]",
-        "list_list_str": "list[list[str]]",
+        "list_list_str": "list[list[str]]", "list_bool_index_checksum": "list[bool]",
+        "list_tree_node_int": "list[TreeNode]",
     }
     if expected_type in result_types:
         return result_types[expected_type]
@@ -749,8 +999,42 @@ def sifr_expected_check(expected: dict[str, Any], result_name: str) -> str:
         return f"if {result_name} != _bench_parse_float(_bench_nz_str(expected_tokens[0])):"
     if expected_type == "bool":
         return f"if ({result_name} and _bench_parse_int(_bench_nz_str(expected_tokens[0])) != 1) or ((not {result_name}) and _bench_parse_int(_bench_nz_str(expected_tokens[0])) != 0):"
+    if expected_type == "list_int" and expected.get("sort_result"):
+        return "\n".join(
+            [
+                f"actual_result: list[int] = []",
+                f"for _bench_item in {result_name}:",
+                "    actual_result.append(_bench_item)",
+                "actual_result.sort()",
+                "if str(actual_result) != expected_text.strip():",
+            ]
+        )
     if expected_type == "list_int":
         return f"if str({result_name}) != expected_text.strip():"
+    if expected_type == "list_bool_index_checksum":
+        return "\n".join(
+            [
+                "expected_count: int = _bench_parse_int(_bench_nz_str(expected_tokens[0]))",
+                "expected_checksum: int = _bench_parse_int(_bench_nz_str(expected_tokens[1]))",
+                "actual_count: int = 0",
+                "actual_checksum: int = 0",
+                f"for _bench_index in range(0, len({result_name})):",
+                f"    if {result_name}[_bench_index]:",
+                "        actual_count = actual_count + 1",
+                "        actual_checksum = actual_checksum + _bench_index + 1",
+                "if actual_count != expected_count or actual_checksum != expected_checksum:",
+            ]
+        )
+    if expected_type == "list_tree_node_int":
+        return "\n".join(
+            [
+                "actual_result: list[str] = []",
+                f"for _bench_item in {result_name}:",
+                "    actual_result.append(treeToString(_bench_item))",
+                "actual_result.sort()",
+                "if str(actual_result) != expected_text.strip():",
+            ]
+        )
     if expected_type == "list_node_int":
         return f"actual_text: str = listNodeToString({result_name})\nif actual_text != expected_text.strip():"
     if expected_type == "tree_node_int":
@@ -792,10 +1076,12 @@ def sifr_wrong_result_expr(expected: dict[str, Any], result_name: str) -> str:
     expected_type = expected["type"]
     if expected_type in ("list_node_int", "tree_node_int"):
         return "actual_text"
-    if expected_type in ("list_str", "list_list_str", "list_list_int") and (
+    if expected_type in ("list_int", "list_str", "list_list_str", "list_list_int", "list_tree_node_int") and (
         expected.get("sort_result") or expected.get("sort_inner_lists")
     ):
         return "str(actual_result)"
+    if expected_type == "list_bool_index_checksum":
+        return "str(actual_count) + \" \" + str(actual_checksum)"
     return f"str({result_name})"
 
 def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
@@ -809,6 +1095,10 @@ def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
         return f"len({result_name})"
     if expected_type in ("list_str", "list_list_int", "list_list_str"):
         return f"len(str({result_name}))"
+    if expected_type == "list_bool_index_checksum":
+        return f"len({result_name})"
+    if expected_type == "list_tree_node_int":
+        return f"len({result_name})"
     if expected_type == "list_node_int":
         return f"len(listNodeToString({result_name}))"
     if expected_type == "tree_node_int":

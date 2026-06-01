@@ -18,24 +18,34 @@ impl Solution {
         list1: Option<Box<ListNode>>,
         list2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        match (list1, list2) {
-            (Some(list1), None) => Some(list1),
-            (None, Some(list2)) => Some(list2),
-            (None, None) => None,
-            (Some(l1), Some(l2)) => {
-                if l1.val < l2.val {
-                    return Some(Box::new(ListNode {
-                        val: l1.val,
-                        next: Solution::merge_two_lists(l1.next, Some(l2)),
-                    }));
-                } else {
-                    return Some(Box::new(ListNode {
-                        val: l2.val,
-                        next: Solution::merge_two_lists(Some(l1), l2.next),
-                    }));
-                }
+        let mut cur1 = list1.as_deref();
+        let mut cur2 = list2.as_deref();
+        let mut merged = Vec::new();
+
+        while let (Some(node1), Some(node2)) = (cur1, cur2) {
+            if node1.val < node2.val {
+                merged.push(node1.val);
+                cur1 = node1.next.as_deref();
+            } else {
+                merged.push(node2.val);
+                cur2 = node2.next.as_deref();
             }
         }
+
+        while let Some(node) = cur1 {
+            merged.push(node.val);
+            cur1 = node.next.as_deref();
+        }
+
+        while let Some(node) = cur2 {
+            merged.push(node.val);
+            cur2 = node.next.as_deref();
+        }
+
+        merged
+            .into_iter()
+            .rev()
+            .fold(None, |next, val| Some(Box::new(ListNode { val, next })))
     }
 }
 
