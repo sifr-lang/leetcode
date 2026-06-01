@@ -66,6 +66,12 @@ def _bench_copy_matrix_str(values: list[list[str]]) -> list[list[str]]:
         copied.append(copied_row)
     return copied
 
+def _bench_checksum_matrix_int(values: list[list[int]]) -> int:
+    total: int = len(values)
+    for row in values:
+        total = total + len(row)
+    return total
+
 def _build_list_node(tokens: list[str], start: int, end: int) -> ListNode | None:
     head: ListNode | None = None
     for index in range(end - 1, start - 1, -1):

@@ -25,7 +25,7 @@ def generate_input(problem_id: str, size: int) -> str:
         candidates = [((index * 3) % 11) + 1 for index in range(size)]
         return str(size) + " " + join(candidates)
     if problem_id == "0047_permutations_ii":
-        return join([index // 3 for index in range(size)])
+        return join([index // 4 for index in range(size)])
     if problem_id == "0079_word_search":
         rows = max(2, size)
         cols = max(2, size)

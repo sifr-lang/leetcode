@@ -4,7 +4,8 @@ def minWindow(s: str, t: str) -> str:
     if len(s) < len(t):
         return ""
 
-    countT, window = {}, {}
+    countT: dict[str, int] = {}
+    window: dict[str, int] = {}
     for c in t:
         prev_count = countT.get(c, 0)
         if prev_count is None:

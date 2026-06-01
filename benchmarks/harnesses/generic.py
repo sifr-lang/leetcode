@@ -286,7 +286,9 @@ def result_checksum(result: Any, expected: dict[str, Any]) -> int:
         return 1 if result else 0
     if expected_type == "list_int":
         return len(result)
-    if expected_type in ("list_str", "list_list_int", "list_list_str"):
+    if expected_type == "list_list_int":
+        return len(result) + sum(len(row) for row in result)
+    if expected_type in ("list_str", "list_list_str"):
         return len(format_sequence_result(result, expected))
     if expected_type == "list_bool_index_checksum":
         count, checksum = bool_batch_checksum(result)
@@ -539,6 +541,7 @@ def single_sifr_runner_body(function: str, runner: dict[str, Any], owned_args: s
     expected_check = sifr_expected_check(expected, "result")
     wrong_result = sifr_wrong_result_expr(expected, "result")
     checksum_expr = sifr_checksum_expr(expected_type, "loop_result")
+    release_result = "    result = []\n" if expected_type in ("list_int", "list_str", "list_list_int", "list_list_str") else ""
     return f"""
 def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
     fixture_text: str = _bench_read_required(fixture_path)
@@ -551,6 +554,7 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
         print("wrong result: " + {wrong_result})
         exit(1)
 
+{release_result}
     checksum: int = 0
     for _loop in range(0, loops):
         loop_result: {result_type} = {call}
@@ -569,6 +573,26 @@ def mutates_single_sifr_runner_body(function: str, runner: dict[str, Any]) -> st
     bindings = render_sifr_bindings(runner["input"]["bindings"])
     call = sifr_call(function, runner["call"]["args"], runner["input"]["bindings"])
     mutated_arg = runner["call"]["mutated_arg"]
+    mutated_binding = next((binding for binding in runner["input"]["bindings"] if binding["name"] == mutated_arg), None)
+    mutated_base = ""
+    loop_bindings = f"_bench_tokens = fixture_text.split()\n{bindings}"
+    loop_call = call
+    loop_result = mutated_arg
+    copy_types = {
+        "list[int]": "list[int]",
+        "list[str]": "list[str]",
+        "list[float]": "list[float]",
+        "matrix[int]": "list[list[int]]",
+        "matrix[str]": "list[list[str]]",
+    }
+    if mutated_binding is not None and mutated_binding["type"] in copy_types:
+        mutated_base_name = f"_bench_base_{mutated_arg}"
+        loop_arg_name = f"_bench_loop_{mutated_arg}"
+        mutated_base = f"\n    {mutated_base_name}: {copy_types[mutated_binding['type']]} = {sifr_copy_expr(mutated_arg, mutated_binding['type'])}"
+        loop_bindings = f"{loop_arg_name}: {copy_types[mutated_binding['type']]} = {sifr_copy_expr(mutated_base_name, mutated_binding['type'])}"
+        loop_args = [loop_arg_name if arg == mutated_arg else arg for arg in runner["call"]["args"]]
+        loop_call = sifr_call(function, loop_args, runner["input"]["bindings"])
+        loop_result = loop_arg_name
     expected = runner["expected"]
     expected_type = expected["type"]
     expected_check = sifr_expected_check(expected, mutated_arg)
@@ -581,6 +605,7 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
     _bench_tokens: list[str] = fixture_text.split()
     expected_tokens: list[str] = expected_text.split()
 {indent(bindings, 4)}
+{mutated_base}
     {call}
 {indent(expected_check, 4)}
         print("wrong result: " + {wrong_result})
@@ -588,10 +613,9 @@ def _run_benchmark(fixture_path: str, expected_path: str, loops: int) -> None:
 
     checksum: int = 0
     for _loop in range(0, loops):
-        _bench_tokens = fixture_text.split()
-{indent(bindings, 8)}
-        {call}
-        loop_result = {mutated_arg}
+{indent(loop_bindings, 8)}
+        {loop_call}
+        loop_result = {loop_result}
         checksum = checksum + {checksum_expr}
     print("OK " + str(checksum))
 
@@ -1093,7 +1117,9 @@ def sifr_checksum_expr(expected_type: str, result_name: str) -> str:
         return f"1 if {result_name} else 0"
     if expected_type == "list_int":
         return f"len({result_name})"
-    if expected_type in ("list_str", "list_list_int", "list_list_str"):
+    if expected_type == "list_list_int":
+        return f"_bench_checksum_matrix_int({result_name})"
+    if expected_type in ("list_str", "list_list_str"):
         return f"len(str({result_name}))"
     if expected_type == "list_bool_index_checksum":
         return f"len({result_name})"
