@@ -5,8 +5,8 @@ def report_script() -> str:
     return r"""
     const IMPL_LABELS = {python: 'Python', sifr: 'Sifr', nodejs: 'Node.js', node: 'Node.js', bun: 'Bun', rust: 'Rust'};
     const IMPL_SHORT_LABELS = {python: 'Py', sifr: 'Sf', nodejs: 'No', node: 'No', bun: 'Bu', rust: 'Rs'};
-    const IMPL_COLORS = {python: '#4f46e5', sifr: '#0f766e', nodejs: '#15803d', node: '#15803d', bun: '#b45309', rust: '#b91c1c'};
-    const IMPL_ORDER = {python: 0, sifr: 1, rust: 2, nodejs: 3, node: 3, bun: 4};
+    const IMPL_COLORS = {python: '#3776ab', sifr: '#a21caf', nodejs: '#3c873a', node: '#3c873a', bun: '#f4bf75', rust: '#f97316'};
+    const IMPL_ORDER = {python: 0, nodejs: 1, node: 1, sifr: 2, rust: 3, bun: 4};
     const benchmarkData = JSON.parse(document.getElementById('benchmark-data').textContent);
     const rows = benchmarkData.rows || [];
     const search = document.getElementById('problem-search');
@@ -197,7 +197,6 @@ def report_script() -> str:
       const memoryDeltas = [];
       let noisy = false;
       for (const sizes of problems.values()) {
-        if (![...sizes.values()].every(comparable)) continue;
         const summary = problemSummary(sizes, candidate, baseline);
         if (summary.medianSpeedup !== null) speedups.push(summary.medianSpeedup);
         if (summary.medianMemoryDelta !== null) memoryDeltas.push(summary.medianMemoryDelta);

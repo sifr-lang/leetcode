@@ -13,7 +13,6 @@ from report_metadata import (
     include_in_apples_to_apples_summary,
     metadata_badges,
     metadata_data_attrs,
-    metadata_summary_panel,
     metadata_styles,
 )
 from report_interactions import report_script
@@ -343,7 +342,6 @@ def category_summary(
     summaries = [
         problem_summary(sizes, candidate_impl, baseline_impl)
         for sizes in problems.values()
-        if all(include_in_apples_to_apples_summary(impls) for impls in sizes.values())
     ]
     speedups = [summary["median_speedup"] for summary in summaries if summary["median_speedup"] is not None]
     memory = [summary["median_memory_delta"] for summary in summaries if summary["median_memory_delta"] is not None]
@@ -553,6 +551,131 @@ def dual_line_chart(
     {note}
     """
 
+def category_language_metric_table(rows: list[dict[str, Any]], key: str) -> tuple[list[str], list[str], dict[str, dict[str, float]]]:
+    categories = list(dict.fromkeys(row["category"] for row in rows))
+    impl_names = sorted_impls({row["impl"]: row for row in rows})
+    grouped_values: dict[str, dict[str, list[float]]] = {
+        category: {impl: [] for impl in impl_names} for category in categories
+    }
+    for row in rows:
+        value = row.get(key)
+        if value is not None and value > 0:
+            grouped_values[row["category"]][row["impl"]].append(float(value))
+    metrics = {
+        category: {
+            impl: statistics.median(values)
+            for impl, values in impl_values.items()
+            if values
+        }
+        for category, impl_values in grouped_values.items()
+    }
+    return categories, impl_names, metrics
+
+def short_category_label(category: str) -> str:
+    return category.replace(" & ", " / ")
+
+def category_language_bar_chart(
+    rows: list[dict[str, Any]],
+    *,
+    key: str,
+    title: str,
+    y_axis_title: str,
+    formatter: Any,
+    log_y: bool,
+) -> str:
+    categories, impl_names, metrics = category_language_metric_table(rows, key)
+    values = [
+        value
+        for category_values in metrics.values()
+        for value in category_values.values()
+        if value > 0
+    ]
+    if not values:
+        return '<span class="empty-chart">n/a</span>'
+
+    width = max(1040, 150 + (len(categories) * max(74, len(impl_names) * 18 + 34)))
+    height = 430
+    left = 92
+    right = 28
+    top = 30
+    bottom = 126
+    plot_width = width - left - right
+    plot_height = height - top - bottom
+    y_ticks, normalize_y = y_scale(values, log_scale=log_y)
+
+    def y_pos(value: float) -> float:
+        return top + plot_height - (normalize_y(value) * plot_height)
+
+    grid = []
+    for tick in y_ticks:
+        y = y_pos(tick)
+        grid.append(f'<line x1="{left}" y1="{y:.1f}" x2="{width - right}" y2="{y:.1f}"></line>')
+        grid.append(
+            f'<text class="axis-label" x="{left - 10}" y="{y + 4:.1f}" text-anchor="end">{formatter(tick)}</text>'
+        )
+
+    group_width = plot_width / max(len(categories), 1)
+    bar_gap = 2.0
+    bar_width = max(7.0, min(16.0, (group_width - 18.0 - (bar_gap * (len(impl_names) - 1))) / max(len(impl_names), 1)))
+    total_bar_width = (bar_width * len(impl_names)) + (bar_gap * max(len(impl_names) - 1, 0))
+    bars = []
+    labels = []
+    for category_index, category in enumerate(categories):
+        group_center = left + (category_index * group_width) + (group_width / 2)
+        labels.append(
+            f'<text class="axis-label category-axis-label" transform="translate({group_center:.1f} {height - 72}) rotate(-35)" text-anchor="end">{escape(short_category_label(category))}</text>'
+        )
+        for impl_index, impl in enumerate(impl_names):
+            value = metrics.get(category, {}).get(impl)
+            if value is None:
+                continue
+            x = group_center - (total_bar_width / 2) + (impl_index * (bar_width + bar_gap))
+            y = y_pos(value)
+            bar_height = top + plot_height - y
+            color = IMPL_COLORS.get(impl, "#475467")
+            bars.append(
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_width:.1f}" height="{bar_height:.1f}" rx="2" style="fill: {color}"><title>{escape(category)} · {impl_label(impl)}: {formatter(value)}</title></rect>'
+            )
+
+    legend_items = []
+    legend_x = left
+    for index, impl in enumerate(impl_names):
+        x = legend_x + (index * 92)
+        color = IMPL_COLORS.get(impl, "#475467")
+        legend_items.append(
+            f'<circle class="legend-dot" style="--impl-color: {color}" cx="{x}" cy="{height - 24}" r="4"></circle><text x="{x + 10}" y="{height - 20}">{impl_label(impl)}</text>'
+        )
+
+    return f"""
+    <svg class="axis-chart category-bar-chart" viewBox="0 0 {width} {height}" role="img" aria-label="{escape(title)}">
+      <g class="grid">{''.join(grid)}</g>
+      <line class="axis" x1="{left}" y1="{top}" x2="{left}" y2="{height - bottom}"></line>
+      <line class="axis" x1="{left}" y1="{height - bottom}" x2="{width - right}" y2="{height - bottom}"></line>
+      <g class="category-bars">{''.join(bars)}</g>
+      {''.join(labels)}
+      <g class="chart-legend category-chart-legend">{''.join(legend_items)}</g>
+      <text class="axis-title" x="{left + plot_width / 2:.1f}" y="{height - 8}" text-anchor="middle">Category</text>
+      <text class="axis-title" transform="rotate(-90 20 {top + plot_height / 2:.1f})" x="20" y="{top + plot_height / 2:.1f}" text-anchor="middle">{escape(y_axis_title)}</text>
+    </svg>
+    """
+
+def category_language_overview(rows: list[dict[str, Any]]) -> str:
+    return f"""
+    <section class="meta-panel category-language-panel">
+      <p class="eyebrow">Category Comparison</p>
+      <div class="visual-grid category-language-grid">
+        <div class="chart-card category-language-card">
+          <div><span>Runtime by category and language</span><strong>Median mean runtime</strong></div>
+          <div class="category-matrix-plot">{category_language_bar_chart(rows, key="mean_ms", title="Runtime by category and language", y_axis_title="Mean runtime (log scale)", formatter=format_axis_ms, log_y=True)}</div>
+        </div>
+        <div class="chart-card category-language-card">
+          <div><span>Memory by category and language</span><strong>Median peak RSS</strong></div>
+          <div class="category-matrix-plot">{category_language_bar_chart(rows, key="peak_memory_mb", title="Memory by category and language", y_axis_title="Peak RSS (log scale)", formatter=format_axis_memory, log_y=True)}</div>
+        </div>
+      </div>
+    </section>
+    """
+
 def memory_delta_badge(
     delta: float | None,
     candidate_impl: str = DEFAULT_CANDIDATE_IMPL,
@@ -745,8 +868,8 @@ def render_html_report(
   <style>
     :root {{
       --bg: #f6f7f9; --panel: #fff; --ink: #151923; --muted: #667085;
-      --line: #dfe4eb; --teal: #0f766e; --blue: #2563eb; --indigo: #4f46e5; --green: #15803d;
-      --amber: #b45309; --red: #b91c1c; --soft: #f9fafb;
+      --line: #dfe4eb; --teal: #a21caf; --blue: #3776ab; --indigo: #3776ab; --green: #3c873a;
+      --rust: #f97316; --amber: #b45309; --red: #b91c1c; --soft: #f9fafb;
       --shadow: 0 18px 50px rgba(20, 26, 39, .08);
     }}
     * {{ box-sizing: border-box; }}
@@ -783,7 +906,7 @@ def render_html_report(
     .metadata-row {{ display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }}
     .value-bars {{ display: grid; gap: 4px; }} .value-row {{ display: grid; grid-template-columns: 48px minmax(120px, 1fr) minmax(78px, auto); align-items: center; gap: 8px; font-size: 12px; }}
     .value-row span {{ color: var(--muted); font-weight: 700; text-align: right; }} .value-row strong {{ color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }} .value-row i {{ height: 8px; background: #e8edf4; border-radius: 999px; overflow: hidden; }} .value-row b {{ display: block; height: 100%; border-radius: inherit; }}
-    .value-row.python b {{ background: var(--indigo); }} .value-row.sifr b {{ background: var(--teal); }} .value-row.rust b {{ background: var(--red); }} .value-row.nodejs b {{ background: var(--green); }}
+    .value-row.python b {{ background: var(--blue); }} .value-row.sifr b {{ background: var(--teal); }} .value-row.rust b {{ background: var(--rust); }} .value-row.nodejs b {{ background: var(--green); }}
     .problem-grid {{ display: grid; gap: 12px; padding: 16px 22px; }} .problem-card {{ background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }} .problem-card[hidden] {{ display: none; }}
     .problem-card > summary::-webkit-details-marker {{ display: none; }} .problem-card[open] {{ box-shadow: 0 10px 28px rgba(20, 26, 39, .06); }} .problem-body {{ border-top: 1px solid var(--line); }}
     .problem-heading {{ list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 18px; }}
@@ -827,6 +950,12 @@ def render_html_report(
     .diagnostics dl {{ display: grid; grid-template-columns: auto 1fr; gap: 5px 12px; margin: 0; }} .diagnostics dt {{ color: var(--muted); }} .diagnostics dd {{ margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }} .impl-dot {{ width: 9px; height: 9px; border-radius: 50%; background: var(--impl-color); }}
     .variance-dot {{ width: 10px; height: 10px; display: inline-block; border-radius: 50%; margin-right: 7px; background: var(--green); }} .variance-dot.noisy {{ background: var(--amber); }} .empty-chart {{ color: var(--muted); }}
     .meta-panel {{ margin-top: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; }}
+    .category-language-grid {{ grid-template-columns: 1fr; padding: 0; }}
+    .category-language-card {{ background: var(--soft); min-height: 500px; }}
+    .category-matrix-plot {{ overflow-x: auto; padding-bottom: 4px; }}
+    .category-language-card .axis-chart {{ height: 430px; min-width: 1040px; }}
+    .category-axis-label {{ font-size: 10px; }}
+    .category-chart-legend text {{ font-weight: 800; fill: var(--muted); }}
     .meta-grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; }} .meta-grid div {{ display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }}
     .footnote {{ color: var(--muted); margin: 14px 0 0; font-size: 12px; max-width: 940px; }}
     .meta-grid span {{ color: var(--muted); }} footer {{ color: var(--muted); margin-top: 22px; font-size: 12px; }}
@@ -875,7 +1004,7 @@ def render_html_report(
         <label><input id="stable-only" type="checkbox"> stable only</label>
       </div>
     </section>
-    {metadata_summary_panel(specs, results_dir)}
+    {category_language_overview(rows)}
     {''.join(sections)}
     <section class="meta-panel">
       <p class="eyebrow">Run Environment</p>
