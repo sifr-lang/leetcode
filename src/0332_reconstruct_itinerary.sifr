@@ -8,22 +8,31 @@ def findItinerary(tickets: list[tuple[str, str]]) -> list[str]:
     for ticket in ordered:
         src = ticket[0]
         dst = ticket[1]
-        values = adj.get(src, [])
-        values.append(dst)
-        adj[src] = values
+        if src not in adj:
+            adj[src] = []
+        if src in adj:
+            adj[src].append(dst)
 
     route: list[str] = []
+    positions: dict[str, int] = {}
     stack: list[str] = ['JFK']
     while stack:
         src = stack.pop()
-        values = adj.get(src, [])
-        if len(values) == 0:
+        if src not in adj:
+            route.append(src)
+            continue
+        pos = positions.get(src, 0)
+        if pos is None:
+            pos = 0
+        if pos >= len(adj[src]):
             route.append(src)
             continue
         stack.append(str(src))
-        next_stop = values[0]
-        adj[src] = values[1:]
-        stack.append(str(next_stop))
+        if src in adj:
+            next_stop = adj[src][pos]
+            positions[src] = pos + 1
+            if next_stop is not None:
+                stack.append(str(next_stop))
 
     route.reverse()
     if len(route) != len(tickets) + 1:

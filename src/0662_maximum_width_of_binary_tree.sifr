@@ -22,10 +22,7 @@ def widthOfBinaryTree(own root: TreeNode | None) -> int:
         next_idx: list[int] = []
         for i in range(len(q_nodes)):
             node = q_nodes[i]
-            index = q_idx[i]
-            if node is None or index is None:
-                continue
-            index_value = expectInt(index)
+            index_value = expectInt(q_idx[i])
             left: TreeNode | None = node.left
             if left is not None:
                 next_nodes.append(left)

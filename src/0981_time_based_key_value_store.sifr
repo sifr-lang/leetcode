@@ -19,13 +19,14 @@ class TimeMap:
             self.keyStore[key].append((value, timestamp))
 
     def get(self, key: str, timestamp: int) -> str:
+        if key not in self.keyStore:
+            return ""
         res = ""
-        values = self.keyStore.get(key, [])
         l = 0
-        r = len(values) - 1
+        r = len(self.keyStore[key]) - 1
         while l <= r:
             m = (l + r) // 2
-            pair = values[m]
+            pair = self.keyStore[key][m]
             if pair is not None:
                 if pair[1] <= timestamp:
                     res = pair[0]
