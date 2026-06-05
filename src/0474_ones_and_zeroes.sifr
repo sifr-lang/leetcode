@@ -1,5 +1,7 @@
 # LeetCode 474: Ones And Zeroes
 
+from sifr.collections import defaultdict
+
 def findMaxForm(strs: list[str], M: int, N: int) -> int:
     # Dynamic Programming
     dp = defaultdict(int)

@@ -1,14 +1,17 @@
 # LeetCode 350: Intersection Of Two Arrays Ii
 
+from sifr.collections import defaultdict
+
 def intersect(nums1: list[int], nums2: list[int]) -> list[int]:
-    counter1 = Counter(nums1)
-    counter2 = Counter(nums2)
+    counter1 = defaultdict(int)
+    counter2 = defaultdict(int)
 
-    # Using defaultdict to handle missing keys more efficiently
-    counter1 = defaultdict(int, counter1)
-    counter2 = defaultdict(int, counter2)
+    for num in nums1:
+        counter1[num] += 1
+    for num in nums2:
+        counter2[num] += 1
 
-    intersection = []
+    intersection: list[int] = []
 
     for num, freq in counter1.items():
         min_freq = min(freq, counter2[num])

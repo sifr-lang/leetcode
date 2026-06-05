@@ -1,8 +1,14 @@
 # LeetCode 383: Ransom Note
 
+from sifr.collections import defaultdict
+
 def canConstruct(ransomNote: str, magazine: str) -> bool:
-    r_counter = Counter(ransomNote)
-    m_counter = Counter(magazine)
+    r_counter = defaultdict(int)
+    m_counter = defaultdict(int)
+    for c in ransomNote:
+        r_counter[c] += 1
+    for c in magazine:
+        m_counter[c] += 1
     # magazine contains (>=) ransomNote
     for c in ransomNote:
         if m_counter[c] < r_counter[c]:
@@ -12,5 +18,3 @@ def canConstruct(ransomNote: str, magazine: str) -> bool:
 def main():
     assert str(canConstruct("a", "b")) == 'false'
     assert str(canConstruct("aa", "aab")) == 'true'
-
-

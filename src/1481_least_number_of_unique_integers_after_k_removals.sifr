@@ -1,13 +1,17 @@
 # LeetCode 1481: Least Number Of Unique Integers After K Removals
 
+from sifr.collections import defaultdict
+
 def _nz_int(value: int | None) -> int:
     if value is None:
         return 0
     return value
 
 def findLeastNumOfUniqueInts(arr: list[int], mut k: int) -> int:
-    freq = Counter(arr)
-    counts = []
+    freq = defaultdict(int)
+    for item in arr:
+        freq[item] += 1
+    counts: list[int] = []
     for value in freq.values():
         counts.append(_nz_int(value))
     counts.sort()
