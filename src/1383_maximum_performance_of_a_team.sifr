@@ -1,6 +1,7 @@
 # LeetCode 1383: Maximum Performance Of A Team
 
 from helpers.safe_math import mod_or_zero
+from sifr.heapq import heappop, heappush
 
 def unwrapInt(value: int | None) -> int:
     if value is None:
@@ -23,10 +24,10 @@ def maxPerformance(n: int, speed: list[int], efficiency: list[int], k: int) -> i
         eff = unwrapInt(pair[0])
         spd = unwrapInt(pair[1])
         if len(minHeap) == k:
-            popped = heapq.heappop(minHeap)
+            popped = heappop(minHeap)
             speed_sum -= unwrapInt(popped)
         speed_sum += spd
-        heapq.heappush(minHeap, spd)
+        heappush(minHeap, spd)
         res = max(res, eff * speed_sum)
     return mod_or_zero(res, mod)
 

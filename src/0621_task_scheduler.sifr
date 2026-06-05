@@ -1,12 +1,16 @@
 # LeetCode 621: Task Scheduler
 
+from sifr.collections import defaultdict
+
 def _nz_int(value: int | None) -> int:
     if value is None:
         return 0
     return value
 
 def leastInterval(tasks: list[str], n: int) -> int:
-    count = Counter(tasks)
+    count = defaultdict(int)
+    for task in tasks:
+        count[task] += 1
     max_freq = 0
     max_count = 0
     for freq in count.values():

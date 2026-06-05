@@ -20,15 +20,17 @@ def deleteNode(own mut root: TreeNode | None, key: int) -> TreeNode | None:
         return root
 
     left_child: TreeNode | None = root.left
+    right_child: TreeNode | None = root.right
     if left_child is None:
-        return root.right
+        return right_child
 
-    if root.right is None:
+    if right_child is None:
         return left_child
 
-    successor_value = minValue(root.right)
+    successor_value = minValue(right_child)
     root.val = successor_value
-    root.right = deleteNode(root.right, successor_value)
+    root.left = left_child
+    root.right = deleteNode(right_child, successor_value)
     return root
 
 def main():

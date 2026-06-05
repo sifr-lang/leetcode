@@ -11,10 +11,9 @@ def minSwaps(s: str) -> int:
 
         maxClose = max(maxClose, extraClose)
 
-    return (maxClose + 1) // 2  # Or math.ceil(maxClose / 2)
+    return (maxClose + 1) // 2  # Equivalent to ceiling division by 2.
 
 def main():
     assert str(minSwaps("][][")) == '1'
     assert str(minSwaps("[][][]")) == '0'
-
 

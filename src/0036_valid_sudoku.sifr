@@ -1,5 +1,7 @@
 # LeetCode 36: Valid Sudoku
 
+from sifr.collections import defaultdict
+
 def cellAt(board: list[list[str]], r: int, c: int) -> str:
     value = board[r][c]
     if value is None:
@@ -7,9 +9,9 @@ def cellAt(board: list[list[str]], r: int, c: int) -> str:
     return value
 
 def isValidSudoku(board: list[list[str]]) -> bool:
-    cols = collections.defaultdict(set)
-    rows = collections.defaultdict(set)
-    squares = collections.defaultdict(set)  # key = (r /3, c /3)
+    cols = defaultdict(set)
+    rows = defaultdict(set)
+    squares = defaultdict(set)  # key = (r /3, c /3)
 
     for r in range(9):
         for c in range(9):

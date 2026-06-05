@@ -1,12 +1,16 @@
 # LeetCode 767: Reorganize String
 
+from sifr.collections import defaultdict
+
 def _nz_int(value: int | None) -> int:
     if value is None:
         return 0
     return value
 
 def reorganizeString(s: str) -> str:
-    count = Counter(s)
+    count = defaultdict(int)
+    for c in s:
+        count[c] += 1
     n = len(s)
     max_char = ""
     max_freq = 0

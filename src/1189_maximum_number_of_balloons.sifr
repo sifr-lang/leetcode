@@ -1,12 +1,16 @@
 # LeetCode 1189: Maximum Number Of Balloons
 
+from sifr.collections import defaultdict
+
 def _nz_int(value: int | None) -> int:
     if value is None:
         return 0
     return value
 
 def maxNumberOfBalloons(text: str) -> int:
-    countText = Counter(text)
+    countText = defaultdict(int)
+    for c in text:
+        countText[c] += 1
     b = _nz_int(countText["b"])
     a = _nz_int(countText["a"])
     l = _nz_int(countText["l"]) // 2
