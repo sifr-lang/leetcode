@@ -129,7 +129,7 @@ def build_sifr_runner(spec: ProblemSpec) -> Path:
         sys.stderr.write(result.stdout)
         sys.stderr.write(result.stderr)
         raise SystemExit(result.returncode)
-    binary = parse_compiled_binary(result.stderr) or default_sifr_binary(output_dir)
+    binary = default_sifr_binary(output_dir)
     if not binary.exists():
         candidates = executable_files(output_dir)
         if len(candidates) == 1:
@@ -168,12 +168,6 @@ def executable_files(directory: Path) -> list[Path]:
         for path in directory.rglob("*")
         if path.is_file() and path.stat().st_mode & 0o111
     )
-
-def parse_compiled_binary(stderr: str) -> Path | None:
-    match = re.search(r"compiled successfully:\s+(.+)", stderr)
-    if not match:
-        return None
-    return Path(match.group(1).strip())
 
 def sifr_command(args: list[str]) -> list[str]:
     env_bin = Path(value) if (value := os_environ_get("SIFR_BIN")) else None
