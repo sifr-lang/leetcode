@@ -47,7 +47,7 @@ def cloneList(node: ListNode | None) -> ListNode | None:
 
 def getIntersectionNode(own headA: ListNode | None, own headB: ListNode | None) -> ListNode | None:
     # Sifr cannot share the same owned tail between two list heads here, so the
-    # fixture uses stable node ids to model the Python identity-based contract.
+    # fixture uses stable node ids to model the Python identity-based rules.
     if not hasNode(headA) or not hasNode(headB):
         return None
 

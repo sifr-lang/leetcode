@@ -67,7 +67,7 @@ def build_inventory(
                 "failure_mode": detail["failure_mode"],
                 "failure_excerpt": failure_excerpt(problem_id, raw_dir),
                 "first_fix": detail["first_fix"],
-                "related_slowness_phase": problem_id in SLOWNESS_SEED,
+                "has_slowness_seed_entry": problem_id in SLOWNESS_SEED,
             }
         )
     return {
