@@ -45,7 +45,8 @@ class LRUCache:
 
     def moveToFront(self, node: int) -> None:
         self.detach(node)
-        self.insertAfter(node, self.head)
+        head = self.head
+        self.insertAfter(node, head)
 
     def evictLru(self) -> None:
         node_opt: int | None = self.prev[self.tail]
@@ -91,7 +92,8 @@ class LRUCache:
         self.key_to_node[key] = node
         self.node_key[node] = key
         self.node_value[node] = value
-        self.insertAfter(node, self.head)
+        head = self.head
+        self.insertAfter(node, head)
 
 def main():
     obj = LRUCache(2)
