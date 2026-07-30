@@ -5,7 +5,7 @@ def unwrapInt(value: int | None) -> int:
     if value is None:
         return 0
     return value
-def partition(mut head: ListNode | None, x: int) -> ListNode | None:
+def partition(own mut head: ListNode | None, x: int) -> ListNode | None:
     less_vals: list[int] = []
     bigger_vals: list[int] = []
     while hasNode(head):
