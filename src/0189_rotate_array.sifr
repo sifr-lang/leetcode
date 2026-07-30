@@ -19,9 +19,10 @@ def rotate(mut nums: list[int], k: int) -> None:
     rot = k
     while rot >= len(nums):
         rot -= len(nums)
-    _reverse_range(nums, 0, len(nums) - 1)
+    nums_len = len(nums)
+    _reverse_range(nums, 0, nums_len - 1)
     _reverse_range(nums, 0, rot - 1)
-    _reverse_range(nums, rot, len(nums) - 1)
+    _reverse_range(nums, rot, nums_len - 1)
 
 def main():
     arg0 = [1, 2, 3, 4, 5, 6, 7]
