@@ -5,7 +5,7 @@ def unwrapInt(value: int | None) -> int:
     if value is None:
         return 0
     return value
-def addTwoNumbers(mut l1: ListNode | None, mut l2: ListNode | None) -> ListNode:
+def addTwoNumbers(own mut l1: ListNode | None, own mut l2: ListNode | None) -> ListNode:
     digits: list[int] = []
     carry = 0
     while hasNode(l1) or hasNode(l2) or carry != 0:
