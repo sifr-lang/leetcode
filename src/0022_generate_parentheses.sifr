@@ -2,7 +2,7 @@
 
 def generateParenthesis(n: int) -> list[str]:
     stack = []
-    res = []
+    res: list[str] = []
 
     def backtrack(openN, closedN):
         if openN == closedN == n:
@@ -23,5 +23,4 @@ def generateParenthesis(n: int) -> list[str]:
 
 def main():
     assert str(generateParenthesis(3)) == '["((()))", "(()())", "(())()", "()(())", "()()()"]'
-
 
