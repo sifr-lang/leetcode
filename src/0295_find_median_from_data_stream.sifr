@@ -9,7 +9,7 @@ class MedianFinder:
         self.small = []
         self.large = []
 
-    def addNum(self, num: int) -> None:
+    def addNum(mut self, num: int) -> None:
         large_top: int | None = self.large[0]
         if large_top is not None and num > large_top:
             heappush(self.large, num)
