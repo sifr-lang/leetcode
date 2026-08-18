@@ -24,7 +24,7 @@ class MyHashMap:
             return index + size
         return index
 
-    def put(self, key: int, value: int) -> None:
+    def put(mut self, key: int, value: int) -> None:
         index = self.hashcode(key)
         bucket: list[tuple[int, int]] | None = self.buckets[index]
         if bucket is None:
@@ -54,7 +54,7 @@ class MyHashMap:
                 return existing_value
         return -1
 
-    def remove(self, key: int) -> None:
+    def remove(mut self, key: int) -> None:
         index = self.hashcode(key)
         bucket: list[tuple[int, int]] | None = self.buckets[index]
         if bucket is None:

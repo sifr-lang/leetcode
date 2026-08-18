@@ -6,7 +6,7 @@ class Trie:
         self._children = [[]]
         self._terminal = [False]
 
-    def insert(self, word: str) -> None:
+    def insert(mut self, word: str) -> None:
         node: int = 0
         children: list[list[tuple[str, int]]] = self._children
         terminal: list[bool] = self._terminal

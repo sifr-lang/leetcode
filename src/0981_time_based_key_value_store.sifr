@@ -12,7 +12,7 @@ class TimeMap:
     def __init__(self):
         self.keyStore = {}
 
-    def set(self, key: str, value: str, timestamp: int) -> None:
+    def set(mut self, key: str, value: str, timestamp: int) -> None:
         if key not in self.keyStore:
             self.keyStore[key] = []
         if key in self.keyStore:

@@ -24,7 +24,7 @@ class LRUCache:
         self.prev = {1: 0}
         self.next = {0: 1}
 
-    def detach(self, node: int) -> None:
+    def detach(mut self, node: int) -> None:
         left: int | None = self.prev[node]
         right: int | None = self.next[node]
         if left is None or right is None:
@@ -34,7 +34,7 @@ class LRUCache:
         del self.prev[node]
         del self.next[node]
 
-    def insertAfter(self, node: int, left: int) -> None:
+    def insertAfter(mut self, node: int, left: int) -> None:
         right: int | None = self.next[left]
         if right is None:
             return
@@ -43,12 +43,12 @@ class LRUCache:
         self.next[left] = node
         self.prev[right] = node
 
-    def moveToFront(self, node: int) -> None:
+    def moveToFront(mut self, node: int) -> None:
         self.detach(node)
         head = self.head
         self.insertAfter(node, head)
 
-    def evictLru(self) -> None:
+    def evictLru(mut self) -> None:
         node_opt: int | None = self.prev[self.tail]
         if node_opt is None:
             return
@@ -63,7 +63,7 @@ class LRUCache:
         del self.node_value[node]
         self.detach(node)
 
-    def get(self, key: int) -> int:
+    def get(mut self, key: int) -> int:
         node: int | None = self.key_to_node[key]
         if node is None:
             return -1
@@ -74,7 +74,7 @@ class LRUCache:
         self.moveToFront(node)
         return value
 
-    def put(self, key: int, value: int) -> None:
+    def put(mut self, key: int, value: int) -> None:
         if self.cap <= 0:
             return
 

@@ -8,7 +8,7 @@ class Codec:
         self.encodeMap = {}
         self.decodeMap = {}
         self.base = "http://tinyurl.com/"
-    def encode(self, longUrl: str) -> str:
+    def encode(mut self, longUrl: str) -> str:
         encoded = self.encodeMap.get(longUrl, "")
         if encoded != "":
             return encoded

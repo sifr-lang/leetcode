@@ -29,7 +29,7 @@ class WordTrie:
         self.terminal = [False]
         self.refs = [0]
 
-    def insert(self, word: str) -> None:
+    def insert(mut self, word: str) -> None:
         node = 0
         current_refs = _int_at(self.refs, node)
         self.refs[node] = current_refs + 1
@@ -47,7 +47,7 @@ class WordTrie:
 
         self.terminal[node] = True
 
-    def removeWord(self, word: str) -> None:
+    def removeWord(mut self, word: str) -> None:
         node = 0
         current_refs = _int_at(self.refs, node)
         self.refs[node] = current_refs - 1
@@ -68,7 +68,7 @@ class WordTrie:
     def isWord(self, node: int) -> bool:
         return _bool_at(self.terminal, node)
 
-    def clearWord(self, node: int) -> None:
+    def clearWord(mut self, node: int) -> None:
         self.terminal[node] = False
 
 def boardChar(board: list[list[str]], r: int, c: int) -> str | None:

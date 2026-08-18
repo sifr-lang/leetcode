@@ -16,7 +16,7 @@ class StockSpanner:
         self.prices = []
         self.spans = []
 
-    def next(self, price: int) -> int:
+    def next(mut self, price: int) -> int:
         span = 1
         while len(self.prices) > 0 and _last_int(self.prices) <= price:
             span += _last_int(self.spans)

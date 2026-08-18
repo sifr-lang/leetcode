@@ -18,7 +18,7 @@ class Twitter:
         self.tweetMap = {}
         self.followMap = {}
 
-    def postTweet(self, userId: int, tweetId: int) -> None:
+    def postTweet(mut self, userId: int, tweetId: int) -> None:
         if userId not in self.tweetMap:
             self.tweetMap[userId] = []
         if userId in self.tweetMap:
@@ -30,7 +30,7 @@ class Twitter:
             return unwrapTweet(self.tweetMap[userId][index])
         return (0, 0)
 
-    def getNewsFeed(self, userId: int) -> list[int]:
+    def getNewsFeed(mut self, userId: int) -> list[int]:
         user_follows = self.followMap.get(userId, set())
         user_follows.add(userId)
         self.followMap[userId] = user_follows
@@ -67,13 +67,13 @@ class Twitter:
 
         return res
 
-    def follow(self, followerId: int, followeeId: int) -> None:
+    def follow(mut self, followerId: int, followeeId: int) -> None:
         user_follows = self.followMap.get(followerId, set())
         if followeeId not in user_follows:
             user_follows.add(followeeId)
             self.followMap[followerId] = user_follows
 
-    def unfollow(self, followerId: int, followeeId: int) -> None:
+    def unfollow(mut self, followerId: int, followeeId: int) -> None:
         follows = self.followMap.get(followerId, set())
         if followeeId in follows:
             follows.remove(followeeId)
