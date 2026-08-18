@@ -14,13 +14,13 @@ class MyLinkedList:
             return -1
         return value
 
-    def addAtHead(self, val: int) -> None:
+    def addAtHead(mut self, val: int) -> None:
         self.values.insert(0, val)
 
-    def addAtTail(self, val: int) -> None:
+    def addAtTail(mut self, val: int) -> None:
         self.values.append(val)
 
-    def addAtIndex(self, index: int, val: int) -> None:
+    def addAtIndex(mut self, index: int, val: int) -> None:
         idx = index
         if idx < 0:
             idx = 0
@@ -28,7 +28,7 @@ class MyLinkedList:
             return
         self.values.insert(idx, val)
 
-    def deleteAtIndex(self, index: int) -> None:
+    def deleteAtIndex(mut self, index: int) -> None:
         if index < 0 or index >= len(self.values):
             return
         self.values.pop(index)

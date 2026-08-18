@@ -21,7 +21,7 @@ class Trie:
         self.edges = [{}]
         self.end = [False]
 
-    def insert(self, word: str) -> None:
+    def insert(mut self, word: str) -> None:
         node = 0
         for ch in word:
             next_node = _child(self.edges, node, ch)

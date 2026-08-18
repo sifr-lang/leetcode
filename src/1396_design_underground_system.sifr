@@ -8,10 +8,10 @@ class UndergroundSystem:
         self.customer = {}
         self.time = {}
 
-    def checkIn(self, id: int, stationName: str, t: int) -> None:
+    def checkIn(mut self, id: int, stationName: str, t: int) -> None:
         self.customer[id] = (str(stationName), t)
 
-    def checkOut(self, id: int, stationName: str, t: int) -> None:
+    def checkOut(mut self, id: int, stationName: str, t: int) -> None:
         customer = self.customer.get(id, ("", 0))
         startStation = customer[0]
         startTime = customer[1]

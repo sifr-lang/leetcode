@@ -42,7 +42,7 @@ class WordDictionary:
         self.edges = [{}]
         self.end = [False]
 
-    def addWord(self, word: str) -> None:
+    def addWord(mut self, word: str) -> None:
         node = 0
         for ch in word:
             next_node = _child(self.edges, node, ch)

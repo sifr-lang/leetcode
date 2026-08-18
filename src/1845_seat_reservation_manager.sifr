@@ -10,7 +10,7 @@ class SeatManager:
         self.limit = n
         self.available = []
 
-    def reserve(self) -> int:
+    def reserve(mut self) -> int:
         if len(self.available) > 0:
             self.available.sort()
             seat = self.available[0]
@@ -24,7 +24,7 @@ class SeatManager:
         self.nextSeat += 1
         return seat
 
-    def unreserve(self, seatNumber: int) -> None:
+    def unreserve(mut self, seatNumber: int) -> None:
         if seatNumber not in self.available:
             self.available.append(seatNumber)
 

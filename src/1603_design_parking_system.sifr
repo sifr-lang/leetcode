@@ -6,7 +6,7 @@ class ParkingSystem:
         self.medium = medium
         self.small = small
 
-    def addCar(self, carType: int) -> bool:
+    def addCar(mut self, carType: int) -> bool:
         if carType == 1:
             if self.big > 0:
                 self.big -= 1

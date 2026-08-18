@@ -7,7 +7,7 @@ class MinStack:
     def __init__(self):
         self.stack = []
         self.minStack = []
-    def push(self, val: int) -> None:
+    def push(mut self, val: int) -> None:
         self.stack.append(val)
         if len(self.minStack) > 0:
             prev = self.minStack[-1]
@@ -17,7 +17,7 @@ class MinStack:
                 self.minStack.append(min(val, prev))
         else:
             self.minStack.append(val)
-    def pop(self) -> None:
+    def pop(mut self) -> None:
         if len(self.stack) > 0:
             self.stack.pop()
         if len(self.minStack) > 0:

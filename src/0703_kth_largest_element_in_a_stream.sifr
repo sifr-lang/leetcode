@@ -13,7 +13,7 @@ class KthLargest:
             heappop(heap)
         self.minHeap = heap
 
-    def add(self, val: int) -> int:
+    def add(mut self, val: int) -> int:
         heap: list[int] = self.minHeap
         heappush(heap, val)
         if len(heap) > self.k:

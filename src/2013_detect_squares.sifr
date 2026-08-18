@@ -11,7 +11,7 @@ class DetectSquares:
     def _key(self, x: int, y: int) -> str:
         return str(x) + '#' + str(y)
 
-    def add(self, point: tuple[int, int]) -> None:
+    def add(mut self, point: tuple[int, int]) -> None:
         x, y = point
         key = self._key(x, y)
         self.ptsCount[key] = self.ptsCount.get(key, 0) + 1

@@ -20,7 +20,7 @@ class MyCircularQueue:
         self.size = 0
         self.capacity = k
 
-    def enQueue(self, value: int) -> bool:
+    def enQueue(mut self, value: int) -> bool:
         if self.isFull():
             return False
         tail = mod_or_zero(self.head + self.size, self.capacity)
@@ -28,7 +28,7 @@ class MyCircularQueue:
         self.size += 1
         return True
 
-    def deQueue(self) -> bool:
+    def deQueue(mut self) -> bool:
         if self.isEmpty():
             return False
         self.head = mod_or_zero(self.head + 1, self.capacity)
