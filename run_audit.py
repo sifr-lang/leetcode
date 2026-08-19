@@ -380,11 +380,10 @@ def main():
             func_name, tests = TEST_CASES[n]
             sifr_content += "def main():\n"
             for args, expected in tests:
-                sifr_content += f"    print({func_name}({args}))\n"
-            sifr_content += "\n"
-            for args, expected in tests:
                 sifr_expected = expected.replace("True", "true").replace("False", "false")
-                sifr_content += f"# expect-stdout: {sifr_expected}\n"
+                sifr_content += (
+                    f"    assert str({func_name}({args})) == {json.dumps(sifr_expected)}\n"
+                )
         else:
             sifr_content += "def main():\n"
             sifr_content += "    placeholder = 0\n"
