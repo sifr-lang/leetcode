@@ -147,7 +147,7 @@ def build_rust_runner(spec: ProblemSpec) -> Path:
     output_dir = BIN_DIR / "rust"
     output_dir.mkdir(parents=True, exist_ok=True)
     binary = output_dir / f"{spec.problem_id}_rust"
-    cmd = ["rustc", "--edition=2021", "-O", str(runner_path), "-o", str(binary)]
+    cmd = ["rustc", "--edition=2024", "-O", str(runner_path), "-o", str(binary)]
     start = time.perf_counter()
     result = subprocess.run(cmd, cwd=REPO_ROOT, text=True, capture_output=True)
     elapsed = time.perf_counter() - start
