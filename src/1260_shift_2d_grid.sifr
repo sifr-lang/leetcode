@@ -26,7 +26,12 @@ def shiftGrid(grid: list[list[int]], k: int) -> Result[list[list[int]], Error]:
                 pos = valToPos(newVal)
                 newR = pos[0]
                 newC = pos[1]
-                res[newR][newC] = grid[r][c]
+                if newR is None or newC is None:
+                    raise IndexError("shift position is missing")
+                value = grid[r][c]
+                if value is None:
+                    raise IndexError("grid cell is missing")
+                res[newR][newC] = value
         return res
     except Error as error:
         raise error
