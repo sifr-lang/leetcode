@@ -18,8 +18,8 @@ def _dp(m: int, s: str, first: list[int], last: list[int], mut memo: list[int]) 
         else:
             l = _nz_int(last[m])
             f = _nz_int(first[m])
-            lb = 1 << l
-            fb = 1 << f
+            lb: int = 1 << l
+            fb: int = 1 << f
             best: int = _dp(m - lb, s, first, last, memo)
             without_first: int = _dp(m - fb, s, first, last, memo)
             if without_first > best:
@@ -40,19 +40,19 @@ def _dp(m: int, s: str, first: list[int], last: list[int], mut memo: list[int]) 
 def maxProduct(s: str) -> Result[int, Error]:
     try:
         n = len(s)
-        limit = 1 << n
+        limit: int = 1 << n
         first: list[int] = [0] * limit
         last: list[int] = [0] * limit
 
         for i in range(n):
-            start = 1 << i
-            stop = 1 << (i + 1)
+            start: int = 1 << i
+            stop: int = 1 << (i + 1)
             for mask in range(start, stop):
                 first[mask] = i
 
         for i in range(n):
-            step = 1 << (i + 1)
-            mask = 1 << i
+            step: int = 1 << (i + 1)
+            mask: int = 1 << i
             while mask < limit:
                 last[mask] = i
                 mask += step

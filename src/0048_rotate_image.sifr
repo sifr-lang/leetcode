@@ -9,16 +9,27 @@ def rotate(mut matrix: list[list[int]]) -> Result[None, Error]:
                 top, bottom = l, r
 
                 # save the topleft
-                topLeft = matrix[top][l + i]
+                topLeft: int | None = matrix[top][l + i]
+                if topLeft is None:
+                    raise IndexError("top-left read out of bounds")
 
                 # move bottom left into top left
-                matrix[top][l + i] = matrix[bottom - i][l]
+                bottomLeft: int | None = matrix[bottom - i][l]
+                if bottomLeft is None:
+                    raise IndexError("bottom-left read out of bounds")
+                matrix[top][l + i] = bottomLeft
 
                 # move bottom right into bottom left
-                matrix[bottom - i][l] = matrix[bottom][r - i]
+                bottomRight: int | None = matrix[bottom][r - i]
+                if bottomRight is None:
+                    raise IndexError("bottom-right read out of bounds")
+                matrix[bottom - i][l] = bottomRight
 
                 # move top right into bottom right
-                matrix[bottom][r - i] = matrix[top + i][r]
+                topRight: int | None = matrix[top + i][r]
+                if topRight is None:
+                    raise IndexError("top-right read out of bounds")
+                matrix[bottom][r - i] = topRight
 
                 # move top left into top right
                 matrix[top + i][r] = topLeft
