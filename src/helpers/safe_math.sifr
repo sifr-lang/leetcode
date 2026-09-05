@@ -40,7 +40,38 @@ def trunc_div_toward_zero_or_zero(a: int, b: int) -> int:
     return quotient * sign
 
 
-def ratio_or_zero(a: int, b: int) -> float:
+def ratio_or_zero(a: int, b: int) -> Result[float, FloatOverflowError | FloatPrecisionLossError]:
     if b == 0:
         return 0.0
-    return float(a) / float(b)
+    try:
+        numerator: float = float(a)
+        denominator: float = float(b)
+        return numerator / denominator
+    except FloatOverflowError as error:
+        raise error
+    except FloatPrecisionLossError as error:
+        raise error
+
+
+def main():
+    assert div_or_zero(9, 2) == 4
+    assert div_or_zero(9, 0) == 0
+    assert mod_or_zero(9, 2) == 1
+    assert mod_or_zero(9, 0) == 0
+    assert trunc_div_toward_zero_or_zero(-9, 2) == -4
+    assert ceil_div_positive_or_zero(9, 2) == 5
+    try:
+        ratio: float = ratio_or_zero(9, 2)
+        assert ratio == 4.5
+        zero_divisor: float = ratio_or_zero(9, 0)
+        assert zero_divisor == 0.0
+    except Error:
+        assert False
+    try:
+        inexact: float = ratio_or_zero(9007199254740993, 1)
+        _ = inexact
+        assert False
+    except FloatPrecisionLossError:
+        pass
+    except Error:
+        assert False

@@ -1,42 +1,55 @@
 # LeetCode 91: Decode Ways
 
-def numDecodings(s: str) -> int:
-    # Memoization
-    dp = {len(s): 1}
+def numDecodings(s: str) -> Result[int, Error]:
+    try:
+        # Memoization
+        dp = {len(s): 1}
 
-    def dfs(i):
-        if i in dp:
-            return dp[i]
-        if s[i] == "0":
-            return 0
+        def dfs(i) -> Result[int, Error]:
+            try:
+                if i in dp:
+                    return dp[i]
+                if s[i] == "0":
+                    return 0
 
-        res = dfs(i + 1)
-        if i + 1 < len(s) and (
-            s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
-        ):
-            res += dfs(i + 2)
-        dp[i] = res
-        return res
+                res: int = dfs(i + 1)
+                if i + 1 < len(s):
+                    next_digit = s[i + 1]
+                    if next_digit is None:
+                        raise IndexError("next digit out of bounds")
+                    if s[i] == "1" or s[i] == "2" and next_digit in "0123456":
+                        two_digits: int = dfs(i + 2)
+                        res += two_digits
+                dp[i] = res
+                return res
+            except Error as error:
+                raise error
 
-    return dfs(0)
+        return dfs(0)
 
-    # Dynamic Programming
-    dp = {len(s): 1}
-    for i in range(len(s) - 1, -1, -1):
-        if s[i] == "0":
-            dp[i] = 0
-        else:
-            dp[i] = dp[i + 1]
+        # Dynamic Programming
+        dp = {len(s): 1}
+        for i in range(len(s) - 1, -1, -1):
+            if s[i] == "0":
+                dp[i] = 0
+            else:
+                dp[i] = dp[i + 1]
 
-        if i + 1 < len(s) and (
-            s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
-        ):
-            dp[i] += dp[i + 2]
-    return dp[0]
+            if i + 1 < len(s) and (
+                s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
+            ):
+                dp[i] += dp[i + 2]
+        return dp[0]
+    except Error as error:
+        raise error
 
 def main():
-    assert str(numDecodings("12")) == '2'
-    assert str(numDecodings("226")) == '3'
-    assert str(numDecodings("06")) == '0'
-
-
+    try:
+        num_decodings_result_1: int = numDecodings("12")
+        assert str(num_decodings_result_1) == '2'
+        num_decodings_result_2: int = numDecodings("226")
+        assert str(num_decodings_result_2) == '3'
+        num_decodings_result_3: int = numDecodings("06")
+        assert str(num_decodings_result_3) == '0'
+    except Error:
+        assert False

@@ -5,30 +5,40 @@ def _nz_int(value: int | None) -> int:
         return 0
     return value
 
-def maximalSquare(matrix: list[list[str]]) -> int:
-    ROWS = len(matrix)
-    COLS = len(matrix[0])
-    cache: dict[tuple[int, int], int] = {}
+def maximalSquare(matrix: list[list[str]]) -> Result[int, Error]:
+    try:
+        ROWS = len(matrix)
+        COLS = len(matrix[0])
+        cache: dict[tuple[int, int], int] = {}
 
-    def helper(r: int, c: int) -> int:
-        if r >= ROWS or c >= COLS:
-            return 0
+        def helper(r: int, c: int) -> int:
+            if r >= ROWS or c >= COLS:
+                return 0
 
-        key = (r, c)
-        if key not in cache:
-            down = helper(r + 1, c)
-            right = helper(r, c + 1)
-            diag = helper(r + 1, c + 1)
+            key = (r, c)
+            if key not in cache:
+                down = helper(r + 1, c)
+                right = helper(r, c + 1)
+                diag = helper(r + 1, c + 1)
 
-            cache[key] = 0
-            if matrix[r][c] == "1":
-                cache[key] = 1 + min(down, right, diag)
-        return _nz_int(cache[key])
+                cache[key] = 0
+                if matrix[r][c] == "1":
+                    cache[key] = 1 + min(down, right, diag)
+            return _nz_int(cache[key])
 
-    helper(0, 0)
-    return _nz_int(max(cache.values())) ** 2
+        helper(0, 0)
+        area: int = _nz_int(max(cache.values())) ** 2
+        return area
+    except Error as error:
+        raise error
 
 def main():
-    assert maximalSquare([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "0", "0", "1", "0"]]) == 4
-    assert maximalSquare([["0", "1"], ["1", "0"]]) == 1
-    assert maximalSquare([["0"]]) == 0
+    try:
+        maximal_square_result_1: int = maximalSquare([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "0", "0", "1", "0"]])
+        assert maximal_square_result_1 == 4
+        maximal_square_result_2: int = maximalSquare([["0", "1"], ["1", "0"]])
+        assert maximal_square_result_2 == 1
+        maximal_square_result_3: int = maximalSquare([["0"]])
+        assert maximal_square_result_3 == 0
+    except Error:
+        assert False

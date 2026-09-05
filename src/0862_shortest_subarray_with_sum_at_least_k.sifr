@@ -1,23 +1,35 @@
 # LeetCode 862: Shortest Subarray With Sum At Least K
 
-def shortestSubarray(nums: list[int], k: int) -> int:
-    size = len(nums)
-    ans = size + 1
-    start = 0
-    while start < size:
-        total = 0
-        end = start
-        while end < size:
-            total += nums[end]
-            if total >= k:
-                ans = min(ans, end - start + 1)
-                break
-            end += 1
-        start += 1
+def shortestSubarray(nums: list[int], k: int) -> Result[int, Error]:
+    try:
+        size = len(nums)
+        ans = size + 1
+        start = 0
+        while start < size:
+            total = 0
+            end = start
+            while end < size:
+                value = nums[end]
+                if value is None:
+                    raise IndexError("subarray end out of bounds")
+                total += value
+                if total >= k:
+                    ans = min(ans, end - start + 1)
+                    break
+                end += 1
+            start += 1
 
-    return ans if ans < size + 1 else -1
+        return ans if ans < size + 1 else -1
+    except Error as error:
+        raise error
 
 def main():
-    assert shortestSubarray([1], 1) == 1
-    assert shortestSubarray([1, 2], 4) == -1
-    assert shortestSubarray([2, -1, 2], 3) == 3
+    try:
+        shortest_subarray_result_1: int = shortestSubarray([1], 1)
+        assert shortest_subarray_result_1 == 1
+        shortest_subarray_result_2: int = shortestSubarray([1, 2], 4)
+        assert shortest_subarray_result_2 == -1
+        shortest_subarray_result_3: int = shortestSubarray([2, -1, 2], 3)
+        assert shortest_subarray_result_3 == 3
+    except Error:
+        assert False

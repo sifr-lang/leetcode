@@ -1,23 +1,36 @@
 # LeetCode 930: Binary Subarrays With Sum
 
-def numSubarraysWithSum(nums: list[int], goal: int) -> int:
+def numSubarraysWithSum(nums: list[int], goal: int) -> Result[int, Error]:
+    try:
 
-    def helper(x):
-        if x < 0: return 0
+        def helper(x) -> Result[int, Error]:
+            try:
+                if x < 0: return 0
 
-        res = 0
-        l, cur = 0, 0
-        for r in range(len(nums)):
-            cur += nums[r]
-            while cur > x:
-                cur -= nums[l]
-                l += 1
-            res += (r - l + 1)
-        return res
+                res = 0
+                l, cur = 0, 0
+                for r in range(len(nums)):
+                    cur += nums[r]
+                    while cur > x:
+                        left_value = nums[l]
+                        if left_value is None:
+                            raise IndexError("subarray start out of bounds")
+                        cur -= left_value
+                        l += 1
+                    res += (r - l + 1)
+                return res
+            except Error as error:
+                raise error
     
-    return helper(goal) - helper(goal - 1)
+        at_most_goal: int = helper(goal)
+        below_goal: int = helper(goal - 1)
+        return at_most_goal - below_goal
+    except Error as error:
+        raise error
 
 def main():
-    assert str(numSubarraysWithSum([1,0,1,0,1], 2)) == '4'
-
-
+    try:
+        num_subarrays_with_sum_result_1: int = numSubarraysWithSum([1,0,1,0,1], 2)
+        assert str(num_subarrays_with_sum_result_1) == '4'
+    except Error:
+        assert False

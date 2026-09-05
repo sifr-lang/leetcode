@@ -1,23 +1,41 @@
 # LeetCode 371: Sum Of Two Integers
 
-def getSum(a: int, b: int) -> int:
-    def add(a: int, b: int) -> int:
-        if a == 0:
-            return b
-        if b == 0:
-            return a
-        return add(a ^ b, (a & b) << 1)
+def getSum(a: int, b: int) -> Result[int, Error]:
+    try:
+        def add(a: int, b: int) -> Result[int, Error]:
+            try:
+                if a == 0:
+                    return b
+                if b == 0:
+                    return a
+                next_value = a ^ b
+                carry: int = (a & b) << 1
+                return add(next_value, carry)
+            except Error as error:
+                raise error
 
-    if a * b < 0:  # assume a < 0, b > 0
-        if a > 0:
-            return getSum(b, a)
-        if add(~a, 1) == b:  # -a == b
-            return 0
-        if add(~a, 1) < b:  # -a < b
-            return add(~add(add(~a, 1), add(~b, 1)), 1)  # -add(-a, -b)
+        if a * b < 0:  # assume a < 0, b > 0
+            if a > 0:
+                return getSum(b, a)
+            negative_a: int = add(~a, 1)
+            if negative_a == b:  # -a == b
+                return 0
+            negative_a: int = add(~a, 1)
+            if negative_a < b:  # -a < b
+                left: int = add(~a, 1)
+                right: int = add(~b, 1)
+                combined: int = add(left, right)
+                return add(~combined, 1)  # -add(-a, -b)
 
-    return add(a, b)  # a*b >= 0 or (-a) > b > 0
+        return add(a, b)  # a*b >= 0 or (-a) > b > 0
+    except Error as error:
+        raise error
 
 def main():
-    assert getSum(1, 2) == 3
-    assert getSum(2, 3) == 5
+    try:
+        get_sum_result_1: int = getSum(1, 2)
+        assert get_sum_result_1 == 3
+        get_sum_result_2: int = getSum(2, 3)
+        assert get_sum_result_2 == 5
+    except Error:
+        assert False

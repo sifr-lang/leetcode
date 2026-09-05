@@ -1,23 +1,39 @@
 # LeetCode 202: Happy Number
 
-def isHappy(n: int) -> bool:
-    slow, fast = n, sumSquareDigits(n)
+def isHappy(n: int) -> Result[bool, Error]:
+    try:
+        slow = n
+        fast: int = sumSquareDigits(n)
 
-    while slow != fast:
-        fast = sumSquareDigits(fast)
-        fast = sumSquareDigits(fast)
-        slow = sumSquareDigits(slow)
+        while slow != fast:
+            updated_contract_value_1: int = sumSquareDigits(fast)
+            fast = updated_contract_value_1
+            updated_contract_value_2: int = sumSquareDigits(fast)
+            fast = updated_contract_value_2
+            updated_contract_value_3: int = sumSquareDigits(slow)
+            slow = updated_contract_value_3
 
-    return True if fast == 1 else False
+        return True if fast == 1 else False
+    except Error as error:
+        raise error
 
 
-def sumSquareDigits(mut n: int) -> int:
-    output = 0
-    while n != 0:
-        output += (n % 10) ** 2
-        n = n // 10
-    return output
+def sumSquareDigits(mut n: int) -> Result[int, Error]:
+    try:
+        output = 0
+        while n != 0:
+            square: int = (n % 10) ** 2
+            output += square
+            n = n // 10
+        return output
+    except Error as error:
+        raise error
 
 def main():
-    assert str(isHappy(19)) == 'true'
-    assert str(isHappy(2)) == 'false'
+    try:
+        is_happy_result_1: bool = isHappy(19)
+        assert str(is_happy_result_1) == 'true'
+        is_happy_result_2: bool = isHappy(2)
+        assert str(is_happy_result_2) == 'false'
+    except Error:
+        assert False

@@ -24,25 +24,29 @@ class MyHashMap:
             return index + size
         return index
 
-    def put(mut self, key: int, value: int) -> None:
-        index = self.hashcode(key)
-        bucket: list[tuple[int, int]] | None = self.buckets[index]
-        if bucket is None:
-            return
+    def put(mut self, key: int, value: int) -> Result[None, Error]:
+        try:
+            index = self.hashcode(key)
+            bucket: list[tuple[int, int]] | None = self.buckets[index]
+            if bucket is None:
+                return
 
-        next_bucket: list[tuple[int, int]] = []
-        replaced = False
-        for existing_key, existing_value in bucket:
-            if existing_key == key:
+            next_bucket: list[tuple[int, int]] = []
+            replaced = False
+            for existing_key, existing_value in bucket:
+                if existing_key == key:
+                    next_bucket.append((key, value))
+                    replaced = True
+                else:
+                    next_bucket.append((existing_key, existing_value))
+
+            if not replaced:
                 next_bucket.append((key, value))
-                replaced = True
-            else:
-                next_bucket.append((existing_key, existing_value))
 
-        if not replaced:
-            next_bucket.append((key, value))
-
-        self.buckets[index] = next_bucket
+            self.buckets[index] = next_bucket
+            return None
+        except Error as error:
+            raise error
 
     def get(self, key: int) -> int:
         index = self.hashcode(key)
@@ -54,33 +58,40 @@ class MyHashMap:
                 return existing_value
         return -1
 
-    def remove(mut self, key: int) -> None:
-        index = self.hashcode(key)
-        bucket: list[tuple[int, int]] | None = self.buckets[index]
-        if bucket is None:
-            return
+    def remove(mut self, key: int) -> Result[None, Error]:
+        try:
+            index = self.hashcode(key)
+            bucket: list[tuple[int, int]] | None = self.buckets[index]
+            if bucket is None:
+                return
 
-        next_bucket: list[tuple[int, int]] = []
-        for existing_key, existing_value in bucket:
-            if existing_key != key:
-                next_bucket.append((existing_key, existing_value))
+            next_bucket: list[tuple[int, int]] = []
+            for existing_key, existing_value in bucket:
+                if existing_key != key:
+                    next_bucket.append((existing_key, existing_value))
 
-        self.buckets[index] = next_bucket
+            self.buckets[index] = next_bucket
+            return None
+        except Error as error:
+            raise error
 
 
 def main():
-    obj = MyHashMap()
-    obj.put(1, 1)
-    obj.put(2, 2)
-    assert obj.get(1) == 1
-    assert obj.get(3) == -1
-    obj.put(2, 1)
-    assert obj.get(2) == 1
-    obj.remove(2)
-    assert obj.get(2) == -1
-    obj.put(5, -1)
-    assert obj.get(5) == -1
-    obj.put(5, 7)
-    assert obj.get(5) == 7
-    obj.remove(5)
-    assert obj.get(5) == -1
+    try:
+        obj = MyHashMap()
+        put_completion_1: None = obj.put(1, 1)
+        put_completion_2: None = obj.put(2, 2)
+        assert obj.get(1) == 1
+        assert obj.get(3) == -1
+        put_completion_3: None = obj.put(2, 1)
+        assert obj.get(2) == 1
+        remove_completion_4: None = obj.remove(2)
+        assert obj.get(2) == -1
+        put_completion_5: None = obj.put(5, -1)
+        assert obj.get(5) == -1
+        put_completion_6: None = obj.put(5, 7)
+        assert obj.get(5) == 7
+        remove_completion_7: None = obj.remove(5)
+        assert obj.get(5) == -1
+    except Error:
+        assert False

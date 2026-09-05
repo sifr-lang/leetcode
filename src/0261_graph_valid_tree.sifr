@@ -1,33 +1,47 @@
 from helpers.dsu import UnionFind
 
-def validTreeDsu(n: int, edges: list[list[int]]) -> bool:
-    if n == 0:
-        return True
+def validTreeDsu(n: int, edges: list[list[int]]) -> Result[bool, Error]:
+    try:
+        if n == 0:
+            return True
 
-    dsu = UnionFind(n)
+        dsu = UnionFind(n)
 
-    for edge in edges:
-        a0 = edge[0]
-        b0 = edge[1]
-        a = 0
-        b = 0
-        if a0 is not None and b0 is not None:
-            a = a0
-            b = b0
-        else:
-            continue
+        for edge in edges:
+            a0 = edge[0]
+            b0 = edge[1]
+            a = 0
+            b = 0
+            if a0 is not None and b0 is not None:
+                a = a0
+                b = b0
+            else:
+                continue
 
-        if not dsu.union(a, b):
-            return False
+            joined: bool = dsu.union(a, b)
+            if not joined:
+                return False
 
-    return dsu.component_count() == 1
+        return dsu.component_count() == 1
+    except Error as error:
+        raise error
 
 # Canonical entrypoint for this fixture.
-def validTree(n: int, edges: list[list[int]]) -> bool:
-    return validTreeDsu(n, edges)
+def validTree(n: int, edges: list[list[int]]) -> Result[bool, Error]:
+    try:
+        return validTreeDsu(n, edges)
+    except Error as error:
+        raise error
 
 def main():
-    assert validTree(5, [[0, 1], [0, 2], [0, 3], [1, 4]]) == True
-    assert validTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]) == False
-    assert validTreeDsu(5, [[0, 1], [0, 2], [0, 3], [1, 4]]) == True
-    assert validTreeDsu(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]) == False
+    try:
+        valid_tree_result_1: bool = validTree(5, [[0, 1], [0, 2], [0, 3], [1, 4]])
+        assert valid_tree_result_1 == True
+        valid_tree_result_2: bool = validTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]])
+        assert valid_tree_result_2 == False
+        valid_tree_dsu_result_3: bool = validTreeDsu(5, [[0, 1], [0, 2], [0, 3], [1, 4]])
+        assert valid_tree_dsu_result_3 == True
+        valid_tree_dsu_result_4: bool = validTreeDsu(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]])
+        assert valid_tree_dsu_result_4 == False
+    except Error:
+        assert False

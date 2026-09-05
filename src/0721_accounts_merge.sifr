@@ -19,58 +19,66 @@ def accountName(account: list[str]) -> str:
     return ""
 
 
-def accountsMerge(accounts: list[list[str]]) -> list[list[str]]:
-    uf = UnionFind(len(accounts))
-    email_owner: dict[str, int] = {}
-    emails_seen: list[str] = []
-    owners_seen: list[int] = []
-    names: list[str] = []
-    for i, account in enumerate(accounts):
-        names.append(accountName(account))
+def accountsMerge(accounts: list[list[str]]) -> Result[list[list[str]], Error]:
+    try:
+        uf = UnionFind(len(accounts))
+        email_owner: dict[str, int] = {}
+        emails_seen: list[str] = []
+        owners_seen: list[int] = []
+        names: list[str] = []
+        for i, account in enumerate(accounts):
+            names.append(accountName(account))
+            pos = 0
+            for item in account:
+                if pos > 0:
+                    email = item
+                    if email in email_owner:
+                        joined: bool = uf.union(i, email_owner[email])
+                    else:
+                        email_owner[email] = i
+                        emails_seen.append(email)
+                        owners_seen.append(i)
+                pos += 1
+
+        grouped: dict[int, list[str]] = {}
         pos = 0
-        for item in account:
-            if pos > 0:
-                email = item
-                if email in email_owner:
-                    uf.union(i, email_owner[email])
+        while pos < len(emails_seen):
+            email: str | None = emails_seen[pos]
+            owner: int | None = owners_seen[pos]
+            if email is not None and owner is not None:
+                leader: int = uf.find(owner)
+                if leader in grouped:
+                    grouped[leader].append(email)
                 else:
-                    email_owner[email] = i
-                    emails_seen.append(email)
-                    owners_seen.append(i)
+                    grouped[leader] = [email]
             pos += 1
 
-    grouped: dict[int, list[str]] = {}
-    pos = 0
-    while pos < len(emails_seen):
-        email: str | None = emails_seen[pos]
-        owner: int | None = owners_seen[pos]
-        if email is not None and owner is not None:
-            leader = uf.find(owner)
-            if leader in grouped:
-                grouped[leader].append(email)
-            else:
-                grouped[leader] = [email]
-        pos += 1
-
-    merged: list[list[str]] = []
-    leader = 0
-    while leader < len(accounts):
-        if leader not in grouped:
+        merged: list[list[str]] = []
+        leader = 0
+        while leader < len(accounts):
+            if leader not in grouped:
+                leader += 1
+                continue
+            emails: list[str] | None = grouped[leader]
+            if emails is not None:
+                sorted_emails = sorted(emails)
+                name = ""
+                maybe_name: str | None = names[leader]
+                if maybe_name is not None:
+                    name = maybe_name
+                merged.append([name] + sorted_emails)
             leader += 1
-            continue
-        emails: list[str] | None = grouped[leader]
-        if emails is not None:
-            sorted_emails = sorted(emails)
-            name = ""
-            maybe_name: str | None = names[leader]
-            if maybe_name is not None:
-                name = maybe_name
-            merged.append([name] + sorted_emails)
-        leader += 1
 
-    return merged
+        return merged
+    except Error as error:
+        raise error
 
 
 def main():
-    assert normalizeAccounts(accountsMerge([['John', 'johnsmith@mail.com', 'john_newyork@mail.com'], ['John', 'johnsmith@mail.com', 'john00@mail.com'], ['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com']])) == normalizeAccounts([['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com'], ['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com']])
-    assert normalizeAccounts(accountsMerge([['Gabe', 'Gabe0@m.co', 'Gabe3@m.co', 'Gabe1@m.co'], ['Kevin', 'Kevin3@m.co', 'Kevin5@m.co', 'Kevin0@m.co'], ['Ethan', 'Ethan5@m.co', 'Ethan4@m.co', 'Ethan0@m.co'], ['Hanzo', 'Hanzo3@m.co', 'Hanzo1@m.co', 'Hanzo0@m.co'], ['Fern', 'Fern5@m.co', 'Fern1@m.co', 'Fern0@m.co']])) == normalizeAccounts([['Gabe', 'Gabe0@m.co', 'Gabe1@m.co', 'Gabe3@m.co'], ['Kevin', 'Kevin0@m.co', 'Kevin3@m.co', 'Kevin5@m.co'], ['Ethan', 'Ethan0@m.co', 'Ethan4@m.co', 'Ethan5@m.co'], ['Hanzo', 'Hanzo0@m.co', 'Hanzo1@m.co', 'Hanzo3@m.co'], ['Fern', 'Fern0@m.co', 'Fern1@m.co', 'Fern5@m.co']])
+    try:
+        accounts_merge_result_1: list[list[str]] = accountsMerge([['John', 'johnsmith@mail.com', 'john_newyork@mail.com'], ['John', 'johnsmith@mail.com', 'john00@mail.com'], ['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com']])
+        assert normalizeAccounts(accounts_merge_result_1) == normalizeAccounts([['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com'], ['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com']])
+        accounts_merge_result_2: list[list[str]] = accountsMerge([['Gabe', 'Gabe0@m.co', 'Gabe3@m.co', 'Gabe1@m.co'], ['Kevin', 'Kevin3@m.co', 'Kevin5@m.co', 'Kevin0@m.co'], ['Ethan', 'Ethan5@m.co', 'Ethan4@m.co', 'Ethan0@m.co'], ['Hanzo', 'Hanzo3@m.co', 'Hanzo1@m.co', 'Hanzo0@m.co'], ['Fern', 'Fern5@m.co', 'Fern1@m.co', 'Fern0@m.co']])
+        assert normalizeAccounts(accounts_merge_result_2) == normalizeAccounts([['Gabe', 'Gabe0@m.co', 'Gabe1@m.co', 'Gabe3@m.co'], ['Kevin', 'Kevin0@m.co', 'Kevin3@m.co', 'Kevin5@m.co'], ['Ethan', 'Ethan0@m.co', 'Ethan4@m.co', 'Ethan5@m.co'], ['Hanzo', 'Hanzo0@m.co', 'Hanzo1@m.co', 'Hanzo3@m.co'], ['Fern', 'Fern0@m.co', 'Fern1@m.co', 'Fern5@m.co']])
+    except Error:
+        assert False

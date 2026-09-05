@@ -5,63 +5,77 @@ def _nz_int(value: int | None) -> int:
         return 0
     return value
 
-def _dp(m: int, s: str, first: list[int], last: list[int], mut memo: list[int]) -> int:
-    cached = _nz_int(memo[m])
-    if cached >= 0:
-        return cached
+def _dp(m: int, s: str, first: list[int], last: list[int], mut memo: list[int]) -> Result[int, Error]:
+    try:
+        cached = _nz_int(memo[m])
+        if cached >= 0:
+            return cached
 
-    value = 0
-    if (m & (m - 1)) == 0:
-        if m != 0:
-            value = 1
-    else:
-        l = _nz_int(last[m])
-        f = _nz_int(first[m])
-        lb = 1 << l
-        fb = 1 << f
-        best = _dp(m - lb, s, first, last, memo)
-        without_first = _dp(m - fb, s, first, last, memo)
-        if without_first > best:
-            best = without_first
+        value = 0
+        if (m & (m - 1)) == 0:
+            if m != 0:
+                value = 1
+        else:
+            l = _nz_int(last[m])
+            f = _nz_int(first[m])
+            lb: int = 1 << l
+            fb: int = 1 << f
+            best: int = _dp(m - lb, s, first, last, memo)
+            without_first: int = _dp(m - fb, s, first, last, memo)
+            if without_first > best:
+                best = without_first
 
-        without_both = _dp(m - lb - fb, s, first, last, memo)
-        if s[l] == s[f]:
-            without_both += 2
-        if without_both > best:
-            best = without_both
-        value = best
+            without_both: int = _dp(m - lb - fb, s, first, last, memo)
+            if s[l] == s[f]:
+                without_both += 2
+            if without_both > best:
+                best = without_both
+            value = best
 
-    memo[m] = value
-    return value
+        memo[m] = value
+        return value
+    except Error as error:
+        raise error
 
-def maxProduct(s: str) -> int:
-    n = len(s)
-    limit = 1 << n
-    first: list[int] = [0] * limit
-    last: list[int] = [0] * limit
+def maxProduct(s: str) -> Result[int, Error]:
+    try:
+        n = len(s)
+        limit: int = 1 << n
+        first: list[int] = [0] * limit
+        last: list[int] = [0] * limit
 
-    for i in range(n):
-        start = 1 << i
-        stop = 1 << (i + 1)
-        for mask in range(start, stop):
-            first[mask] = i
+        for i in range(n):
+            start: int = 1 << i
+            stop: int = 1 << (i + 1)
+            for mask in range(start, stop):
+                first[mask] = i
 
-    for i in range(n):
-        step = 1 << (i + 1)
-        mask = 1 << i
-        while mask < limit:
-            last[mask] = i
-            mask += step
+        for i in range(n):
+            step: int = 1 << (i + 1)
+            mask: int = 1 << i
+            while mask < limit:
+                last[mask] = i
+                mask += step
 
-    memo: list[int] = [-1] * limit
-    ans = 0
-    for m in range(1, limit):
-        prod = _dp(m, s, first, last, memo) * _dp(limit - 1 - m, s, first, last, memo)
-        if prod > ans:
-            ans = prod
-    return ans
+        memo: list[int] = [-1] * limit
+        ans = 0
+        for m in range(1, limit):
+            left: int = _dp(m, s, first, last, memo)
+            right: int = _dp(limit - 1 - m, s, first, last, memo)
+            prod = left * right
+            if prod > ans:
+                ans = prod
+        return ans
+    except Error as error:
+        raise error
 
 def main():
-    assert maxProduct("leetcodecom") == 9
-    assert maxProduct("bb") == 1
-    assert maxProduct("accbcaxxcxx") == 25
+    try:
+        max_product_result_1: int = maxProduct("leetcodecom")
+        assert max_product_result_1 == 9
+        max_product_result_2: int = maxProduct("bb")
+        assert max_product_result_2 == 1
+        max_product_result_3: int = maxProduct("accbcaxxcxx")
+        assert max_product_result_3 == 25
+    except Error:
+        assert False

@@ -1,18 +1,26 @@
 # LeetCode 44: Wildcard Matching
 
-def isMatch(s: str, p: str) -> bool:
-    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
-    dp[-1][-1] = True
-    for i in range(len(s), -1, -1):
-        for j in range(len(p) - 1, -1, -1):
-            if p[j] == '*':
-                dp[i][j] = dp[i][j + 1] or (i < len(s) and dp[i + 1][j])
-            else:
-                dp[i][j] = i < len(s) and (p[j] == s[i] or p[j] == '?') and dp[i + 1][j + 1]
-    return dp[0][0]
+def isMatch(s: str, p: str) -> Result[bool, Error]:
+    try:
+        dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
+        dp[-1][-1] = True
+        for i in range(len(s), -1, -1):
+            for j in range(len(p) - 1, -1, -1):
+                if p[j] == '*':
+                    dp[i][j] = dp[i][j + 1] or (i < len(s) and dp[i + 1][j])
+                else:
+                    dp[i][j] = i < len(s) and (p[j] == s[i] or p[j] == '?') and dp[i + 1][j + 1]
+        return dp[0][0]
+    except Error as error:
+        raise error
 
 def main():
-    assert str(isMatch("aa", "a")) == 'false'
-    assert str(isMatch("aa", "*")) == 'true'
-    assert str(isMatch("cb", "?a")) == 'false'
-
+    try:
+        is_match_result_1: bool = isMatch("aa", "a")
+        assert str(is_match_result_1) == 'false'
+        is_match_result_2: bool = isMatch("aa", "*")
+        assert str(is_match_result_2) == 'true'
+        is_match_result_3: bool = isMatch("cb", "?a")
+        assert str(is_match_result_3) == 'false'
+    except Error:
+        assert False
