@@ -33,7 +33,7 @@ def findTargetSumWays(nums: list[int], target: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = findTargetSumWays([1,1,1,1,1], 3)
-        assert str(contract_result_1) == '5'
+        find_target_sum_ways_result_1: int = findTargetSumWays([1,1,1,1,1], 3)
+        assert str(find_target_sum_ways_result_1) == '5'
     except Error:
         assert False

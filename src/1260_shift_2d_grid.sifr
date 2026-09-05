@@ -38,11 +38,11 @@ def shiftGrid(grid: list[list[int]], k: int) -> Result[list[list[int]], Error]:
 
 def main():
     try:
-        contract_result_1: list[list[int]] = shiftGrid([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1)
-        assert contract_result_1 == [[9, 1, 2], [3, 4, 5], [6, 7, 8]]
-        contract_result_2: list[list[int]] = shiftGrid([[3, 8, 1, 9], [19, 7, 2, 5], [4, 6, 11, 10], [12, 0, 21, 13]], 4)
-        assert contract_result_2 == [[12, 0, 21, 13], [3, 8, 1, 9], [19, 7, 2, 5], [4, 6, 11, 10]]
-        contract_result_3: list[list[int]] = shiftGrid([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 9)
-        assert contract_result_3 == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        shift_grid_result_1: list[list[int]] = shiftGrid([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1)
+        assert shift_grid_result_1 == [[9, 1, 2], [3, 4, 5], [6, 7, 8]]
+        shift_grid_result_2: list[list[int]] = shiftGrid([[3, 8, 1, 9], [19, 7, 2, 5], [4, 6, 11, 10], [12, 0, 21, 13]], 4)
+        assert shift_grid_result_2 == [[12, 0, 21, 13], [3, 8, 1, 9], [19, 7, 2, 5], [4, 6, 11, 10]]
+        shift_grid_result_3: list[list[int]] = shiftGrid([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 9)
+        assert shift_grid_result_3 == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     except Error:
         assert False

@@ -41,9 +41,9 @@ def findRedundantConnection(edges: list[tuple[int, int]]) -> Result[list[int], E
 
 def main():
     try:
-        contract_result_1: list[int] = findRedundantConnection([(1, 2), (1, 3), (2, 3)])
-        assert contract_result_1 == [2, 3]
-        contract_result_2: list[int] = findRedundantConnection([(1, 2), (2, 3), (3, 4), (1, 4), (1, 5)])
-        assert contract_result_2 == [1, 4]
+        find_redundant_connection_result_1: list[int] = findRedundantConnection([(1, 2), (1, 3), (2, 3)])
+        assert find_redundant_connection_result_1 == [2, 3]
+        find_redundant_connection_result_2: list[int] = findRedundantConnection([(1, 2), (2, 3), (3, 4), (1, 4), (1, 5)])
+        assert find_redundant_connection_result_2 == [1, 4]
     except Error:
         assert False

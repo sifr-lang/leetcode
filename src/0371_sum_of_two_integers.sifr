@@ -33,9 +33,9 @@ def getSum(a: int, b: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = getSum(1, 2)
-        assert contract_result_1 == 3
-        contract_result_2: int = getSum(2, 3)
-        assert contract_result_2 == 5
+        get_sum_result_1: int = getSum(1, 2)
+        assert get_sum_result_1 == 3
+        get_sum_result_2: int = getSum(2, 3)
+        assert get_sum_result_2 == 5
     except Error:
         assert False

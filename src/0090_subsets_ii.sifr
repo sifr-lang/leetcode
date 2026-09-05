@@ -16,7 +16,7 @@ def subsetsWithDup(mut nums: list[int]) -> Result[list[list[int]], Error]:
                 if current is None:
                     raise IndexError("subset index out of bounds")
                 subset.append(current)
-                contract_result_2: None = backtrack(i + 1, subset)
+                backtracking_search_completion_2: None = backtrack(i + 1, subset)
                 subset.pop()
                 # All subsets that don't include nums[i]
                 j = i
@@ -25,19 +25,19 @@ def subsetsWithDup(mut nums: list[int]) -> Result[list[list[int]], Error]:
                     if current != next_value:
                         break
                     j += 1
-                contract_result_3: None = backtrack(j + 1, subset)
+                backtracking_search_completion_3: None = backtrack(j + 1, subset)
                 return None
             except Error as error:
                 raise error
 
-        contract_result_1: None = backtrack(0, [])
+        backtracking_search_completion_1: None = backtrack(0, [])
         return res
     except Error as error:
         raise error
 
 def main():
     try:
-        contract_result_4: list[list[int]] = subsetsWithDup([1,2,2])
-        assert str(contract_result_4) == '[[1, 2, 2], [1, 2], [1], [2, 2], [2], []]'
+        subsets_with_dup_result_4: list[list[int]] = subsetsWithDup([1,2,2])
+        assert str(subsets_with_dup_result_4) == '[[1, 2, 2], [1, 2], [1], [2, 2], [2], []]'
     except Error:
         assert False

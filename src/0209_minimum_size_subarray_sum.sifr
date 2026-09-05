@@ -20,11 +20,11 @@ def minSubArrayLen(target: int, nums: list[int]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = minSubArrayLen(7, [2,3,1,2,4,3])
-        assert str(contract_result_1) == '2'
-        contract_result_2: int = minSubArrayLen(4, [1,4,4])
-        assert str(contract_result_2) == '1'
-        contract_result_3: int = minSubArrayLen(11, [1,1,1,1,1,1,1,1])
-        assert str(contract_result_3) == '0'
+        min_sub_array_len_result_1: int = minSubArrayLen(7, [2,3,1,2,4,3])
+        assert str(min_sub_array_len_result_1) == '2'
+        min_sub_array_len_result_2: int = minSubArrayLen(4, [1,4,4])
+        assert str(min_sub_array_len_result_2) == '1'
+        min_sub_array_len_result_3: int = minSubArrayLen(11, [1,1,1,1,1,1,1,1])
+        assert str(min_sub_array_len_result_3) == '0'
     except Error:
         assert False

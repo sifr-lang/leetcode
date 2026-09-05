@@ -41,9 +41,9 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> Result[list[int], 
 
 def main():
     try:
-        contract_result_1: list[int] = nextGreaterElement([4, 1, 2], [1, 3, 4, 2])
-        assert str(contract_result_1) == '[-1, 3, -1]'
-        contract_result_2: list[int] = nextGreaterElement([2, 4], [1, 2, 3, 4])
-        assert str(contract_result_2) == '[3, -1]'
+        next_greater_element_result_1: list[int] = nextGreaterElement([4, 1, 2], [1, 3, 4, 2])
+        assert str(next_greater_element_result_1) == '[-1, 3, -1]'
+        next_greater_element_result_2: list[int] = nextGreaterElement([2, 4], [1, 2, 3, 4])
+        assert str(next_greater_element_result_2) == '[3, -1]'
     except Error:
         assert False

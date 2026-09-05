@@ -216,11 +216,11 @@ def alienOrder(words: list[str]) -> Result[str, Error]:
 
 def main():
     try:
-        contract_result_1: str = alienOrder(['wrt', 'wrf', 'er', 'ett', 'rftt'])
-        assert contract_result_1 == 'wertf'
-        contract_result_2: str = alienOrder(['z', 'x'])
-        assert contract_result_2 == 'zx'
-        contract_result_3: str = alienOrder(['z', 'x', 'z'])
-        assert contract_result_3 == ''
+        alien_order_result_1: str = alienOrder(['wrt', 'wrf', 'er', 'ett', 'rftt'])
+        assert alien_order_result_1 == 'wertf'
+        alien_order_result_2: str = alienOrder(['z', 'x'])
+        assert alien_order_result_2 == 'zx'
+        alien_order_result_3: str = alienOrder(['z', 'x', 'z'])
+        assert alien_order_result_3 == ''
     except Error:
         assert False

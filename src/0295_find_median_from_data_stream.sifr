@@ -54,10 +54,10 @@ def main():
         obj = MedianFinder()
         obj.addNum(1)
         obj.addNum(2)
-        contract_result_1: float = obj.findMedian()
-        assert contract_result_1 == 1.5
+        find_median_result_1: float = obj.findMedian()
+        assert find_median_result_1 == 1.5
         obj.addNum(3)
-        contract_result_2: float = obj.findMedian()
-        assert contract_result_2 == 2.0
+        find_median_result_2: float = obj.findMedian()
+        assert find_median_result_2 == 2.0
     except Error:
         assert False

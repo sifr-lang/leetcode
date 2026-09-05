@@ -19,9 +19,9 @@ def countBits(n: int) -> Result[list[int], Error]:
 
 def main():
     try:
-        contract_result_1: list[int] = countBits(2)
-        assert str(contract_result_1) == '[0, 1, 1]'
-        contract_result_2: list[int] = countBits(5)
-        assert str(contract_result_2) == '[0, 1, 1, 2, 1, 2]'
+        count_bits_result_1: list[int] = countBits(2)
+        assert str(count_bits_result_1) == '[0, 1, 1]'
+        count_bits_result_2: list[int] = countBits(5)
+        assert str(count_bits_result_2) == '[0, 1, 1, 2, 1, 2]'
     except Error:
         assert False

@@ -59,19 +59,19 @@ class MyCircularQueue:
 def main():
     try:
         obj = MyCircularQueue(3)
-        contract_result_1: bool = obj.enQueue(1)
-        assert contract_result_1 == True
-        contract_result_2: bool = obj.enQueue(2)
-        assert contract_result_2 == True
-        contract_result_3: bool = obj.enQueue(3)
-        assert contract_result_3 == True
-        contract_result_4: bool = obj.enQueue(4)
-        assert contract_result_4 == False
+        en_queue_result_1: bool = obj.enQueue(1)
+        assert en_queue_result_1 == True
+        en_queue_result_2: bool = obj.enQueue(2)
+        assert en_queue_result_2 == True
+        en_queue_result_3: bool = obj.enQueue(3)
+        assert en_queue_result_3 == True
+        en_queue_result_4: bool = obj.enQueue(4)
+        assert en_queue_result_4 == False
         assert obj.Rear() == 3
         assert obj.isFull() == True
         assert obj.deQueue() == True
-        contract_result_5: bool = obj.enQueue(4)
-        assert contract_result_5 == True
+        en_queue_result_5: bool = obj.enQueue(4)
+        assert en_queue_result_5 == True
         assert obj.Rear() == 4
     except Error:
         assert False

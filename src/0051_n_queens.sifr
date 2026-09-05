@@ -29,7 +29,7 @@ def backtrackNQueens(
             negDiag.add(r - c)
             board[r][c] = "Q"
 
-            contract_result_1: None = backtrackNQueens(r + 1, n, board, col, posDiag, negDiag, res)
+            backtrack_n_queens_completion_1: None = backtrackNQueens(r + 1, n, board, col, posDiag, negDiag, res)
 
             col.remove(c)
             posDiag.remove(r + c)
@@ -47,16 +47,16 @@ def solveNQueens(n: int) -> Result[list[list[str]], Error]:
 
         res: list[list[str]] = []
         board = [["."] * n for i in range(n)]
-        contract_result_2: None = backtrackNQueens(0, n, board, col, posDiag, negDiag, res)
+        backtrack_n_queens_completion_2: None = backtrackNQueens(0, n, board, col, posDiag, negDiag, res)
         return res
     except Error as error:
         raise error
 
 def main():
     try:
-        contract_result_3: list[list[str]] = solveNQueens(4)
-        assert contract_result_3 == [['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]
-        contract_result_4: list[list[str]] = solveNQueens(1)
-        assert contract_result_4 == [['Q']]
+        solve_n_queens_result_3: list[list[str]] = solveNQueens(4)
+        assert solve_n_queens_result_3 == [['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]
+        solve_n_queens_result_4: list[list[str]] = solveNQueens(1)
+        assert solve_n_queens_result_4 == [['Q']]
     except Error:
         assert False

@@ -63,7 +63,7 @@ def minimumEffortPath(heights: list[list[int]]) -> Result[int, Error]:
         dist: list[list[int]] = []
         for _ in range(m):
             dist.append([inf] * n)
-        contract_result_1: None = setIntCell(dist, 0, 0, 0)
+        set_int_cell_completion_1: None = setIntCell(dist, 0, 0, 0)
 
         base = max(m, n) + 1
         heap: list[int] = [0]
@@ -100,7 +100,7 @@ def minimumEffortPath(heights: list[list[int]]) -> Result[int, Error]:
                         effort = edge
 
                     if effort < getIntCell(dist, nr, nc):
-                        contract_result_2: None = setIntCell(dist, nr, nc, effort)
+                        set_int_cell_completion_2: None = setIntCell(dist, nr, nc, effort)
                         heappush(heap, (effort * base * base) + (nr * base) + nc)
 
         return getIntCell(dist, m - 1, n - 1)
@@ -109,11 +109,11 @@ def minimumEffortPath(heights: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_3: int = minimumEffortPath([[1, 2, 2], [3, 8, 2], [5, 3, 5]])
-        assert contract_result_3 == 2
-        contract_result_4: int = minimumEffortPath([[1, 2, 3], [3, 8, 4], [5, 3, 5]])
-        assert contract_result_4 == 1
-        contract_result_5: int = minimumEffortPath([[1, 2, 1, 1, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 1, 1, 2, 1]])
-        assert contract_result_5 == 0
+        minimum_effort_path_result_3: int = minimumEffortPath([[1, 2, 2], [3, 8, 2], [5, 3, 5]])
+        assert minimum_effort_path_result_3 == 2
+        minimum_effort_path_result_4: int = minimumEffortPath([[1, 2, 3], [3, 8, 4], [5, 3, 5]])
+        assert minimum_effort_path_result_4 == 1
+        minimum_effort_path_result_5: int = minimumEffortPath([[1, 2, 1, 1, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 1, 1, 2, 1]])
+        assert minimum_effort_path_result_5 == 0
     except Error:
         assert False

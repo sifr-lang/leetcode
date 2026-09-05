@@ -31,11 +31,11 @@ def levelOrder(root: TreeNode | None) -> Result[list[list[int]], Error]:
 def main():
     try:
         expected_empty: list[list[int]] = []
-        contract_result_1: list[list[int]] = levelOrder(TreeNode(3, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None))))
-        assert contract_result_1 == [[3], [9, 20], [15, 7]]
-        contract_result_2: list[list[int]] = levelOrder(TreeNode(1, None, None))
-        assert contract_result_2 == [[1]]
-        contract_result_3: list[list[int]] = levelOrder(None)
-        assert contract_result_3 == expected_empty
+        level_order_result_1: list[list[int]] = levelOrder(TreeNode(3, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None))))
+        assert level_order_result_1 == [[3], [9, 20], [15, 7]]
+        level_order_result_2: list[list[int]] = levelOrder(TreeNode(1, None, None))
+        assert level_order_result_2 == [[1]]
+        level_order_result_3: list[list[int]] = levelOrder(None)
+        assert level_order_result_3 == expected_empty
     except Error:
         assert False

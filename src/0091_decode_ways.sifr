@@ -45,11 +45,11 @@ def numDecodings(s: str) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = numDecodings("12")
-        assert str(contract_result_1) == '2'
-        contract_result_2: int = numDecodings("226")
-        assert str(contract_result_2) == '3'
-        contract_result_3: int = numDecodings("06")
-        assert str(contract_result_3) == '0'
+        num_decodings_result_1: int = numDecodings("12")
+        assert str(num_decodings_result_1) == '2'
+        num_decodings_result_2: int = numDecodings("226")
+        assert str(num_decodings_result_2) == '3'
+        num_decodings_result_3: int = numDecodings("06")
+        assert str(num_decodings_result_3) == '0'
     except Error:
         assert False

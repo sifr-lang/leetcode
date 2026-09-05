@@ -25,9 +25,9 @@ def maxProfit(prices: list[int]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = maxProfit([1,2,3,0,2])
-        assert str(contract_result_1) == '3'
-        contract_result_2: int = maxProfit([1])
-        assert str(contract_result_2) == '0'
+        max_profit_result_1: int = maxProfit([1,2,3,0,2])
+        assert str(max_profit_result_1) == '3'
+        max_profit_result_2: int = maxProfit([1])
+        assert str(max_profit_result_2) == '0'
     except Error:
         assert False

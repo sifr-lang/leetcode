@@ -23,7 +23,7 @@ def removeDuplicates(mut nums: list[int]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = removeDuplicates([1,1,1,2,2,3])
-        assert str(contract_result_1) == '5'
+        remove_duplicates_result_1: int = removeDuplicates([1,1,1,2,2,3])
+        assert str(remove_duplicates_result_1) == '5'
     except Error:
         assert False

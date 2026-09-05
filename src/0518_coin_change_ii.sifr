@@ -65,9 +65,9 @@ def change(amount: int, coins: list[int]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = change(5, [1,2,5])
-        assert str(contract_result_1) == '4'
-        contract_result_2: int = change(3, [2])
-        assert str(contract_result_2) == '0'
+        change_result_1: int = change(5, [1,2,5])
+        assert str(change_result_1) == '4'
+        change_result_2: int = change(3, [2])
+        assert str(change_result_2) == '0'
     except Error:
         assert False

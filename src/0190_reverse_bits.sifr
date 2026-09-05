@@ -14,9 +14,9 @@ def reverseBits(n: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = reverseBits(43261596)
-        assert contract_result_1 == 964176192
-        contract_result_2: int = reverseBits(4294967293)
-        assert contract_result_2 == 3221225471
+        reverse_bits_result_1: int = reverseBits(43261596)
+        assert reverse_bits_result_1 == 964176192
+        reverse_bits_result_2: int = reverseBits(4294967293)
+        assert reverse_bits_result_2 == 3221225471
     except Error:
         assert False

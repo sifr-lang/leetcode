@@ -25,11 +25,11 @@ def shortestSubarray(nums: list[int], k: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = shortestSubarray([1], 1)
-        assert contract_result_1 == 1
-        contract_result_2: int = shortestSubarray([1, 2], 4)
-        assert contract_result_2 == -1
-        contract_result_3: int = shortestSubarray([2, -1, 2], 3)
-        assert contract_result_3 == 3
+        shortest_subarray_result_1: int = shortestSubarray([1], 1)
+        assert shortest_subarray_result_1 == 1
+        shortest_subarray_result_2: int = shortestSubarray([1, 2], 4)
+        assert shortest_subarray_result_2 == -1
+        shortest_subarray_result_3: int = shortestSubarray([2, -1, 2], 3)
+        assert shortest_subarray_result_3 == 3
     except Error:
         assert False

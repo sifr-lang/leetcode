@@ -61,8 +61,8 @@ def swimInWater(grid: list[list[int]]) -> Result[int, Error]:
         if first_row is None:
             return 0
         start = unwrapInt(first_row[0])
-        contract_result_1: None = setIntCell(best, 0, 0, start)
-        contract_result_2: None = setBoolCell(seen, 0, 0, True)
+        set_int_cell_completion_1: None = setIntCell(best, 0, 0, start)
+        set_bool_cell_completion_2: None = setBoolCell(seen, 0, 0, True)
 
         base = n + 1
         heap: list[int] = [start * base * base]
@@ -104,8 +104,8 @@ def swimInWater(grid: list[list[int]]) -> Result[int, Error]:
 
                     old_effort = getIntCell(best, nr, nc)
                     if effort < old_effort:
-                        contract_result_3: None = setIntCell(best, nr, nc, effort)
-                        contract_result_4: None = setBoolCell(seen, nr, nc, True)
+                        set_int_cell_completion_3: None = setIntCell(best, nr, nc, effort)
+                        set_bool_cell_completion_4: None = setBoolCell(seen, nr, nc, True)
                         heappush(heap, (effort * base * base) + (nr * base) + nc)
 
         last_row = best[n - 1]
@@ -117,9 +117,9 @@ def swimInWater(grid: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_5: int = swimInWater([[0, 2], [1, 3]])
-        assert contract_result_5 == 3
-        contract_result_6: int = swimInWater([[0, 1, 2, 3, 4], [24, 23, 22, 21, 5], [12, 13, 14, 15, 16], [11, 17, 18, 19, 20], [10, 9, 8, 7, 6]])
-        assert contract_result_6 == 16
+        swim_in_water_result_5: int = swimInWater([[0, 2], [1, 3]])
+        assert swim_in_water_result_5 == 3
+        swim_in_water_result_6: int = swimInWater([[0, 1, 2, 3, 4], [24, 23, 22, 21, 5], [12, 13, 14, 15, 16], [11, 17, 18, 19, 20], [10, 9, 8, 7, 6]])
+        assert swim_in_water_result_6 == 16
     except Error:
         assert False

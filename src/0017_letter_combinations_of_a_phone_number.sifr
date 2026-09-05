@@ -25,13 +25,13 @@ def letterCombinations(digits: str) -> Result[list[str], Error]:
                 if digit not in digitToChar:
                     return
                 for c in digitToChar[digit]:
-                    contract_result_2: None = backtrack(i + 1, curStr + c)
+                    backtracking_search_completion_2: None = backtrack(i + 1, curStr + c)
                 return None
             except Error as error:
                 raise error
 
         if digits:
-            contract_result_1: None = backtrack(0, "")
+            backtracking_search_completion_1: None = backtrack(0, "")
 
         return res
     except Error as error:
@@ -39,7 +39,7 @@ def letterCombinations(digits: str) -> Result[list[str], Error]:
 
 def main():
     try:
-        contract_result_3: list[str] = letterCombinations("23")
-        assert str(contract_result_3) == '["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]'
+        letter_combinations_result_3: list[str] = letterCombinations("23")
+        assert str(letter_combinations_result_3) == '["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]'
     except Error:
         assert False

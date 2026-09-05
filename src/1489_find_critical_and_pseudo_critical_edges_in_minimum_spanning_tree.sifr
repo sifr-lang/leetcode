@@ -127,7 +127,7 @@ def findCriticalAndPseudoCriticalEdges(n: int, edges: list[list[int]]) -> Result
             # Try forcing current edge.
             par = [k for k in range(n)]
             rank = [1] * n
-            contract_result_1: bool = union(par, rank, n1, n2)
+            union_result_1: bool = union(par, rank, n1, n2)
             weight = e_weight
             j = 0
             while j < len(edges_with_idx):
@@ -149,9 +149,9 @@ def findCriticalAndPseudoCriticalEdges(n: int, edges: list[list[int]]) -> Result
 
 def main():
     try:
-        contract_result_2: list[list[int]] = findCriticalAndPseudoCriticalEdges(5, [[0, 1, 1], [1, 2, 1], [2, 3, 2], [0, 3, 2], [0, 4, 3], [3, 4, 3], [1, 4, 6]])
-        assert contract_result_2 == [[0, 1], [2, 3, 4, 5]]
-        contract_result_3: list[list[int]] = findCriticalAndPseudoCriticalEdges(4, [[0, 1, 1], [1, 2, 1], [2, 3, 1], [0, 3, 1]])
-        assert contract_result_3 == [[], [0, 1, 2, 3]]
+        find_critical_and_pseudo_critical_edges_result_2: list[list[int]] = findCriticalAndPseudoCriticalEdges(5, [[0, 1, 1], [1, 2, 1], [2, 3, 2], [0, 3, 2], [0, 4, 3], [3, 4, 3], [1, 4, 6]])
+        assert find_critical_and_pseudo_critical_edges_result_2 == [[0, 1], [2, 3, 4, 5]]
+        find_critical_and_pseudo_critical_edges_result_3: list[list[int]] = findCriticalAndPseudoCriticalEdges(4, [[0, 1, 1], [1, 2, 1], [2, 3, 1], [0, 3, 1]])
+        assert find_critical_and_pseudo_critical_edges_result_3 == [[], [0, 1, 2, 3]]
     except Error:
         assert False

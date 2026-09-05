@@ -49,7 +49,7 @@ def minPathSum(grid: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = minPathSum([[1,3,1],[1,5,1],[4,2,1]])
-        assert str(contract_result_1) == '7'
+        min_path_sum_result_1: int = minPathSum([[1,3,1],[1,5,1],[4,2,1]])
+        assert str(min_path_sum_result_1) == '7'
     except Error:
         assert False

@@ -97,9 +97,9 @@ def isIsomorphic(s: str, t: str) -> Result[bool, Error]:
 
 def main():
     try:
-        contract_result_1: bool = isIsomorphic("egg", "add")
-        assert str(contract_result_1) == 'true'
-        contract_result_2: bool = isIsomorphic("foo", "bar")
-        assert str(contract_result_2) == 'false'
+        is_isomorphic_result_1: bool = isIsomorphic("egg", "add")
+        assert str(is_isomorphic_result_1) == 'true'
+        is_isomorphic_result_2: bool = isIsomorphic("foo", "bar")
+        assert str(is_isomorphic_result_2) == 'false'
     except Error:
         assert False

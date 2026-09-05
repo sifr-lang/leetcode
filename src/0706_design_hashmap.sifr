@@ -79,19 +79,19 @@ class MyHashMap:
 def main():
     try:
         obj = MyHashMap()
-        contract_result_1: None = obj.put(1, 1)
-        contract_result_2: None = obj.put(2, 2)
+        put_completion_1: None = obj.put(1, 1)
+        put_completion_2: None = obj.put(2, 2)
         assert obj.get(1) == 1
         assert obj.get(3) == -1
-        contract_result_3: None = obj.put(2, 1)
+        put_completion_3: None = obj.put(2, 1)
         assert obj.get(2) == 1
-        contract_result_4: None = obj.remove(2)
+        remove_completion_4: None = obj.remove(2)
         assert obj.get(2) == -1
-        contract_result_5: None = obj.put(5, -1)
+        put_completion_5: None = obj.put(5, -1)
         assert obj.get(5) == -1
-        contract_result_6: None = obj.put(5, 7)
+        put_completion_6: None = obj.put(5, 7)
         assert obj.get(5) == 7
-        contract_result_7: None = obj.remove(5)
+        remove_completion_7: None = obj.remove(5)
         assert obj.get(5) == -1
     except Error:
         assert False

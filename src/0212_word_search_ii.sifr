@@ -118,7 +118,7 @@ def collectWords(
         if trie.isWord(next_node):
             cleared: None = trie.clearWord(next_node)
             found[next_prefix] = True
-            contract_result_1: None = trie.removeWord(next_prefix)
+            remove_word_completion_1: None = trie.removeWord(next_prefix)
 
         visit.add((r, c))
         updated_contract_value_1: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r + 1, c, visit, found)
@@ -148,7 +148,7 @@ def findWords(board: list[list[str]], words: list[str]) -> Result[list[str], Err
         cols = len(first_row)
         trie = WordTrie()
         for word in words:
-            contract_result_2: None = trie.insert(word)
+            insert_completion_2: None = trie.insert(word)
 
         found: dict[str, bool] = {}
         for r in range(rows):
@@ -166,9 +166,9 @@ def findWords(board: list[list[str]], words: list[str]) -> Result[list[str], Err
 def main():
     try:
         expected_empty: list[str] = []
-        contract_result_3: list[str] = findWords([["o", "a", "a", "n"], ["e", "t", "a", "e"], ["i", "h", "k", "r"], ["i", "f", "l", "v"]], ["oath", "pea", "eat", "rain"])
-        assert sorted(contract_result_3) == ["eat", "oath"]
-        contract_result_4: list[str] = findWords([["a", "b"], ["c", "d"]], ["abcb"])
-        assert sorted(contract_result_4) == expected_empty
+        find_words_result_3: list[str] = findWords([["o", "a", "a", "n"], ["e", "t", "a", "e"], ["i", "h", "k", "r"], ["i", "f", "l", "v"]], ["oath", "pea", "eat", "rain"])
+        assert sorted(find_words_result_3) == ["eat", "oath"]
+        find_words_result_4: list[str] = findWords([["a", "b"], ["c", "d"]], ["abcb"])
+        assert sorted(find_words_result_4) == expected_empty
     except Error:
         assert False

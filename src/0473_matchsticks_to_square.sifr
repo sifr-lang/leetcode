@@ -57,9 +57,9 @@ def makesquare(mut matchsticks: list[int]) -> Result[bool, Error]:
 
 def main():
     try:
-        contract_result_1: bool = makesquare([1, 1, 2, 2, 2])
-        assert contract_result_1 == True
-        contract_result_2: bool = makesquare([3, 3, 3, 3, 4])
-        assert contract_result_2 == False
+        makesquare_result_1: bool = makesquare([1, 1, 2, 2, 2])
+        assert makesquare_result_1 == True
+        makesquare_result_2: bool = makesquare([3, 3, 3, 3, 4])
+        assert makesquare_result_2 == False
     except Error:
         assert False

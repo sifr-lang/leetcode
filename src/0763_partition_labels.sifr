@@ -28,7 +28,7 @@ def partitionLabels(S: str) -> Result[list[int], Error]:
 
 def main():
     try:
-        contract_result_1: list[int] = partitionLabels("ababcbacadefegdehijhklij")
-        assert str(contract_result_1) == '[9, 7, 8]'
+        partition_labels_result_1: list[int] = partitionLabels("ababcbacadefegdehijhklij")
+        assert str(partition_labels_result_1) == '[9, 7, 8]'
     except Error:
         assert False

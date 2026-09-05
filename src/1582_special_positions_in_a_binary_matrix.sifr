@@ -22,9 +22,9 @@ def numSpecial(mat: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = numSpecial([[1, 0, 0], [0, 0, 1], [1, 0, 0]])
-        assert contract_result_1 == 1
-        contract_result_2: int = numSpecial([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-        assert contract_result_2 == 3
+        num_special_result_1: int = numSpecial([[1, 0, 0], [0, 0, 1], [1, 0, 0]])
+        assert num_special_result_1 == 1
+        num_special_result_2: int = numSpecial([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+        assert num_special_result_2 == 3
     except Error:
         assert False

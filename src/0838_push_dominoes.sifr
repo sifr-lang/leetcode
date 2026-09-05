@@ -30,9 +30,9 @@ def pushDominoes(dominoes: str) -> Result[str, Error]:
 
 def main():
     try:
-        contract_result_1: str = pushDominoes('RR.L')
-        assert contract_result_1 == 'RR.L'
-        contract_result_2: str = pushDominoes('.L.R...LR..L..')
-        assert contract_result_2 == 'LL.RR.LLRRLL..'
+        push_dominoes_result_1: str = pushDominoes('RR.L')
+        assert push_dominoes_result_1 == 'RR.L'
+        push_dominoes_result_2: str = pushDominoes('.L.R...LR..L..')
+        assert push_dominoes_result_2 == 'LL.RR.LLRRLL..'
     except Error:
         assert False

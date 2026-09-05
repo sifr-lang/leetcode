@@ -51,18 +51,18 @@ def main():
         obj.checkIn(45, 'Leyton', 3)
         obj.checkIn(32, 'Paradise', 8)
         obj.checkIn(27, 'Leyton', 10)
-        contract_result_1: None = obj.checkOut(45, 'Waterloo', 15)
-        contract_result_2: None = obj.checkOut(27, 'Waterloo', 20)
-        contract_result_3: None = obj.checkOut(32, 'Cambridge', 22)
-        contract_result_4: float = obj.getAverageTime('Paradise', 'Cambridge')
-        assert contract_result_4 == 14.0
-        contract_result_5: float = obj.getAverageTime('Leyton', 'Waterloo')
-        assert contract_result_5 == 11.0
+        check_out_completion_1: None = obj.checkOut(45, 'Waterloo', 15)
+        check_out_completion_2: None = obj.checkOut(27, 'Waterloo', 20)
+        check_out_completion_3: None = obj.checkOut(32, 'Cambridge', 22)
+        get_average_time_result_4: float = obj.getAverageTime('Paradise', 'Cambridge')
+        assert get_average_time_result_4 == 14.0
+        get_average_time_result_5: float = obj.getAverageTime('Leyton', 'Waterloo')
+        assert get_average_time_result_5 == 11.0
         obj.checkIn(10, 'Leyton', 24)
-        contract_result_6: float = obj.getAverageTime('Leyton', 'Waterloo')
-        assert contract_result_6 == 11.0
-        contract_result_7: None = obj.checkOut(10, 'Waterloo', 38)
-        contract_result_8: float = obj.getAverageTime('Leyton', 'Waterloo')
-        assert contract_result_8 == 12.0
+        get_average_time_result_6: float = obj.getAverageTime('Leyton', 'Waterloo')
+        assert get_average_time_result_6 == 11.0
+        check_out_completion_7: None = obj.checkOut(10, 'Waterloo', 38)
+        get_average_time_result_8: float = obj.getAverageTime('Leyton', 'Waterloo')
+        assert get_average_time_result_8 == 12.0
     except Error:
         assert False

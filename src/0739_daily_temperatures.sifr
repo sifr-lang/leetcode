@@ -19,7 +19,7 @@ def dailyTemperatures(temperatures: list[int]) -> Result[list[int], Error]:
 
 def main():
     try:
-        contract_result_1: list[int] = dailyTemperatures([73,74,75,71,69,72,76,73])
-        assert str(contract_result_1) == '[1, 1, 4, 2, 1, 1, 0, 0]'
+        daily_temperatures_result_1: list[int] = dailyTemperatures([73,74,75,71,69,72,76,73])
+        assert str(daily_temperatures_result_1) == '[1, 1, 4, 2, 1, 1, 0, 0]'
     except Error:
         assert False

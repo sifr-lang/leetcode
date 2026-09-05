@@ -35,7 +35,7 @@ def sortedSquares(nums: list[int]) -> Result[list[int], Error]:
 
 def main():
     try:
-        contract_result_1: list[int] = sortedSquares([-4,-1,0,3,10])
-        assert str(contract_result_1) == '[0, 1, 9, 16, 100]'
+        sorted_squares_result_1: list[int] = sortedSquares([-4,-1,0,3,10])
+        assert str(sorted_squares_result_1) == '[0, 1, 9, 16, 100]'
     except Error:
         assert False

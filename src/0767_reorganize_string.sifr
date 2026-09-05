@@ -48,9 +48,9 @@ def reorganizeString(s: str) -> Result[str, Error]:
 
 def main():
     try:
-        contract_result_1: str = reorganizeString('aab')
-        assert contract_result_1 == 'aba'
-        contract_result_2: str = reorganizeString('aaab')
-        assert contract_result_2 == ''
+        reorganize_string_result_1: str = reorganizeString('aab')
+        assert reorganize_string_result_1 == 'aba'
+        reorganize_string_result_2: str = reorganizeString('aaab')
+        assert reorganize_string_result_2 == ''
     except Error:
         assert False

@@ -47,9 +47,9 @@ def mostBooked(n: int, mut meetings: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = mostBooked(2, [[0, 10], [1, 5], [2, 7], [3, 4]])
-        assert contract_result_1 == 0
-        contract_result_2: int = mostBooked(3, [[1, 20], [2, 10], [3, 5], [4, 9], [6, 8]])
-        assert contract_result_2 == 1
+        most_booked_result_1: int = mostBooked(2, [[0, 10], [1, 5], [2, 7], [3, 4]])
+        assert most_booked_result_1 == 0
+        most_booked_result_2: int = mostBooked(3, [[1, 20], [2, 10], [3, 5], [4, 9], [6, 8]])
+        assert most_booked_result_2 == 1
     except Error:
         assert False

@@ -56,11 +56,11 @@ class Trie:
 def main():
     try:
         obj = Trie()
-        contract_result_1: None = obj.insert('apple')
+        insert_completion_1: None = obj.insert('apple')
         assert obj.search('apple') == True
         assert obj.search('app') == False
         assert obj.startsWith('app') == True
-        contract_result_2: None = obj.insert('app')
+        insert_completion_2: None = obj.insert('app')
         assert obj.search('app') == True
     except Error:
         assert False

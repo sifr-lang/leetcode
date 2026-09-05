@@ -45,11 +45,11 @@ def orangesRotting(mut grid: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]])
-        assert contract_result_1 == 4
-        contract_result_2: int = orangesRotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]])
-        assert contract_result_2 == -1
-        contract_result_3: int = orangesRotting([[0, 2]])
-        assert contract_result_3 == 0
+        oranges_rotting_result_1: int = orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]])
+        assert oranges_rotting_result_1 == 4
+        oranges_rotting_result_2: int = orangesRotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]])
+        assert oranges_rotting_result_2 == -1
+        oranges_rotting_result_3: int = orangesRotting([[0, 2]])
+        assert oranges_rotting_result_3 == 0
     except Error:
         assert False

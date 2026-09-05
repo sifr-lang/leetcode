@@ -25,9 +25,9 @@ def wordBreak(s: str, wordDict: list[str]) -> Result[bool, Error]:
 
 def main():
     try:
-        contract_result_1: bool = wordBreak("leetcode", ["leet","code"])
-        assert str(contract_result_1) == 'true'
-        contract_result_2: bool = wordBreak("applepenapple", ["apple","pen"])
-        assert str(contract_result_2) == 'true'
+        word_break_result_1: bool = wordBreak("leetcode", ["leet","code"])
+        assert str(word_break_result_1) == 'true'
+        word_break_result_2: bool = wordBreak("applepenapple", ["apple","pen"])
+        assert str(word_break_result_2) == 'true'
     except Error:
         assert False

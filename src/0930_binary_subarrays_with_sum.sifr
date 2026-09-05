@@ -30,7 +30,7 @@ def numSubarraysWithSum(nums: list[int], goal: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = numSubarraysWithSum([1,0,1,0,1], 2)
-        assert str(contract_result_1) == '4'
+        num_subarrays_with_sum_result_1: int = numSubarraysWithSum([1,0,1,0,1], 2)
+        assert str(num_subarrays_with_sum_result_1) == '4'
     except Error:
         assert False

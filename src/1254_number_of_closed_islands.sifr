@@ -12,10 +12,10 @@ def closedIsland(mut grid: list[list[int]]) -> Result[int, Error]:
                     return
                 seen.add((x, y))
                 grid[x][y] = 1
-                contract_result_3: None = dfs(x+1, y)
-                contract_result_4: None = dfs(x, y+1)
-                contract_result_5: None = dfs(x-1, y)
-                contract_result_6: None = dfs(x, y-1)
+                depth_first_search_completion_3: None = dfs(x+1, y)
+                depth_first_search_completion_4: None = dfs(x, y+1)
+                depth_first_search_completion_5: None = dfs(x-1, y)
+                depth_first_search_completion_6: None = dfs(x, y-1)
                 return None
             except Error as error:
                 raise error
@@ -23,12 +23,12 @@ def closedIsland(mut grid: list[list[int]]) -> Result[int, Error]:
         for i in range(r):
             for j in range(c):
                 if i == 0 or j == 0 or i == r-1 or j == c-1:
-                    contract_result_1: None = dfs(i, j)
+                    depth_first_search_completion_1: None = dfs(i, j)
         ans = 0
         for i in range(r):
             for j in range(c):
                 if grid[i][j] == 0:
-                    contract_result_2: None = dfs(i, j)
+                    depth_first_search_completion_2: None = dfs(i, j)
                     ans += 1
         return ans
     except Error as error:
@@ -36,11 +36,11 @@ def closedIsland(mut grid: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_7: int = closedIsland([[1, 1, 1, 1, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 0]])
-        assert contract_result_7 == 2
-        contract_result_8: int = closedIsland([[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]])
-        assert contract_result_8 == 1
-        contract_result_9: int = closedIsland([[1, 1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 0, 1], [1, 0, 1, 1, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 1, 1, 0, 1], [1, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1]])
-        assert contract_result_9 == 2
+        closed_island_result_7: int = closedIsland([[1, 1, 1, 1, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 0]])
+        assert closed_island_result_7 == 2
+        closed_island_result_8: int = closedIsland([[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]])
+        assert closed_island_result_8 == 1
+        closed_island_result_9: int = closedIsland([[1, 1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 0, 1], [1, 0, 1, 1, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 1, 1, 0, 1], [1, 0, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1, 1]])
+        assert closed_island_result_9 == 2
     except Error:
         assert False

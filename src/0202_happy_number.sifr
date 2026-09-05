@@ -31,9 +31,9 @@ def sumSquareDigits(mut n: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: bool = isHappy(19)
-        assert str(contract_result_1) == 'true'
-        contract_result_2: bool = isHappy(2)
-        assert str(contract_result_2) == 'false'
+        is_happy_result_1: bool = isHappy(19)
+        assert str(is_happy_result_1) == 'true'
+        is_happy_result_2: bool = isHappy(2)
+        assert str(is_happy_result_2) == 'false'
     except Error:
         assert False

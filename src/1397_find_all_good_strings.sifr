@@ -116,7 +116,7 @@ def findGoodStrings(n: int, s1: str, s2: str, evil: str) -> Result[int, Error]:
             while j > 0 and ci != charAt(evil, j):
                 j = lpsAt(lps, j - 1)
             if ci == charAt(evil, j):
-                contract_result_1: None = setLpsAt(lps, i, j + 1)
+                set_lps_at_completion_1: None = setLpsAt(lps, i, j + 1)
 
         memo: dict[int, int] = {}
         return dpCount(0, True, True, 0, n, s1, s2, evil, lps, memo)
@@ -125,11 +125,11 @@ def findGoodStrings(n: int, s1: str, s2: str, evil: str) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_2: int = findGoodStrings(2, "aa", "da", "b")
-        assert contract_result_2 == 51
-        contract_result_3: int = findGoodStrings(8, "leetcode", "leetgoes", "leet")
-        assert contract_result_3 == 0
-        contract_result_4: int = findGoodStrings(2, "gx", "gz", "x")
-        assert contract_result_4 == 2
+        find_good_strings_result_2: int = findGoodStrings(2, "aa", "da", "b")
+        assert find_good_strings_result_2 == 51
+        find_good_strings_result_3: int = findGoodStrings(8, "leetcode", "leetgoes", "leet")
+        assert find_good_strings_result_3 == 0
+        find_good_strings_result_4: int = findGoodStrings(2, "gx", "gz", "x")
+        assert find_good_strings_result_4 == 2
     except Error:
         assert False

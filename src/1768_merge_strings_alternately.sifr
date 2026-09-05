@@ -34,11 +34,11 @@ def mergeAlternately(word1: str, word2: str) -> Result[str, Error]:
 
 def main():
     try:
-        contract_result_1: str = mergeAlternately("abc", "pqr")
-        assert str(contract_result_1) == 'apbqcr'
-        contract_result_2: str = mergeAlternately("ab", "pqrs")
-        assert str(contract_result_2) == 'apbqrs'
-        contract_result_3: str = mergeAlternately("abcd", "pq")
-        assert str(contract_result_3) == 'apbqcd'
+        merge_alternately_result_1: str = mergeAlternately("abc", "pqr")
+        assert str(merge_alternately_result_1) == 'apbqcr'
+        merge_alternately_result_2: str = mergeAlternately("ab", "pqrs")
+        assert str(merge_alternately_result_2) == 'apbqrs'
+        merge_alternately_result_3: str = mergeAlternately("abcd", "pq")
+        assert str(merge_alternately_result_3) == 'apbqcd'
     except Error:
         assert False

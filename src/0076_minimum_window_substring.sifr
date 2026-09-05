@@ -66,11 +66,11 @@ def minWindow(s: str, t: str) -> Result[str, Error]:
 
 def main():
     try:
-        contract_result_1: str = minWindow('ADOBECODEBANC', 'ABC')
-        assert contract_result_1 == 'BANC'
-        contract_result_2: str = minWindow('a', 'a')
-        assert contract_result_2 == 'a'
-        contract_result_3: str = minWindow('a', 'aa')
-        assert contract_result_3 == ''
+        min_window_result_1: str = minWindow('ADOBECODEBANC', 'ABC')
+        assert min_window_result_1 == 'BANC'
+        min_window_result_2: str = minWindow('a', 'a')
+        assert min_window_result_2 == 'a'
+        min_window_result_3: str = minWindow('a', 'aa')
+        assert min_window_result_3 == ''
     except Error:
         assert False

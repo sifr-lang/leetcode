@@ -33,12 +33,12 @@ def firstMissingPositive_2(nums: list[int]) -> int:
 
 def main():
     try:
-        contract_result_1: int = firstMissingPositive([1,2,0])
-        assert str(contract_result_1) == '3'
-        contract_result_2: int = firstMissingPositive([3,4,-1,1])
-        assert str(contract_result_2) == '2'
-        contract_result_3: int = firstMissingPositive([7,8,9,11,12])
-        assert str(contract_result_3) == '1'
+        first_missing_positive_result_1: int = firstMissingPositive([1,2,0])
+        assert str(first_missing_positive_result_1) == '3'
+        first_missing_positive_result_2: int = firstMissingPositive([3,4,-1,1])
+        assert str(first_missing_positive_result_2) == '2'
+        first_missing_positive_result_3: int = firstMissingPositive([7,8,9,11,12])
+        assert str(first_missing_positive_result_3) == '1'
     except Error:
         assert False
 

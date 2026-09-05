@@ -86,11 +86,11 @@ def canTraverseAllPairs(nums: list[int]) -> Result[bool, Error]:
 
 def main():
     try:
-        contract_result_1: bool = canTraverseAllPairs([2, 3, 6])
-        assert contract_result_1 == True
-        contract_result_2: bool = canTraverseAllPairs([3, 9, 5])
-        assert contract_result_2 == False
-        contract_result_3: bool = canTraverseAllPairs([4, 3, 12, 8])
-        assert contract_result_3 == True
+        can_traverse_all_pairs_result_1: bool = canTraverseAllPairs([2, 3, 6])
+        assert can_traverse_all_pairs_result_1 == True
+        can_traverse_all_pairs_result_2: bool = canTraverseAllPairs([3, 9, 5])
+        assert can_traverse_all_pairs_result_2 == False
+        can_traverse_all_pairs_result_3: bool = canTraverseAllPairs([4, 3, 12, 8])
+        assert can_traverse_all_pairs_result_3 == True
     except Error:
         assert False

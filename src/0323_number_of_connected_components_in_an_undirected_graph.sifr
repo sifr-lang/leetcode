@@ -13,9 +13,9 @@ def countComponents(n: int, edges: list[tuple[int, int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = countComponents(5, [(0, 1), (1, 2), (3, 4)])
-        assert contract_result_1 == 2
-        contract_result_2: int = countComponents(5, [(0, 1), (1, 2), (2, 3), (3, 4)])
-        assert contract_result_2 == 1
+        count_components_result_1: int = countComponents(5, [(0, 1), (1, 2), (3, 4)])
+        assert count_components_result_1 == 2
+        count_components_result_2: int = countComponents(5, [(0, 1), (1, 2), (2, 3), (3, 4)])
+        assert count_components_result_2 == 1
     except Error:
         assert False

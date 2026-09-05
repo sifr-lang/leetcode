@@ -33,9 +33,9 @@ def characterReplacement(s: str, k: int) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = characterReplacement("ABAB", 2)
-        assert str(contract_result_1) == '4'
-        contract_result_2: int = characterReplacement("AABABBA", 1)
-        assert str(contract_result_2) == '4'
+        character_replacement_result_1: int = characterReplacement("ABAB", 2)
+        assert str(character_replacement_result_1) == '4'
+        character_replacement_result_2: int = characterReplacement("AABABBA", 1)
+        assert str(character_replacement_result_2) == '4'
     except Error:
         assert False

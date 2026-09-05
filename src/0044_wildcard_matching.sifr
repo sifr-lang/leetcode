@@ -16,11 +16,11 @@ def isMatch(s: str, p: str) -> Result[bool, Error]:
 
 def main():
     try:
-        contract_result_1: bool = isMatch("aa", "a")
-        assert str(contract_result_1) == 'false'
-        contract_result_2: bool = isMatch("aa", "*")
-        assert str(contract_result_2) == 'true'
-        contract_result_3: bool = isMatch("cb", "?a")
-        assert str(contract_result_3) == 'false'
+        is_match_result_1: bool = isMatch("aa", "a")
+        assert str(is_match_result_1) == 'false'
+        is_match_result_2: bool = isMatch("aa", "*")
+        assert str(is_match_result_2) == 'true'
+        is_match_result_3: bool = isMatch("cb", "?a")
+        assert str(is_match_result_3) == 'false'
     except Error:
         assert False

@@ -34,11 +34,11 @@ def maximalSquare(matrix: list[list[str]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = maximalSquare([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "0", "0", "1", "0"]])
-        assert contract_result_1 == 4
-        contract_result_2: int = maximalSquare([["0", "1"], ["1", "0"]])
-        assert contract_result_2 == 1
-        contract_result_3: int = maximalSquare([["0"]])
-        assert contract_result_3 == 0
+        maximal_square_result_1: int = maximalSquare([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"], ["1", "1", "1", "1", "1"], ["1", "0", "0", "1", "0"]])
+        assert maximal_square_result_1 == 4
+        maximal_square_result_2: int = maximalSquare([["0", "1"], ["1", "0"]])
+        assert maximal_square_result_2 == 1
+        maximal_square_result_3: int = maximalSquare([["0"]])
+        assert maximal_square_result_3 == 0
     except Error:
         assert False

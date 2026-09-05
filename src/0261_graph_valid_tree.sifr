@@ -35,13 +35,13 @@ def validTree(n: int, edges: list[list[int]]) -> Result[bool, Error]:
 
 def main():
     try:
-        contract_result_1: bool = validTree(5, [[0, 1], [0, 2], [0, 3], [1, 4]])
-        assert contract_result_1 == True
-        contract_result_2: bool = validTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]])
-        assert contract_result_2 == False
-        contract_result_3: bool = validTreeDsu(5, [[0, 1], [0, 2], [0, 3], [1, 4]])
-        assert contract_result_3 == True
-        contract_result_4: bool = validTreeDsu(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]])
-        assert contract_result_4 == False
+        valid_tree_result_1: bool = validTree(5, [[0, 1], [0, 2], [0, 3], [1, 4]])
+        assert valid_tree_result_1 == True
+        valid_tree_result_2: bool = validTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]])
+        assert valid_tree_result_2 == False
+        valid_tree_dsu_result_3: bool = validTreeDsu(5, [[0, 1], [0, 2], [0, 3], [1, 4]])
+        assert valid_tree_dsu_result_3 == True
+        valid_tree_dsu_result_4: bool = validTreeDsu(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]])
+        assert valid_tree_dsu_result_4 == False
     except Error:
         assert False

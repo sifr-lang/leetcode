@@ -71,11 +71,11 @@ def maxProduct(s: str) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_1: int = maxProduct("leetcodecom")
-        assert contract_result_1 == 9
-        contract_result_2: int = maxProduct("bb")
-        assert contract_result_2 == 1
-        contract_result_3: int = maxProduct("accbcaxxcxx")
-        assert contract_result_3 == 25
+        max_product_result_1: int = maxProduct("leetcodecom")
+        assert max_product_result_1 == 9
+        max_product_result_2: int = maxProduct("bb")
+        assert max_product_result_2 == 1
+        max_product_result_3: int = maxProduct("accbcaxxcxx")
+        assert max_product_result_3 == 25
     except Error:
         assert False

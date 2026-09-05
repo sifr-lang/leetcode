@@ -49,7 +49,7 @@ class LRUCache:
 
     def moveToFront(mut self, node: int) -> Result[None, Error]:
         try:
-            contract_result_1: None = self.detach(node)
+            detach_completion_1: None = self.detach(node)
             head = self.head
             self.insertAfter(node, head)
             return None
@@ -70,7 +70,7 @@ class LRUCache:
                 del self.key_to_node[key]
             del self.node_key[node]
             del self.node_value[node]
-            contract_result_2: None = self.detach(node)
+            detach_completion_2: None = self.detach(node)
             return None
         except Error as error:
             raise error
@@ -84,7 +84,7 @@ class LRUCache:
             value: int | None = self.node_value[node]
             if value is None:
                 return -1
-            contract_result_3: None = self.moveToFront(node)
+            move_to_front_completion_3: None = self.moveToFront(node)
             return value
         except Error as error:
             raise error
@@ -97,11 +97,11 @@ class LRUCache:
             existing: int | None = self.key_to_node[key]
             if existing is not None:
                 self.node_value[existing] = value
-                contract_result_4: None = self.moveToFront(existing)
+                move_to_front_completion_4: None = self.moveToFront(existing)
                 return
 
             if len(self.key_to_node) >= self.cap:
-                contract_result_5: None = self.evictLru()
+                evict_lru_completion_5: None = self.evictLru()
 
             node = self.next_id
             self.next_id = self.next_id + 1
@@ -117,28 +117,28 @@ class LRUCache:
 def main():
     try:
         obj = LRUCache(2)
-        contract_result_6: None = obj.put(1, 1)
-        contract_result_7: None = obj.put(2, 2)
-        contract_result_8: int = obj.get(1)
-        assert contract_result_8 == 1
-        contract_result_9: None = obj.put(3, 3)
-        contract_result_10: int = obj.get(2)
-        assert contract_result_10 == -1
-        contract_result_11: None = obj.put(4, 4)
-        contract_result_12: int = obj.get(1)
-        assert contract_result_12 == -1
-        contract_result_13: int = obj.get(3)
-        assert contract_result_13 == 3
-        contract_result_14: int = obj.get(4)
-        assert contract_result_14 == 4
+        put_completion_6: None = obj.put(1, 1)
+        put_completion_7: None = obj.put(2, 2)
+        get_result_8: int = obj.get(1)
+        assert get_result_8 == 1
+        put_completion_9: None = obj.put(3, 3)
+        get_result_10: int = obj.get(2)
+        assert get_result_10 == -1
+        put_completion_11: None = obj.put(4, 4)
+        get_result_12: int = obj.get(1)
+        assert get_result_12 == -1
+        get_result_13: int = obj.get(3)
+        assert get_result_13 == 3
+        get_result_14: int = obj.get(4)
+        assert get_result_14 == 4
         obj2 = LRUCache(1)
-        contract_result_15: None = obj2.put(8, -1)
-        contract_result_16: int = obj2.get(8)
-        assert contract_result_16 == -1
-        contract_result_17: None = obj2.put(9, 9)
-        contract_result_18: int = obj2.get(8)
-        assert contract_result_18 == -1
-        contract_result_19: int = obj2.get(9)
-        assert contract_result_19 == 9
+        put_completion_15: None = obj2.put(8, -1)
+        get_result_16: int = obj2.get(8)
+        assert get_result_16 == -1
+        put_completion_17: None = obj2.put(9, 9)
+        get_result_18: int = obj2.get(8)
+        assert get_result_18 == -1
+        get_result_19: int = obj2.get(9)
+        assert get_result_19 == 9
     except Error:
         assert False

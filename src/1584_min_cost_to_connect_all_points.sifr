@@ -45,7 +45,7 @@ def minCostConnectPoints(points: list[list[int]]) -> Result[int, Error]:
         inf = 1_000_000_000
         in_mst: list[bool] = [False] * n
         min_dist: list[int] = [inf] * n
-        contract_result_1: None = setIntAt(min_dist, 0, 0)
+        set_int_at_completion_1: None = setIntAt(min_dist, 0, 0)
 
         total = 0
 
@@ -63,7 +63,7 @@ def minCostConnectPoints(points: list[list[int]]) -> Result[int, Error]:
             if u == -1:
                 break
 
-            contract_result_2: None = setBoolAt(in_mst, u, True)
+            set_bool_at_completion_2: None = setBoolAt(in_mst, u, True)
             total += best
 
             ux = coord(points, u, 0)
@@ -78,7 +78,7 @@ def minCostConnectPoints(points: list[list[int]]) -> Result[int, Error]:
                 dist = abs(ux - vx) + abs(uy - vy)
 
                 if dist < getIntAt(min_dist, v):
-                    contract_result_3: None = setIntAt(min_dist, v, dist)
+                    set_int_at_completion_3: None = setIntAt(min_dist, v, dist)
 
         return total
     except Error as error:
@@ -86,9 +86,9 @@ def minCostConnectPoints(points: list[list[int]]) -> Result[int, Error]:
 
 def main():
     try:
-        contract_result_4: int = minCostConnectPoints([[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]])
-        assert contract_result_4 == 20
-        contract_result_5: int = minCostConnectPoints([[3, 12], [-2, 5], [-4, 1]])
-        assert contract_result_5 == 18
+        min_cost_connect_points_result_4: int = minCostConnectPoints([[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]])
+        assert min_cost_connect_points_result_4 == 20
+        min_cost_connect_points_result_5: int = minCostConnectPoints([[3, 12], [-2, 5], [-4, 1]])
+        assert min_cost_connect_points_result_5 == 18
     except Error:
         assert False
