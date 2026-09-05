@@ -1,6 +1,6 @@
 # LeetCode 4: Median Of Two Sorted Arrays
 
-def findMedianSortedArrays(nums1: list[int], nums2: list[int]) -> float:
+def findMedianSortedArrays(nums1: list[int], nums2: list[int]) -> Result[float, FloatOverflowError | FloatPrecisionLossError]:
     if len(nums1) + len(nums2) == 0:
         return 0.0
 
@@ -67,7 +67,14 @@ def findMedianSortedArrays(nums1: list[int], nums2: list[int]) -> float:
             right_min = a_right
             if b_right < right_min:
                 right_min = b_right
-            return (float(left_max) + float(right_min)) / 2.0
+            try:
+                left_float: float = float(left_max)
+                right_float: float = float(right_min)
+                return (left_float + right_float) / 2.0
+            except FloatOverflowError as error:
+                raise error
+            except FloatPrecisionLossError as error:
+                raise error
 
         if a_left > b_right:
             hi = a_count - 1
@@ -77,10 +84,20 @@ def findMedianSortedArrays(nums1: list[int], nums2: list[int]) -> float:
     return 0.0
 
 def main():
-    assert findMedianSortedArrays([1,3], [2]) == 2.0
-    assert findMedianSortedArrays([1,2], [3,4]) == 2.5
-    assert findMedianSortedArrays([], [1]) == 1.0
-    assert findMedianSortedArrays([2], []) == 2.0
-    assert findMedianSortedArrays([], [2,3]) == 2.5
-    assert findMedianSortedArrays([0,0], [0,0]) == 0.0
-    assert findMedianSortedArrays([-5,-3], [-4]) == -4.0
+    try:
+        odd: float = findMedianSortedArrays([1,3], [2])
+        assert odd == 2.0
+        even: float = findMedianSortedArrays([1,2], [3,4])
+        assert even == 2.5
+        empty_left: float = findMedianSortedArrays([], [1])
+        assert empty_left == 1.0
+        empty_right: float = findMedianSortedArrays([2], [])
+        assert empty_right == 2.0
+        empty_left_even: float = findMedianSortedArrays([], [2,3])
+        assert empty_left_even == 2.5
+        zeros: float = findMedianSortedArrays([0,0], [0,0])
+        assert zeros == 0.0
+        negatives: float = findMedianSortedArrays([-5,-3], [-4])
+        assert negatives == -4.0
+    except Error:
+        assert False

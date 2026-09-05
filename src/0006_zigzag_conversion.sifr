@@ -1,6 +1,6 @@
 # LeetCode 6: Zigzag Conversion
 
-def convert(s: str, numRows: int) -> str:
+def convert(s: str, numRows: int) -> Result[str, IndexError]:
     if numRows == 1 or numRows >= len(s):
         return "" + s
 
@@ -9,7 +9,10 @@ def convert(s: str, numRows: int) -> str:
     index = 0
     step = 1
     for c in s:
-        res[index] += c
+        try:
+            res[index] += c
+        except IndexError as error:
+            raise error
         if index == 0:
             step = 1
         elif index == numRows - 1:
@@ -19,5 +22,10 @@ def convert(s: str, numRows: int) -> str:
     return "".join(res)
 
 def main():
-    assert str(convert("PAYPALISHIRING", 3)) == 'PAHNAPLSIIGYIR'
-    assert str(convert("A", 1)) == 'A'
+    try:
+        three_rows: str = convert("PAYPALISHIRING", 3)
+        assert str(three_rows) == 'PAHNAPLSIIGYIR'
+        one_row: str = convert("A", 1)
+        assert str(one_row) == 'A'
+    except Error:
+        assert False
