@@ -2,12 +2,20 @@
 
 from helpers.dsu import UnionFind
 
-def countComponents(n: int, edges: list[tuple[int, int]]) -> int:
-    dsu = UnionFind(n)
-    for a, b in edges:
-        dsu.union(a, b)
-    return dsu.component_count()
+def countComponents(n: int, edges: list[tuple[int, int]]) -> Result[int, Error]:
+    try:
+        dsu = UnionFind(n)
+        for a, b in edges:
+            joined: bool = dsu.union(a, b)
+        return dsu.component_count()
+    except Error as error:
+        raise error
 
 def main():
-    assert countComponents(5, [(0, 1), (1, 2), (3, 4)]) == 2
-    assert countComponents(5, [(0, 1), (1, 2), (2, 3), (3, 4)]) == 1
+    try:
+        contract_result_1: int = countComponents(5, [(0, 1), (1, 2), (3, 4)])
+        assert contract_result_1 == 2
+        contract_result_2: int = countComponents(5, [(0, 1), (1, 2), (2, 3), (3, 4)])
+        assert contract_result_2 == 1
+    except Error:
+        assert False

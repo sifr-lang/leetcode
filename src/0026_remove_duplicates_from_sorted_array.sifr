@@ -1,15 +1,22 @@
 # LeetCode 26: Remove Duplicates From Sorted Array
 
-def removeDuplicates(mut nums: list[int]) -> int:
-    L = 1
+def removeDuplicates(mut nums: list[int]) -> Result[int, Error]:
+    try:
+        L = 1
     
-    for R in range(1, len(nums)):
-        if nums[R] != nums[R - 1]:
-            nums[L] = nums[R]
-            L += 1
-    return L
+        for R in range(1, len(nums)):
+            if nums[R] != nums[R - 1]:
+                nums[L] = nums[R]
+                L += 1
+        return L
+    except Error as error:
+        raise error
 
 def main():
-    assert str(removeDuplicates([1,1,2])) == '2'
-    assert str(removeDuplicates([0,0,1,1,1,2,2,3,3,4])) == '5'
-
+    try:
+        contract_result_1: int = removeDuplicates([1,1,2])
+        assert str(contract_result_1) == '2'
+        contract_result_2: int = removeDuplicates([0,0,1,1,1,2,2,3,3,4])
+        assert str(contract_result_2) == '5'
+    except Error:
+        assert False

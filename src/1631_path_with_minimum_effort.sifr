@@ -18,12 +18,16 @@ def getIntCell(matrix: list[list[int]], r: int, c: int) -> int:
         return 0
     return unwrapInt(row[c])
 
-def setIntCell(mut matrix: list[list[int]], r: int, c: int, value: int) -> None:
-    row = matrix[r]
-    if row is None:
-        return
-    row[c] = value
-    matrix[r] = row
+def setIntCell(mut matrix: list[list[int]], r: int, c: int, value: int) -> Result[None, Error]:
+    try:
+        row = matrix[r]
+        if row is None:
+            return
+        row[c] = value
+        matrix[r] = row
+        return None
+    except Error as error:
+        raise error
 
 def getBoolCell(matrix: list[list[bool]], r: int, c: int) -> bool:
     row = matrix[r]
@@ -31,78 +35,85 @@ def getBoolCell(matrix: list[list[bool]], r: int, c: int) -> bool:
         return False
     return unwrapBool(row[c])
 
-def setBoolCell(mut matrix: list[list[bool]], r: int, c: int, value: bool) -> None:
-    row = matrix[r]
-    if row is None:
-        return
-    row[c] = value
-    matrix[r] = row
+def setBoolCell(mut matrix: list[list[bool]], r: int, c: int, value: bool) -> Result[None, Error]:
+    try:
+        row = matrix[r]
+        if row is None:
+            return
+        row[c] = value
+        matrix[r] = row
+        return None
+    except Error as error:
+        raise error
 
-def minimumEffortPath(heights: list[list[int]]) -> int:
-    m = len(heights)
-    if m == 0:
-        return 0
+def minimumEffortPath(heights: list[list[int]]) -> Result[int, Error]:
+    try:
+        m = len(heights)
+        if m == 0:
+            return 0
 
-    first_row = heights[0]
-    if first_row is None:
-        return 0
-    n = len(first_row)
-    if n == 0:
-        return 0
+        first_row = heights[0]
+        if first_row is None:
+            return 0
+        n = len(first_row)
+        if n == 0:
+            return 0
 
-    inf = 1_000_000_000
-    dist: list[list[int]] = []
-    for _ in range(m):
-        dist.append([inf] * n)
-    setIntCell(dist, 0, 0, 0)
+        inf = 1_000_000_000
+        dist: list[list[int]] = []
+        for _ in range(m):
+            dist.append([inf] * n)
+        contract_result_1: None = setIntCell(dist, 0, 0, 0)
 
-    base = max(m, n) + 1
-    heap: list[int] = [0]
-    while len(heap) > 0:
-        item: int | None = heappop(heap)
-        if item is not None:
-            encoded: int = item
-            best = div_or_zero(encoded, base * base)
-            position = mod_or_zero(encoded, base * base)
-            r = div_or_zero(position, base)
-            c = mod_or_zero(position, base)
-            if best > getIntCell(dist, r, c):
-                continue
-            if r == m - 1 and c == n - 1:
-                return best
-
-            directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-            for direction in directions:
-                dr = direction[0]
-                dc = direction[1]
-                if dr is None or dc is None:
+        base = max(m, n) + 1
+        heap: list[int] = [0]
+        while len(heap) > 0:
+            item: int | None = heappop(heap)
+            if item is not None:
+                encoded: int = item
+                best = div_or_zero(encoded, base * base)
+                position = mod_or_zero(encoded, base * base)
+                r = div_or_zero(position, base)
+                c = mod_or_zero(position, base)
+                if best > getIntCell(dist, r, c):
                     continue
+                if r == m - 1 and c == n - 1:
+                    return best
 
-                nr = r + dr
-                nc = c + dc
-                if nr < 0 or nc < 0 or nr >= m or nc >= n:
-                    continue
+                directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                for direction in directions:
+                    dr = direction[0]
+                    dc = direction[1]
+                    if dr is None or dc is None:
+                        continue
 
-                height_cur = getIntCell(heights, r, c)
-                height_next = getIntCell(heights, nr, nc)
-                edge = abs(height_next - height_cur)
-                effort = best
-                if edge > effort:
-                    effort = edge
+                    nr = r + dr
+                    nc = c + dc
+                    if nr < 0 or nc < 0 or nr >= m or nc >= n:
+                        continue
 
-                if effort < getIntCell(dist, nr, nc):
-                    setIntCell(dist, nr, nc, effort)
-                    heappush(heap, (effort * base * base) + (nr * base) + nc)
+                    height_cur = getIntCell(heights, r, c)
+                    height_next = getIntCell(heights, nr, nc)
+                    edge = abs(height_next - height_cur)
+                    effort = best
+                    if edge > effort:
+                        effort = edge
 
-    return getIntCell(dist, m - 1, n - 1)
+                    if effort < getIntCell(dist, nr, nc):
+                        contract_result_2: None = setIntCell(dist, nr, nc, effort)
+                        heappush(heap, (effort * base * base) + (nr * base) + nc)
+
+        return getIntCell(dist, m - 1, n - 1)
+    except Error as error:
+        raise error
 
 def main():
-    assert minimumEffortPath([[1, 2, 2], [3, 8, 2], [5, 3, 5]]) == 2
-    assert minimumEffortPath([[1, 2, 3], [3, 8, 4], [5, 3, 5]]) == 1
-    assert minimumEffortPath([
-        [1, 2, 1, 1, 1],
-        [1, 2, 1, 2, 1],
-        [1, 2, 1, 2, 1],
-        [1, 2, 1, 2, 1],
-        [1, 1, 1, 2, 1],
-    ]) == 0
+    try:
+        contract_result_3: int = minimumEffortPath([[1, 2, 2], [3, 8, 2], [5, 3, 5]])
+        assert contract_result_3 == 2
+        contract_result_4: int = minimumEffortPath([[1, 2, 3], [3, 8, 4], [5, 3, 5]])
+        assert contract_result_4 == 1
+        contract_result_5: int = minimumEffortPath([[1, 2, 1, 1, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 2, 1, 2, 1], [1, 1, 1, 2, 1]])
+        assert contract_result_5 == 0
+    except Error:
+        assert False

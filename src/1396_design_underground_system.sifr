@@ -11,42 +11,58 @@ class UndergroundSystem:
     def checkIn(mut self, id: int, stationName: str, t: int) -> None:
         self.customer[id] = (str(stationName), t)
 
-    def checkOut(mut self, id: int, stationName: str, t: int) -> None:
-        customer = self.customer.get(id, ("", 0))
-        startStation = customer[0]
-        startTime = customer[1]
-        route = (startStation, str(stationName))
-        stats = self.time.get(route, [0, 0])
-        total = stats[0]
-        count = stats[1]
-        if total is not None and count is not None:
-            stats[0] = total + (t - startTime)
-            stats[1] = count + 1
-            self.time[route] = stats
+    def checkOut(mut self, id: int, stationName: str, t: int) -> Result[None, Error]:
+        try:
+            customer = self.customer.get(id, ("", 0))
+            startStation = customer[0]
+            startTime = customer[1]
+            route = (startStation, str(stationName))
+            stats = self.time.get(route, [0, 0])
+            total = stats[0]
+            count = stats[1]
+            if total is not None and count is not None:
+                stats[0] = total + (t - startTime)
+                stats[1] = count + 1
+                self.time[route] = stats
+            return None
+        except Error as error:
+            raise error
 
-    def getAverageTime(self, startStation: str, endStation: str) -> float:
-        route = (str(startStation), str(endStation))
-        stats = self.time.get(route, [0, 0])
-        total = stats[0]
-        count = stats[1]
-        if count == 0:
+    def getAverageTime(self, startStation: str, endStation: str) -> Result[float, Error]:
+        try:
+            route = (str(startStation), str(endStation))
+            stats = self.time.get(route, [0, 0])
+            total = stats[0]
+            count = stats[1]
+            if count == 0:
+                return 0.0
+            if total is not None and count is not None:
+                total_float: float = float(total)
+                count_float: float = float(count)
+                return total_float / count_float
             return 0.0
-        if total is not None and count is not None:
-            return float(total) / float(count)
-        return 0.0
+        except Error as error:
+            raise error
 
 
 def main():
-    obj = UndergroundSystem()
-    obj.checkIn(45, 'Leyton', 3)
-    obj.checkIn(32, 'Paradise', 8)
-    obj.checkIn(27, 'Leyton', 10)
-    obj.checkOut(45, 'Waterloo', 15)
-    obj.checkOut(27, 'Waterloo', 20)
-    obj.checkOut(32, 'Cambridge', 22)
-    assert obj.getAverageTime('Paradise', 'Cambridge') == 14.0
-    assert obj.getAverageTime('Leyton', 'Waterloo') == 11.0
-    obj.checkIn(10, 'Leyton', 24)
-    assert obj.getAverageTime('Leyton', 'Waterloo') == 11.0
-    obj.checkOut(10, 'Waterloo', 38)
-    assert obj.getAverageTime('Leyton', 'Waterloo') == 12.0
+    try:
+        obj = UndergroundSystem()
+        obj.checkIn(45, 'Leyton', 3)
+        obj.checkIn(32, 'Paradise', 8)
+        obj.checkIn(27, 'Leyton', 10)
+        contract_result_1: None = obj.checkOut(45, 'Waterloo', 15)
+        contract_result_2: None = obj.checkOut(27, 'Waterloo', 20)
+        contract_result_3: None = obj.checkOut(32, 'Cambridge', 22)
+        contract_result_4: float = obj.getAverageTime('Paradise', 'Cambridge')
+        assert contract_result_4 == 14.0
+        contract_result_5: float = obj.getAverageTime('Leyton', 'Waterloo')
+        assert contract_result_5 == 11.0
+        obj.checkIn(10, 'Leyton', 24)
+        contract_result_6: float = obj.getAverageTime('Leyton', 'Waterloo')
+        assert contract_result_6 == 11.0
+        contract_result_7: None = obj.checkOut(10, 'Waterloo', 38)
+        contract_result_8: float = obj.getAverageTime('Leyton', 'Waterloo')
+        assert contract_result_8 == 12.0
+    except Error:
+        assert False

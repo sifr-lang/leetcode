@@ -1,24 +1,44 @@
 # LeetCode 1768: Merge Strings Alternately
 
-def mergeAlternately(word1: str, word2: str) -> str:
-    i: int = 0
-    j: int = 0
-    result: str = ""
-    while i < len(word1) and j < len(word2):
-        result = result + word1[i]
-        result = result + word2[j]
-        i += 1
-        j += 1
-    while i < len(word1):
-        result = result + word1[i]
-        i += 1
-    while j < len(word2):
-        result = result + word2[j]
-        j += 1
-    return result
+def mergeAlternately(word1: str, word2: str) -> Result[str, Error]:
+    try:
+        i: int = 0
+        j: int = 0
+        result: str = ""
+        while i < len(word1) and j < len(word2):
+            first = word1[i]
+            if first is None:
+                raise IndexError("first word index out of bounds")
+            result = result + first
+            second = word2[j]
+            if second is None:
+                raise IndexError("second word index out of bounds")
+            result = result + second
+            i += 1
+            j += 1
+        while i < len(word1):
+            first = word1[i]
+            if first is None:
+                raise IndexError("first word index out of bounds")
+            result = result + first
+            i += 1
+        while j < len(word2):
+            second = word2[j]
+            if second is None:
+                raise IndexError("second word index out of bounds")
+            result = result + second
+            j += 1
+        return result
+    except Error as error:
+        raise error
 
 def main():
-    assert str(mergeAlternately("abc", "pqr")) == 'apbqcr'
-    assert str(mergeAlternately("ab", "pqrs")) == 'apbqrs'
-    assert str(mergeAlternately("abcd", "pq")) == 'apbqcd'
-
+    try:
+        contract_result_1: str = mergeAlternately("abc", "pqr")
+        assert str(contract_result_1) == 'apbqcr'
+        contract_result_2: str = mergeAlternately("ab", "pqrs")
+        assert str(contract_result_2) == 'apbqrs'
+        contract_result_3: str = mergeAlternately("abcd", "pq")
+        assert str(contract_result_3) == 'apbqcd'
+    except Error:
+        assert False

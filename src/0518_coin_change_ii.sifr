@@ -1,56 +1,73 @@
 # LeetCode 518: Coin Change Ii
 
-def change(amount: int, coins: list[int]) -> int:
-    # MEMOIZATION
-    # Time: O(n*m)
-    # Memory: O(n*m)
-    cache = {}
+def change(amount: int, coins: list[int]) -> Result[int, Error]:
+    try:
+        # MEMOIZATION
+        # Time: O(n*m)
+        # Memory: O(n*m)
+        cache = {}
 
-    def dfs(i, a):
-        if a == amount:
-            return 1
-        if a > amount:
-            return 0
-        if i == len(coins):
-            return 0
-        if (i, a) in cache:
-            return cache[(i, a)]
+        def dfs(i, a) -> Result[int, Error]:
+            try:
+                if a == amount:
+                    return 1
+                if a > amount:
+                    return 0
+                if i == len(coins):
+                    return 0
+                if (i, a) in cache:
+                    return cache[(i, a)]
 
-        cache[(i, a)] = dfs(i, a + coins[i]) + dfs(i + 1, a)
-        return cache[(i, a)]
+                coin = coins[i]
+                if coin is None:
+                    raise IndexError("coin index out of bounds")
+                include: int = dfs(i, a + coin)
+                exclude: int = dfs(i + 1, a)
+                cache[(i, a)] = include + exclude
+                cached = cache[(i, a)]
+                if cached is None:
+                    raise KeyError("coin-change cache entry is absent")
+                return cached
+            except Error as error:
+                raise error
 
-    return dfs(0, 0)
+        return dfs(0, 0)
 
-    # DYNAMIC PROGRAMMING
-    # Time: O(n*m)
-    # Memory: O(n*m)
-    dp = [[0] * (len(coins) + 1) for i in range(amount + 1)]
-    dp[0] = [1] * (len(coins) + 1)
-    for a in range(1, amount + 1):
-        for i in range(len(coins) - 1, -1, -1):
-            dp[a][i] = dp[a][i + 1]
-            if a - coins[i] >= 0:
-                dp[a][i] += dp[a - coins[i]][i]
-    return dp[amount][0]
-
-    # DYNAMIC PROGRAMMING
-    # Time: O(n*m)
-    # Memory: O(n) where n = amount
-    dp = [0] * (amount + 1)
-    dp[0] = 1
-    for i in range(len(coins) - 1, -1, -1):
-        nextDP = [0] * (amount + 1)
-        nextDP[0] = 1
-
+        # DYNAMIC PROGRAMMING
+        # Time: O(n*m)
+        # Memory: O(n*m)
+        dp = [[0] * (len(coins) + 1) for i in range(amount + 1)]
+        dp[0] = [1] * (len(coins) + 1)
         for a in range(1, amount + 1):
-            nextDP[a] = dp[a]
-            if a - coins[i] >= 0:
-                nextDP[a] += nextDP[a - coins[i]]
-        dp = nextDP
-    return dp[amount]
+            for i in range(len(coins) - 1, -1, -1):
+                dp[a][i] = dp[a][i + 1]
+                if a - coins[i] >= 0:
+                    dp[a][i] += dp[a - coins[i]][i]
+        return dp[amount][0]
+
+        # DYNAMIC PROGRAMMING
+        # Time: O(n*m)
+        # Memory: O(n) where n = amount
+        dp = [0] * (amount + 1)
+        dp[0] = 1
+        for i in range(len(coins) - 1, -1, -1):
+            nextDP = [0] * (amount + 1)
+            nextDP[0] = 1
+
+            for a in range(1, amount + 1):
+                nextDP[a] = dp[a]
+                if a - coins[i] >= 0:
+                    nextDP[a] += nextDP[a - coins[i]]
+            dp = nextDP
+        return dp[amount]
+    except Error as error:
+        raise error
 
 def main():
-    assert str(change(5, [1,2,5])) == '4'
-    assert str(change(3, [2])) == '0'
-
-
+    try:
+        contract_result_1: int = change(5, [1,2,5])
+        assert str(contract_result_1) == '4'
+        contract_result_2: int = change(3, [2])
+        assert str(contract_result_2) == '0'
+    except Error:
+        assert False

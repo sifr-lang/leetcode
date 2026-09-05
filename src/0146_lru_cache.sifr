@@ -24,15 +24,19 @@ class LRUCache:
         self.prev = {1: 0}
         self.next = {0: 1}
 
-    def detach(mut self, node: int) -> None:
-        left: int | None = self.prev[node]
-        right: int | None = self.next[node]
-        if left is None or right is None:
-            return
-        self.next[left] = right
-        self.prev[right] = left
-        del self.prev[node]
-        del self.next[node]
+    def detach(mut self, node: int) -> Result[None, Error]:
+        try:
+            left: int | None = self.prev[node]
+            right: int | None = self.next[node]
+            if left is None or right is None:
+                return
+            self.next[left] = right
+            self.prev[right] = left
+            del self.prev[node]
+            del self.next[node]
+            return None
+        except Error as error:
+            raise error
 
     def insertAfter(mut self, node: int, left: int) -> None:
         right: int | None = self.next[left]
@@ -43,72 +47,98 @@ class LRUCache:
         self.next[left] = node
         self.prev[right] = node
 
-    def moveToFront(mut self, node: int) -> None:
-        self.detach(node)
-        head = self.head
-        self.insertAfter(node, head)
+    def moveToFront(mut self, node: int) -> Result[None, Error]:
+        try:
+            contract_result_1: None = self.detach(node)
+            head = self.head
+            self.insertAfter(node, head)
+            return None
+        except Error as error:
+            raise error
 
-    def evictLru(mut self) -> None:
-        node_opt: int | None = self.prev[self.tail]
-        if node_opt is None:
-            return
-        node: int = node_opt
-        if node == self.head:
-            return
+    def evictLru(mut self) -> Result[None, Error]:
+        try:
+            node_opt: int | None = self.prev[self.tail]
+            if node_opt is None:
+                return
+            node: int = node_opt
+            if node == self.head:
+                return
 
-        key: int | None = self.node_key[node]
-        if key is not None:
-            del self.key_to_node[key]
-        del self.node_key[node]
-        del self.node_value[node]
-        self.detach(node)
+            key: int | None = self.node_key[node]
+            if key is not None:
+                del self.key_to_node[key]
+            del self.node_key[node]
+            del self.node_value[node]
+            contract_result_2: None = self.detach(node)
+            return None
+        except Error as error:
+            raise error
 
-    def get(mut self, key: int) -> int:
-        node: int | None = self.key_to_node[key]
-        if node is None:
-            return -1
+    def get(mut self, key: int) -> Result[int, Error]:
+        try:
+            node: int | None = self.key_to_node[key]
+            if node is None:
+                return -1
 
-        value: int | None = self.node_value[node]
-        if value is None:
-            return -1
-        self.moveToFront(node)
-        return value
+            value: int | None = self.node_value[node]
+            if value is None:
+                return -1
+            contract_result_3: None = self.moveToFront(node)
+            return value
+        except Error as error:
+            raise error
 
-    def put(mut self, key: int, value: int) -> None:
-        if self.cap <= 0:
-            return
+    def put(mut self, key: int, value: int) -> Result[None, Error]:
+        try:
+            if self.cap <= 0:
+                return
 
-        existing: int | None = self.key_to_node[key]
-        if existing is not None:
-            self.node_value[existing] = value
-            self.moveToFront(existing)
-            return
+            existing: int | None = self.key_to_node[key]
+            if existing is not None:
+                self.node_value[existing] = value
+                contract_result_4: None = self.moveToFront(existing)
+                return
 
-        if len(self.key_to_node) >= self.cap:
-            self.evictLru()
+            if len(self.key_to_node) >= self.cap:
+                contract_result_5: None = self.evictLru()
 
-        node = self.next_id
-        self.next_id = self.next_id + 1
-        self.key_to_node[key] = node
-        self.node_key[node] = key
-        self.node_value[node] = value
-        head = self.head
-        self.insertAfter(node, head)
+            node = self.next_id
+            self.next_id = self.next_id + 1
+            self.key_to_node[key] = node
+            self.node_key[node] = key
+            self.node_value[node] = value
+            head = self.head
+            self.insertAfter(node, head)
+            return None
+        except Error as error:
+            raise error
 
 def main():
-    obj = LRUCache(2)
-    obj.put(1, 1)
-    obj.put(2, 2)
-    assert obj.get(1) == 1
-    obj.put(3, 3)
-    assert obj.get(2) == -1
-    obj.put(4, 4)
-    assert obj.get(1) == -1
-    assert obj.get(3) == 3
-    assert obj.get(4) == 4
-    obj2 = LRUCache(1)
-    obj2.put(8, -1)
-    assert obj2.get(8) == -1
-    obj2.put(9, 9)
-    assert obj2.get(8) == -1
-    assert obj2.get(9) == 9
+    try:
+        obj = LRUCache(2)
+        contract_result_6: None = obj.put(1, 1)
+        contract_result_7: None = obj.put(2, 2)
+        contract_result_8: int = obj.get(1)
+        assert contract_result_8 == 1
+        contract_result_9: None = obj.put(3, 3)
+        contract_result_10: int = obj.get(2)
+        assert contract_result_10 == -1
+        contract_result_11: None = obj.put(4, 4)
+        contract_result_12: int = obj.get(1)
+        assert contract_result_12 == -1
+        contract_result_13: int = obj.get(3)
+        assert contract_result_13 == 3
+        contract_result_14: int = obj.get(4)
+        assert contract_result_14 == 4
+        obj2 = LRUCache(1)
+        contract_result_15: None = obj2.put(8, -1)
+        contract_result_16: int = obj2.get(8)
+        assert contract_result_16 == -1
+        contract_result_17: None = obj2.put(9, 9)
+        contract_result_18: int = obj2.get(8)
+        assert contract_result_18 == -1
+        contract_result_19: int = obj2.get(9)
+        assert contract_result_19 == 9
+    except Error:
+        assert False

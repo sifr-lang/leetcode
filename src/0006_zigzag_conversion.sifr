@@ -21,7 +21,71 @@ def convert(s: str, numRows: int) -> Result[str, IndexError]:
 
     return "".join(res)
 
+class RepeatEffects:
+    trace: int
+
+    def __init__(self):
+        self.trace = 0
+
+    def count(mut self) -> int:
+        self.trace = self.trace * 10 + 1
+        return 2
+
+    def values(mut self) -> list[int]:
+        self.trace = self.trace * 10 + 2
+        return [3, 4]
+
+    def text(mut self) -> str:
+        self.trace = self.trace * 10 + 2
+        return "ab"
+
+    def element(mut self) -> int:
+        self.trace = self.trace * 10 + 2
+        return 7
+
+
+def checkRepeatOwnership():
+    count = 3
+    for i in range(2):
+        values = [0] * count
+        reverse = count * [1, 2]
+        text = "a" * count
+        assert len(values) == count
+        assert len(reverse) == 2 * count
+        assert len(text) == count
+    assert count == 3
+    negative = -2
+    empty: list[int] = [1] * negative
+    assert len(empty) == 0
+    assert negative == -2
+    effects = RepeatEffects()
+    first = effects.count() * effects.values()
+    assert first == [3, 4, 3, 4]
+    assert effects.trace == 12
+    effects.trace = 0
+    second = effects.values() * effects.count()
+    assert second == first
+    assert effects.trace == 21
+    effects.trace = 0
+    first_text = effects.count() * effects.text()
+    assert first_text == "abab"
+    assert effects.trace == 12
+    effects.trace = 0
+    second_text = effects.text() * effects.count()
+    assert second_text == first_text
+    assert effects.trace == 21
+    effects.trace = 0
+    singleton = effects.count() * [effects.element()]
+    assert singleton == [7, 7]
+    assert effects.trace == 12
+    effects.trace = 0
+    singleton_reverse = [effects.element()] * effects.count()
+    assert singleton_reverse == singleton
+    assert effects.trace == 21
+
+
 def main():
+    checkRepeatOwnership()
     try:
         three_rows: str = convert("PAYPALISHIRING", 3)
         assert str(three_rows) == 'PAHNAPLSIIGYIR'

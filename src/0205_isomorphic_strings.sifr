@@ -57,41 +57,49 @@ def _alpha_index(value: str | None) -> int:
         return 25
     return -1
 
-def isIsomorphic(s: str, t: str) -> bool:
-    if len(s) != len(t):
-        return False
-
-    map_st: list[int] = [
-        -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1,
-    ]
-    map_ts: list[int] = [
-        -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1,
-    ]
-
-    for index in range(len(s)):
-        left = _alpha_index(s[index])
-        right = _alpha_index(t[index])
-        if left < 0 or right < 0:
+def isIsomorphic(s: str, t: str) -> Result[bool, Error]:
+    try:
+        if len(s) != len(t):
             return False
-        mapped_right = map_st[left]
-        mapped_left = map_ts[right]
-        if mapped_right is not None:
-            if mapped_right != -1 and mapped_right != right:
-                return False
-        if mapped_left is not None:
-            if mapped_left != -1 and mapped_left != left:
-                return False
-        if mapped_right is not None:
-            map_st[left] = right
-        if mapped_left is not None:
-            map_ts[right] = left
 
-    return True
+        map_st: list[int] = [
+            -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1,
+        ]
+        map_ts: list[int] = [
+            -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1,
+        ]
+
+        for index in range(len(s)):
+            left = _alpha_index(s[index])
+            right = _alpha_index(t[index])
+            if left < 0 or right < 0:
+                return False
+            mapped_right = map_st[left]
+            mapped_left = map_ts[right]
+            if mapped_right is not None:
+                if mapped_right != -1 and mapped_right != right:
+                    return False
+            if mapped_left is not None:
+                if mapped_left != -1 and mapped_left != left:
+                    return False
+            if mapped_right is not None:
+                map_st[left] = right
+            if mapped_left is not None:
+                map_ts[right] = left
+
+        return True
+    except Error as error:
+        raise error
 
 def main():
-    assert str(isIsomorphic("egg", "add")) == 'true'
-    assert str(isIsomorphic("foo", "bar")) == 'false'
+    try:
+        contract_result_1: bool = isIsomorphic("egg", "add")
+        assert str(contract_result_1) == 'true'
+        contract_result_2: bool = isIsomorphic("foo", "bar")
+        assert str(contract_result_2) == 'false'
+    except Error:
+        assert False

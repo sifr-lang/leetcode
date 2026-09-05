@@ -13,14 +13,22 @@ def unwrapBool(value: bool | None) -> bool:
 def getIntAt(arr: list[int], idx: int) -> int:
     return unwrapInt(arr[idx])
 
-def setIntAt(mut arr: list[int], idx: int, value: int) -> None:
-    arr[idx] = value
+def setIntAt(mut arr: list[int], idx: int, value: int) -> Result[None, Error]:
+    try:
+        arr[idx] = value
+        return None
+    except Error as error:
+        raise error
 
 def getBoolAt(arr: list[bool], idx: int) -> bool:
     return unwrapBool(arr[idx])
 
-def setBoolAt(mut arr: list[bool], idx: int, value: bool) -> None:
-    arr[idx] = value
+def setBoolAt(mut arr: list[bool], idx: int, value: bool) -> Result[None, Error]:
+    try:
+        arr[idx] = value
+        return None
+    except Error as error:
+        raise error
 
 def coord(points: list[list[int]], i: int, axis: int) -> int:
     row = points[i]
@@ -28,51 +36,59 @@ def coord(points: list[list[int]], i: int, axis: int) -> int:
         return 0
     return unwrapInt(row[axis])
 
-def minCostConnectPoints(points: list[list[int]]) -> int:
-    n = len(points)
-    if n <= 1:
-        return 0
+def minCostConnectPoints(points: list[list[int]]) -> Result[int, Error]:
+    try:
+        n = len(points)
+        if n <= 1:
+            return 0
 
-    inf = 1_000_000_000
-    in_mst: list[bool] = [False] * n
-    min_dist: list[int] = [inf] * n
-    setIntAt(min_dist, 0, 0)
+        inf = 1_000_000_000
+        in_mst: list[bool] = [False] * n
+        min_dist: list[int] = [inf] * n
+        contract_result_1: None = setIntAt(min_dist, 0, 0)
 
-    total = 0
+        total = 0
 
-    for _ in range(n):
-        u = -1
-        best = inf
-        for i in range(n):
-            if getBoolAt(in_mst, i):
-                continue
-            d = getIntAt(min_dist, i)
-            if d < best:
-                best = d
-                u = i
+        for _ in range(n):
+            u = -1
+            best = inf
+            for i in range(n):
+                if getBoolAt(in_mst, i):
+                    continue
+                d = getIntAt(min_dist, i)
+                if d < best:
+                    best = d
+                    u = i
 
-        if u == -1:
-            break
+            if u == -1:
+                break
 
-        setBoolAt(in_mst, u, True)
-        total += best
+            contract_result_2: None = setBoolAt(in_mst, u, True)
+            total += best
 
-        ux = coord(points, u, 0)
-        uy = coord(points, u, 1)
+            ux = coord(points, u, 0)
+            uy = coord(points, u, 1)
 
-        for v in range(n):
-            if getBoolAt(in_mst, v):
-                continue
+            for v in range(n):
+                if getBoolAt(in_mst, v):
+                    continue
 
-            vx = coord(points, v, 0)
-            vy = coord(points, v, 1)
-            dist = abs(ux - vx) + abs(uy - vy)
+                vx = coord(points, v, 0)
+                vy = coord(points, v, 1)
+                dist = abs(ux - vx) + abs(uy - vy)
 
-            if dist < getIntAt(min_dist, v):
-                setIntAt(min_dist, v, dist)
+                if dist < getIntAt(min_dist, v):
+                    contract_result_3: None = setIntAt(min_dist, v, dist)
 
-    return total
+        return total
+    except Error as error:
+        raise error
 
 def main():
-    assert minCostConnectPoints([[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]]) == 20
-    assert minCostConnectPoints([[3, 12], [-2, 5], [-4, 1]]) == 18
+    try:
+        contract_result_4: int = minCostConnectPoints([[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]])
+        assert contract_result_4 == 20
+        contract_result_5: int = minCostConnectPoints([[3, 12], [-2, 5], [-4, 1]])
+        assert contract_result_5 == 18
+    except Error:
+        assert False

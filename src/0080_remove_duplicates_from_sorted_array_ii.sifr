@@ -1,20 +1,29 @@
 # LeetCode 80: Remove Duplicates From Sorted Array Ii
 
-def removeDuplicates(mut nums: list[int]) -> int:
-    l, r = 0, 0
+def removeDuplicates(mut nums: list[int]) -> Result[int, Error]:
+    try:
+        l, r = 0, 0
 
-    while r < len(nums):
-        count = 1
-        while r + 1 < len(nums) and nums[r] == nums[r + 1]:
-            r += 1
-            count += 1
+        while r < len(nums):
+            count = 1
+            while r + 1 < len(nums) and nums[r] == nums[r + 1]:
+                r += 1
+                count += 1
         
-        for i in range(min(2, count)):
-            nums[l] = nums[r]
-            l += 1
-        r += 1
-    return l
+            for i in range(min(2, count)):
+                value: int | None = nums[r]
+                if value is None:
+                    raise IndexError("duplicate source index is out of range")
+                nums[l] = value
+                l += 1
+            r += 1
+        return l
+    except Error as error:
+        raise error
 
 def main():
-    assert str(removeDuplicates([1,1,1,2,2,3])) == '5'
-
+    try:
+        contract_result_1: int = removeDuplicates([1,1,1,2,2,3])
+        assert str(contract_result_1) == '5'
+    except Error:
+        assert False

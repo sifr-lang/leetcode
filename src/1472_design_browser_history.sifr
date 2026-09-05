@@ -5,13 +5,17 @@ class BrowserHistory:
         self.i = 0
         self.len = 1
         self.history = [homepage]
-    def visit(mut self, own url: str) -> None:
-        if len(self.history) < self.i + 2:
-            self.history.append(str(url))
-        else:
-            self.history[self.i + 1] = str(url)
-        self.i += 1
-        self.len = self.i + 1
+    def visit(mut self, own url: str) -> Result[None, Error]:
+        try:
+            if len(self.history) < self.i + 2:
+                self.history.append(str(url))
+            else:
+                self.history[self.i + 1] = str(url)
+            self.i += 1
+            self.len = self.i + 1
+            return None
+        except Error as error:
+            raise error
     def back(mut self, steps: int) -> str:
         self.i = max(self.i - steps, 0)
         page: str | None = self.history[self.i]
@@ -26,14 +30,17 @@ class BrowserHistory:
         return ""
 
 def main():
-    obj = BrowserHistory('leetcode.com')
-    obj.visit('google.com')
-    obj.visit('facebook.com')
-    obj.visit('youtube.com')
-    assert obj.back(1) == 'facebook.com'
-    assert obj.back(1) == 'google.com'
-    assert obj.forward(1) == 'facebook.com'
-    obj.visit('linkedin.com')
-    assert obj.forward(2) == 'linkedin.com'
-    assert obj.back(2) == 'google.com'
-    assert obj.back(7) == 'leetcode.com'
+    try:
+        obj = BrowserHistory('leetcode.com')
+        contract_result_1: None = obj.visit('google.com')
+        contract_result_2: None = obj.visit('facebook.com')
+        contract_result_3: None = obj.visit('youtube.com')
+        assert obj.back(1) == 'facebook.com'
+        assert obj.back(1) == 'google.com'
+        assert obj.forward(1) == 'facebook.com'
+        contract_result_4: None = obj.visit('linkedin.com')
+        assert obj.forward(2) == 'linkedin.com'
+        assert obj.back(2) == 'google.com'
+        assert obj.back(7) == 'leetcode.com'
+    except Error:
+        assert False

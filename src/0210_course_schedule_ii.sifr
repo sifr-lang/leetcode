@@ -5,48 +5,62 @@ def _nz_int(value: int | None) -> int:
         return 0
     return value
 
-def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-    prereq: dict[int, list[int]] = {}
-    for c in range(numCourses):
-        prereq[c] = []
-    for pair in prerequisites:
-        if pair is None:
-            continue
-        crs = _nz_int(pair[0])
-        pre = _nz_int(pair[1])
-        deps = prereq.get(crs, [])
-        if deps is None:
-            deps = []
-        deps.append(pre)
-        prereq[crs] = deps
+def findOrder(numCourses: int, prerequisites: list[list[int]]) -> Result[list[int], Error]:
+    try:
+        prereq: dict[int, list[int]] = {}
+        for c in range(numCourses):
+            prereq[c] = []
+        for pair in prerequisites:
+            if pair is None:
+                continue
+            crs = _nz_int(pair[0])
+            pre = _nz_int(pair[1])
+            deps = prereq.get(crs, [])
+            if deps is None:
+                deps = []
+            deps.append(pre)
+            prereq[crs] = deps
 
-    output: list[int] = []
-    state = [0] * numCourses  # 0=unvisited, 1=visiting, 2=done
+        output: list[int] = []
+        state = [0] * numCourses  # 0=unvisited, 1=visiting, 2=done
 
-    def dfs(crs: int) -> bool:
-        if state[crs] == 1:
-            return False
-        if state[crs] == 2:
-            return True
+        def dfs(crs: int) -> Result[bool, Error]:
+            try:
+                if state[crs] == 1:
+                    return False
+                if state[crs] == 2:
+                    return True
 
-        state[crs] = 1
-        deps = prereq.get(crs, [])
-        if deps is None:
-            deps = []
-        for idx in range(len(deps)):
-            pre = _nz_int(deps[idx])
-            if dfs(pre) == False:
-                return False
-        state[crs] = 2
-        output.append(crs)
-        return True
+                state[crs] = 1
+                deps = prereq.get(crs, [])
+                if deps is None:
+                    deps = []
+                for idx in range(len(deps)):
+                    pre = _nz_int(deps[idx])
+                    prerequisite_ok: bool = dfs(pre)
+                    if prerequisite_ok == False:
+                        return False
+                state[crs] = 2
+                output.append(crs)
+                return True
+            except Error as error:
+                raise error
 
-    for c in range(numCourses):
-        if dfs(c) == False:
-            return []
-    return output
+        for c in range(numCourses):
+            course_ok: bool = dfs(c)
+            if course_ok == False:
+                return []
+        return output
+    except Error as error:
+        raise error
 
 def main():
-    assert findOrder(2, [[1, 0]]) == [0, 1]
-    assert findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]) == [0, 1, 2, 3]
-    assert findOrder(1, []) == [0]
+    try:
+        contract_result_1: list[int] = findOrder(2, [[1, 0]])
+        assert contract_result_1 == [0, 1]
+        contract_result_2: list[int] = findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]])
+        assert contract_result_2 == [0, 1, 2, 3]
+        contract_result_3: list[int] = findOrder(1, [])
+        assert contract_result_3 == [0]
+    except Error:
+        assert False

@@ -14,37 +14,49 @@ def backtrackNQueens(
     mut posDiag: set[int],
     mut negDiag: set[int],
     mut res: list[list[str]],
-) -> None:
-    if r == n:
-        res.append(renderBoard(board))
-        return
+) -> Result[None, Error]:
+    try:
+        if r == n:
+            res.append(renderBoard(board))
+            return
 
-    for c in range(n):
-        if c in col or (r + c) in posDiag or (r - c) in negDiag:
-            continue
+        for c in range(n):
+            if c in col or (r + c) in posDiag or (r - c) in negDiag:
+                continue
 
-        col.add(c)
-        posDiag.add(r + c)
-        negDiag.add(r - c)
-        board[r][c] = "Q"
+            col.add(c)
+            posDiag.add(r + c)
+            negDiag.add(r - c)
+            board[r][c] = "Q"
 
-        backtrackNQueens(r + 1, n, board, col, posDiag, negDiag, res)
+            contract_result_1: None = backtrackNQueens(r + 1, n, board, col, posDiag, negDiag, res)
 
-        col.remove(c)
-        posDiag.remove(r + c)
-        negDiag.remove(r - c)
-        board[r][c] = "."
+            col.remove(c)
+            posDiag.remove(r + c)
+            negDiag.remove(r - c)
+            board[r][c] = "."
+        return None
+    except Error as error:
+        raise error
 
-def solveNQueens(n: int) -> list[list[str]]:
-    col = set()
-    posDiag = set()  # (r + c)
-    negDiag = set()  # (r - c)
+def solveNQueens(n: int) -> Result[list[list[str]], Error]:
+    try:
+        col = set()
+        posDiag = set()  # (r + c)
+        negDiag = set()  # (r - c)
 
-    res: list[list[str]] = []
-    board = [["."] * n for i in range(n)]
-    backtrackNQueens(0, n, board, col, posDiag, negDiag, res)
-    return res
+        res: list[list[str]] = []
+        board = [["."] * n for i in range(n)]
+        contract_result_2: None = backtrackNQueens(0, n, board, col, posDiag, negDiag, res)
+        return res
+    except Error as error:
+        raise error
 
 def main():
-    assert solveNQueens(4) == [['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]
-    assert solveNQueens(1) == [['Q']]
+    try:
+        contract_result_3: list[list[str]] = solveNQueens(4)
+        assert contract_result_3 == [['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]
+        contract_result_4: list[list[str]] = solveNQueens(1)
+        assert contract_result_4 == [['Q']]
+    except Error:
+        assert False

@@ -1,26 +1,41 @@
 # LeetCode 102: Binary Tree Level Order Traversal
 from helpers.tree_node import TreeNode
-def levelOrder(root: TreeNode | None) -> list[list[int]]:
-    if root is None:
-        return []
-    left_levels = levelOrder(root.left)
-    right_levels = levelOrder(root.right)
-    res: list[list[int]] = [[root.val]]
-    i = 0
-    while i < len(left_levels) or i < len(right_levels):
-        level: list[int] = []
-        if i < len(left_levels):
-            for v in left_levels[i]:
-                level.append(v)
-        if i < len(right_levels):
-            for v in right_levels[i]:
-                level.append(v)
-        res.append(level)
-        i += 1
-    return res
+def levelOrder(root: TreeNode | None) -> Result[list[list[int]], Error]:
+    try:
+        if root is None:
+            return []
+        left_levels: list[list[int]] = levelOrder(root.left)
+        right_levels: list[list[int]] = levelOrder(root.right)
+        res: list[list[int]] = [[root.val]]
+        i = 0
+        while i < len(left_levels) or i < len(right_levels):
+            level: list[int] = []
+            if i < len(left_levels):
+                left_level = left_levels[i]
+                if left_level is None:
+                    raise IndexError("left level out of bounds")
+                for v in left_level:
+                    level.append(v)
+            if i < len(right_levels):
+                right_level = right_levels[i]
+                if right_level is None:
+                    raise IndexError("right level out of bounds")
+                for v in right_level:
+                    level.append(v)
+            res.append(level)
+            i += 1
+        return res
+    except Error as error:
+        raise error
 
 def main():
-    expected_empty: list[list[int]] = []
-    assert levelOrder(TreeNode(3, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None)))) == [[3], [9, 20], [15, 7]]
-    assert levelOrder(TreeNode(1, None, None)) == [[1]]
-    assert levelOrder(None) == expected_empty
+    try:
+        expected_empty: list[list[int]] = []
+        contract_result_1: list[list[int]] = levelOrder(TreeNode(3, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None))))
+        assert contract_result_1 == [[3], [9, 20], [15, 7]]
+        contract_result_2: list[list[int]] = levelOrder(TreeNode(1, None, None))
+        assert contract_result_2 == [[1]]
+        contract_result_3: list[list[int]] = levelOrder(None)
+        assert contract_result_3 == expected_empty
+    except Error:
+        assert False

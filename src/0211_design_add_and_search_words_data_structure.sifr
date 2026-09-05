@@ -42,39 +42,46 @@ class WordDictionary:
         self.edges = [{}]
         self.end = [False]
 
-    def addWord(mut self, word: str) -> None:
-        node = 0
-        for ch in word:
-            next_node = _child(self.edges, node, ch)
-            if next_node == -1:
-                next_node = len(self.edges)
-                self.edges[node][ch] = next_node
-                self.edges.append({})
-                self.end.append(False)
-            node = next_node
-        self.end[node] = True
+    def addWord(mut self, word: str) -> Result[None, Error]:
+        try:
+            node = 0
+            for ch in word:
+                next_node = _child(self.edges, node, ch)
+                if next_node == -1:
+                    next_node = len(self.edges)
+                    self.edges[node][ch] = next_node
+                    self.edges.append({})
+                    self.end.append(False)
+                node = next_node
+            self.end[node] = True
+            return None
+        except Error as error:
+            raise error
 
     def search(self, pattern: str) -> bool:
         return _search_from(self.edges, self.end, pattern, 0, 0)
 
 def main():
-    obj2 = WordDictionary()
-    obj2.addWord('aaa')
-    assert obj2.search('aaa') == True
-    assert obj2.search('.aa') == True
-    obj2.addWord('baa')
-    assert obj2.search('baa') == True
+    try:
+        obj2 = WordDictionary()
+        contract_result_1: None = obj2.addWord('aaa')
+        assert obj2.search('aaa') == True
+        assert obj2.search('.aa') == True
+        contract_result_2: None = obj2.addWord('baa')
+        assert obj2.search('baa') == True
 
-    obj = WordDictionary()
-    obj.addWord('bad')
-    obj.addWord('dad')
-    obj.addWord('mad')
-    obj.addWord('aaa')
-    obj.addWord('baa')
-    assert obj.search('aaa') == True
-    assert obj.search('.aa') == True
-    assert obj.search('baa') == True
-    assert obj.search('pad') == False
-    assert obj.search('bad') == True
-    assert obj.search('.ad') == True
-    assert obj.search('b..') == True
+        obj = WordDictionary()
+        contract_result_3: None = obj.addWord('bad')
+        contract_result_4: None = obj.addWord('dad')
+        contract_result_5: None = obj.addWord('mad')
+        contract_result_6: None = obj.addWord('aaa')
+        contract_result_7: None = obj.addWord('baa')
+        assert obj.search('aaa') == True
+        assert obj.search('.aa') == True
+        assert obj.search('baa') == True
+        assert obj.search('pad') == False
+        assert obj.search('bad') == True
+        assert obj.search('.ad') == True
+        assert obj.search('b..') == True
+    except Error:
+        assert False

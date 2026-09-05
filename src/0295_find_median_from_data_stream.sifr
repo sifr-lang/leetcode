@@ -26,27 +26,38 @@ class MedianFinder:
             if moved2 is not None:
                 heappush(self.small, -moved2)
 
-    def findMedian(self) -> float:
-        if len(self.small) > len(self.large):
-            small_top: int | None = self.small[0]
-            if small_top is not None:
-                return -small_top / 1.0
+    def findMedian(self) -> Result[float, Error]:
+        try:
+            if len(self.small) > len(self.large):
+                small_top: int | None = self.small[0]
+                if small_top is not None:
+                    median: float = -small_top / 1.0
+                    return median
+                return 0.0
+            if len(self.large) > len(self.small):
+                large_top: int | None = self.large[0]
+                if large_top is not None:
+                    median: float = large_top / 1.0
+                    return median
+                return 0.0
+            left: int | None = self.small[0]
+            right: int | None = self.large[0]
+            if left is not None and right is not None:
+                median: float = (-left + right) / 2.0
+                return median
             return 0.0
-        if len(self.large) > len(self.small):
-            large_top: int | None = self.large[0]
-            if large_top is not None:
-                return large_top / 1.0
-            return 0.0
-        left: int | None = self.small[0]
-        right: int | None = self.large[0]
-        if left is not None and right is not None:
-            return (-left + right) / 2.0
-        return 0.0
+        except Error as error:
+            raise error
 
 def main():
-    obj = MedianFinder()
-    obj.addNum(1)
-    obj.addNum(2)
-    assert obj.findMedian() == 1.5
-    obj.addNum(3)
-    assert obj.findMedian() == 2.0
+    try:
+        obj = MedianFinder()
+        obj.addNum(1)
+        obj.addNum(2)
+        contract_result_1: float = obj.findMedian()
+        assert contract_result_1 == 1.5
+        obj.addNum(3)
+        contract_result_2: float = obj.findMedian()
+        assert contract_result_2 == 2.0
+    except Error:
+        assert False

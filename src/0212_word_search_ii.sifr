@@ -29,35 +29,43 @@ class WordTrie:
         self.terminal = [False]
         self.refs = [0]
 
-    def insert(mut self, word: str) -> None:
-        node = 0
-        current_refs = _int_at(self.refs, node)
-        self.refs[node] = current_refs + 1
-        for ch in word:
-            next_node = _child(self.edges, node, ch)
-            if next_node == -1:
-                next_node = len(self.edges)
-                self.edges[node][ch] = next_node
-                self.edges.append({})
-                self.terminal.append(False)
-                self.refs.append(0)
-            node = next_node
+    def insert(mut self, word: str) -> Result[None, Error]:
+        try:
+            node = 0
             current_refs = _int_at(self.refs, node)
             self.refs[node] = current_refs + 1
+            for ch in word:
+                next_node = _child(self.edges, node, ch)
+                if next_node == -1:
+                    next_node = len(self.edges)
+                    self.edges[node][ch] = next_node
+                    self.edges.append({})
+                    self.terminal.append(False)
+                    self.refs.append(0)
+                node = next_node
+                current_refs = _int_at(self.refs, node)
+                self.refs[node] = current_refs + 1
 
-        self.terminal[node] = True
+            self.terminal[node] = True
+            return None
+        except Error as error:
+            raise error
 
-    def removeWord(mut self, word: str) -> None:
-        node = 0
-        current_refs = _int_at(self.refs, node)
-        self.refs[node] = current_refs - 1
-        for ch in word:
-            next_node = _child(self.edges, node, ch)
-            if next_node == -1:
-                break
-            node = next_node
+    def removeWord(mut self, word: str) -> Result[None, Error]:
+        try:
+            node = 0
             current_refs = _int_at(self.refs, node)
             self.refs[node] = current_refs - 1
+            for ch in word:
+                next_node = _child(self.edges, node, ch)
+                if next_node == -1:
+                    break
+                node = next_node
+                current_refs = _int_at(self.refs, node)
+                self.refs[node] = current_refs - 1
+            return None
+        except Error as error:
+            raise error
 
     def child(self, node: int, ch: str) -> int:
         return _child(self.edges, node, ch)
@@ -68,8 +76,12 @@ class WordTrie:
     def isWord(self, node: int) -> bool:
         return _bool_at(self.terminal, node)
 
-    def clearWord(mut self, node: int) -> None:
-        self.terminal[node] = False
+    def clearWord(mut self, node: int) -> Result[None, Error]:
+        try:
+            self.terminal[node] = False
+            return None
+        except Error as error:
+            raise error
 
 def boardChar(board: list[list[str]], r: int, c: int) -> str | None:
     return board[r][c]
@@ -85,62 +97,78 @@ def collectWords(
     c: int,
     mut visit: set[tuple[int, int]],
     own mut found: dict[str, bool],
-) -> dict[str, bool]:
-    if r < 0 or c < 0 or r >= rows or c >= cols:
+) -> Result[dict[str, bool], Error]:
+    try:
+        if r < 0 or c < 0 or r >= rows or c >= cols:
+            return found
+        if (r, c) in visit:
+            return found
+
+        letter: str | None = boardChar(board, r, c)
+        if letter is None:
+            return found
+
+        next_node = trie.child(node, letter)
+        if next_node == -1:
+            return found
+        if not trie.hasRefs(next_node):
+            return found
+
+        next_prefix: str = prefix + letter
+        if trie.isWord(next_node):
+            cleared: None = trie.clearWord(next_node)
+            found[next_prefix] = True
+            contract_result_1: None = trie.removeWord(next_prefix)
+
+        visit.add((r, c))
+        updated_contract_value_1: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r + 1, c, visit, found)
+        found = updated_contract_value_1
+        updated_contract_value_2: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r - 1, c, visit, found)
+        found = updated_contract_value_2
+        updated_contract_value_3: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c + 1, visit, found)
+        found = updated_contract_value_3
+        updated_contract_value_4: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c - 1, visit, found)
+        found = updated_contract_value_4
+        visit.remove((r, c))
         return found
-    if (r, c) in visit:
-        return found
+    except Error as error:
+        raise error
 
-    letter: str | None = boardChar(board, r, c)
-    if letter is None:
-        return found
+def findWords(board: list[list[str]], words: list[str]) -> Result[list[str], Error]:
+    try:
+        if len(board) == 0:
+            return []
+        first_row: list[str] | None = board[0]
+        if first_row is None:
+            return []
+        if len(first_row) == 0:
+            return []
 
-    next_node = trie.child(node, letter)
-    if next_node == -1:
-        return found
-    if not trie.hasRefs(next_node):
-        return found
+        rows = len(board)
+        cols = len(first_row)
+        trie = WordTrie()
+        for word in words:
+            contract_result_2: None = trie.insert(word)
 
-    next_prefix: str = prefix + letter
-    if trie.isWord(next_node):
-        trie.clearWord(next_node)
-        found[next_prefix] = True
-        trie.removeWord(next_prefix)
+        found: dict[str, bool] = {}
+        for r in range(rows):
+            for c in range(cols):
+                updated_contract_value_5: dict[str, bool] = collectWords(board, rows, cols, trie, 0, '', r, c, set(), found)
+                found = updated_contract_value_5
 
-    visit.add((r, c))
-    found = collectWords(board, rows, cols, trie, next_node, next_prefix, r + 1, c, visit, found)
-    found = collectWords(board, rows, cols, trie, next_node, next_prefix, r - 1, c, visit, found)
-    found = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c + 1, visit, found)
-    found = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c - 1, visit, found)
-    visit.remove((r, c))
-    return found
-
-def findWords(board: list[list[str]], words: list[str]) -> list[str]:
-    if len(board) == 0:
-        return []
-    first_row: list[str] | None = board[0]
-    if first_row is None:
-        return []
-    if len(first_row) == 0:
-        return []
-
-    rows = len(board)
-    cols = len(first_row)
-    trie = WordTrie()
-    for word in words:
-        trie.insert(word)
-
-    found: dict[str, bool] = {}
-    for r in range(rows):
-        for c in range(cols):
-            found = collectWords(board, rows, cols, trie, 0, "", r, c, set(), found)
-
-    out: list[str] = []
-    for word in found.keys():
-        out.append(word)
-    return out
+        out: list[str] = []
+        for word in found.keys():
+            out.append(word)
+        return out
+    except Error as error:
+        raise error
 
 def main():
-    expected_empty: list[str] = []
-    assert sorted(findWords([["o", "a", "a", "n"], ["e", "t", "a", "e"], ["i", "h", "k", "r"], ["i", "f", "l", "v"]], ["oath", "pea", "eat", "rain"])) == ["eat", "oath"]
-    assert sorted(findWords([["a", "b"], ["c", "d"]], ["abcb"])) == expected_empty
+    try:
+        expected_empty: list[str] = []
+        contract_result_3: list[str] = findWords([["o", "a", "a", "n"], ["e", "t", "a", "e"], ["i", "h", "k", "r"], ["i", "f", "l", "v"]], ["oath", "pea", "eat", "rain"])
+        assert sorted(contract_result_3) == ["eat", "oath"]
+        contract_result_4: list[str] = findWords([["a", "b"], ["c", "d"]], ["abcb"])
+        assert sorted(contract_result_4) == expected_empty
+    except Error:
+        assert False

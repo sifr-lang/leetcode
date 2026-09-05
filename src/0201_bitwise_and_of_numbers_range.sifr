@@ -1,14 +1,24 @@
 # LeetCode 201: Bitwise And Of Numbers Range
 
-def rangeBitwiseAnd(mut left: int, mut right: int) -> int:
-    i = 0
-    while left != right:
-        left = left >> 1
-        right = right >> 1
-        i += 1
-    return left << i
+def rangeBitwiseAnd(mut left: int, mut right: int) -> Result[int, Error]:
+    try:
+        i = 0
+        while left != right:
+            left = left >> 1
+            right = right >> 1
+            i += 1
+        result: int = left << i
+        return result
+    except Error as error:
+        raise error
 
 def main():
-    assert rangeBitwiseAnd(5, 7) == 4
-    assert rangeBitwiseAnd(0, 0) == 0
-    assert rangeBitwiseAnd(1, 2147483647) == 0
+    try:
+        contract_result_1: int = rangeBitwiseAnd(5, 7)
+        assert contract_result_1 == 4
+        contract_result_2: int = rangeBitwiseAnd(0, 0)
+        assert contract_result_2 == 0
+        contract_result_3: int = rangeBitwiseAnd(1, 2147483647)
+        assert contract_result_3 == 0
+    except Error:
+        assert False

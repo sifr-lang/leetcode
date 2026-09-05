@@ -8,8 +8,12 @@ def unwrapInt(value: int | None) -> int:
 def getIntAt(values: list[int], index: int) -> int:
     return unwrapInt(values[index])
 
-def setIntAt(mut values: list[int], index: int, value: int) -> None:
-    values[index] = value
+def setIntAt(mut values: list[int], index: int, value: int) -> Result[None, Error]:
+    try:
+        values[index] = value
+        return None
+    except Error as error:
+        raise error
 
 def getBucket(graph: list[list[int]], index: int) -> list[int]:
     bucket = graph[index]
@@ -17,83 +21,97 @@ def getBucket(graph: list[list[int]], index: int) -> list[int]:
         return []
     return bucket
 
-def appendEdge(mut graph: list[list[int]], from_node: int, to_node: int) -> None:
-    bucket = getBucket(graph, from_node)
-    bucket.append(to_node)
-    graph[from_node] = bucket
+def appendEdge(mut graph: list[list[int]], from_node: int, to_node: int) -> Result[None, Error]:
+    try:
+        bucket = getBucket(graph, from_node)
+        bucket.append(to_node)
+        graph[from_node] = bucket
+        return None
+    except Error as error:
+        raise error
 
-def topologicalSort(successors: list[list[int]], mut predecessors_count: list[int], num_nodes: int) -> list[int]:
-    order: list[int] = []
-    queue: list[int] = []
+def topologicalSort(successors: list[list[int]], mut predecessors_count: list[int], num_nodes: int) -> Result[list[int], Error]:
+    try:
+        order: list[int] = []
+        queue: list[int] = []
 
-    for node in range(num_nodes):
-        if getIntAt(predecessors_count, node) == 0:
-            queue.append(node)
+        for node in range(num_nodes):
+            if getIntAt(predecessors_count, node) == 0:
+                queue.append(node)
 
-    head = 0
-    while head < len(queue):
-        node = unwrapInt(queue[head])
-        head += 1
-        order.append(node)
+        head = 0
+        while head < len(queue):
+            node = unwrapInt(queue[head])
+            head += 1
+            order.append(node)
 
-        for successor in getBucket(successors, node):
-            new_degree = getIntAt(predecessors_count, successor) - 1
-            setIntAt(predecessors_count, successor, new_degree)
-            if new_degree == 0:
-                queue.append(successor)
+            for successor in getBucket(successors, node):
+                new_degree = getIntAt(predecessors_count, successor) - 1
+                contract_result_1: None = setIntAt(predecessors_count, successor, new_degree)
+                if new_degree == 0:
+                    queue.append(successor)
 
-    if len(order) == num_nodes:
-        return order
-    return []
-
-def sortItems(n: int, mut m: int, mut group: list[int], beforeItems: list[list[int]]) -> list[int]:
-    for item in range(n):
-        if getIntAt(group, item) == -1:
-            setIntAt(group, item, m)
-            m += 1
-
-    successors_group: list[list[int]] = []
-    successors_item: list[list[int]] = []
-    predecessors_count_group: list[int] = [0] * m
-    predecessors_count_item: list[int] = [0] * n
-
-    for _ in range(m):
-        successors_group.append([])
-    for _ in range(n):
-        successors_item.append([])
-
-    for item in range(n):
-        current_group = getIntAt(group, item)
-        for before in getBucket(beforeItems, item):
-            before_group = getIntAt(group, before)
-            if current_group == before_group:
-                appendEdge(successors_item, before, item)
-                item_degree = getIntAt(predecessors_count_item, item)
-                setIntAt(predecessors_count_item, item, item_degree + 1)
-            else:
-                appendEdge(successors_group, before_group, current_group)
-                group_degree = getIntAt(predecessors_count_group, current_group)
-                setIntAt(predecessors_count_group, current_group, group_degree + 1)
-
-    groups_order = topologicalSort(successors_group, predecessors_count_group, m)
-    items_order = topologicalSort(successors_item, predecessors_count_item, n)
-
-    if len(groups_order) == 0 or len(items_order) == 0:
+        if len(order) == num_nodes:
+            return order
         return []
+    except Error as error:
+        raise error
 
-    items_grouped: list[list[int]] = []
-    for _ in range(m):
-        items_grouped.append([])
+def sortItems(n: int, mut m: int, mut group: list[int], beforeItems: list[list[int]]) -> Result[list[int], Error]:
+    try:
+        for item in range(n):
+            if getIntAt(group, item) == -1:
+                contract_result_2: None = setIntAt(group, item, m)
+                m += 1
 
-    for item in items_order:
-        appendEdge(items_grouped, getIntAt(group, item), item)
+        successors_group: list[list[int]] = []
+        successors_item: list[list[int]] = []
+        predecessors_count_group: list[int] = [0] * m
+        predecessors_count_item: list[int] = [0] * n
 
-    result: list[int] = []
-    for grp in groups_order:
-        for item in getBucket(items_grouped, grp):
-            result.append(item)
+        for _ in range(m):
+            successors_group.append([])
+        for _ in range(n):
+            successors_item.append([])
 
-    return result
+        for item in range(n):
+            current_group = getIntAt(group, item)
+            for before in getBucket(beforeItems, item):
+                before_group = getIntAt(group, before)
+                if current_group == before_group:
+                    contract_result_3: None = appendEdge(successors_item, before, item)
+                    item_degree = getIntAt(predecessors_count_item, item)
+                    contract_result_4: None = setIntAt(predecessors_count_item, item, item_degree + 1)
+                else:
+                    contract_result_5: None = appendEdge(successors_group, before_group, current_group)
+                    group_degree = getIntAt(predecessors_count_group, current_group)
+                    contract_result_6: None = setIntAt(predecessors_count_group, current_group, group_degree + 1)
+
+        groups_order: list[int] = topologicalSort(successors_group, predecessors_count_group, m)
+        items_order: list[int] = topologicalSort(successors_item, predecessors_count_item, n)
+
+        if len(groups_order) == 0 or len(items_order) == 0:
+            return []
+
+        items_grouped: list[list[int]] = []
+        for _ in range(m):
+            items_grouped.append([])
+
+        for item in items_order:
+            contract_result_7: None = appendEdge(items_grouped, getIntAt(group, item), item)
+
+        result: list[int] = []
+        for grp in groups_order:
+            for item in getBucket(items_grouped, grp):
+                result.append(item)
+
+        return result
+    except Error as error:
+        raise error
 
 def main():
-    assert topologicalSort([[0]], [0], 0) == []
+    try:
+        contract_result_8: list[int] = topologicalSort([[0]], [0], 0)
+        assert contract_result_8 == []
+    except Error:
+        assert False

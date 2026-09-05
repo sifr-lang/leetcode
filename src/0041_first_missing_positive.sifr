@@ -1,24 +1,27 @@
 # LeetCode 41: First Missing Positive
 
-def firstMissingPositive(nums: list[int]) -> int:
-    A = nums
-    for i in range(len(A)):
-        if A[i] < 0:
-            A[i] = 0
+def firstMissingPositive(nums: list[int]) -> Result[int, Error]:
+    try:
+        A = nums
+        for i in range(len(A)):
+            if A[i] < 0:
+                A[i] = 0
         
-    for i in range(len(A)):
-        val = abs(A[i])
-        if 1 <= val <= len(A):
-            if A[val - 1] > 0:
-                A[val - 1] *= -1
-            elif A[val - 1] == 0:
-                A[val - 1] = -1 * (len(A) + 1)
+        for i in range(len(A)):
+            val = abs(A[i])
+            if 1 <= val <= len(A):
+                if A[val - 1] > 0:
+                    A[val - 1] *= -1
+                elif A[val - 1] == 0:
+                    A[val - 1] = -1 * (len(A) + 1)
     
-    for i in range( 1, len(A)+ 1):
-        if A[i -1] >= 0:
-            return i
+        for i in range( 1, len(A)+ 1):
+            if A[i -1] >= 0:
+                return i
     
-    return len(A) + 1
+        return len(A) + 1
+    except Error as error:
+        raise error
     
 
 def firstMissingPositive_2(nums: list[int]) -> int:
@@ -29,8 +32,13 @@ def firstMissingPositive_2(nums: list[int]) -> int:
     return i
 
 def main():
-    assert str(firstMissingPositive([1,2,0])) == '3'
-    assert str(firstMissingPositive([3,4,-1,1])) == '2'
-    assert str(firstMissingPositive([7,8,9,11,12])) == '1'
-
+    try:
+        contract_result_1: int = firstMissingPositive([1,2,0])
+        assert str(contract_result_1) == '3'
+        contract_result_2: int = firstMissingPositive([3,4,-1,1])
+        assert str(contract_result_2) == '2'
+        contract_result_3: int = firstMissingPositive([7,8,9,11,12])
+        assert str(contract_result_3) == '1'
+    except Error:
+        assert False
 

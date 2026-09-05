@@ -16,12 +16,16 @@ def getBoolCell(matrix: list[list[bool]], r: int, c: int) -> bool:
         return False
     return value
 
-def setBoolCell(mut matrix: list[list[bool]], r: int, c: int, value: bool) -> None:
-    row = matrix[r]
-    if row is None:
-        return
-    row[c] = value
-    matrix[r] = row
+def setBoolCell(mut matrix: list[list[bool]], r: int, c: int, value: bool) -> Result[None, Error]:
+    try:
+        row = matrix[r]
+        if row is None:
+            return
+        row[c] = value
+        matrix[r] = row
+        return None
+    except Error as error:
+        raise error
 
 def getIntCell(matrix: list[list[int]], r: int, c: int) -> int:
     row = matrix[r]
@@ -29,87 +33,93 @@ def getIntCell(matrix: list[list[int]], r: int, c: int) -> int:
         return 0
     return unwrapInt(row[c])
 
-def setIntCell(mut matrix: list[list[int]], r: int, c: int, value: int) -> None:
-    row = matrix[r]
-    if row is None:
-        return
-    row[c] = value
-    matrix[r] = row
+def setIntCell(mut matrix: list[list[int]], r: int, c: int, value: int) -> Result[None, Error]:
+    try:
+        row = matrix[r]
+        if row is None:
+            return
+        row[c] = value
+        matrix[r] = row
+        return None
+    except Error as error:
+        raise error
 
-def swimInWater(grid: list[list[int]]) -> int:
-    n = len(grid)
-    if n == 0:
-        return 0
+def swimInWater(grid: list[list[int]]) -> Result[int, Error]:
+    try:
+        n = len(grid)
+        if n == 0:
+            return 0
 
-    inf = 1_000_000_000
-    best: list[list[int]] = []
-    seen: list[list[bool]] = []
-    for _ in range(n):
-        best.append([inf] * n)
-        seen.append([False] * n)
+        inf = 1_000_000_000
+        best: list[list[int]] = []
+        seen: list[list[bool]] = []
+        for _ in range(n):
+            best.append([inf] * n)
+            seen.append([False] * n)
 
-    first_row = grid[0]
-    if first_row is None:
-        return 0
-    start = unwrapInt(first_row[0])
-    setIntCell(best, 0, 0, start)
-    setBoolCell(seen, 0, 0, True)
+        first_row = grid[0]
+        if first_row is None:
+            return 0
+        start = unwrapInt(first_row[0])
+        contract_result_1: None = setIntCell(best, 0, 0, start)
+        contract_result_2: None = setBoolCell(seen, 0, 0, True)
 
-    base = n + 1
-    heap: list[int] = [start * base * base]
-    while len(heap) > 0:
-        item: int | None = heappop(heap)
-        if item is not None:
-            encoded: int = item
-            cur_cost = div_or_zero(encoded, base * base)
-            position = mod_or_zero(encoded, base * base)
-            cur_r = div_or_zero(position, base)
-            cur_c = mod_or_zero(position, base)
+        base = n + 1
+        heap: list[int] = [start * base * base]
+        while len(heap) > 0:
+            item: int | None = heappop(heap)
+            if item is not None:
+                encoded: int = item
+                cur_cost = div_or_zero(encoded, base * base)
+                position = mod_or_zero(encoded, base * base)
+                cur_r = div_or_zero(position, base)
+                cur_c = mod_or_zero(position, base)
 
-            if cur_r == n - 1 and cur_c == n - 1:
-                return cur_cost
+                if cur_r == n - 1 and cur_c == n - 1:
+                    return cur_cost
 
-            directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-            for direction in directions:
-                dr = direction[0]
-                dc = direction[1]
-                if dr is None or dc is None:
-                    continue
+                directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                for direction in directions:
+                    dr = direction[0]
+                    dc = direction[1]
+                    if dr is None or dc is None:
+                        continue
 
-                nr = cur_r + dr
-                nc = cur_c + dc
-                if nr < 0 or nc < 0 or nr >= n or nc >= n:
-                    continue
+                    nr = cur_r + dr
+                    nc = cur_c + dc
+                    if nr < 0 or nc < 0 or nr >= n or nc >= n:
+                        continue
 
-                if getBoolCell(seen, nr, nc):
-                    continue
+                    if getBoolCell(seen, nr, nc):
+                        continue
 
-                grid_row = grid[nr]
-                if grid_row is None:
-                    continue
+                    grid_row = grid[nr]
+                    if grid_row is None:
+                        continue
 
-                height = unwrapInt(grid_row[nc])
-                effort = cur_cost
-                if height > effort:
-                    effort = height
+                    height = unwrapInt(grid_row[nc])
+                    effort = cur_cost
+                    if height > effort:
+                        effort = height
 
-                old_effort = getIntCell(best, nr, nc)
-                if effort < old_effort:
-                    setIntCell(best, nr, nc, effort)
-                    setBoolCell(seen, nr, nc, True)
-                    heappush(heap, (effort * base * base) + (nr * base) + nc)
+                    old_effort = getIntCell(best, nr, nc)
+                    if effort < old_effort:
+                        contract_result_3: None = setIntCell(best, nr, nc, effort)
+                        contract_result_4: None = setBoolCell(seen, nr, nc, True)
+                        heappush(heap, (effort * base * base) + (nr * base) + nc)
 
-    last_row = best[n - 1]
-    if last_row is None:
-        return 0
-    return unwrapInt(last_row[n - 1])
+        last_row = best[n - 1]
+        if last_row is None:
+            return 0
+        return unwrapInt(last_row[n - 1])
+    except Error as error:
+        raise error
 
 def main():
-    assert swimInWater([[0, 2], [1, 3]]) == 3
-    assert swimInWater([
-        [0, 1, 2, 3, 4],
-        [24, 23, 22, 21, 5],
-        [12, 13, 14, 15, 16],
-        [11, 17, 18, 19, 20],
-        [10, 9, 8, 7, 6],
-    ]) == 16
+    try:
+        contract_result_5: int = swimInWater([[0, 2], [1, 3]])
+        assert contract_result_5 == 3
+        contract_result_6: int = swimInWater([[0, 1, 2, 3, 4], [24, 23, 22, 21, 5], [12, 13, 14, 15, 16], [11, 17, 18, 19, 20], [10, 9, 8, 7, 6]])
+        assert contract_result_6 == 16
+    except Error:
+        assert False

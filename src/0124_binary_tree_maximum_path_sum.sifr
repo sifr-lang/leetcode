@@ -1,32 +1,43 @@
 # LeetCode 124: Binary Tree Maximum Path Sum
 from helpers.tree_node import TreeNode, treeToString
-def maxPathSum(root: TreeNode | None) -> int:
-    if root is None:
-        return 0
-    res: list[int] = [root.val]
-
-    # return max path sum without split
-    def dfs(root: TreeNode | None) -> int:
+def maxPathSum(root: TreeNode | None) -> Result[int, Error]:
+    try:
         if root is None:
             return 0
+        res: list[int] = [root.val]
 
-        leftMax = dfs(root.left)
-        rightMax = dfs(root.right)
-        leftMax = max(leftMax, 0)
-        rightMax = max(rightMax, 0)
+        # return max path sum without split
+        def dfs(root: TreeNode | None) -> Result[int, Error]:
+            try:
+                if root is None:
+                    return 0
 
-        # compute max path sum WITH split
-        current_best: int | None = res[0]
-        if current_best is not None:
-            res[0] = max(current_best, root.val + leftMax + rightMax)
-        return root.val + max(leftMax, rightMax)
+                leftMax: int = dfs(root.left)
+                rightMax: int = dfs(root.right)
+                leftMax = max(leftMax, 0)
+                rightMax = max(rightMax, 0)
 
-    dfs(root)
-    answer: int | None = res[0]
-    if answer is not None:
-        return answer
-    return 0
+                # compute max path sum WITH split
+                current_best: int | None = res[0]
+                if current_best is not None:
+                    res[0] = max(current_best, root.val + leftMax + rightMax)
+                return root.val + max(leftMax, rightMax)
+            except Error as error:
+                raise error
+
+        contract_result_1: int = dfs(root)
+        answer: int | None = res[0]
+        if answer is not None:
+            return answer
+        return 0
+    except Error as error:
+        raise error
 
 def main():
-    assert maxPathSum(TreeNode(1, TreeNode(2, None, None), TreeNode(3, None, None))) == 6
-    assert maxPathSum(TreeNode(-10, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None)))) == 42
+    try:
+        contract_result_2: int = maxPathSum(TreeNode(1, TreeNode(2, None, None), TreeNode(3, None, None)))
+        assert contract_result_2 == 6
+        contract_result_3: int = maxPathSum(TreeNode(-10, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None))))
+        assert contract_result_3 == 42
+    except Error:
+        assert False
