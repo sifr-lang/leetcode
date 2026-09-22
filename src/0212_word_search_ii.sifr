@@ -121,14 +121,14 @@ def collectWords(
             remove_word_completion_1: None = trie.removeWord(next_prefix)
 
         visit.add((r, c))
-        updated_contract_value_1: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r + 1, c, visit, found)
-        found = updated_contract_value_1
-        updated_contract_value_2: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r - 1, c, visit, found)
-        found = updated_contract_value_2
-        updated_contract_value_3: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c + 1, visit, found)
-        found = updated_contract_value_3
-        updated_contract_value_4: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c - 1, visit, found)
-        found = updated_contract_value_4
+        found_after_downward_search: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r + 1, c, visit, found)
+        found = found_after_downward_search
+        found_after_upward_search: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r - 1, c, visit, found)
+        found = found_after_upward_search
+        found_after_rightward_search: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c + 1, visit, found)
+        found = found_after_rightward_search
+        found_after_leftward_search: dict[str, bool] = collectWords(board, rows, cols, trie, next_node, next_prefix, r, c - 1, visit, found)
+        found = found_after_leftward_search
         visit.remove((r, c))
         return found
     except Error as error:
@@ -153,8 +153,8 @@ def findWords(board: list[list[str]], words: list[str]) -> Result[list[str], Err
         found: dict[str, bool] = {}
         for r in range(rows):
             for c in range(cols):
-                updated_contract_value_5: dict[str, bool] = collectWords(board, rows, cols, trie, 0, '', r, c, set(), found)
-                found = updated_contract_value_5
+                found_after_starting_cell: dict[str, bool] = collectWords(board, rows, cols, trie, 0, '', r, c, set(), found)
+                found = found_after_starting_cell
 
         out: list[str] = []
         for word in found.keys():
