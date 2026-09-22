@@ -6,12 +6,12 @@ def isHappy(n: int) -> Result[bool, Error]:
         fast: int = sumSquareDigits(n)
 
         while slow != fast:
-            updated_contract_value_1: int = sumSquareDigits(fast)
-            fast = updated_contract_value_1
-            updated_contract_value_2: int = sumSquareDigits(fast)
-            fast = updated_contract_value_2
-            updated_contract_value_3: int = sumSquareDigits(slow)
-            slow = updated_contract_value_3
+            fast_after_first_step: int = sumSquareDigits(fast)
+            fast = fast_after_first_step
+            fast_after_second_step: int = sumSquareDigits(fast)
+            fast = fast_after_second_step
+            slow_after_step: int = sumSquareDigits(slow)
+            slow = slow_after_step
 
         return True if fast == 1 else False
     except Error as error:
