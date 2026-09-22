@@ -1,34 +1,51 @@
 # LeetCode 48: Rotate Image
 
-def rotate(mut matrix: list[list[int]]) -> None:
+def rotate(mut matrix: list[list[int]]) -> Result[None, Error]:
+    try:
     
-    l, r = 0, len(matrix) - 1
-    while l < r:
-        for i in range(r - l):
-            top, bottom = l, r
+        l, r = 0, len(matrix) - 1
+        while l < r:
+            for i in range(r - l):
+                top, bottom = l, r
 
-            # save the topleft
-            topLeft = matrix[top][l + i]
+                # save the topleft
+                topLeft: int | None = matrix[top][l + i]
+                if topLeft is None:
+                    raise IndexError("top-left read out of bounds")
 
-            # move bottom left into top left
-            matrix[top][l + i] = matrix[bottom - i][l]
+                # move bottom left into top left
+                bottomLeft: int | None = matrix[bottom - i][l]
+                if bottomLeft is None:
+                    raise IndexError("bottom-left read out of bounds")
+                matrix[top][l + i] = bottomLeft
 
-            # move bottom right into bottom left
-            matrix[bottom - i][l] = matrix[bottom][r - i]
+                # move bottom right into bottom left
+                bottomRight: int | None = matrix[bottom][r - i]
+                if bottomRight is None:
+                    raise IndexError("bottom-right read out of bounds")
+                matrix[bottom - i][l] = bottomRight
 
-            # move top right into bottom right
-            matrix[bottom][r - i] = matrix[top + i][r]
+                # move top right into bottom right
+                topRight: int | None = matrix[top + i][r]
+                if topRight is None:
+                    raise IndexError("top-right read out of bounds")
+                matrix[bottom][r - i] = topRight
 
-            # move top left into top right
-            matrix[top + i][r] = topLeft
-        r -= 1
-        l += 1
+                # move top left into top right
+                matrix[top + i][r] = topLeft
+            r -= 1
+            l += 1
+        return None
+    except Error as error:
+        raise error
 
 def main():
-    arg0 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    _result = rotate(arg0)
-    assert arg0 == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
-    arg0 = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
-    _result = rotate(arg0)
-    assert arg0 == [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]]
-
+    try:
+        arg0 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        _result: None = rotate(arg0)
+        assert arg0 == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+        arg0 = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
+        _result: None = rotate(arg0)
+        assert arg0 == [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]]
+    except Error:
+        assert False

@@ -143,70 +143,84 @@ def _dfs_visit(
     edges: list[list[bool]],
     order: list[int],
     mut output: list[int],
-) -> bool:
-    state = _nz_int(states[node])
-    if state == 1:
-        return True
-    if state == 2:
+) -> Result[bool, Error]:
+    try:
+        state = _nz_int(states[node])
+        if state == 1:
+            return True
+        if state == 2:
+            return False
+
+        states[node] = 1
+        row: list[bool] | None = edges[node]
+        if row is not None:
+            for neighbor in order:
+                if _nz_bool(row[neighbor]):
+                    cycle: bool = _dfs_visit(neighbor, states, edges, order, output)
+                    if cycle:
+                        return True
+        states[node] = 2
+        output.append(node)
         return False
+    except Error as error:
+        raise error
 
-    states[node] = 1
-    row: list[bool] | None = edges[node]
-    if row is not None:
-        for neighbor in order:
-            if _nz_bool(row[neighbor]):
-                if _dfs_visit(neighbor, states, edges, order, output):
-                    return True
-    states[node] = 2
-    output.append(node)
-    return False
+def alienOrder(words: list[str]) -> Result[str, Error]:
+    try:
+        present_order: list[int] = []
+        edges = []
+        for _ in range(26):
+            edges.append([False for _ in range(26)])
 
-def alienOrder(words: list[str]) -> str:
-    present_order: list[int] = []
-    edges = []
-    for _ in range(26):
-        edges.append([False for _ in range(26)])
+        for word in words:
+            for ch in word:
+                _append_present(present_order, _char_index(ch))
 
-    for word in words:
-        for ch in word:
-            _append_present(present_order, _char_index(ch))
+        i = 0
+        while i + 1 < len(words):
+            w1 = words[i]
+            w2 = words[i + 1]
+            min_len = min(len(w1), len(w2))
 
-    i = 0
-    while i + 1 < len(words):
-        w1 = words[i]
-        w2 = words[i + 1]
-        min_len = min(len(w1), len(w2))
+            j = 0
+            found_diff = False
+            while j < min_len:
+                c1 = _nz_str(w1[j])
+                c2 = _nz_str(w2[j])
+                if c1 != c2:
+                    u = _char_index(c1)
+                    v = _char_index(c2)
+                    edges[u][v] = True
+                    found_diff = True
+                    break
+                j += 1
+            if not found_diff and len(w1) > len(w2) and _has_prefix(w1, w2, min_len):
+                return ""
+            i += 1
 
-        j = 0
-        found_diff = False
-        while j < min_len:
-            c1 = _nz_str(w1[j])
-            c2 = _nz_str(w2[j])
-            if c1 != c2:
-                u = _char_index(c1)
-                v = _char_index(c2)
-                edges[u][v] = True
-                found_diff = True
-                break
-            j += 1
-        if not found_diff and len(w1) > len(w2) and _has_prefix(w1, w2, min_len):
-            return ""
-        i += 1
+        states = [0 for _ in range(26)]
+        output: list[int] = []
+        for node in present_order:
+            cycle: bool = _dfs_visit(node, states, edges, present_order, output)
+            if cycle:
+                return ""
 
-    states = [0 for _ in range(26)]
-    output: list[int] = []
-    for node in present_order:
-        if _dfs_visit(node, states, edges, present_order, output):
-            return ""
-
-    res = ""
-    out_idx = len(output) - 1
-    while out_idx >= 0:
-        res += _index_char(_nz_int(output[out_idx]))
-        out_idx -= 1
-    return res
+        res = ""
+        out_idx = len(output) - 1
+        while out_idx >= 0:
+            res += _index_char(_nz_int(output[out_idx]))
+            out_idx -= 1
+        return res
+    except Error as error:
+        raise error
 
 def main():
-    assert alienOrder(['wrt', 'wrf', 'er', 'ett', 'rftt']) == 'wertf'
-    assert alienOrder(['z', 'x']) == 'zx'
-    assert alienOrder(['z', 'x', 'z']) == ''
+    try:
+        alien_order_result_1: str = alienOrder(['wrt', 'wrf', 'er', 'ett', 'rftt'])
+        assert alien_order_result_1 == 'wertf'
+        alien_order_result_2: str = alienOrder(['z', 'x'])
+        assert alien_order_result_2 == 'zx'
+        alien_order_result_3: str = alienOrder(['z', 'x', 'z'])
+        assert alien_order_result_3 == ''
+    except Error:
+        assert False

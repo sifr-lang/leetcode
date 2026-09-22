@@ -1,33 +1,44 @@
 # LeetCode 103: Binary Tree Zigzag Level Order Traversal
 from helpers.tree_node import TreeNode
 
-def zigzagLevelOrder(own root: TreeNode | None) -> list[list[int]]:
-    if root is None:
-        return []
-    result: list[list[int]] = []
-    zigzagDirection: int = 1
-    q: list[TreeNode] = []
-    q.append(root)
-    while q:
-        level: list[int] = []
-        queueLength: int = len(q)
-        for i in range(queueLength):
-            node = q.pop(0)
-            level.append(node.val)
-            left_child = node.left
-            if left_child is not None:
-                q.append(left_child)
-            right_child = node.right
-            if right_child is not None:
-                q.append(right_child)
-        if zigzagDirection == -1:
-            level.reverse()
-        result = result + [level]
-        zigzagDirection *= -1
-    return result
+def zigzagLevelOrder(own root: TreeNode | None) -> Result[list[list[int]], Error]:
+    try:
+        if root is None:
+            return []
+        result: list[list[int]] = []
+        zigzagDirection: int = 1
+        q: list[TreeNode] = []
+        q.append(root)
+        while q:
+            level: list[int] = []
+            queueLength: int = len(q)
+            for i in range(queueLength):
+                node = q.pop(0)
+                if node is None:
+                    raise IndexError("level queue is empty")
+                level.append(node.val)
+                left_child = node.left
+                if left_child is not None:
+                    q.append(left_child)
+                right_child = node.right
+                if right_child is not None:
+                    q.append(right_child)
+            if zigzagDirection == -1:
+                level.reverse()
+            result = result + [level]
+            zigzagDirection *= -1
+        return result
+    except Error as error:
+        raise error
 
 def main():
-    expected_empty: list[list[int]] = []
-    assert zigzagLevelOrder(TreeNode(3, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None)))) == [[3], [20, 9], [15, 7]]
-    assert zigzagLevelOrder(TreeNode(1, None, None)) == [[1]]
-    assert zigzagLevelOrder(None) == expected_empty
+    try:
+        expected_empty: list[list[int]] = []
+        zigzag_level_order_result_1: list[list[int]] = zigzagLevelOrder(TreeNode(3, TreeNode(9, None, None), TreeNode(20, TreeNode(15, None, None), TreeNode(7, None, None))))
+        assert zigzag_level_order_result_1 == [[3], [20, 9], [15, 7]]
+        zigzag_level_order_result_2: list[list[int]] = zigzagLevelOrder(TreeNode(1, None, None))
+        assert zigzag_level_order_result_2 == [[1]]
+        zigzag_level_order_result_3: list[list[int]] = zigzagLevelOrder(None)
+        assert zigzag_level_order_result_3 == expected_empty
+    except Error:
+        assert False

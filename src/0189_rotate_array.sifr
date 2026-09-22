@@ -1,35 +1,46 @@
 # LeetCode 189: Rotate Array
 
-def _reverse_range(mut nums: list[int], start: int, end: int) -> None:
-    l = start
-    r = end
-    while l < r:
-        left = nums[l]
-        right = nums[r]
-        if left is None or right is None:
-            return
-        nums[l] = right
-        nums[r] = left
-        l += 1
-        r -= 1
+def _reverse_range(mut nums: list[int], start: int, end: int) -> Result[None, Error]:
+    try:
+        l = start
+        r = end
+        while l < r:
+            left = nums[l]
+            right = nums[r]
+            if left is None or right is None:
+                return
+            nums[l] = right
+            nums[r] = left
+            l += 1
+            r -= 1
+        return None
+    except Error as error:
+        raise error
 
-def rotate(mut nums: list[int], k: int) -> None:
-    if len(nums) == 0:
-        return
-    rot = k
-    while rot >= len(nums):
-        rot -= len(nums)
-    nums_len = len(nums)
-    _reverse_range(nums, 0, nums_len - 1)
-    _reverse_range(nums, 0, rot - 1)
-    _reverse_range(nums, rot, nums_len - 1)
+def rotate(mut nums: list[int], k: int) -> Result[None, Error]:
+    try:
+        if len(nums) == 0:
+            return
+        rot = k
+        while rot >= len(nums):
+            rot -= len(nums)
+        nums_len = len(nums)
+        _reverse_range_completion_1: None = _reverse_range(nums, 0, nums_len - 1)
+        _reverse_range_completion_2: None = _reverse_range(nums, 0, rot - 1)
+        _reverse_range_completion_3: None = _reverse_range(nums, rot, nums_len - 1)
+        return None
+    except Error as error:
+        raise error
 
 def main():
-    arg0 = [1, 2, 3, 4, 5, 6, 7]
-    arg1 = 3
-    _result = rotate(arg0, arg1)
-    assert arg0 == [5, 6, 7, 1, 2, 3, 4]
-    arg0 = [-1, -100, 3, 99]
-    arg1 = 2
-    _result = rotate(arg0, arg1)
-    assert arg0 == [3, 99, -1, -100]
+    try:
+        arg0 = [1, 2, 3, 4, 5, 6, 7]
+        arg1 = 3
+        _result: None = rotate(arg0, arg1)
+        assert arg0 == [5, 6, 7, 1, 2, 3, 4]
+        arg0 = [-1, -100, 3, 99]
+        arg1 = 2
+        _result: None = rotate(arg0, arg1)
+        assert arg0 == [3, 99, -1, -100]
+    except Error:
+        assert False

@@ -1,24 +1,39 @@
 # LeetCode 39: Combination Sum
 
-def combinationSum(candidates: list[int], target: int) -> list[list[int]]:
-    res = []
+def combinationSum(candidates: list[int], target: int) -> Result[list[list[int]], Error]:
+    try:
+        res = []
 
-    def dfs(i, cur, total):
-        if total == target:
-            res.append(cur.copy())
-            return
-        if i >= len(candidates) or total > target:
-            return
+        def dfs(i, cur, total) -> Result[None, Error]:
+            try:
+                if total == target:
+                    res.append(cur.copy())
+                    return
+                if i >= len(candidates) or total > target:
+                    return
 
-        cur.append(candidates[i])
-        dfs(i, cur, total + candidates[i])
-        cur.pop()
-        dfs(i + 1, cur, total)
+                candidate = candidates[i]
+                if candidate is None:
+                    raise IndexError("candidate index out of bounds")
+                cur.append(candidate)
+                next_candidate = candidates[i]
+                if next_candidate is None:
+                    raise IndexError("candidate index out of bounds")
+                depth_first_search_completion_2: None = dfs(i, cur, total + next_candidate)
+                cur.pop()
+                depth_first_search_completion_3: None = dfs(i + 1, cur, total)
+                return None
+            except Error as error:
+                raise error
 
-    dfs(0, [], 0)
-    return res
+        depth_first_search_completion_1: None = dfs(0, [], 0)
+        return res
+    except Error as error:
+        raise error
 
 def main():
-    assert str(combinationSum([2,3,6,7], 7)) == '[[2, 2, 3], [7]]'
-
-
+    try:
+        combination_sum_result_4: list[list[int]] = combinationSum([2,3,6,7], 7)
+        assert str(combination_sum_result_4) == '[[2, 2, 3], [7]]'
+    except Error:
+        assert False

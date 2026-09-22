@@ -1,20 +1,30 @@
 # LeetCode 209: Minimum Size Subarray Sum
 
-def minSubArrayLen(target: int, nums: list[int]) -> int:
-    res = float('inf')
-    l, total = 0, 0
+def minSubArrayLen(target: int, nums: list[int]) -> Result[int, Error]:
+    try:
+        res = float('inf')
+        l, total = 0, 0
 
-    for r in range(len(nums)):
-        total += nums[r]
-        while total >= target:
-            res = min(res, r - l + 1)
-            total -= nums[l]
-            l += 1
-    return res if res != float('inf') else 0
+        for r in range(len(nums)):
+            total += nums[r]
+            while total >= target:
+                res = min(res, r - l + 1)
+                left_value = nums[l]
+                if left_value is None:
+                    raise IndexError("window start out of bounds")
+                total -= left_value
+                l += 1
+        return res if res != float('inf') else 0
+    except Error as error:
+        raise error
 
 def main():
-    assert str(minSubArrayLen(7, [2,3,1,2,4,3])) == '2'
-    assert str(minSubArrayLen(4, [1,4,4])) == '1'
-    assert str(minSubArrayLen(11, [1,1,1,1,1,1,1,1])) == '0'
-
-
+    try:
+        min_sub_array_len_result_1: int = minSubArrayLen(7, [2,3,1,2,4,3])
+        assert str(min_sub_array_len_result_1) == '2'
+        min_sub_array_len_result_2: int = minSubArrayLen(4, [1,4,4])
+        assert str(min_sub_array_len_result_2) == '1'
+        min_sub_array_len_result_3: int = minSubArrayLen(11, [1,1,1,1,1,1,1,1])
+        assert str(min_sub_array_len_result_3) == '0'
+    except Error:
+        assert False

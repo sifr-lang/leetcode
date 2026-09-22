@@ -21,17 +21,21 @@ class Trie:
         self.edges = [{}]
         self.end = [False]
 
-    def insert(mut self, word: str) -> None:
-        node = 0
-        for ch in word:
-            next_node = _child(self.edges, node, ch)
-            if next_node == -1:
-                next_node = len(self.edges)
-                self.edges[node][ch] = next_node
-                self.edges.append({})
-                self.end.append(False)
-            node = next_node
-        self.end[node] = True
+    def insert(mut self, word: str) -> Result[None, Error]:
+        try:
+            node = 0
+            for ch in word:
+                next_node = _child(self.edges, node, ch)
+                if next_node == -1:
+                    next_node = len(self.edges)
+                    self.edges[node][ch] = next_node
+                    self.edges.append({})
+                    self.end.append(False)
+                node = next_node
+            self.end[node] = True
+            return None
+        except Error as error:
+            raise error
 
     def search(self, word: str) -> bool:
         node = 0
@@ -50,10 +54,13 @@ class Trie:
         return True
 
 def main():
-    obj = Trie()
-    obj.insert('apple')
-    assert obj.search('apple') == True
-    assert obj.search('app') == False
-    assert obj.startsWith('app') == True
-    obj.insert('app')
-    assert obj.search('app') == True
+    try:
+        obj = Trie()
+        insert_completion_1: None = obj.insert('apple')
+        assert obj.search('apple') == True
+        assert obj.search('app') == False
+        assert obj.startsWith('app') == True
+        insert_completion_2: None = obj.insert('app')
+        assert obj.search('app') == True
+    except Error:
+        assert False

@@ -1,12 +1,22 @@
 # LeetCode 190: Reverse Bits
 
-def reverseBits(n: int) -> int:
-    res = 0
-    for i in range(32):
-        bit = (n >> i) & 1
-        res += (bit << (31 - i))
-    return res
+def reverseBits(n: int) -> Result[int, Error]:
+    try:
+        res = 0
+        for i in range(32):
+            shifted: int = n >> i
+            bit = shifted & 1
+            reversed_bit: int = bit << (31 - i)
+            res += reversed_bit
+        return res
+    except Error as error:
+        raise error
 
 def main():
-    assert reverseBits(43261596) == 964176192
-    assert reverseBits(4294967293) == 3221225471
+    try:
+        reverse_bits_result_1: int = reverseBits(43261596)
+        assert reverse_bits_result_1 == 964176192
+        reverse_bits_result_2: int = reverseBits(4294967293)
+        assert reverse_bits_result_2 == 3221225471
+    except Error:
+        assert False

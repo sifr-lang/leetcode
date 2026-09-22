@@ -1,32 +1,45 @@
 # LeetCode 17: Letter Combinations Of A Phone Number
 
-def letterCombinations(digits: str) -> list[str]:
-    res: list[str] = []
-    digitToChar: dict[str, list[str]] = {
-        "2": ["a", "b", "c"],
-        "3": ["d", "e", "f"],
-        "4": ["g", "h", "i"],
-        "5": ["j", "k", "l"],
-        "6": ["m", "n", "o"],
-        "7": ["q", "p", "r", "s"],
-        "8": ["t", "u", "v"],
-        "9": ["w", "x", "y", "z"],
-    }
+def letterCombinations(digits: str) -> Result[list[str], Error]:
+    try:
+        res: list[str] = []
+        digitToChar: dict[str, list[str]] = {
+            "2": ["a", "b", "c"],
+            "3": ["d", "e", "f"],
+            "4": ["g", "h", "i"],
+            "5": ["j", "k", "l"],
+            "6": ["m", "n", "o"],
+            "7": ["q", "p", "r", "s"],
+            "8": ["t", "u", "v"],
+            "9": ["w", "x", "y", "z"],
+        }
 
-    def backtrack(i: int, curStr: str) -> None:
-        if i >= len(digits):
-            res.append(str(curStr))
-            return
-        digit = digits[i]
-        if digit not in digitToChar:
-            return
-        for c in digitToChar[digit]:
-            backtrack(i + 1, curStr + c)
+        def backtrack(i: int, curStr: str) -> Result[None, Error]:
+            try:
+                if i >= len(digits):
+                    res.append(str(curStr))
+                    return
+                digit = digits[i]
+                if digit is None:
+                    raise IndexError("digit index out of bounds")
+                if digit not in digitToChar:
+                    return
+                for c in digitToChar[digit]:
+                    backtracking_search_completion_2: None = backtrack(i + 1, curStr + c)
+                return None
+            except Error as error:
+                raise error
 
-    if digits:
-        backtrack(0, "")
+        if digits:
+            backtracking_search_completion_1: None = backtrack(0, "")
 
-    return res
+        return res
+    except Error as error:
+        raise error
 
 def main():
-    assert str(letterCombinations("23")) == '["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]'
+    try:
+        letter_combinations_result_3: list[str] = letterCombinations("23")
+        assert str(letter_combinations_result_3) == '["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]'
+    except Error:
+        assert False

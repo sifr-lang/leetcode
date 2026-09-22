@@ -20,13 +20,16 @@ class MyCircularQueue:
         self.size = 0
         self.capacity = k
 
-    def enQueue(mut self, value: int) -> bool:
-        if self.isFull():
-            return False
-        tail = mod_or_zero(self.head + self.size, self.capacity)
-        self.data[tail] = value
-        self.size += 1
-        return True
+    def enQueue(mut self, value: int) -> Result[bool, Error]:
+        try:
+            if self.isFull():
+                return False
+            tail = mod_or_zero(self.head + self.size, self.capacity)
+            self.data[tail] = value
+            self.size += 1
+            return True
+        except Error as error:
+            raise error
 
     def deQueue(mut self) -> bool:
         if self.isEmpty():
@@ -54,13 +57,21 @@ class MyCircularQueue:
 
 
 def main():
-    obj = MyCircularQueue(3)
-    assert obj.enQueue(1) == True
-    assert obj.enQueue(2) == True
-    assert obj.enQueue(3) == True
-    assert obj.enQueue(4) == False
-    assert obj.Rear() == 3
-    assert obj.isFull() == True
-    assert obj.deQueue() == True
-    assert obj.enQueue(4) == True
-    assert obj.Rear() == 4
+    try:
+        obj = MyCircularQueue(3)
+        en_queue_result_1: bool = obj.enQueue(1)
+        assert en_queue_result_1 == True
+        en_queue_result_2: bool = obj.enQueue(2)
+        assert en_queue_result_2 == True
+        en_queue_result_3: bool = obj.enQueue(3)
+        assert en_queue_result_3 == True
+        en_queue_result_4: bool = obj.enQueue(4)
+        assert en_queue_result_4 == False
+        assert obj.Rear() == 3
+        assert obj.isFull() == True
+        assert obj.deQueue() == True
+        en_queue_result_5: bool = obj.enQueue(4)
+        assert en_queue_result_5 == True
+        assert obj.Rear() == 4
+    except Error:
+        assert False
